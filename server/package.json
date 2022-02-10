@@ -1,5 +1,5 @@
 {
-  "name": "node-skeleton",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -9,7 +9,7 @@
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
     "db:reset": "node bin/resetdb.js"
   },
-  "author": "Lighthouse Labs",
+  "author": "Lighthouse Labs Hey Neighbors",
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.2",
