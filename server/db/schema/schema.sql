@@ -11,7 +11,13 @@ CREATE TABLE users(
     last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    avatar VARCHAR(1000),
+    avatar VARCHAR(1000)
+);
+
+
+CREATE TABLE categories(
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(255) NOT NULL
 );
 
 
@@ -29,9 +35,9 @@ CREATE TABLE events (
 
   date DATE NOT NULL,
   start_at TIME NOT NULL,
-  duration NUMERIC NOT NULL
+  duration NUMERIC NOT NULL,
 
-  image, VARCHAR(255) NOT NULL,
+  photo_image VARCHAR(255) NOT NULL,
   description TEXT,
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   max_people_number INTEGER NOT NULL,
@@ -51,7 +57,3 @@ CREATE TABLE applications (
 );
 
 
-CREATE TABLE categories(
-    id SERIAL PRIMARY KEY NOT NULL,
-    name VARCHAR(255) NOT NULL
-);
