@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import axios from "axios";
+import Map from "./components/Map/Map";
 
 function App() {
   useEffect(() => {
@@ -12,6 +13,7 @@ function App() {
   return (
     <div>
       <h1>hello world</h1>
+      <Map />
     </div>
   );
 }
