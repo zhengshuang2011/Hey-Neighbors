@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter, Route, Routes, Switch } from "react-router-dom";
-import Map from "./components/Map/Map";
 import Navbar from "./components/NavBar/Navbar";
-import SignIn from "./SignIn";
-import Register from "./Register";
-import LandingPage from "./LandingPage";
+import SignIn from "./pages/SignIn";
+import Register from "./pages/Register";
+import LandingPage from "./pages/LandingPage";
+import Home from "./pages/Home";
 
 function App() {
 
@@ -41,11 +41,11 @@ function App() {
     <div>
       <BrowserRouter>
       
-        <Navbar />
 
         <Routes>
 
           <Route exact path = "/" element={<LandingPage />}/>
+          <Route exact path = "/home" element={<Home />}/>
           
           <Route exact path = "/signIn" element={<SignIn />}/>
 
