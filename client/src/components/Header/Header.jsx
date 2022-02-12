@@ -26,6 +26,10 @@ import { BiCog } from "react-icons/bi";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Header.css";
 
+//import routing tools for react which is definitely needed
+
+import { Link } from "react-router-dom";
+
 const Header = () => {
   //create initial menuCollapse state using useState hook
   const [menuCollapse, setMenuCollapse] = useState(false);
@@ -53,12 +57,10 @@ const Header = () => {
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}>
-                Home
-              </MenuItem>
-              <MenuItem icon={<FaList />}>My Events</MenuItem>
-              <MenuItem icon={<FaRegHeart />}>Bookings</MenuItem>
-              <MenuItem icon={<RiPencilLine />}>Create Event</MenuItem>
+              <MenuItem active={true} icon={<FiHome />}><Link to = "/Home" >Home</Link></MenuItem>
+              <MenuItem icon={<FaList />}><Link to = "/Myevent" >My Events</Link></MenuItem>
+              <MenuItem icon={<FaRegHeart />}><Link to = "/Bookings" >Bookings</Link></MenuItem>
+              <MenuItem icon={<RiPencilLine />}><Link to = "/CreateEvent" >Create Event</Link></MenuItem>
               {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}
             </Menu>
           </SidebarContent>
