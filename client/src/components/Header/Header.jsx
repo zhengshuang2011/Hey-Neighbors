@@ -57,8 +57,8 @@ const Header = () => {
                 Home
               </MenuItem>
               <MenuItem icon={<FaList />}>My Events</MenuItem>
-              <MenuItem icon={<FaRegHeart />}>Saved</MenuItem>
-              <MenuItem icon={<RiPencilLine />}> Create Event</MenuItem>
+              <MenuItem icon={<FaRegHeart />}>Bookings</MenuItem>
+              <MenuItem icon={<RiPencilLine />}>Create Event</MenuItem>
               {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}
             </Menu>
           </SidebarContent>
