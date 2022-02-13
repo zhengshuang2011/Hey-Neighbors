@@ -36,9 +36,7 @@ function Home() {
   return (
     <div className="comtainer">
       <div className="row">
-        <div className="col">
-          <Header />
-        </div>
+        <div className="col">{/* <Header /> */}</div>
         <div className="col-5">
           <SearchBar />
         </div>
