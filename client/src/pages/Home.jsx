@@ -12,7 +12,7 @@ function Home() {
   return (
     <Grid container direction='row' justifyContent="space-between"
       alignItems="stretch">
-      <Grid item xs={0} sm={1.5} >
+      <Grid item xs={0} sm={2} >
         <Header />
       </Grid>
 
@@ -31,7 +31,6 @@ function Home() {
           <Map />
         </Grid>
       </Grid>
-      <Grid item xs={0} sm={0.5} />
     </Grid>
   )
 }

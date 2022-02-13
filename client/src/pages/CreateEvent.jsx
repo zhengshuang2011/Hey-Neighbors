@@ -1,8 +1,10 @@
 import React from 'react'
-
+import Header from '../components/Header/Header'
 function CreateEvent() {
   return (
-    <div>CreateEvent</div>
+
+    <div> <Header />
+      CreateEvent</div>
   )
 }
 

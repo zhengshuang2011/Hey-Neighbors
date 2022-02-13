@@ -1,10 +1,11 @@
 .eventButton {
     background: linear-gradient(180deg, #FF595B 0%, #585DF9 100%);
-    font-size: 36px;
+    font-size: 24px;
     font-weight: bold;
     border: 0;
     color: white;
-    height: 100px;
+    height: 100%;
+    width: 80%;
     padding: 0 30px;
     border-radius: 13px;
     margin: 30px 20px;
