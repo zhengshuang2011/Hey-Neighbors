@@ -17,7 +17,31 @@ function App() {
       .then((data) => console.log(data.data.users))
       .catch((err) => console.log(err));
   }, []);
+// useEffect(() => {
+//     axios
+//       .get("/api/events")
+//       .then((data) => {
+//       console.log(data.data.events);
+//       setEvent([...data.data.events]);
+//       })
+//       .catch((err) => console.log(err));
+//   }, []);
 
+//   console.log(`current event is = ${JSON.stringify(event)}`);
+
+//   useEffect(() => {
+//     axios
+//       .get("/api/applications")
+//       .then((data) => console.log(data.data.applications))
+//       .catch((err) => console.log(err));
+//   }, []);
+
+//   useEffect(() => {
+//     axios
+//       .get("/api/categories")
+//       .then((data) => console.log(data.data.categories))
+//       .catch((err) => console.log(err));
+//   }, []);
   return (
     <div>
       <BrowserRouter>

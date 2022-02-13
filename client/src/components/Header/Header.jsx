@@ -8,7 +8,7 @@ import {
   MenuItem,
   SidebarHeader,
   SidebarFooter,
-  SidebarContent,
+  SidebarContent
 } from "react-pro-sidebar";
 
 //import icons from react icons
@@ -17,7 +17,7 @@ import {
   FiHome,
   FiLogOut,
   FiArrowLeftCircle,
-  FiArrowRightCircle,
+  FiArrowRightCircle
 } from "react-icons/fi";
 import { RiPencilLine } from "react-icons/ri";
 import { BiCog } from "react-icons/bi";
@@ -32,7 +32,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   //create initial menuCollapse state using useState hook
-  const [menuCollapse, setMenuCollapse] = useState(true);
+  const [menuCollapse, setMenuCollapse] = useState(false);
 
   //create a custom function that will change menucollapse state from false to true and true to false
   const menuIconClick = () => {
@@ -57,18 +57,10 @@ const Header = () => {
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}>
-                <Link to="/Home">Home</Link>
-              </MenuItem>
-              <MenuItem icon={<FaList />}>
-                <Link to="/Myevent">My Events</Link>
-              </MenuItem>
-              <MenuItem icon={<FaRegHeart />}>
-                <Link to="/Bookings">Bookings</Link>
-              </MenuItem>
-              <MenuItem icon={<RiPencilLine />}>
-                <Link to="/CreateEvent">Create Event</Link>
-              </MenuItem>
+              <MenuItem active={true} icon={<FiHome />}><Link style={{ color: 'black' }} to="/Home" >Home</Link></MenuItem>
+              <MenuItem active={true} icon={<FaList />}><Link to="/Myevent" style={{ color: 'black' }} >My Events</Link></MenuItem>
+              <MenuItem active={true} icon={<FaRegHeart />}><Link to="/Bookings" style={{ color: 'black' }}>Bookings</Link></MenuItem>
+              <MenuItem active={true} icon={<RiPencilLine />}><Link to="/CreateEvent" style={{ color: 'black' }}>Create Event</Link></MenuItem>
               {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}
             </Menu>
           </SidebarContent>
