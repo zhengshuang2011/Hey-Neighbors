@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import Header from "../components/Header/Header";
 
 function Bookings() {
   return (
-    <div>Bookings</div>
-  )
+    <>
+      <Header />
+      <div>Bookings</div>
+    </>
+  );
 }
 
-export default Bookings
+export default Bookings;

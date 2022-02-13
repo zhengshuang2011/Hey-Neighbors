@@ -1,0 +1,49 @@
+.container {
+  margin-top: 1rem;
+  width: 450px;
+}
+
+.input-group-append {
+  width: 2.5rem;
+}
+.col-2 {
+  margin-right: 0rem;
+}
+.icon {
+  background-color: rgba(206, 91, 91, 0.632);
+  color: white;
+  border-radius: 50%;
+  padding: 0.3rem;
+  margin-top: 0.3rem;
+  margin-right: 0.5rem;
+  margin-left: 0.3rem;
+}
+.location {
+  font-size: 1rem;
+}
+.filter {
+  font-size: 1rem;
+  margin-left: 1.3rem;
+}
+.date {
+  border: 1.5px solid rgb(210, 206, 206);
+  /* border-top: none; */
+  /* border-bottom: none; */
+  margin-bottom: 5%;
+}
+.option {
+  margin-bottom: 5%;
+  font-size: 1rem;
+}
+.mask {
+  width: 20%;
+  margin-left: 15%;
+}
+.search {
+  margin-right: 3rem;
+  background-color: rgba(206, 91, 91, 0.632);
+}
+button {
+  width: 40%;
+  float: left;
+}
