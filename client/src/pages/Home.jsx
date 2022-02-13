@@ -1,51 +1,38 @@
-import React, { useEffect, useState } from "react";
-import Header from "../components/Header/Header";
+import React from 'react'
+import Header from '../components/Header/Header'
 import Map from "../components/Map/Map";
-import axios from "axios";
+import EventButton from '../components/EventButton/EventButton';
 import SearchBar from "../components/Search/searchBar";
 
+import { Grid } from "@material-ui/core";
 function Home() {
-  // const [event, setEvent] = useState([]);
 
-  // useEffect(() => {
-  //   axios
-  //     .get("/api/events")
-  //     .then((data) => {
-  //       console.log(data.data.events);
-  //       setEvent([...data.data.events]);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
 
-  // console.log(`current event is = ${JSON.stringify(event)}`);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("/api/applications")
-  //     .then((data) => console.log(data.data.applications))
-  //     .catch((err) => console.log(err));
-  // }, []);
-
-  // useEffect(() => {
-  //   axios
-  //     .get("/api/categories")
-  //     .then((data) => console.log(data.data.categories))
-  //     .catch((err) => console.log(err));
-  // }, []);
 
   return (
-    <div className="comtainer">
-      <div className="row">
-        <div className="col">{/* <Header /> */}</div>
-        <div className="col-5">
+    <Grid container direction='row' justifyContent="space-between"
+      alignItems="stretch">
+      <Grid item xs={0} sm={2} >
+        <Header />
+      </Grid>
+
+      <Grid item xs={12} sm={6} >
+        <Grid container direction="column"
+          justifyContent="space-evenly"
+          alignItems="stretch">
           <SearchBar />
-        </div>
-        <div className="col-5">
+        </Grid>
+      </Grid>
+      <Grid item xs={12} sm={4}>
+        <Grid container direction="column"
+          justifyContent="space-evenly"
+          alignItems="stretch">
+          <EventButton />
           <Map />
-        </div>
-      </div>
-    </div>
-  );
+        </Grid>
+      </Grid>
+    </Grid>
+  )
 }
 
-export default Home;
+export default Home
