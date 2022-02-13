@@ -5,10 +5,10 @@ import axios from "axios";
 import SignIn from "./pages/SignIn";
 import Register from "./pages/Register";
 import LandingPage from "./pages/LandingPage";
-import Home from "./pages/Home";
 import Myevent from "./pages/Myevent";
 import CreateEvent from "./pages/CreateEvent";
 import Bookings from "./pages/Bookings";
+import Home from "./pages/Home";
 
 function App() {
   useEffect(() => {
@@ -31,8 +31,6 @@ function App() {
           <Route exact path="/register" element={<Register />} />
 
           <Route exact path="/Myevent" element={<Myevent />} />
-
-          <Route exact path="/Home" element={<Home />} />
 
           <Route exact path="/Bookings" element={<Bookings />} />
 
