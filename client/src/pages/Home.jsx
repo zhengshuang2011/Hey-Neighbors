@@ -35,6 +35,7 @@ function Home() {
 
   return (
     <div className="comtainer">
+      <Header />
       <div className="row">
         <div className="col">{/* <Header /> */}</div>
         <div className="col-5">

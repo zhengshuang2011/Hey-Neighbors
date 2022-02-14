@@ -11,12 +11,13 @@ import Bookings from "./pages/Bookings";
 import Home from "./pages/Home";
 
 function App() {
-  useEffect(() => {
-    axios
-      .get("/api/users")
-      .then((data) => console.log(data.data.users))
-      .catch((err) => console.log(err));
-  }, []);
+  
+  //useEffect(() => {
+  //  axios
+  //    .get("/api/users")
+  //    .then((data) => console.log(data.data.users))
+  //    .catch((err) => console.log(err));
+  //}, []);
 
   return (
     <div>

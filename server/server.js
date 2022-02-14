@@ -21,6 +21,7 @@ app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(
   "/styles",
@@ -49,7 +50,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 app.use("/api/events", eventsRoute(db));
 app.use("/api/applications", applicationssRoute(db));
-app.use("/api/categories", categoriesRoute(db))
+app.use("/api/categories", categoriesRoute(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
