@@ -53,11 +53,11 @@ function App() {
           <Route exact path="/signIn" element={<SignIn />} />
           <Route exact path="/signUp" element={<SignUp />} />
 
-          <Route exact path="/Myevent" element={<Myevent />} />
+          <Route exact path="/myevent" element={<Myevent />} />
 
-          <Route exact path="/Bookings" element={<Bookings />} />
+          <Route exact path="/bookings" element={<Bookings />} />
 
-          <Route exact path="/CreateEvent" element={<CreateEvent />} />
+          <Route exact path="/createEvent" element={<CreateEvent />} />
         </Routes>
       </BrowserRouter>
     </div>
