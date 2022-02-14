@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { FileUploader } from "react-drag-drop-files";
 import axios from 'axios';
@@ -5,6 +6,7 @@ import CreateEventStyle from './CreateEvent.css';
 import Header from '../components/Header/Header';
 
 //import Map from '../components/Map/Map';
+
 
 function CreateEvent() {
 
@@ -176,7 +178,6 @@ function CreateEvent() {
 
       </div>
 
-    </>
   )
 }
 

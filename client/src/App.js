@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
 import SignIn from "./pages/SignIn";
-import Register from "./pages/Register";
+import SignUp from "./pages/SignUp";
 import LandingPage from "./pages/LandingPage";
 import Myevent from "./pages/Myevent";
 import CreateEvent from "./pages/CreateEvent";
@@ -51,8 +51,7 @@ function App() {
           <Route exact path="/home" element={<Home />} />
 
           <Route exact path="/signIn" element={<SignIn />} />
-
-          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/signUp" element={<SignUp />} />
 
           <Route exact path="/myevent" element={<Myevent />} />
 

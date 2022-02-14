@@ -28,7 +28,7 @@ function Home() {
     <Grid container direction='row' justifyContent="space-between"
       alignItems="stretch">
       <Grid item >
-        <Header active={true} />
+        <Header />
       </Grid>
       
 
