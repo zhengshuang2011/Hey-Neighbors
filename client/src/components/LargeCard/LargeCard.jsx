@@ -1,8 +1,9 @@
 import React from 'react'
-import './SmallCard2.css'
+import './LargeCard.css'
 import eventImg from "../../assets/event1.png"
 
-function SmallCard2() {
+
+function LargeCard() {
   return (
     <div className="cards">
       <div>
@@ -28,4 +29,4 @@ function SmallCard2() {
   )
 }
 
-export default SmallCard2
+export default LargeCard
