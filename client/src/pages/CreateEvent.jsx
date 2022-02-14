@@ -1,10 +1,13 @@
 import React from 'react'
-import Header from '../components/Header/Header'
+import Sidebar from '../components/Siderbar/Sidebar'
+
 function CreateEvent() {
   return (
 
-    <div> <Header />
-      CreateEvent</div>
+    <div>
+      <Sidebar />
+
+    </div>
   )
 }
 
