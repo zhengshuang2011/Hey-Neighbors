@@ -3,8 +3,8 @@
     flex-direction: row;
     justify-content: center;
     
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 15%;
+    
 } 
     .addressSection {
         display: grid;
@@ -39,6 +39,7 @@
     .timeSection {
         display: flex;
         justify-content: space-between;
+
     }
 
     .stateCountryPostalSection {
@@ -48,7 +49,7 @@
 
     .eventDetails {
         display: flex;
-        justify-content: space-between;
+        
     }
 
     .streetCitySection {
@@ -75,6 +76,10 @@
       .dropdown {
         position: relative;
         display: inline-block;
+        padding: 10px;
+        margin: 5px;
+        margin-top: 20px;
+        border-radius: 1em;
       }
     
       .dropdown-content {
