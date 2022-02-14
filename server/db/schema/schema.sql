@@ -37,7 +37,7 @@ CREATE TABLE events (
   start_at TIME NOT NULL,
   duration NUMERIC NOT NULL,
 
-  photo_image VARCHAR(255) NOT NULL,
+  photo_image VARCHAR(65535) NOT NULL,
   description TEXT,
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   max_people_number INTEGER NOT NULL,
