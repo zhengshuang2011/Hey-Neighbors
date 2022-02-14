@@ -58,7 +58,7 @@ module.exports = (db) => {
   });
 
   //  ------------------------------------------------------
-  // Apply for the event
+  // Create new application for the event
   const newApplication = (
     participate_id,
     event_id,
@@ -114,5 +114,29 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  //  ------------------------------------------------------
+  // Delete application by id
+  const deleteApplicationById = (id) => {
+    command = `
+    DELETE FROM applications WHERE id = $1 RETURNING *;
+    `;
+    queryParams = [id];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+  router.delete("/:id", (req, res) => {
+    const id = Number(req.params.id);
+
+    deleteApplicationById(id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   return router;
 };

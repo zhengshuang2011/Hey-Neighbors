@@ -107,13 +107,8 @@ module.exports = (db) => {
       .catch((err) => console.log(err.message));
   };
 
-<<<<<<< HEAD
-  router.post("/new", (req, res) => {
-    const host_id = req.session.userId;
-=======
   router.post("/", (req, res) => {
     const host_id = 1;
->>>>>>> origin/master
     const {
       eventName,
       streetNo,
