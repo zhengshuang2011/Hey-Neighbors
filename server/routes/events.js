@@ -86,22 +86,22 @@ module.exports = (db) => {
   };
 
   router.post("/", (req, res) => {
-    const host_id = req.session.userId;
+    const host_id = 1;
     const {
-      event_name,
-      address,
+      eventName,
+      streetNo,
       street,
       city,
       province,
       country,
-      post_code,
+      postalCode,
       date,
-      start_at,
+      startAt,
       duration,
-      photo_image,
+      photo,
       description,
-      category_id,
-      max_people_number,
+      category,
+      maxParticipant,
       mask,
       vaccine,
       status,
@@ -109,20 +109,20 @@ module.exports = (db) => {
 
     addNewEvent(
       host_id,
-      event_name,
-      address,
+      eventName,
+      streetNo,
       street,
       city,
       province,
       country,
-      post_code,
+      postalCode,
       date,
-      start_at,
+      startAt,
       duration,
-      photo_image,
+      photo,
       description,
-      category_id,
-      max_people_number,
+      category,
+      maxParticipant,
       mask,
       vaccine,
       status
