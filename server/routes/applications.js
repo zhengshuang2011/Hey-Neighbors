@@ -14,6 +14,50 @@ module.exports = (db) => {
   });
 
   //  ------------------------------------------------------
+  // Get event's all application by eventId
+  const getApplicationsByEventId = (event_id) => {
+    const command = `SELECT * FROM applications WHERE event_id = $1;`;
+    const queryParams = [event_id];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+  router.get("/event/:event_id", (req, res) => {
+    const event_id = Number(req.params.event_id);
+    console.log(event_id);
+
+    getApplicationsByEventId(event_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Get all application by userId
+  const getApplicationsByUserId = (user_id) => {
+    const command = `SELECT * FROM applications WHERE participate_id = $1;`;
+    const queryParams = [user_id];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+  router.get("/user/:event_id", (req, res) => {
+    const user_id = req.session.userId;
+    console.log(user_id);
+
+    getApplicationsByUserId(user_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
   // Apply for the event
   const newApplication = (
     participate_id,
