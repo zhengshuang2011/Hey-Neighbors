@@ -1,8 +1,7 @@
-.home {
-  width: 100%;
+.scroll {
+  overflow-y:scroll;
+  max-height: 90vh;
+  overflow-x: hidden;
+  padding-top: 10px;  
 }
-.title {
-  font-size: 3rem;
-  margin-top: 8rem;
-  text-align: center;
-}
+

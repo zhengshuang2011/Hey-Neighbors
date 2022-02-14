@@ -6,9 +6,11 @@ import SearchBar from "../components/Search/searchBar";
 import axios from "axios";
 
 import { Grid } from "@material-ui/core";
-function Home() {
+import SmallCard from '../components/SmallCard/SmallCard';
+import './home.css'
 
   const [event, setEvent] = useState("")
+
 
   useEffect(() => {
       axios
@@ -20,28 +22,49 @@ function Home() {
         .catch((err) => console.log(err));
     }, []);
 
+function Home() {
+
   return (
     <Grid container direction='row' justifyContent="space-between"
       alignItems="stretch">
-      <Grid item xs={0} sm={2} >
-        <Header />
+      <Grid item >
+        <Header active={true} />
       </Grid>
       
 
-      <Grid item xs={12} sm={6} >
+      <Grid item xs={12} sm={5} >
         <Grid container direction="column"
           justifyContent="space-evenly"
           alignItems="stretch">
           <SearchBar />
+          <Grid class="scroll" container spacing={1} justifyContent="flex-start"
+            alignItems="center" >
+
+            <SmallCard />
+            <SmallCard />
+            <SmallCard />
+            <SmallCard />
+          </Grid>
+
         </Grid>
       </Grid>
-      <img src={event[1].photo_image} alt="Girl in a jacket" width="800" height="600"/>
+
+      <img src={event[1].photo_image} alt="Girl in a jacket" width="400" height="300"/>
       <Grid item xs={12} sm={4}>
+
+
+      <Grid item xs={12} sm={5}>
+
         <Grid container direction="column"
           justifyContent="space-evenly"
           alignItems="stretch">
-          <EventButton />
-          <Map />
+          <Grid item >
+            <EventButton />
+          </Grid>
+          <Grid item>
+            <Map />
+          </Grid>
+
         </Grid>
       </Grid>
     </Grid>
