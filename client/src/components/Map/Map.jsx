@@ -11,13 +11,13 @@ export default function Map() {
     const ottawaCoordinates = { lat: 45.4111700, lng: -75.6981200 };
 
     return (
-        <div className = {classes.mapContainer}>
-            <GoogleMapReact 
+        <div className={classes.mapContainer}>
+            <GoogleMapReact
                 bootstrapURLKeys={{ key: "AIzaSyA_itBW9kNLgs2Ef1vImn7JhCVcLsJ6smQ" }}
-                defaultCenter= {ottawaCoordinates}
-                center = {ottawaCoordinates}
-                defaultZoom = {14}
-                margin = {[50, 50, 50, 50]}
+                defaultCenter={ottawaCoordinates}
+                center={ottawaCoordinates}
+                defaultZoom={14}
+                margin={[50, 50, 50, 50]}
             >
 
             </GoogleMapReact>
