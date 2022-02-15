@@ -3,15 +3,20 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
-      .then((data) => {
-        const users = data.rows;
-        console.log(res.json({ users }));
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
+  router.get("/login", (req, res) => {
+    if (req.session.userId) {
+      id = req.session.userId;
+      db.query(`SELECT * FROM users WHERE id = $1;`, [id])
+        .then((data) => {
+          console.log(data.rows);
+          res.json(data.rows);
+        })
+        .catch((err) => {
+          res.status(500).json({ error: err.message });
+        });
+    } else {
+      res.json(null);
+    }
   });
 
   /**
@@ -41,6 +46,7 @@ module.exports = (db) => {
           return res.status(400).json({ emailnotfound: "Email not found" });
         } else {
           if (bcrypt.compareSync(password, user.password)) {
+            req.session.userId = user.id;
             res.send(user);
             return;
           }
