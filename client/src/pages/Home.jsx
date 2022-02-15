@@ -9,14 +9,14 @@ import { Grid } from "@material-ui/core";
 import SmallCard from "../components/SmallCard/SmallCard";
 import "./home.css";
 
-function Home() {
+function Home({ user, setUser }) {
   const [event, setEvent] = useState("");
 
   useEffect(() => {
     axios
       .get("/api/events")
       .then((data) => {
-        console.log(data.data.events);
+        // console.log(data.data.events);
         setEvent([...data.data.events]);
       })
       .catch((err) => console.log(err));
@@ -30,7 +30,7 @@ function Home() {
       alignItems="stretch"
     >
       <Grid item>
-        <Header />
+        <Header user={user} setUser={setUser} />
       </Grid>
 
       <Grid item xs={12} sm={5}>

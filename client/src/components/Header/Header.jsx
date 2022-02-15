@@ -28,11 +28,13 @@ import "./Header.css";
 
 //import routing tools for react which is definitely needed
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Header = () => {
+const Header = ({ user, setUser }) => {
   //create initial menuCollapse state using useState hook
   const [menuCollapse, setMenuCollapse] = useState(true);
+  const navigate = useNavigate();
 
   //create a custom function that will change menucollapse state from false to true and true to false
   const menuIconClick = () => {
@@ -40,6 +42,18 @@ const Header = () => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
+  const handleLogout = () => {
+    axios
+      .post("/api/users/logout")
+      .then((response) => {
+        console.log("logout", response.data);
+        setUser(null);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log("Error : ", err);
+      });
+  };
   return (
     <>
       <div id="header">
@@ -87,8 +101,11 @@ const Header = () => {
             </Menu>
           </SidebarContent>
           <SidebarFooter>
+            {" "}
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+              <MenuItem icon={<FiLogOut />} onClick={handleLogout}>
+                Logout
+              </MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>
