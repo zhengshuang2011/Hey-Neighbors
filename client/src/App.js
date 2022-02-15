@@ -18,7 +18,13 @@ function App() {
   useEffect(() => {
     axios
       .get("/api/users/login")
-      .then((data) => setUser(data.data[0]))
+      .then((data) => {
+        if (data.data) {
+          setUser(data.data[0]);
+        } else {
+          setUser();
+        }
+      })
       .catch((err) => console.log(err));
   }, []);
 
@@ -52,8 +58,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
+          <Route
+            exact
+            path="/home"
+            element={<Home user={user} setUser={setUser} />}
+          />
 
-          <Route exact path="/home" element={<Home />} />
           <Route exact path="/home2" element={<Home2 />} />
 
           <Route
@@ -62,7 +72,11 @@ function App() {
             element={<SignIn user={user} setUser={setUser} />}
           />
 
-          <Route exact path="/signUp" element={<SignUp />} />
+          <Route
+            exact
+            path="/signUp"
+            element={<SignUp user={user} setUser={setUser} />}
+          />
 
           <Route exact path="/myevent" element={<Myevent />} />
 

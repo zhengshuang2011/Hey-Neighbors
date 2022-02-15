@@ -141,7 +141,6 @@ function CreateEvent() {
               <input
                 type="number"
                 min="1"
-                value="duration"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
                 placeholder="Duration"

@@ -12,16 +12,16 @@ function SearchBar() {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [mask, setMask] = useState(false);
   const [vaccine, setVaccine] = useState(false);
-  console.log(
-    "location",
-    searchInput,
-    "date",
-    selectedDate,
-    "mask",
-    mask,
-    "vaccine",
-    vaccine
-  );
+  // console.log(
+  //   "location",
+  //   searchInput,
+  //   "date",
+  //   selectedDate,
+  //   "mask",
+  //   mask,
+  //   "vaccine",
+  //   vaccine
+  // );
 
   const onSubmit = () => {
     console.log("submit");
