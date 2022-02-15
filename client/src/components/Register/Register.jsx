@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
@@ -12,9 +12,11 @@ function Register({ user, setUser }) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  if (user) {
-    navigate("/home");
-  }
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, [user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

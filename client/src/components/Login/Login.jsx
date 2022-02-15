@@ -11,10 +11,11 @@ function Login({ user, setUser }) {
   const navigate = useNavigate();
 
   // console.log("loginpage user", user);
-
-  if (user) {
-    navigate("/home");
-  }
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, [user]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

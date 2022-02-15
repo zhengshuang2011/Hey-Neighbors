@@ -61,10 +61,10 @@ function App() {
           <Route
             exact
             path="/home"
-            element={<Home user={user} setUser={setUser} />}
+            element={<Home2 user={user} setUser={setUser} />}
           />
 
-          <Route exact path="/home2" element={<Home2 />} />
+          {/* <Route exact path="/home2" element={<Home />} /> */}
 
           <Route
             exact
