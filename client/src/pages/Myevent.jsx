@@ -1,12 +1,13 @@
 import React from 'react'
+// import Header from '../components/Header/Header'
+import Sidebar from '../components/Siderbar/Sidebar'
 
-import Header from '../components/Header/Header'
 
 function Myevent() {
   return (
     <div>
-      <Header />
-      <div>List of my events</div>
+      {/* <Header /> */}
+      <Sidebar />
 
     </div>
   )

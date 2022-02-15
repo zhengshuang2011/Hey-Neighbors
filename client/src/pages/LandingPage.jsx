@@ -18,7 +18,7 @@ export default function LandingPage() {
 
                             <button type="button" ><Link style={{
                                 color: 'white', textDecoration: 'none',
-                            }} to="/Home" >Expore </Link></button>
+                            }} to="/Home" >Explore </Link></button>
 
                         </div>
 
