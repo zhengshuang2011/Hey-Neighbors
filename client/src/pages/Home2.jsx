@@ -20,8 +20,8 @@ function Home2() {
         {/* <SearchBar /> */}
 
       </Grid>
-      <Grid item xs={8}>
-        <div className="container js-container" style={{ backgroundColor: "#F6F6FA" }}>
+      <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
+        <div className="container js-container">
           <div className="container__head">
 
             <div className="container__title title title_xl">Events </div>

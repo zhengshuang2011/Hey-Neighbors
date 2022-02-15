@@ -1,0 +1,8 @@
+.messages__container {
+    padding-left: 20px;
+    flex: 0 0 calc(100% - 500px);
+}
+.makeStyles-mapContainer-2 {
+    width: 100%;
+    height: 75vh;
+}
