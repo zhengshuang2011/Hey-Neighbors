@@ -41,9 +41,9 @@ INSERT INTO events (
 );
 
 INSERT INTO applications (
-  participate_id, event_id, description, people_number, vaccine, status
+  participate_id, event_id, description, people_number, vaccine, wait, approved
 ) VALUES (
-  2, 1, 'I am living nearbay and want to join with my kid', 2, TRUE, FALSE
+  2, 1, 'I am living nearbay and want to join with my kid', 2, TRUE, TRUE, FALSE
 );
 
 

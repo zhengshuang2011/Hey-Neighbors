@@ -53,7 +53,8 @@ CREATE TABLE applications (
   description TEXT,
   people_number INTEGER NOT NULL,
   vaccine BOOLEAN NOT NULL DEFAULT FALSE,
-  status BOOLEAN NOt NULL DEFAULT FALSE
+  wait BOOLEAN NOt NULL DEFAULT TRUE,
+  approved BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 

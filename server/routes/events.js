@@ -15,6 +15,28 @@ module.exports = (db) => {
   });
 
   //  ------------------------------------------------------
+  // Get event by eventId
+  const getEventByEventId = (event_id) => {
+    const command = `SELECT * FROM events WHERE id = $1;`;
+    const queryParams = [event_id];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+  router.get("/:id", (req, res) => {
+    const event_id = Number(req.params.id);
+    console.log(event_id);
+
+    getEventByEventId(event_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
   //  Create new event
   const addNewEvent = (
     host_id,
@@ -130,28 +152,6 @@ module.exports = (db) => {
       .then((data) => {
         console.log(res.json({ data }));
       })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  });
-
-  //  ------------------------------------------------------
-  // Get event by eventId
-  const getEventByEventId = (event_id) => {
-    const command = `SELECT * FROM events WHERE id = $1;`;
-    const queryParams = [event_id];
-
-    return db
-      .query(command, queryParams)
-      .then((res) => res.rows[0])
-      .catch((err) => console.log(err.message));
-  };
-  router.get("/:id", (req, res) => {
-    const event_id = Number(req.params.id);
-    console.log(event_id);
-
-    getEventByEventId(event_id)
-      .then((data) => res.json(data))
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
@@ -292,6 +292,114 @@ module.exports = (db) => {
     const event_id = Number(req.params.id);
 
     deleteEventById(event_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Get Host owned coming events
+  const getHostEvent = (host_id) => {
+    const command = `
+    SELECT * FROM events
+    WHERE host_id = $1
+    AND status = $2;`;
+    const queryParams = [host_id, FALSE];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+  router.get("/host/future", (req, res) => {
+    const host_id = req.session.userId;
+    console.log(event_id);
+
+    getHostEvent(host_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Get Host owned completed events
+  const getHostFinishedEvent = (host_id) => {
+    const command = `
+    SELECT * FROM events
+    WHERE host_id = $1
+    AND status = $2;`;
+    const queryParams = [host_id, TRUE];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+  router.get("/host/completed", (req, res) => {
+    const host_id = req.session.userId;
+    console.log(event_id);
+
+    getHostFinishedEvent(host_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Get User(attender) coming events
+  const getUserFutureEvent = (user_id) => {
+    const command = `
+    SELECT * FROM events e
+    JOIN applications  a ON a.event_id = e.id
+    WHERE a.participate_id = $1
+    AND a.wait = $2
+    AND a.approved = $3
+    AND e.status = $4;
+    `;
+    const queryParams = [user_id, FALSE, TRUE, FALSE];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+  router.get("/user/willattend", (req, res) => {
+    const user_id = req.session.userId;
+    console.log(user_id);
+
+    getUserFutureEvent(user_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Get User(attender) finished events
+  const getUserFinishedEvent = (user_id) => {
+    const command = `
+    SELECT * FROM events e
+    JOIN applications  a ON a.event_id = e.id
+    WHERE a.participate_id = $1
+    AND a.wait = $2
+    AND a.approved = $3
+    AND e.status = $4;
+    `;
+    const queryParams = [user_id, FALSE, TRUE, TRUE];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+  router.get("/user/attended", (req, res) => {
+    const user_id = req.session.userId;
+    console.log(user_id);
+
+    getUserFinishedEvent(user_id)
       .then((data) => res.json(data))
       .catch((err) => {
         res.status(500).json({ error: err.message });
