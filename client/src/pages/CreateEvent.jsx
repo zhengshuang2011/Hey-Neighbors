@@ -50,11 +50,6 @@ function CreateEvent() {
   };
 
   const handleSubmit = () => {
-    // const photoData = new FormData();
-
-    // photoData.append( "file", photo);
-
-    // console.log(photoData);
 
     const values = {
       eventName,
