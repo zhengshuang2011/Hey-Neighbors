@@ -9,6 +9,7 @@ import Myevent from "./pages/Myevent";
 import CreateEvent from "./pages/CreateEvent";
 import Bookings from "./pages/Bookings";
 import Home from "./pages/Home";
+import Home2 from "./pages/Home2";
 
 function App() {
   const [user, setUser] = useState();
@@ -57,12 +58,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
-
           <Route
             exact
             path="/home"
             element={<Home user={user} setUser={setUser} />}
           />
+
+          <Route exact path="/home2" element={<Home2 />} />
 
           <Route
             exact
