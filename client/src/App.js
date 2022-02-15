@@ -9,6 +9,7 @@ import Myevent from "./pages/Myevent";
 import CreateEvent from "./pages/CreateEvent";
 import Bookings from "./pages/Bookings";
 import Home from "./pages/Home";
+import Home2 from "./pages/Home2";
 
 function App() {
   useEffect(() => {
@@ -49,6 +50,7 @@ function App() {
           <Route exact path="/" element={<LandingPage />} />
 
           <Route exact path="/home" element={<Home />} />
+          <Route exact path="/home2" element={<Home2 />} />
 
           <Route exact path="/signIn" element={<SignIn />} />
           <Route exact path="/signUp" element={<SignUp />} />
