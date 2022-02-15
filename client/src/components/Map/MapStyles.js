@@ -9,8 +9,8 @@ export default makeStyles(() => ({
     width: "100px",
   },
   mapContainer: {
-    height: "80vh",
-    width: "90%",
+    height: "70vh",
+    width: "100%",
   },
   markerContainer: {
     position: "absolute",
