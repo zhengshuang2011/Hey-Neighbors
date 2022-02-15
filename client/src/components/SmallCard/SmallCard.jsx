@@ -29,24 +29,26 @@ function SmallCard() {
       <Card sx={{ display: "flex", flexDirection: "row", borderRadius: "10px" }}>
         <CardMedia
           component="img"
-          sx={{ width: 100, height: 210 }}
+          sx={{ width: 100, height: 100 }}
           image={eventImg}
           alt="event image"
         />
         <Box sx={{ display: "flex", flexDirection: "column" }}>
           <CardContent sx={{ flex: "1 0 atuo" }}>
-            <Grid container
+            <Grid item xs container
               direction="row"
               justifyContent="space-between"
               alignItems="flex-start">
-              <Typography component="div" variant="h5">
+
+              <Grid item xs><Typography component="div" variant="h5">
                 Event Titel xxxxxxx
-              </Typography>
-              <Button variant="outlined" size="small" style={{ backgroundColor: 'green' }}>GAME</Button>
+              </Typography></Grid>
+              <Grid> <Button variant="outlined" size="small" style={{ backgroundColor: 'green' }}>GAME</Button></Grid>
+
 
 
             </Grid>
-            <Grid container
+            <Grid item container
               direction="row"
               justifyContent="space-between"
               alignItems="flex-start"
