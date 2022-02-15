@@ -4,11 +4,17 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import "./Login.css";
 
-function Login({ setToken }) {
+function Login({ user, setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // console.log("loginpage user", user);
+
+  if (user) {
+    navigate("/home");
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +33,7 @@ function Login({ setToken }) {
       })
       .then((response) => {
         console.log(response.data);
-        setToken(response.data.id);
+        setUser(response.data);
         setError("");
         navigate("/home");
       })
@@ -161,6 +167,6 @@ function Login({ setToken }) {
 }
 
 Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
 };
 export default Login;

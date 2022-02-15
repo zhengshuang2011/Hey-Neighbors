@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
@@ -9,15 +9,15 @@ import Myevent from "./pages/Myevent";
 import CreateEvent from "./pages/CreateEvent";
 import Bookings from "./pages/Bookings";
 import Home from "./pages/Home";
-import { useState } from "react";
 
 function App() {
-  const [token, setToken] = useState();
+  const [user, setUser] = useState();
+  console.log("user", user);
 
   useEffect(() => {
     axios
-      .get("/api/users")
-      .then((data) => console.log(data.data.users))
+      .get("/api/users/login")
+      .then((data) => setUser(data.data[0]))
       .catch((err) => console.log(err));
   }, []);
 
@@ -57,7 +57,7 @@ function App() {
           <Route
             exact
             path="/signIn"
-            element={<SignIn setToken={setToken} />}
+            element={<SignIn user={user} setUser={setUser} />}
           />
 
           <Route exact path="/signUp" element={<SignUp />} />
