@@ -1,3 +1,11 @@
+.sidebar__container {
+    display: flex;
+    width: 100%;
+    /* border-right: 1px solid #F0F0F3; */
+    flex-direction: column;
+    padding-right: 20px;
+    
+}
 .option_require {
   padding-top: 20px;
  

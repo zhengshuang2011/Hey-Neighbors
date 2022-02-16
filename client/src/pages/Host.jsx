@@ -1,13 +1,12 @@
 import React from 'react'
 import { Grid } from "@material-ui/core";
 import Sidebar from '../components/Siderbar/Sidebar';
-import EventMap from '../components/EventMap/EventMap';
+import CheckRsvp from '../components/CheckRsvp/CheckRsvp';
+import EventList from '../components/EventList/EventList';
 
-import SidebarSearch from '../components/SideSearch/SidebarSearch';
-import './Home2.css'
+// import './Host.css'
 
-
-function Home2() {
+function Host() {
   return (
 
     <Grid container direction='row' justifyContent="center"
@@ -16,15 +15,14 @@ function Home2() {
         <Sidebar />
       </Grid>
       <Grid item xs={3}>
-        <SidebarSearch />
-        {/* <SearchBar /> */}
+        <CheckRsvp />
 
       </Grid>
-      <Grid item xs={8}>
-        <div className="container js-container" style={{ backgroundColor: "#F6F6FA" }}>
+      <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
+        <div className="container js-container">
           <div className="container__head">
 
-            <div className="container__title title title_xl">Events </div>
+            <div className="container__title title title_xl">Your Events </div>
 
             {/* search*/}
             <div className="container__search search">
@@ -40,14 +38,15 @@ function Home2() {
             </div>
           </div>
           <div className="container__body">
-            <EventMap />
+            <EventList />
 
           </div>
         </div>
       </Grid>
     </Grid>
 
+
   )
 }
 
-export default Home2
+export default Host
