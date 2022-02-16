@@ -4,7 +4,7 @@ import Sidebar from '../components/Siderbar/Sidebar';
 import EventMap from '../components/EventMap/EventMap';
 
 import SidebarSearch from '../components/SideSearch/SidebarSearch';
-import './Home2.css'
+// import './Home2.css'
 
 
 function Home2() {
