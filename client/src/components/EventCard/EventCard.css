@@ -6,7 +6,8 @@
   cursor: pointer;
 }
 .items__item:hover {
-  box-shadow: 0 0 11px rgba(131, 197, 70, 0.2);
+  box-shadow: 0 0 11px #6980F3;
+  border-radius: 8px;
 }
 .items__preview {
   display: flex;

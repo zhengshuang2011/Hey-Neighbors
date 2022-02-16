@@ -1,0 +1,21 @@
+.event_form {
+  margin: 3rem 4rem;
+}
+.other_features {
+  flex-direction: row;
+   margin-top: 20px;
+}
+.create {
+  background-color: #92A5EF;
+  color: white;
+  font-size: 24;
+  font-weight: 600;
+  border-radius: 10px;
+  margin-right: 1rem;
+}
+.create:hover {
+  background-color:#6B86F1;
+}
+.cancel {
+  border-radius: 10px;
+}
