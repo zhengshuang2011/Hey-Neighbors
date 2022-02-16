@@ -5,14 +5,16 @@ import PeopleIcon from '@mui/icons-material/People';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import Button from '@mui/material/Button';
+import CancelIcon from '@mui/icons-material/Cancel';
 
-import './EventList.css'
 
-function EventList() {
+
+
+import './BookingList.css'
+
+function BookingList() {
   return (
     <>
       <div className="panel js-panel">
@@ -46,11 +48,8 @@ function EventList() {
                       {/* action*/}
 
                       <Stack direction="row" spacing={1}>
-                        <IconButton aria-label="delete">
-                          <EditIcon />
-                        </IconButton>
-                        <IconButton aria-label="delete">
-                          <DeleteIcon />
+                        <IconButton aria-label="cancel">
+                          <CancelIcon />
                         </IconButton>
                       </Stack>
 
@@ -194,9 +193,11 @@ function EventList() {
                         </div>
                       </div>
                       <div className="data__cell data__cell_action mobile-hide">
+
                         <Button variant="outlined" startIcon={<ArchiveIcon />}>
                           Archive
                         </Button>
+
                       </div>
                     </div>
                   </div>
@@ -213,4 +214,4 @@ function EventList() {
   )
 }
 
-export default EventList
+export default BookingList
