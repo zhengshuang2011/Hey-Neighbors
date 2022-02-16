@@ -1,22 +1,24 @@
-import React from 'react'
-import EventCard from '../EventCard/EventCard'
-import Map from '../Map/Map'
+import React from "react";
+import EventCard from "../EventCard/EventCard";
+import Map from "../Map/Map";
 
-function EventMap() {
+function EventMap({ events }) {
+  console.log("eventmap", events);
+
+  const eventsList = events.map((event) => (
+    <EventCard event={event} key={event.id} {...event} />
+  ));
+
   return (
-
     <>
-
-
       {/* panel*/}
       <div className="panel">
         {/* messages*/}
         <div className="messages">
           <div className="messages__layout">
-
             <div className="messages__sidebar">
               <div className="messages__head mobile-hide">
-                <button className='eventButton'>
+                <button className="eventButton">
                   <i className="la la-pencil-alt " />
                   <span> New Event</span>
                 </button>
@@ -92,8 +94,8 @@ function EventMap() {
               <div className="messages__body">
                 {/* items*/}
                 <div className="items items_stroke">
-                  <EventCard />
-
+                  {/* <EventCard /> */}
+                  {eventsList}
                 </div>
               </div>
             </div>
@@ -108,19 +110,14 @@ function EventMap() {
               <div className="messages__body">
                 {/* content*/}
 
-
                 <Map />
-
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </>
-
-
-  )
+  );
 }
 
-export default EventMap
+export default EventMap;

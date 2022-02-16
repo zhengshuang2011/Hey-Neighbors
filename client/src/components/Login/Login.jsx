@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
 import "./Login.css";
@@ -15,7 +15,7 @@ function Login({ user, setUser }) {
     if (user) {
       navigate("/home");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -137,9 +137,9 @@ function Login({ user, setUser }) {
               >
                 Sign In
               </button>
-              <button className="btn btn-secondary" onClick={handleChange}>
-                Sign Up
-              </button>
+              <Link to="/signup">
+                <button className="btn btn-secondary ">Sign Up</button>
+              </Link>
             </div>
             {/* enter*/}
             <div className="auth__enter enter">

@@ -1,45 +1,43 @@
-
 import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
-import Sidebar from '../components/Siderbar/Sidebar';
-import EventMap from '../components/EventMap/EventMap';
-import SidebarSearch from '../components/SideSearch/SidebarSearch';
+import Sidebar from "../components/Siderbar/Sidebar";
+import EventMap from "../components/EventMap/EventMap";
+import SidebarSearch from "../components/SideSearch/SidebarSearch";
 import axios from "axios";
+import "./Home.css";
 
-
-function Home({ user, setUser }) {
-  const [event, setEvent] = useState("");
+function Home2({ user, setUser }) {
+  const [events, setEvents] = useState();
 
   useEffect(() => {
     axios
       .get("/api/events")
       .then((data) => {
-        // console.log(data.data.events);
-        setEvent([...data.data.events]);
+        console.log("events", data);
+        setEvents([...data.data.events]);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  console.log(events);
 
   return (
     <Grid
       container
       direction="row"
-      justifyContent="space-between"
+      justifyContent="center"
       alignItems="stretch"
     >
       <Grid item>
         <Sidebar user={user} setUser={setUser} />
-
       </Grid>
       <Grid item xs={3}>
-        <SidebarSearch />
+        <SidebarSearch user={user} setEvents={setEvents} />
         {/* <SearchBar /> */}
-
       </Grid>
       <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
         <div className="container js-container">
           <div className="container__head">
-
             <div className="container__title title title_xl">Events </div>
 
             {/* search*/}
@@ -56,14 +54,12 @@ function Home({ user, setUser }) {
             </div>
           </div>
           <div className="container__body">
-            <EventMap />
-
+            {events && <EventMap events={events} />}
           </div>
         </div>
-
       </Grid>
     </Grid>
   );
 }
 
-export default Home;
+export default Home2;
