@@ -22,7 +22,7 @@ function Host() {
         <div className="container js-container">
           <div className="container__head">
 
-            <div className="container__title title title_xl">Your Events </div>
+            <div className="container__title title title_xl">Your Hostings</div>
 
             {/* search*/}
             <div className="container__search search">
