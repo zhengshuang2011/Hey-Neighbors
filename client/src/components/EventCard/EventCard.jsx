@@ -14,7 +14,7 @@ const commonStyles = {
   height: "0.5rem",
 };
 function EventCard({ event }) {
-  console.log(event);
+  console.log("event in eventCard.jsx = ", event);
 
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));

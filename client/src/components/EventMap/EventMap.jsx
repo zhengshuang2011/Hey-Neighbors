@@ -110,7 +110,9 @@ function EventMap({ events }) {
               <div className="messages__body">
                 {/* content*/}
 
-                <Map />
+                <Map 
+                events={events}
+                />
               </div>
             </div>
           </div>

@@ -39,6 +39,8 @@ CREATE TABLE events (
   province VARCHAR(255) NOT NULL,
   country VARCHAR(255) NOT NULL,
   post_code VARCHAR(255) NOT NULL,
+  locationLatitude DOUBLE PRECISION,
+  locationLongitude DOUBLE PRECISION,
 
   date DATE NOT NULL,
   start_at TIME NOT NULL,
