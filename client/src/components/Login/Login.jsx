@@ -1,6 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import axios from "axios";
+import "./Login.css";
 
-function Login() {
+function Login({ user, setUser }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  // console.log("loginpage user", user);
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, [user]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = JSON.stringify({
+      email,
+      password,
+    });
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    axios
+      .post("/api/users/login", data, {
+        headers: headers,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setUser(response.data);
+        setError("");
+        navigate("/home");
+      })
+      .catch((err) => {
+        console.log("Error : ", err);
+        setError("error");
+      });
+  };
+
+  const validateForm = () => {
+    return email.length > 0 && password.length > 0;
+  };
+
+  const handleChange = () => {
+    setError("error");
+    return navigate("/signup");
+  };
+
   return (
     <div className="auth">
       <div
@@ -29,9 +81,11 @@ function Login() {
               <p>Hey Neigbors!</p>
               <p>Sign In to see latest updates.</p>
             </div>
-            <div className="auth__text">Enter your details to explore more experiences</div>
+            <div className="auth__text">
+              Enter your details to explore more experiences
+            </div>
           </div>
-          <form className="auth__form" action="">
+          <form className="auth__form" action="" onSubmit={handleSubmit}>
             <div className="field auth__field">
               <div className="field__label">Email</div>
               <div className="field__wrap">
@@ -39,25 +93,32 @@ function Login() {
                   className="field__input"
                   type="email"
                   placeholder="Start typing…"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
                 <div className="field__icon">
                   <i className="la la-envelope " />
                 </div>
               </div>
             </div>
-            <div className="field auth__field">
+            <div className="field auth__field password">
               <div className="field__label">Password</div>
               <div className="field__wrap">
                 <input
                   className="field__input"
                   type="password"
                   placeholder="Start typing…"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="field__icon">
                   <i className="la la-lock " />
                 </div>
               </div>
             </div>
+            {error && (
+              <p className="errormsg">Please enter correct information</p>
+            )}
             {/* <div className="auth__flex">
               <label className="switch auth__switch">
                 <input
@@ -69,8 +130,16 @@ function Login() {
               </label>
             </div> */}
             <div className="auth__btns">
-              <button className="btn auth__btn">Sign In</button>
-              <button className="btn btn_light auth__btn">Sign Up</button>
+              <button
+                className="btn btn-primary submit"
+                typr="submit"
+                disabled={!validateForm}
+              >
+                Sign In
+              </button>
+              <button className="btn btn-secondary" onClick={handleChange}>
+                Sign Up
+              </button>
             </div>
             {/* enter*/}
             <div className="auth__enter enter">
@@ -95,8 +164,10 @@ function Login() {
         style={{ backgroundImage: "url(img/bg-login-sign-in.jpg)" }}
       ></div>
     </div>
-
-  )
+  );
 }
 
-export default Login
+Login.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
+export default Login;

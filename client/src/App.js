@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
@@ -12,48 +12,73 @@ import Home from "./pages/Home";
 import Host from "./pages/Host"
 
 function App() {
+  const [user, setUser] = useState();
+  console.log("user", user);
+
   useEffect(() => {
     axios
-      .get("/api/users")
-      .then((data) => console.log(data.data.users))
+      .get("/api/users/login")
+      .then((data) => {
+        if (data.data) {
+          setUser(data.data[0]);
+        } else {
+          setUser();
+        }
+      })
       .catch((err) => console.log(err));
   }, []);
-// useEffect(() => {
-//     axios
-//       .get("/api/events")
-//       .then((data) => {
-//       console.log(data.data.events);
-//       setEvent([...data.data.events]);
-//       })
-//       .catch((err) => console.log(err));
-//   }, []);
 
-//   console.log(`current event is = ${JSON.stringify(event)}`);
+  // useEffect(() => {
+  //     axios
+  //       .get("/api/events")
+  //       .then((data) => {
+  //       console.log(data.data.events);
+  //       setEvent([...data.data.events]);
+  //       })
+  //       .catch((err) => console.log(err));
+  //   }, []);
 
-//   useEffect(() => {
-//     axios
-//       .get("/api/applications")
-//       .then((data) => console.log(data.data.applications))
-//       .catch((err) => console.log(err));
-//   }, []);
+  //   console.log(`current event is = ${JSON.stringify(event)}`);
 
-//   useEffect(() => {
-//     axios
-//       .get("/api/categories")
-//       .then((data) => console.log(data.data.categories))
-//       .catch((err) => console.log(err));
-//   }, []);
+  //   useEffect(() => {
+  //     axios
+  //       .get("/api/applications")
+  //       .then((data) => console.log(data.data.applications))
+  //       .catch((err) => console.log(err));
+  //   }, []);
+
+  //   useEffect(() => {
+  //     axios
+  //       .get("/api/categories")
+  //       .then((data) => console.log(data.data.categories))
+  //       .catch((err) => console.log(err));
+  //   }, []);
   return (
     <div>
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<LandingPage />} />
+          <Route
+            exact
+            path="/home"
+            element={<Home user={user} setUser={setUser} />}
+          />
 
-          <Route exact path="/home" element={<Home />} />
-       
+          {/* <Route exact path="/home2" element={<Home />} /> */}
 
-          <Route exact path="/signIn" element={<SignIn />} />
-          <Route exact path="/signUp" element={<SignUp />} />
+
+          <Route
+            exact
+            path="/signIn"
+            element={<SignIn user={user} setUser={setUser} />}
+          />
+
+
+          <Route
+            exact
+            path="/signUp"
+            element={<SignUp user={user} setUser={setUser} />}
+          />
 
           <Route exact path="/myevent" element={<Myevent />} />
           <Route exact path="/host" element={<Host />} />

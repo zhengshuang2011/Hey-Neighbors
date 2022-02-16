@@ -1,19 +1,35 @@
-import React from 'react'
+
+import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import Sidebar from '../components/Siderbar/Sidebar';
 import EventMap from '../components/EventMap/EventMap';
-
 import SidebarSearch from '../components/SideSearch/SidebarSearch';
-// import './Home.css'
+import axios from "axios";
 
 
-function Home() {
+function Home({ user, setUser }) {
+  const [event, setEvent] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("/api/events")
+      .then((data) => {
+        // console.log(data.data.events);
+        setEvent([...data.data.events]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
+    <Grid
+      container
+      direction="row"
+      justifyContent="space-between"
+      alignItems="stretch"
+    >
+      <Grid item>
+        <Sidebar user={user} setUser={setUser} />
 
-    <Grid container direction='row' justifyContent="center"
-      alignItems="stretch">
-      <Grid item xs={1}>
-        <Sidebar />
       </Grid>
       <Grid item xs={3}>
         <SidebarSearch />
@@ -44,10 +60,10 @@ function Home() {
 
           </div>
         </div>
+
       </Grid>
     </Grid>
-
-  )
+  );
 }
 
-export default Home
+export default Home;

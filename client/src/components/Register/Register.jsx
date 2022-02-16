@@ -1,6 +1,67 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import PropTypes from "prop-types";
+import "./Register.css";
 
-function Register() {
+function Register({ user, setUser }) {
+  const [first_name, setFirst] = useState("");
+  const [last_name, setLast] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, [user]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const data = JSON.stringify({
+      first_name,
+      last_name,
+      email,
+      password,
+    });
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    axios
+      .post("/api/users/register", data, {
+        headers: headers,
+      })
+      .then((response) => {
+        console.log("response", response.data);
+        if (!response.id) {
+          setError(response.data);
+          return;
+        } else {
+          console.log("yeah");
+          setError("");
+          setUser(response.data);
+          navigate("/home");
+          return;
+        }
+      })
+      .catch((err) => {
+        console.log("Error : ", err);
+      });
+  };
+
+  const validateForm = () => {
+    return (
+      first_name.length > 0 &&
+      last_name.length > 0 &&
+      email.length > 0 &&
+      password.length > 0
+    );
+  };
+
   return (
     <div className="auth">
       <div
@@ -33,14 +94,33 @@ function Register() {
               Enter your details to explore more experiences
             </div>
           </div>
-          <form className="auth__form" action="">
+          <form className="auth__form" action="" onSubmit={handleSubmit}>
             <div className="field auth__field">
-              <div className="field__label">Full name</div>
+              <div className="field__label">First name</div>
               <div className="field__wrap">
                 <input
                   className="field__input"
                   type="text"
                   placeholder="Start typing…"
+                  value={first_name}
+                  onChange={(e) => setFirst(e.target.value)}
+                  required
+                />
+                <div className="field__icon">
+                  <i className="la la-user-alt " />
+                </div>
+              </div>
+            </div>
+            <div className="field auth__field">
+              <div className="field__label">Last name</div>
+              <div className="field__wrap">
+                <input
+                  className="field__input"
+                  type="text"
+                  placeholder="Start typing…"
+                  value={last_name}
+                  onChange={(e) => setLast(e.target.value)}
+                  required
                 />
                 <div className="field__icon">
                   <i className="la la-user-alt " />
@@ -54,6 +134,9 @@ function Register() {
                   className="field__input"
                   type="email"
                   placeholder="Start typing…"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
                 <div className="field__icon">
                   <i className="la la-envelope " />
@@ -67,12 +150,16 @@ function Register() {
                   className="field__input"
                   type="password"
                   placeholder="Start typing…"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
                 <div className="field__icon">
                   <i className="la la-lock " />
                 </div>
               </div>
             </div>
+            {error && <p className="errormsg">{error}</p>}
             <div className="auth__flex">
               <label className="switch auth__switch">
                 <input
@@ -87,8 +174,13 @@ function Register() {
               </label>
             </div>
             <div className="auth__btns">
-              <button className="btn auth__btn">Sign Up</button>
-              <button className="btn btn_light auth__btn">Sign In</button>
+              <button
+                className="btn btn-primary submit"
+                disabled={!validateForm}
+              >
+                Sign Up
+              </button>
+              <button className="btn btn-secondary">Sign In</button>
             </div>
             {/* enter*/}
             <div className="auth__enter enter">
@@ -113,9 +205,9 @@ function Register() {
         style={{ backgroundImage: "url(img/bg-login-sign-up.jpg)" }}
       />
     </div>
-
-
-  )
+  );
 }
-
-export default Register
+Register.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};
+export default Register;

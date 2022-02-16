@@ -8,7 +8,7 @@ import {
   MenuItem,
   SidebarHeader,
   SidebarFooter,
-  SidebarContent
+  SidebarContent,
 } from "react-pro-sidebar";
 
 //import icons from react icons
@@ -17,7 +17,7 @@ import {
   FiHome,
   FiLogOut,
   FiArrowLeftCircle,
-  FiArrowRightCircle
+  FiArrowRightCircle,
 } from "react-icons/fi";
 import { RiPencilLine } from "react-icons/ri";
 import { BiCog } from "react-icons/bi";
@@ -28,12 +28,13 @@ import "./Header.css";
 
 //import routing tools for react which is definitely needed
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Header = () => {
+const Header = ({ user, setUser }) => {
   //create initial menuCollapse state using useState hook
-  const [menuCollapse, setMenuCollapse] = useState(false);
-
+  const [menuCollapse, setMenuCollapse] = useState(true);
+  const navigate = useNavigate();
 
   //create a custom function that will change menucollapse state from false to true and true to false
   const menuIconClick = () => {
@@ -41,18 +42,33 @@ const Header = () => {
     menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
   };
 
-
+  const handleLogout = () => {
+    axios
+      .post("/api/users/logout")
+      .then((response) => {
+        console.log("logout", response.data);
+        setUser(null);
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log("Error : ", err);
+      });
+  };
   return (
-
     <>
-
       <div id="header">
         {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
           <SidebarHeader>
             <div className="logotext">
               {/* small and big change using menucollapse state */}
-              {menuCollapse ? <p>Hey</p> : <p>Hey <span className="neigbors"> Neigbors</span></p>}
+              {menuCollapse ? (
+                <p>Hey</p>
+              ) : (
+                <p>
+                  Hey <span className="neigbors"> Neigbors</span>
+                </p>
+              )}
             </div>
             <div className="closemenu" onClick={menuIconClick}>
               {/* changing menu collapse icon on click */}
@@ -61,16 +77,35 @@ const Header = () => {
           </SidebarHeader>
           <SidebarContent>
             <Menu iconShape="square">
-              <MenuItem active={true} icon={<FiHome />}><Link style={{ color: 'black' }} to="/Home" >Home</Link></MenuItem>
-              <MenuItem active={true} icon={<FaList />}><Link to="/Myevent" style={{ color: 'black' }} >My Events</Link></MenuItem>
-              <MenuItem active={true} icon={<FaRegHeart />}><Link to="/Bookings" style={{ color: 'black' }}>Bookings</Link></MenuItem>
-              <MenuItem active={true} icon={<RiPencilLine />}><Link to="/CreateEvent" style={{ color: 'black' }}>Create Event</Link></MenuItem>
+              <MenuItem active={true} icon={<FiHome />}>
+                <Link style={{ color: "black" }} to="/Home">
+                  Home
+                </Link>
+              </MenuItem>
+              <MenuItem active={true} icon={<FaList />}>
+                <Link to="/Myevent" style={{ color: "black" }}>
+                  My Events
+                </Link>
+              </MenuItem>
+              <MenuItem active={true} icon={<FaRegHeart />}>
+                <Link to="/Bookings" style={{ color: "black" }}>
+                  Bookings
+                </Link>
+              </MenuItem>
+              <MenuItem active={true} icon={<RiPencilLine />}>
+                <Link to="/CreateEvent" style={{ color: "black" }}>
+                  Create Event
+                </Link>
+              </MenuItem>
               {/* <MenuItem icon={<BiCog />}>Settings</MenuItem> */}
             </Menu>
           </SidebarContent>
           <SidebarFooter>
+            {" "}
             <Menu iconShape="square">
-              <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+              <MenuItem icon={<FiLogOut />} onClick={handleLogout}>
+                Logout
+              </MenuItem>
             </Menu>
           </SidebarFooter>
         </ProSidebar>

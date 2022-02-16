@@ -19,7 +19,14 @@ export default function Map() {
                 defaultZoom={14}
                 margin={[50, 50, 50, 50]}
             >
-
+                <div className={classes.markerContainer} lat={45.4111700} lng={-75.6981200}>
+                    <Paper elevation={3} className={classes.paper}>
+                        <Typography className={classes.typography} variant="subtitle2" gutterBottom>
+                            Concert
+                        </Typography>
+                        <img className={classes.pointer} src={"https://1409791524.rsc.cdn77.org/data/images/full/514212/kpopconcert-jpg.jpg"} alt={"Concert"} />
+                    </Paper>
+                </div>
             </GoogleMapReact>
         </div>
     )
