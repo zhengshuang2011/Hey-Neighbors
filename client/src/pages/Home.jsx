@@ -25,7 +25,7 @@ function Home2({ user, setUser }) {
     <Grid
       container
       direction="row"
-      justifyContent="center"
+      justifyContent="space-between"
       alignItems="stretch"
     >
       <Grid item>

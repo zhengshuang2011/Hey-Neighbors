@@ -10,6 +10,7 @@ import CreateEvent from "./pages/CreateEvent";
 import Bookings from "./pages/Bookings";
 import Home from "./pages/Home";
 import Host from "./pages/Host";
+import NewEvent from "./pages/NewEvent";
 
 function App() {
   const [user, setUser] = useState();
@@ -59,6 +60,7 @@ function App() {
           <Route exact path="/bookings" element={<Bookings />} />
 
           <Route exact path="/createEvent" element={<CreateEvent />} />
+          <Route exact path="/newevent" element={<NewEvent/>} />
         </Routes>
       </BrowserRouter>
     </div>
