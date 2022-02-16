@@ -112,3 +112,8 @@
           font-weight: 700;
         }
 
+    .mapSection {
+        display :flex;
+        flex-direction: row;
+    }
+
