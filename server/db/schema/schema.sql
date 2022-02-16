@@ -34,7 +34,7 @@ CREATE TABLE events (
   event_name VARCHAR(255) NOT NULL,
 
   address VARCHAR(255) NOT NULL,
-  street VARCHAR(255) NOT NULL,
+  address2 VARCHAR(255),
   city VARCHAR(255) NOT NULL,
   province VARCHAR(255) NOT NULL,
   country VARCHAR(255) NOT NULL,
