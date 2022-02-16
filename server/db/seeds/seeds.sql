@@ -35,10 +35,17 @@ INSERT INTO categories(
 );
 
 INSERT INTO events (
-  host_id, event_name, address, street, city, province, country, post_code, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine, status
+  host_id, event_name, address, street, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine, status
 )VALUES(
-  1, 'baby party', '11700', 'Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4E 0K4', '2022-04-30', '16:00:00', 2, 'https://images.pexels.com/photos/1884269/pexels-photo-1884269.jpeg', 'Come to join our baby party', 3, 10, TRUE, TRUE, FALSE
+  1, 'baby party', '11700', 'Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4E 0K4', 45.41117, -75.69812, '2022-04-30', '16:00:00', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGf6TcgCpBOAEqAX9XWPw4vWwaCQj_aAGJtg&usqp=CAU', 'Come to join our baby party', 3, 10, TRUE, TRUE, FALSE
 );
+
+INSERT INTO events (
+  host_id, event_name, address, street, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine, status
+)VALUES(
+  1, 'Concert', '11700', 'Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4E 0K4', 45.31413149, -75.88851991, '2022-04-30', '16:00:00', 2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Muse_in_Sydney.jpg/800px-Muse_in_Sydney.jpg', 'Come to join our baby party', 3, 10, TRUE, TRUE, FALSE
+);
+
 
 INSERT INTO applications (
   participate_id, event_id, description, people_number, vaccine, wait, approved
