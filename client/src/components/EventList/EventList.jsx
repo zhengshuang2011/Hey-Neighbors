@@ -79,9 +79,7 @@ function EventList({ incoming_events, completed_events }) {
             </div>
             <div>
               <FmdGoodIcon />
-              <strong>
-                Address: {event.street}, {event.city}
-              </strong>
+              <strong>City: {event.city}</strong>
             </div>
           </div>
         </div>
@@ -146,10 +144,7 @@ function EventList({ incoming_events, completed_events }) {
             <FmdGoodIcon />
           </div>
           <div className="data__label">
-            <strong>
-              {" "}
-              Address: {event.street}, {event.city}
-            </strong>
+            <strong> City: {event.city}</strong>
           </div>
         </div>
         <div className="data__cell data__cell_members mobile-hide">

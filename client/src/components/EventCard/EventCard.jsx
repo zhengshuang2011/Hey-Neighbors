@@ -58,9 +58,7 @@ function EventCard({ event }) {
           <Box sx={{ ...commonStyles, borderTop: 1 }} />
           <div className="duration_number items__content">
             <FmdGoodIcon />
-            <span>
-              Address: {event.street}, {event.city}
-            </span>
+            <span>City: {event.city}</span>
           </div>
         </div>
       </div>
