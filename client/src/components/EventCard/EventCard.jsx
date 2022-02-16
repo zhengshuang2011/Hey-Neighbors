@@ -35,10 +35,8 @@ function EventCard({ event }) {
         <i className="la la-star " />
       </div> */}
 
-
         <div class="content__preview">
           <img class="content__pic" src={eventImg} alt="event" />
-
         </div>
         <div className="items__wrap">
           <div className="items__details">
@@ -49,7 +47,6 @@ function EventCard({ event }) {
             <div className="items__content">
               <AccessTimeIcon />
               <span>
-                {" "}
                 {event.date.substring(0, 10)} at {time(event.start_at)}
               </span>
             </div>
@@ -62,7 +59,6 @@ function EventCard({ event }) {
           <div className="duration_number items__content">
             <FmdGoodIcon />
             <span>
-              {" "}
               Address: {event.street}, {event.city}
             </span>
           </div>

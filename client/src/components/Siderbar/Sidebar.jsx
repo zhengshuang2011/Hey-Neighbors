@@ -64,7 +64,7 @@ function Sidebar({ user, setUser }) {
                   )}
 
                   {user && (
-                    <Link to="/myevent">
+                    <Link to="/bookings">
                       <a className="nav__link" href="#" title="Attender Page">
                         <div className="nav__preview">
                           <i className="la la-calendar-week "></i>

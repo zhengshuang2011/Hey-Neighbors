@@ -1,7 +1,9 @@
 -- Drop and recreate Users table (Example)
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS event_status CASCADE;
 DROP TABLE IF EXISTS events CASCADE;
 DROP TABLE IF EXISTS applications CASCADE;
+DROP TABLE IF EXISTS application_status CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
 
 
@@ -16,6 +18,11 @@ CREATE TABLE users(
 
 
 CREATE TABLE categories(
+    id SERIAL PRIMARY KEY NOT NULL,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE event_status(
     id SERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(255) NOT NULL
 );
@@ -43,7 +50,12 @@ CREATE TABLE events (
   max_people_number INTEGER NOT NULL,
   mask BOOLEAN NOT NULL DEFAULT FALSE,
   vaccine BOOLEAN NOT NULL DEFAULT FALSE,
-  status BOOLEAN NOT NULL DEFAULT FALSE
+  status_id INTEGER REFERENCES event_status(id) ON DELETE CASCADE DEFAULT 1
+);
+
+CREATE TABLE application_status (
+  id SERIAL PRIMARY KEY NOT NULL,
+  name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE applications (
@@ -51,10 +63,11 @@ CREATE TABLE applications (
   participate_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   event_id INTEGER REFERENCES events(id) ON DELETE CASCADE,
   description TEXT,
+  email VARCHAR(255) NOT NULL,
   people_number INTEGER NOT NULL,
   vaccine BOOLEAN NOT NULL DEFAULT FALSE,
-  wait BOOLEAN NOt NULL DEFAULT TRUE,
-  approved BOOLEAN NOT NULL DEFAULT FALSE
+  status_id INTEGER REFERENCES application_status(id) ON DELETE CASCADE DEFAULT 1
 );
+
 
 

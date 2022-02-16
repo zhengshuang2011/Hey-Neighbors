@@ -50,7 +50,11 @@ function App() {
           />
 
           <Route exact path="/myevent" element={<Myevent />} />
-          <Route exact path="/host" element={<Host />} />
+          <Route
+            exact
+            path="/host"
+            element={<Host user={user} setUser={setUser} />}
+          />
 
           <Route exact path="/bookings" element={<Bookings />} />
 

@@ -11,7 +11,7 @@ function Home2({ user, setUser }) {
 
   useEffect(() => {
     axios
-      .get("/api/events")
+      .get("/api/events/incoming")
       .then((data) => {
         console.log("events", data);
         setEvents([...data.data.events]);

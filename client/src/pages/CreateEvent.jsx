@@ -8,20 +8,20 @@ import Sidebar from "../components/Siderbar/Sidebar";
 //import Map from '../components/Map/Map';
 
 function CreateEvent() {
-  const [eventName, setEventName] = useState("");
+  const [event_name, setEventname] = useState("");
   const [date, setDate] = useState("");
-  const [startAt, setStartAt] = useState("");
+  const [start_at, setStartAt] = useState("");
   const [duration, setDuration] = useState("");
-  const [streetNo, setStreetNo] = useState("");
+  const [address, setStreetNo] = useState("");
   const [street, setStreet] = useState("");
   const [city, setCity] = useState("");
   const [province, setProvince] = useState("");
   const [country, setCountry] = useState("");
-  const [postalCode, setPostalCode] = useState("");
-  const [category, setCategory] = useState("");
-  const [maxParticipant, setMaxParticipant] = useState("");
+  const [post_code, setPostalCode] = useState("");
+  const [category_id, setCategory] = useState("");
+  const [max_people_number, setMaxParticipant] = useState("");
   const [description, setDescription] = useState("");
-  const [photo, setPhoto] = useState(null);
+  const [photo_image, setPhoto] = useState(null);
   const [mask, setMask] = useState(false);
   const [vaccine, setVaccine] = useState(false);
   const [status, setStatus] = useState(true);
@@ -50,22 +50,21 @@ function CreateEvent() {
   };
 
   const handleSubmit = () => {
-
     const values = {
-      eventName,
+      event_name,
       date,
-      startAt,
+      start_at,
       duration,
-      streetNo,
+      address,
       street,
       city,
       province,
       country,
-      postalCode,
-      category,
-      maxParticipant,
+      post_code,
+      category_id,
+      max_people_number,
       description,
-      photo,
+      photo_image,
       mask,
       vaccine,
       status,
@@ -93,22 +92,22 @@ function CreateEvent() {
           <h4>Drag or choose your file to upload</h4>
           <div className="photoBar">
             <FileUploader
-              value={photo}
+              value={photo_image}
               multiple={true}
               handleChange={handleChange}
-              name="photo"
+              name="photo_image"
               types={photoTypes}
             />
           </div>
           <h3>Event Details</h3>
           <h4>Event Name</h4>
-          <div className="eventName">
+          <div className="event_name">
             <input
               name="event_name"
               required
               minLength="4"
-              value={eventName}
-              onChange={(e) => setEventName(e.target.value)}
+              value={event_name}
+              onChange={(e) => setEventname(e.target.value)}
               placeholder="e.g'Hiking in Queenstown Mountain'"
             />
           </div>
@@ -126,7 +125,7 @@ function CreateEvent() {
               <h4>Start At</h4>
               <input
                 type="time"
-                value={startAt}
+                value={start_at}
                 onChange={(e) => setStartAt(e.target.value)}
                 placeholder="End Time"
               />
@@ -149,7 +148,7 @@ function CreateEvent() {
               <input
                 type="number"
                 min="1"
-                value={streetNo}
+                value={address}
                 onChange={(e) => setStreetNo(e.target.value)}
               />
             </div>
@@ -190,7 +189,7 @@ function CreateEvent() {
             <div>
               <h4>Postal Code</h4>
               <input
-                value={postalCode}
+                value={post_code}
                 onChange={(e) => setPostalCode(e.target.value)}
                 placeholder=""
               />
@@ -210,7 +209,7 @@ function CreateEvent() {
               <input
                 type="number"
                 min="2"
-                value={maxParticipant}
+                value={max_people_number}
                 onChange={(e) => setMaxParticipant(e.target.value)}
                 placeholder="2"
               />
@@ -218,16 +217,16 @@ function CreateEvent() {
             <div className="dropdown">
               <button className="dropbtn">Category</button>
               <div className="dropdown-content">
-                <a value={category} onClick={(e) => setCategory(1)} href="#">
+                <a value={category_id} onClick={(e) => setCategory(1)} href="#">
                   Food
                 </a>
-                <a value={category} onClick={(e) => setCategory(2)} href="#">
+                <a value={category_id} onClick={(e) => setCategory(2)} href="#">
                   Game
                 </a>
-                <a value={category} onClick={(e) => setCategory(3)} href="#">
+                <a value={category_id} onClick={(e) => setCategory(3)} href="#">
                   Kids
                 </a>
-                <a value={category} onClick={(e) => setCategory(4)} href="#">
+                <a value={category_id} onClick={(e) => setCategory(4)} href="#">
                   Study
                 </a>
               </div>
