@@ -9,7 +9,7 @@ import EventList from '../components/EventList/EventList';
 function Host() {
   return (
 
-    <Grid container direction='row' justifyContent="center"
+    <Grid container direction='row' justifyContent="space-between"
       alignItems="stretch">
       <Grid item xs={1}>
         <Sidebar />

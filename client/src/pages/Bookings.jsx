@@ -7,7 +7,7 @@ import { Grid } from "@material-ui/core";
 function Bookings() {
   return (
     <>
-      <Grid container direction='row' justifyContent="center"
+      <Grid container direction='row' justifyContent="space-between"
         alignItems="stretch">
         <Grid item xs={1}>
           <Sidebar />
