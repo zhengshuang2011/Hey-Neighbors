@@ -37,7 +37,8 @@ function Register({ user, setUser }) {
       })
       .then((response) => {
         console.log("response", response.data);
-        if (!response.id) {
+        if (!response.data.id) {
+          console.log("bad");
           setError(response.data);
           return;
         } else {
@@ -45,7 +46,6 @@ function Register({ user, setUser }) {
           setError("");
           setUser(response.data);
           navigate("/home");
-          return;
         }
       })
       .catch((err) => {
