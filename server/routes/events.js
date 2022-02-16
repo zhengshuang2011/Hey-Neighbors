@@ -4,7 +4,11 @@ const router = express.Router();
 module.exports = (db) => {
   // Get all events
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM events;`)
+    db.query(
+      `SELECT events.*, categories.id AS c_id, categories.name AS c_name
+       FROM events
+       JOIN categories ON events.category_id = categories.id;`
+    )
       .then((data) => {
         const events = data.rows;
         console.log(res.json({ events }));
@@ -110,20 +114,20 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const host_id = 1;
     const {
-      eventName,
-      streetNo,
+      event_name,
+      address,
       street,
       city,
       province,
       country,
-      postalCode,
+      post_code,
       date,
-      startAt,
+      start_at,
       duration,
-      photo,
+      photo_image,
       description,
-      category,
-      maxParticipant,
+      category_id,
+      max_people_number,
       mask,
       vaccine,
       status,
@@ -131,20 +135,20 @@ module.exports = (db) => {
 
     addNewEvent(
       host_id,
-      eventName,
-      streetNo,
+      event_name,
+      address,
       street,
       city,
       province,
       country,
-      postalCode,
+      post_code,
       date,
-      startAt,
+      start_at,
       duration,
-      photo,
+      photo_image,
       description,
-      category,
-      maxParticipant,
+      category_id,
+      max_people_number,
       mask,
       vaccine,
       status
@@ -279,7 +283,7 @@ module.exports = (db) => {
   // Delete event by eventId
   const deleteEventById = (event_id) => {
     command = `
-    DELETE FROM events WHERE id = $1 RETURNING *;
+    DELETE FROM events WHERE id = $1;
     `;
     queryParams = [event_id];
 
@@ -290,6 +294,7 @@ module.exports = (db) => {
   };
   router.delete("/:id", (req, res) => {
     const event_id = Number(req.params.id);
+    console.log("hi");
 
     deleteEventById(event_id)
       .then((data) => res.json(data))

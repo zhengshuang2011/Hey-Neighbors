@@ -13,7 +13,21 @@ const commonStyles = {
   width: "auto",
   height: "0.5rem",
 };
-function EventCard() {
+function EventCard({ event }) {
+  console.log(event);
+
+  const time = (start_at) => {
+    const timeNumber = Number(start_at.substring(0, 2));
+    if (timeNumber < 12) {
+      return `${timeNumber} AM`;
+    } else if (timeNumber === 12) {
+      return `${timeNumber} PM`;
+    } else if (timeNumber === 24) {
+      return `${timeNumber - 12} AM`;
+    } else {
+      return `${timeNumber - 12} PM`;
+    }
+  };
   return (
     <>
       <div className="items__item" href="#">
@@ -26,23 +40,29 @@ function EventCard() {
         </div>
         <div className="items__wrap">
           <div className="items__details">
-            <div className="items__name">Event Titel </div>
-            <div className="items__time">Category</div>
+            <div className="items__name">{event.event_name}</div>
+            <div className="items__time">{event.c_name}</div>
           </div>
           <div className="duration_number">
             <div className="items__content">
               <AccessTimeIcon />
-              <span> March 10 at 4pm</span>
+              <span>
+                {" "}
+                {event.date.substring(0, 10)} at {time(event.start_at)}
+              </span>
             </div>
             <div className="items__content">
               <PeopleIcon />
-              <span> Up to 10</span>
+              <span> Up to {event.max_people_number}</span>
             </div>
           </div>
           <Box sx={{ ...commonStyles, borderTop: 1 }} />
           <div className="duration_number items__content">
             <FmdGoodIcon />
-            <span> Address: city name</span>
+            <span>
+              {" "}
+              Address: {event.street}, {event.city}
+            </span>
           </div>
         </div>
       </div>

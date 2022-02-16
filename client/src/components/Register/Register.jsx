@@ -16,7 +16,7 @@ function Register({ user, setUser }) {
     if (user) {
       navigate("/home");
     }
-  }, [user]);
+  }, [user, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
