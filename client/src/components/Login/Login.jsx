@@ -48,11 +48,6 @@ function Login({ user, setUser }) {
     return email.length > 0 && password.length > 0;
   };
 
-  const handleChange = () => {
-    setError("error");
-    return navigate("/signup");
-  };
-
   return (
     <div className="auth">
       <div
