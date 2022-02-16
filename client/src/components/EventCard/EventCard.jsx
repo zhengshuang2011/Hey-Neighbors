@@ -35,8 +35,10 @@ function EventCard({ event }) {
         <i className="la la-star " />
       </div> */}
 
-        <div className="content__preview">
-          <img className="content__pic" src={eventImg} alt="User" />
+
+        <div class="content__preview">
+          <img class="content__pic" src={eventImg} alt="event" />
+
         </div>
         <div className="items__wrap">
           <div className="items__details">

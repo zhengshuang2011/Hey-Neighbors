@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import PropTypes from "prop-types";
 import "./Register.css";
@@ -180,7 +180,9 @@ function Register({ user, setUser }) {
               >
                 Sign Up
               </button>
-              <button className="btn btn-secondary">Sign In</button>
+              <Link to="/signin">
+                <button className="btn btn-secondary">Sign In</button>
+              </Link>
             </div>
             {/* enter*/}
             <div className="auth__enter enter">
