@@ -45,6 +45,8 @@ module.exports = (db) => {
     SELECT
     users.first_name,
     users.last_name,
+    users.avatar,
+    applications.id,
     applications.email,
     applications.people_number,
     applications.description,
@@ -80,6 +82,8 @@ module.exports = (db) => {
     SELECT
     users.first_name,
     users.last_name,
+    users.avatar,
+    applications.id,
     applications.email,
     applications.people_number,
     applications.description,

@@ -40,7 +40,7 @@ function NewEvent({ user, setUser }) {
               </div>
             </div>
             <div className="container__body">
-              <NewEventForm />
+              <NewEventForm user={user} />
             </div>
           </div>
         </Grid>

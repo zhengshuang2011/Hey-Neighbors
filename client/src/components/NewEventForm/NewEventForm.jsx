@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 
-function NewEventForm() {
+function NewEventForm({ user }) {
   const [event_name, setEventName] = useState("");
   const [date, setDate] = useState("");
   const [start_at, setStartAt] = useState("");
@@ -15,13 +15,16 @@ function NewEventForm() {
   const [province, setProvince] = useState("");
   const [country, setCountry] = useState("");
   const [post_code, setPostalCode] = useState("");
-  const [category_id, setCategory] = useState("");
+  const [category_id, setCategory] = useState();
   const [max_people_number, setMaxParticipant] = useState("");
   const [description, setDescription] = useState("");
   const [photo_image, setPhoto] = useState(null);
   const [mask, setMask] = useState(false);
   const [vaccine, setVaccine] = useState(false);
-  const handleSubmit = () => {
+  console.log(category_id);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const values = {
       event_name,
       date,
@@ -258,25 +261,18 @@ function NewEventForm() {
               <div className="field form__field">
                 <div className="field__label">Category</div>
                 <div className="field__wrap">
-                  <select className="field__select">
+                  <select
+                    className="field__select"
+                    onChange={(e) => setCategory(Number(e.target.value))}
+                  >
                     <option disabled selected>
                       Select event category
                     </option>
-                    <option value={category_id} onClick={() => setCategory(1)}>
-                      Food
-                    </option>
-                    <option value={category_id} onClick={() => setCategory(2)}>
-                      Game
-                    </option>
-                    <option value={category_id} onClick={() => setCategory(3)}>
-                      Kids
-                    </option>
-                    <option value={category_id} onClick={() => setCategory(4)}>
-                      Study
-                    </option>
-                    <option value={category_id} onClick={() => setCategory(5)}>
-                      Movies
-                    </option>
+                    <option value="1">Food</option>
+                    <option value="2">Game</option>
+                    <option value="3">Kids</option>
+                    <option value="4">Study</option>
+                    <option value="5">Movies</option>
                   </select>
                   <div className="field__icon">
                     <i className="la la-angle-down " />

@@ -49,7 +49,7 @@ function BookingList({ incoming_events, completed_events }) {
         <div className="data__cell">
           <div className="data__main">
             <div className="event_img">
-              <img class="content__pic" src={eventImg} alt="Event" />
+              <img class="content__pic" src={event.photo_image} alt="Event" />
             </div>
             <div className="data__wrap">
               <div className="data__content">
@@ -64,10 +64,8 @@ function BookingList({ incoming_events, completed_events }) {
         <div className="data__cell">
           <div className="data__label">
             <div>
-              {" "}
               <AccessTimeIcon />
               <strong>
-                {" "}
                 {event.date.substring(0, 10)} at {time(event.start_at)}
               </strong>
             </div>
@@ -76,7 +74,6 @@ function BookingList({ incoming_events, completed_events }) {
               <strong> Up to {event.max_people_number}</strong>
             </div>
             <div>
-              {" "}
               <FmdGoodIcon />
               <strong> City: {event.city}</strong>
             </div>
@@ -109,7 +106,7 @@ function BookingList({ incoming_events, completed_events }) {
         <div className="data__cell data__cell_lg">
           <div className="data__main">
             <div className="event_img_list">
-              <img class="content__pic" src={eventImg} alt="Event" />
+              <img class="content__pic" src={event.photo_image} alt="Event" />
             </div>
             <div className="data__wrap">
               <div className="data__content">
@@ -125,7 +122,6 @@ function BookingList({ incoming_events, completed_events }) {
           </div>
           <div className="data__label">
             <strong>
-              {" "}
               {event.date.substring(0, 10)} at {time(event.start_at)}
             </strong>
           </div>
@@ -208,7 +204,7 @@ function BookingList({ incoming_events, completed_events }) {
           </div>
         </div>
         <div className="panel__body">
-          <div className="panel__tab ]" style={{ display: "block" }}>
+          <div className="panel__tab" style={{ display: "block" }}>
             {/* data*/}
             <div className="data data_list">
               <div className="data__container">
