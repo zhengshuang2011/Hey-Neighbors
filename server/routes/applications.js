@@ -56,7 +56,8 @@ module.exports = (db) => {
     FROM applications
     JOIN users ON applications.participate_id = users.id
     JOIN events ON events.id = applications.event_id
-    WHERE applications.participate_id = $1`;
+    WHERE applications.participate_id = $1
+    ORDER BY applications.id DESC`;
     const queryParams = [user_id];
 
     return db
@@ -194,24 +195,25 @@ module.exports = (db) => {
 
   //  ------------------------------------------------------
   // Update application by id
-  const updateApplicationById = (id) => {
+  const updateApplicationById = (id, status_id) => {
     command = `
     UPDATE applications
     SET
     status_id = $1
     WHERE id = $2 RETURNING *;
     `;
-    queryParams = [id];
+    queryParams = [status_id, id];
 
     return db
       .query(command, queryParams)
       .then((res) => res.rows[0])
       .catch((err) => console.log(err.message));
   };
-  router.delete("/:id", (req, res) => {
+  router.put("/:id", (req, res) => {
     const id = Number(req.params.id);
+    const status_id = req.body.status_id;
 
-    updateApplicationById(id)
+    updateApplicationById(id, status_id)
       .then((data) => res.json(data))
       .catch((err) => {
         res.status(500).json({ error: err.message });

@@ -5,6 +5,7 @@ import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import "./CheckRsvp.css";
+import PropTypes from "prop-types";
 import axios from "axios";
 
 const commonStyles = {
@@ -14,16 +15,24 @@ const commonStyles = {
   height: "0.5rem",
 };
 
-function CheckRsvp({ applications, user }) {
+function CheckRsvp({ applications, user, setActions }) {
   const number = applications.length;
-  const hanldeChange = (id) => {
-    // e.preventDefault();
-    console.log(id);
-  };
 
-  const hanldeApproved = (e) => {
-    e.preventDefault();
-    axios.delete();
+  const hanldeChange = (id, status_id) => {
+    // e.preventDefault();
+    console.log(id, status_id);
+    const data = JSON.stringify({
+      status_id,
+    });
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    axios
+      .put(`api/applications/${id}`, data, { headers: headers })
+      .then((data) => {
+        console.log(data);
+        setActions(true);
+      });
   };
 
   const application_list = applications.map((a) => (
@@ -61,14 +70,14 @@ function CheckRsvp({ applications, user }) {
             <Button
               variant="outlined"
               startIcon={<BookmarkRemoveIcon />}
-              onClick={() => hanldeChange(a.id)}
+              onClick={() => hanldeChange(a.id, 3)}
             >
               Reject
             </Button>
             <Button
               variant="contained"
               endIcon={<SendIcon />}
-              onClick={hanldeApproved}
+              onClick={() => hanldeChange(a.id, 2)}
             >
               Accept
             </Button>
@@ -112,5 +121,9 @@ function CheckRsvp({ applications, user }) {
     </div>
   );
 }
+
+CheckRsvp.propTypes = {
+  setActions: PropTypes.func.isRequired,
+};
 
 export default CheckRsvp;
