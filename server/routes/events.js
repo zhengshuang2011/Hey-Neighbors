@@ -327,7 +327,9 @@ module.exports = (db) => {
     FROM events
     JOIN categories ON events.category_id = categories.id
     WHERE events.host_id = $1
-    AND events.status_id = $2;`;
+    AND events.status_id = $2
+    ORDER BY events.id DESC
+   `;
     const queryParams = [host_id, 1];
 
     return db

@@ -21,11 +21,10 @@ function NewEventForm({ user }) {
   const [photo_image, setPhoto] = useState(null);
   const [mask, setMask] = useState(false);
   const [vaccine, setVaccine] = useState(false);
-  console.log(category_id);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const values = {
+    const values = JSON.stringify({
       event_name,
       date,
       start_at,
@@ -42,10 +41,15 @@ function NewEventForm({ user }) {
       photo_image,
       mask,
       vaccine,
+    });
+    const headers = {
+      "Content-Type": "application/json",
     };
     axios
-      .post("http://localhost:8000/api/events", values)
-      .then(console.log(values))
+      .post("/api/events", values, {
+        headers: headers,
+      })
+      .then((response) => console.log("response", response, "values", values))
       .catch((err) => console.log(err));
   };
   const validateForm = () => {
