@@ -11,6 +11,7 @@ function Host({ user, setUser }) {
   const [incoming_events, setIncomingEvents] = useState();
   const [completed_events, setCompletedEvents] = useState();
   const [applications, setApplications] = useState();
+  const [actions, setActions] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -22,9 +23,10 @@ function Host({ user, setUser }) {
         setIncomingEvents(all[0].data);
         setCompletedEvents(all[1].data);
         setApplications(all[2].data);
+        setActions(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [actions]);
 
   console.log(
     "user",
@@ -48,7 +50,13 @@ function Host({ user, setUser }) {
         <Sidebar user={user} setUser={setUser} />
       </Grid>
       <Grid item xs={3}>
-        {applications && <CheckRsvp user={user} applications={applications} />}
+        {applications && (
+          <CheckRsvp
+            user={user}
+            applications={applications}
+            setActions={setActions}
+          />
+        )}
       </Grid>
       <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
         <div className="container js-container">
