@@ -6,8 +6,11 @@ import NewEventForm from "../components/NewEventForm/NewEventForm";
 import axios from "axios";
 
 function NewEvent({ user, setUser }) {
+
   const [incoming_events, setIncomingEvents] = useState();
-  console.log(incoming_events);
+  //console.log(incoming_events);
+
+  
 
   useEffect(() => {
     Promise.all([axios.get("/api/events/host/future")])
