@@ -24,7 +24,7 @@ module.exports = (db) => {
 
     return db
       .query(command, queryParams)
-      .then((res) => res.rows[0])
+      .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
   router.get("/event/:event_id", (req, res) => {
@@ -42,14 +42,24 @@ module.exports = (db) => {
   // Get all application by userId
   const getApplicationsByUserId = (user_id) => {
     const command = `
-    SELECT * FROM applications
-    WHERE participate_id = $1
-    AND status_id = $2;`;
-    const queryParams = [user_id, 1];
+    SELECT
+    users.first_name,
+    users.last_name,
+    applications.email,
+    applications.people_number,
+    applications.description,
+    applications.vaccine,
+    applications.status_id,
+    events.event_name
+    FROM applications
+    JOIN users ON applications.participate_id = users.id
+    JOIN events ON events.id = applications.event_id
+    WHERE applications.participate_id = $1`;
+    const queryParams = [user_id];
 
     return db
       .query(command, queryParams)
-      .then((res) => res.rows[0])
+      .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
   router.get("/attender", (req, res) => {

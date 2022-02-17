@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BookingList from "../components/BookingList/BookingList";
 import PendingRsvp from "../components/PendingRsvp/PendingRsvp";
 import Sidebar from "../components/Siderbar/Sidebar";
 import { Grid } from "@material-ui/core";
+import axios from "axios";
 
 function Bookings({ user, setUser }) {
+  const [incoming_events, setIncomingEvents] = useState();
+  const [completed_events, setCompletedEvents] = useState();
+  const [applications, setApplications] = useState();
+
+  useEffect(() => {
+    Promise.all([
+      axios.get("/api/events/user/future"),
+      axios.get("api/events/user/completed"),
+      axios.get("api/applications/attender"),
+    ])
+      .then((all) => {
+        setIncomingEvents(all[0].data);
+        setCompletedEvents(all[1].data);
+        setApplications(all[2].data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(
+    "user",
+    user,
+    "incoming",
+    incoming_events,
+    "completed",
+    completed_events,
+    "applications",
+    applications
+  );
   return (
     <>
       <Grid
@@ -13,11 +42,13 @@ function Bookings({ user, setUser }) {
         justifyContent="space-between"
         alignItems="stretch"
       >
-        <Grid item>
+        <Grid item xs={1}>
           <Sidebar user={user} setUser={setUser} />
         </Grid>
         <Grid item xs={3}>
-          <PendingRsvp user={user} />
+          {applications && (
+            <PendingRsvp user={user} applications={applications} />
+          )}
         </Grid>
         <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container">
@@ -40,7 +71,12 @@ function Bookings({ user, setUser }) {
               </div>
             </div>
             <div className="container__body">
-              <BookingList />
+              {incoming_events && completed_events && (
+                <BookingList
+                  incoming_events={incoming_events}
+                  completed_events={completed_events}
+                />
+              )}
             </div>
           </div>
         </Grid>

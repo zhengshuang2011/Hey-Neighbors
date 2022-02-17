@@ -13,7 +13,7 @@ function NewEvent({ user, setUser }) {
         justifyContent="space-between"
         alignItems="stretch"
       >
-        <Grid item>
+        <Grid item xs={1}>
           <Sidebar user={user} setUser={setUser} />
         </Grid>
         <Grid item xs={3}>

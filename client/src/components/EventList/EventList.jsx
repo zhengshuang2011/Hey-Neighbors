@@ -126,7 +126,6 @@ function EventList({ incoming_events, completed_events }) {
           </div>
           <div className="data__label">
             <strong>
-              {" "}
               {event.date.substring(0, 10)} at {time(event.start_at)}
             </strong>
           </div>

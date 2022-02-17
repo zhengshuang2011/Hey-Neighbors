@@ -376,12 +376,12 @@ module.exports = (db) => {
   const getUserFutureEvent = (user_id) => {
     const command = `
     SELECT events.*, categories.id AS c_id, categories.name AS c_name
-    FROM events e
-    JOIN categories ON e.category_id = categories.id
-    JOIN applications  a ON a.event_id = e.id
-    WHERE a.participate_id = $1
-    AND a.status_id = $2
-    AND e.status_id = $3;
+    FROM events
+    JOIN categories ON events.category_id = categories.id
+    JOIN applications  ON applications.event_id = events.id
+    WHERE applications.participate_id = $1
+    AND applications.status_id = $2
+    AND events.status_id = $3;
     `;
     const queryParams = [user_id, 2, 1];
 
@@ -390,7 +390,7 @@ module.exports = (db) => {
       .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
-  router.get("/user/willattend", (req, res) => {
+  router.get("/user/future", (req, res) => {
     const user_id = req.session.userId;
     console.log(user_id);
 
@@ -406,12 +406,12 @@ module.exports = (db) => {
   const getUserFinishedEvent = (user_id) => {
     const command = `
     SELECT events.*, categories.id AS c_id, categories.name AS c_name
-    FROM events e
-    JOIN categories ON e.category_id = categories.id
-    JOIN applications  a ON a.event_id = e.id
-    WHERE a.participate_id = $1
-    AND a.status_id = $2
-    AND e.status_id = $3;
+    FROM events
+    JOIN categories ON events.category_id = categories.id
+    JOIN applications  ON applications.event_id = events.id
+    WHERE applications.participate_id = $1
+    AND applications.status_id = $2
+    AND events.status_id = $3;
     `;
     const queryParams = [user_id, 2, 2];
 
@@ -420,7 +420,7 @@ module.exports = (db) => {
       .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
-  router.get("/user/attended", (req, res) => {
+  router.get("/user/completed", (req, res) => {
     const user_id = req.session.userId;
     console.log(user_id);
 
@@ -435,11 +435,13 @@ module.exports = (db) => {
   // Get User(attender) pending events
   const getUserPendingEvent = (user_id) => {
     const command = `
-    SELECT * FROM events e
-    JOIN applications  a ON a.event_id = e.id
-    WHERE a.participate_id = $1
-    AND a.status_id = $2
-    AND e.status_id = $3;
+    SELECT events.*, categories.id AS c_id, categories.name AS c_name
+    FROM events
+    JOIN categories ON events.category_id = categories.id
+    JOIN applications  ON applications.event_id = events.id
+    WHERE applications.participate_id = $1
+    AND applications.status_id = $2
+    AND events.status_id = $3;
     `;
     const queryParams = [user_id, 1, 1];
 
