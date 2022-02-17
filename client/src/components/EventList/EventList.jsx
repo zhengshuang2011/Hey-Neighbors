@@ -53,7 +53,11 @@ function EventList({ incoming_events, completed_events }) {
         <div className="data__cell">
           <div className="data__main">
             <div className="event_img">
-              <img className="content__pic" src={eventImg} alt="Event" />
+              <img
+                className="content__pic"
+                src={event.photo_image}
+                alt="Event"
+              />
             </div>
             <div className="data__wrap">
               <div className="data__content">
@@ -110,7 +114,11 @@ function EventList({ incoming_events, completed_events }) {
         <div className="data__cell data__cell_lg">
           <div className="data__main">
             <div className="event_img_list">
-              <img className="content__pic" src={eventImg} alt="Event" />
+              <img
+                className="content__pic"
+                src={event.photo_image}
+                alt="Event"
+              />
             </div>
             <div className="data__wrap">
               <div className="data__content">

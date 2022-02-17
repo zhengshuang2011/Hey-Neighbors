@@ -16,7 +16,12 @@ const commonStyles = {
 
 function CheckRsvp({ applications, user }) {
   const number = applications.length;
-  const hanldeReject = (e) => {
+  const hanldeChange = (id) => {
+    // e.preventDefault();
+    console.log(id);
+  };
+
+  const hanldeApproved = (e) => {
     e.preventDefault();
     axios.delete();
   };
@@ -56,11 +61,15 @@ function CheckRsvp({ applications, user }) {
             <Button
               variant="outlined"
               startIcon={<BookmarkRemoveIcon />}
-              onClick={hanldeReject}
+              onClick={() => hanldeChange(a.id)}
             >
               Reject
             </Button>
-            <Button variant="contained" endIcon={<SendIcon />}>
+            <Button
+              variant="contained"
+              endIcon={<SendIcon />}
+              onClick={hanldeApproved}
+            >
               Accept
             </Button>
           </Stack>
