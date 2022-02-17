@@ -6,7 +6,7 @@ import axios from "axios";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside"
 
-function NewEventForm({ user }) {
+function NewEventForm({ user, setUpload }) {
   const [event_name, setEventName] = useState("");
   const [date, setDate] = useState("");
   const [start_at, setStartAt] = useState("");
@@ -55,7 +55,10 @@ function NewEventForm({ user }) {
       .post("/api/events", values, {
         headers: headers,
       })
-      .then((response) => console.log("response", response, "values", values))
+      .then((response) => {
+        console.log("response", response, "values", values);
+        setUpload(true);
+      })
       .catch((err) => console.log(err));
   };
   const validateForm = () => {

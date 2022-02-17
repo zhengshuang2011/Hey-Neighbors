@@ -43,7 +43,7 @@ function PendingRsvp({ user, applications }) {
           <div className="items__content discription">{a.description}</div>
           {a.status_id === 1 && (
             <div className="items__details">
-              <button type="button" class="btn btn-warning">
+              <button type="button" class="btn btn-info">
                 Pending
               </button>
             </div>
@@ -57,8 +57,15 @@ function PendingRsvp({ user, applications }) {
           )}
           {a.status_id === 3 && (
             <div className="items__details">
-              <button type="button" class="btn btn-secondary">
+              <button type="button" class="btn btn-danger">
                 Rejected
+              </button>
+            </div>
+          )}
+          {a.status_id === 4 && (
+            <div className="items__details">
+              <button type="button" class="btn btn-warning">
+                Cancelled by the Host
               </button>
             </div>
           )}

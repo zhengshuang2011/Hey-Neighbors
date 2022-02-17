@@ -8,17 +8,19 @@ import axios from "axios";
 function NewEvent({ user, setUser }) {
 
   const [incoming_events, setIncomingEvents] = useState();
-  //console.log(incoming_events);
 
-  
+  console.log(incoming_events);
+  const [upload, setUpload] = useState(false);
+  console.log(upload);
 
   useEffect(() => {
     Promise.all([axios.get("/api/events/host/future")])
       .then((all) => {
         setIncomingEvents(all[0].data);
+        setUpload(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [upload]);
 
   return (
     <>
@@ -55,7 +57,7 @@ function NewEvent({ user, setUser }) {
               </div>
             </div>
             <div className="container__body">
-              <NewEventForm user={user} />
+              <NewEventForm user={user} setUpload={setUpload} />
             </div>
           </div>
         </Grid>

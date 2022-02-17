@@ -7,7 +7,8 @@ module.exports = (db) => {
     db.query(
       `SELECT events.*, categories.id AS c_id, categories.name AS c_name
        FROM events
-       JOIN categories ON events.category_id = categories.id;`
+       JOIN categories ON events.category_id = categories.id
+       ORDER BY events.id DESC;`
     )
       .then((data) => {
         const events = data.rows;
@@ -24,7 +25,8 @@ module.exports = (db) => {
       `SELECT events.*, categories.id AS c_id, categories.name AS c_name
          FROM events
          JOIN categories ON events.category_id = categories.id
-         WHERE events.status_id = $1;`,
+         WHERE events.status_id = $1
+         ORDER BY events.id DESC;`,
       [1]
     )
       .then((data) => {
@@ -365,7 +367,9 @@ module.exports = (db) => {
     FROM events
     JOIN categories ON events.category_id = categories.id
     WHERE events.host_id = $1
-    AND events.status_id = $2;`;
+    AND events.status_id = $2
+    ORDER BY events.id DESC
+    ;`;
     const queryParams = [host_id, 2];
 
     return db
@@ -393,7 +397,8 @@ module.exports = (db) => {
     JOIN applications  ON applications.event_id = events.id
     WHERE applications.participate_id = $1
     AND applications.status_id = $2
-    AND events.status_id = $3;
+    AND events.status_id = $3
+    ORDER BY events.id DESC;
     `;
     const queryParams = [user_id, 2, 1];
 
@@ -423,7 +428,8 @@ module.exports = (db) => {
     JOIN applications  ON applications.event_id = events.id
     WHERE applications.participate_id = $1
     AND applications.status_id = $2
-    AND events.status_id = $3;
+    AND events.status_id = $3
+    ORDER BY events.id DESC;
     `;
     const queryParams = [user_id, 2, 2];
 
@@ -453,7 +459,8 @@ module.exports = (db) => {
     JOIN applications  ON applications.event_id = events.id
     WHERE applications.participate_id = $1
     AND applications.status_id = $2
-    AND events.status_id = $3;
+    AND events.status_id = $3
+    ORDER BY events.id DESC;
     `;
     const queryParams = [user_id, 1, 1];
 
