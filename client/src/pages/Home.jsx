@@ -6,7 +6,7 @@ import SidebarSearch from "../components/SideSearch/SidebarSearch";
 import axios from "axios";
 import "./Home.css";
 
-function Home2({ user, setUser }) {
+function Home({ user, setUser }) {
   const [events, setEvents] = useState();
 
   useEffect(() => {
@@ -28,14 +28,14 @@ function Home2({ user, setUser }) {
       justifyContent="space-between"
       alignItems="stretch"
     >
-      <Grid item xs={1}>
+      <Grid item xs={0} sm={1}>
         <Sidebar user={user} setUser={setUser} />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={0} sm={3}>
         <SidebarSearch user={user} setEvents={setEvents} />
         {/* <SearchBar /> */}
       </Grid>
-      <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
+      <Grid item xs={12} sm={8} style={{ backgroundColor: "#F6F6FA" }}>
         <div className="container js-container">
           <div className="container__head">
             <div className="container__title title title_xl">Events </div>
@@ -62,4 +62,4 @@ function Home2({ user, setUser }) {
   );
 }
 
-export default Home2;
+export default Home;

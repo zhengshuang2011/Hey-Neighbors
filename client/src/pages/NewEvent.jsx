@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import Sidebar from "../components/Siderbar/Sidebar";
-import Perview from "../components/Perview/Perview";
+import Preview from "../components/Preview/Preview";
 import NewEventForm from "../components/NewEventForm/NewEventForm";
 
 function NewEvent({ user, setUser }) {
@@ -17,7 +17,7 @@ function NewEvent({ user, setUser }) {
           <Sidebar user={user} setUser={setUser} />
         </Grid>
         <Grid item xs={3}>
-          <Perview user={user} />
+          <Preview user={user} />
         </Grid>
         <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container js-container">

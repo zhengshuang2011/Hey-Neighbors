@@ -113,8 +113,6 @@ function EventMap({ events }) {
                 </button>
               </div>
               <div className="messages__body">
-                {/* content*/}
-
                 <Map events={events} />
               </div>
             </div>

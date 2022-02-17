@@ -21,7 +21,6 @@ function NewEventForm() {
   const [photo_image, setPhoto] = useState(null);
   const [mask, setMask] = useState(false);
   const [vaccine, setVaccine] = useState(false);
-
   const handleSubmit = () => {
     const values = {
       event_name,
@@ -41,13 +40,11 @@ function NewEventForm() {
       mask,
       vaccine,
     };
-
     axios
       .post("http://localhost:8000/api/events", values)
       .then(console.log(values))
       .catch((err) => console.log(err));
   };
-
   const validateForm = () => {
     return (
       event_name.length > 0 &&
@@ -62,11 +59,9 @@ function NewEventForm() {
       post_code.length > 0
     );
   };
-
   // const handleCancel = () => {
   //   setEvenet
   // }
-
   return (
     <div className="panel">
       <div className="panel__body">
@@ -120,7 +115,6 @@ function NewEventForm() {
               </div>
             </div>
           </div>
-
           <div className="form__row">
             <div className="form__col col-md-4">
               <div className="field form__field">
@@ -169,7 +163,6 @@ function NewEventForm() {
               </div>
             </div>
           </div>
-
           <div className="form__row">
             <div className="form__col col-md-8">
               <div className="field form__field">
@@ -206,7 +199,6 @@ function NewEventForm() {
               </div>
             </div>
           </div>
-
           <div className="form__row">
             <div className="form__col col-md-3">
               <div className="field form__field">
@@ -323,7 +315,6 @@ function NewEventForm() {
               </div>
             </div>
           </div>
-
           <div className="field form__field">
             <Box
               component="form"
@@ -344,7 +335,6 @@ function NewEventForm() {
               />
             </Box>
           </div>
-
           {/* upload*/}
           <div className="">
             <div className="">
@@ -360,5 +350,4 @@ function NewEventForm() {
     </div>
   );
 }
-
 export default NewEventForm;

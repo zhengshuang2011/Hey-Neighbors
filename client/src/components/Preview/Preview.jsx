@@ -1,8 +1,8 @@
 import React from "react";
-import "./Perview.css";
+import "./Preview.css";
 //import EventCard from '../EventCard/EventCard';
 
-function Perview({ user }) {
+function Preview({ user }) {
   return (
     <div className="sidebar__container">
       <div className="sidebar__head">
@@ -24,7 +24,7 @@ function Perview({ user }) {
           {/* widget*/}
           <div className="widget">
             <div className="widget__head widget__head_line">
-              <div className="widget__title title">Perview Events</div>
+              <div className="widget__title title">Preview Events</div>
             </div>
             <div className="widget__body">
               {/* Loop the item*/}
@@ -37,4 +37,4 @@ function Perview({ user }) {
   );
 }
 
-export default Perview;
+export default Preview;
