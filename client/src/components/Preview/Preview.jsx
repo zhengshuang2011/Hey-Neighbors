@@ -1,8 +1,12 @@
 import React from "react";
 import "./Preview.css";
-//import EventCard from '../EventCard/EventCard';
+import EventCard from "../EventCard/EventCard";
 
-function Preview({ user }) {
+function Preview({ user, events }) {
+  const eventsList = events.map((event) => (
+    <EventCard event={event} key={event.id} {...event} />
+  ));
+
   return (
     <div className="sidebar__container">
       <div className="sidebar__head">
@@ -28,7 +32,7 @@ function Preview({ user }) {
             </div>
             <div className="widget__body">
               {/* Loop the item*/}
-              {/* <EventCard /> */}
+              {eventsList}
             </div>
           </div>
         </div>
