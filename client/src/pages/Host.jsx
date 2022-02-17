@@ -44,7 +44,7 @@ function Host({ user, setUser }) {
       justifyContent="space-between"
       alignItems="stretch"
     >
-      <Grid item xs={1}>
+      <Grid item>
         <Sidebar user={user} setUser={setUser} />
       </Grid>
       <Grid item xs={3}>

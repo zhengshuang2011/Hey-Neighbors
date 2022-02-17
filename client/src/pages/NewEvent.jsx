@@ -4,7 +4,7 @@ import Sidebar from "../components/Siderbar/Sidebar";
 import Perview from "../components/Perview/Perview";
 import NewEventForm from "../components/NewEventForm/NewEventForm";
 
-function NewEvent() {
+function NewEvent({ user, setUser }) {
   return (
     <>
       <Grid
@@ -13,11 +13,11 @@ function NewEvent() {
         justifyContent="space-between"
         alignItems="stretch"
       >
-        <Grid item xs={1}>
-          <Sidebar />
+        <Grid item>
+          <Sidebar user={user} setUser={setUser} />
         </Grid>
         <Grid item xs={3}>
-          <Perview />
+          <Perview user={user} />
         </Grid>
         <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container js-container">

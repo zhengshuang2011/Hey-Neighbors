@@ -1,32 +1,29 @@
-import React from 'react'
+import React from "react";
 // import Button from '@mui/material/Button';
 // import CancelIcon from '@mui/icons-material/Cancel';
 // import Stack from '@mui/material/Stack';
 import Box from "@mui/material/Box";
-import "./PendingRsvp.css"
+import "./PendingRsvp.css";
 
 const commonStyles = {
-
   m: 1,
-  borderColor: '#C4C4C4',
-  width: 'auto',
-  height: '0.5rem',
+  borderColor: "#C4C4C4",
+  width: "auto",
+  height: "0.5rem",
 };
 
-function PendingRsvp() {
+function PendingRsvp({ user }) {
   return (
     <div className="sidebar__container">
       <div className="sidebar__head">
         <div className="sidebar__preview">
-          <img
-            className="sidebar__pic"
-            src="img/user-2.jpg"
-            alt="User"
-          />
+          <img className="sidebar__pic" src="img/user-2.jpg" alt="User" />
         </div>
         <div className="sidebar__wrap">
-          <div className="sidebar__title">Hey<span style={{ color: '#00AF91' }}> Neigbors</span></div>
-          <div className="sidebar__text">Miranda</div>
+          <div className="sidebar__title">
+            Hey<span style={{ color: "#00AF91" }}> Neigbors</span>
+          </div>
+          <div className="sidebar__text">{user.first_name}</div>
         </div>
         <button className="sidebar__action">
           <i className="la la-angle-left " />
@@ -45,12 +42,16 @@ function PendingRsvp() {
               <div className="items">
                 <div className="items__item" href="">
                   <div className="items__preview">
-                    <img className="items__pic" src="img/user-3.jpg" alt="User" />
+                    <img
+                      className="items__pic"
+                      src="img/user-3.jpg"
+                      alt="User"
+                    />
                     <div className="items__online online" />
                   </div>
                   <div className="items__wrap">
                     <div className="items__details">
-                      <div className="items__name">Frist  Last Name</div>
+                      <div className="items__name">Frist Last Name</div>
                       <div className="items__time">2 people</div>
                     </div>
                     <div className="items__details">
@@ -70,15 +71,13 @@ function PendingRsvp() {
                     </Stack> */}
                   </div>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-  )
+  );
 }
 
-export default PendingRsvp
+export default PendingRsvp;

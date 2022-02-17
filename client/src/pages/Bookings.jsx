@@ -4,23 +4,27 @@ import PendingRsvp from "../components/PendingRsvp/PendingRsvp";
 import Sidebar from "../components/Siderbar/Sidebar";
 import { Grid } from "@material-ui/core";
 
-function Bookings() {
+function Bookings({ user, setUser }) {
   return (
     <>
-      <Grid container direction='row' justifyContent="space-between"
-        alignItems="stretch">
-        <Grid item xs={1}>
-          <Sidebar />
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="stretch"
+      >
+        <Grid item>
+          <Sidebar user={user} setUser={setUser} />
         </Grid>
         <Grid item xs={3}>
-          <PendingRsvp />
-
+          <PendingRsvp user={user} />
         </Grid>
         <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container">
             <div className="container__head">
-
-              <div className="container__title title title_xl">Your Bookings </div>
+              <div className="container__title title title_xl">
+                Your Bookings{" "}
+              </div>
 
               {/* search*/}
               <div className="container__search search">
@@ -37,12 +41,10 @@ function Bookings() {
             </div>
             <div className="container__body">
               <BookingList />
-
             </div>
           </div>
         </Grid>
       </Grid>
-
     </>
   );
 }

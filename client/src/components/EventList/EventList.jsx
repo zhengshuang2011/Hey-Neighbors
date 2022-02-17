@@ -27,7 +27,7 @@ function EventList({ incoming_events, completed_events }) {
   };
 
   const incoming_list = incoming_events.map((event) => (
-    <div className="data__item">
+    <div className="data__item" key={event.id}>
       <div className="data__corner data__corner_left">
         {/* progress*/}
         <div className="progress">
@@ -105,7 +105,7 @@ function EventList({ incoming_events, completed_events }) {
   ));
 
   const completed_list = completed_events.map((event) => (
-    <div className="data__item">
+    <div className="data__item" key={event.id}>
       <div className="data__row">
         <div className="data__cell data__cell_lg">
           <div className="data__main">

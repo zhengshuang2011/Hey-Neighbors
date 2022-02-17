@@ -270,34 +270,19 @@ function NewEventForm() {
                     <option disabled selected>
                       Select event category
                     </option>
-                    <option
-                      value="1"
-                      onClick={(e) => setCategory(e.target.value)}
-                    >
+                    <option value={category_id} onClick={() => setCategory(1)}>
                       Food
                     </option>
-                    <option
-                      value="2"
-                      onClick={(e) => setCategory(e.target.value)}
-                    >
+                    <option value={category_id} onClick={() => setCategory(2)}>
                       Game
                     </option>
-                    <option
-                      value="3"
-                      onClick={(e) => setCategory(e.target.value)}
-                    >
+                    <option value={category_id} onClick={() => setCategory(3)}>
                       Kids
                     </option>
-                    <option
-                      value="4"
-                      onClick={(e) => setCategory(e.target.value)}
-                    >
+                    <option value={category_id} onClick={() => setCategory(4)}>
                       Study
                     </option>
-                    <option
-                      value="5"
-                      onClick={(e) => setCategory(e.target.value)}
-                    >
+                    <option value={category_id} onClick={() => setCategory(5)}>
                       Movies
                     </option>
                   </select>
@@ -315,8 +300,7 @@ function NewEventForm() {
                     <input
                       className="switch__input"
                       type="checkbox"
-                      value={mask}
-                      onClick={setMask(!mask)}
+                      onClick={() => setMask(!mask)}
                     />
                     <span className="switch__content">Require Mask</span>
                   </label>
@@ -331,8 +315,7 @@ function NewEventForm() {
                     <input
                       className="switch__input"
                       type="checkbox"
-                      value={vaccine}
-                      onClick={setVaccine(!vaccine)}
+                      onClick={() => setVaccine(!vaccine)}
                     />
                     <span className="switch__content">Require Vaccined</span>
                   </label>

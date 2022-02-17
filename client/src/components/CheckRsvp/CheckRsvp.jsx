@@ -22,7 +22,7 @@ function CheckRsvp({ applications, user }) {
   };
 
   const application_list = applications.map((a) => (
-    <div className="items">
+    <div className="items" key={a.id}>
       <div className="items__item" href="">
         <div className="items__preview">
           <img className="items__pic" src="img/user-3.jpg" alt="User" />
