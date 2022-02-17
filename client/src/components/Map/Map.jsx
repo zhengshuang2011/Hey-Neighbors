@@ -4,7 +4,7 @@ import { Paper, Typography } from "@material-ui/core";
 import useMapStyles from "./MapStyles";
 import axios from "axios";
 
-export default function Map({ events }) {
+export default function Map({ events, event }) {
   console.log("events in map.jsx = ", events);
 
   const classes = useMapStyles();
@@ -15,10 +15,33 @@ export default function Map({ events }) {
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyA_itBW9kNLgs2Ef1vImn7JhCVcLsJ6smQ" }}
         defaultCenter={ottawaCoordinates}
-        center={ottawaCoordinates}
+        center={event ? { lat: event.locationlatitude - 0.012, lng: event.locationlongitude + 0.0020 }: null}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
       >
+        {event ?
+          <div
+            className={classes.markerContainer}
+            lat={event.locationlatitude}
+            lng={event.locationlongitude}
+          >
+            <Paper elevation={3} className={classes.paper}>
+              <Typography
+                className={classes.typography}
+                variant="subtitle2"
+                gutterBottom
+              >
+                {event.event_name}
+              </Typography>
+              <img
+                className={classes.pointer}
+                src={event.photo_image}
+                alt={event.event_name}
+              />
+            </Paper>
+          </div> 
+          : null
+        }
         {events?.map((event) => {
           console.log("event.map = ", event);
           return (
