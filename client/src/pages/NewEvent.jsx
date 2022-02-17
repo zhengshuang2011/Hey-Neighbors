@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from "@material-ui/core";
 import Sidebar from '../components/Siderbar/Sidebar';
-import Perview from '../components/Perview/Perview';
+import Preview from '../components/Preview/Preview';
 import NewEventForm from '../components/NewEventForm/NewEventForm';
 
 function NewEvent() {
@@ -13,7 +13,7 @@ function NewEvent() {
           <Sidebar />
         </Grid>
         <Grid item xs={3}>
-          <Perview />
+          <Preview />
         </Grid>
         <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container js-container">
