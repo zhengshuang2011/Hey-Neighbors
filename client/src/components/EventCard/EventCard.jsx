@@ -188,7 +188,7 @@ function EventCard({ event }) {
                     {vaccine(event.vaccine)}
                   </div>
                   <div className="card_map">
-                    <Map />
+                    <Map event={event}/>
                   </div>
                 </div>
               </div>
