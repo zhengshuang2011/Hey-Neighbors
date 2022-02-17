@@ -13,7 +13,7 @@ export default makeStyles(() => ({
     width: "90%",
   },
   markerContainer: {
-    position: "absolute",
+    position: "relative",
     transform: "translate(-50%, -50%)",
     zIndex: 1,
     "&:hover": { zIndex: 2 },

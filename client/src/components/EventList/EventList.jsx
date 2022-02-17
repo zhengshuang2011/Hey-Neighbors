@@ -46,7 +46,7 @@ function EventList() {
                       {/* action*/}
 
                       <Stack direction="row" spacing={1}>
-                        <IconButton aria-label="delete">
+                        <IconButton aria-label="edit">
                           <EditIcon />
                         </IconButton>
                         <IconButton aria-label="delete">
