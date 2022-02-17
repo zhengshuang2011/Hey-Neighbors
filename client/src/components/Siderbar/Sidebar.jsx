@@ -228,10 +228,8 @@ function Sidebar({ user, setUser }) {
             </div>
           </nav>
         </div>
-
-        {/* <UserInfo /> */}
       </div>
-    </div>
+    // </div >
   );
 }
 

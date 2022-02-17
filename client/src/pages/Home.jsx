@@ -28,6 +28,7 @@ function Home({ user, setUser }) {
       justifyContent="space-between"
       alignItems="stretch"
     >
+
       <Grid item xs={0} sm={1}>
         <Sidebar user={user} setUser={setUser} />
       </Grid>
@@ -35,6 +36,7 @@ function Home({ user, setUser }) {
         <SidebarSearch user={user} setEvents={setEvents} />
         {/* <SearchBar /> */}
       </Grid>
+
       <Grid item xs={12} sm={8} style={{ backgroundColor: "#F6F6FA" }}>
         <div className="container js-container">
           <div className="container__head">
