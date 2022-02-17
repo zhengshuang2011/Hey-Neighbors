@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 // import UserInfo from './UserInfo'
@@ -7,15 +7,14 @@ import { Menu, MenuItem, SidebarFooter } from "react-pro-sidebar";
 
 //import icons from react icons
 import { FiLogOut } from "react-icons/fi";
-import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import LockOpenIcon from '@mui/icons-material/LockOpen';
-import CollectionsBookmarkIcon from '@mui/icons-material/CollectionsBookmark';
-import CoPresentIcon from '@mui/icons-material/CoPresent';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import LockOpenIcon from "@mui/icons-material/LockOpen";
+import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
+import CoPresentIcon from "@mui/icons-material/CoPresent";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Box from "@mui/material/Box";
 import "./sidebar.css";
-
 
 const commonStyles = {
   m: 1,
@@ -27,13 +26,14 @@ const commonStyles = {
 function Sidebar({ user, setUser }) {
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+  const handleLogout = (e) => {
+    e.preventDefault();
     axios
       .post("/api/users/logout")
       .then((response) => {
         console.log("logout", response.data);
-        setUser(null);
         navigate("/");
+        setUser(null);
       })
       .catch((err) => {
         console.log("Error : ", err);
@@ -138,13 +138,10 @@ function Sidebar({ user, setUser }) {
                   )}
                   <Box sx={{ ...commonStyles, borderBottom: 1 }} />
                   {user && (
-                    <div className="logout">
+                    <div className="logout" onClick={handleLogout}>
                       <SidebarFooter>
                         <Menu iconShape="square">
-                          <MenuItem
-                            icon={<FiLogOut />}
-                            onClick={handleLogout}
-                          ></MenuItem>
+                          <MenuItem icon={<FiLogOut />}></MenuItem>
                         </Menu>
                       </SidebarFooter>
                     </div>

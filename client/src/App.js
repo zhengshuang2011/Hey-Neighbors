@@ -51,12 +51,24 @@ function App() {
           />
 
           <Route exact path="/myevent" element={<Myevent />} />
-          <Route exact path="/host" element={<Host />} />
+          <Route
+            exact
+            path="/host"
+            element={<Host user={user} setUser={setUser} />}
+          />
 
-          <Route exact path="/bookings" element={<Bookings />} />
+          <Route
+            exact
+            path="/bookings"
+            element={<Bookings user={user} setUser={setUser} />}
+          />
 
           <Route exact path="/createEvent" element={<CreateEvent />} />
-          <Route exact path="/newevent" element={<NewEvent/>} />
+          <Route
+            exact
+            path="/newevent"
+            element={<NewEvent user={user} setUser={setUser} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

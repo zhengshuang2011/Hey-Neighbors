@@ -1,22 +1,19 @@
-import React from 'react'
-import "./Preview.css"
+import React from "react";
+import "./Preview.css";
 //import EventCard from '../EventCard/EventCard';
 
-
-function Preview() {
+function Preview({ user }) {
   return (
     <div className="sidebar__container">
       <div className="sidebar__head">
         <div className="sidebar__preview">
-          <img
-            className="sidebar__pic"
-            src="img/user-2.jpg"
-            alt="User"
-          />
+          <img className="sidebar__pic" src="img/user-2.jpg" alt="User" />
         </div>
         <div className="sidebar__wrap">
-          <div className="sidebar__title">Hey<span style={{ color: '#00AF91' }}> Neigbors</span></div>
-          <div className="sidebar__text">Miranda</div>
+          <div className="sidebar__title">
+            Hey<span style={{ color: "#00AF91" }}> Neigbors</span>
+          </div>
+          <div className="sidebar__text">{user.first_name}</div>
         </div>
         <button className="sidebar__action">
           <i className="la la-angle-left " />
@@ -37,8 +34,7 @@ function Preview() {
         </div>
       </div>
     </div>
-
-  )
+  );
 }
 
-export default Preview
+export default Preview;

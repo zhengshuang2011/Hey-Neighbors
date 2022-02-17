@@ -18,10 +18,31 @@ module.exports = (db) => {
       });
   });
 
+  // Get all events
+  router.get("/incoming", (req, res) => {
+    db.query(
+      `SELECT events.*, categories.id AS c_id, categories.name AS c_name
+         FROM events
+         JOIN categories ON events.category_id = categories.id
+         WHERE events.status_id = $1;`,
+      [1]
+    )
+      .then((data) => {
+        const events = data.rows;
+        console.log(res.json({ events }));
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   //  ------------------------------------------------------
   // Get event by eventId
   const getEventByEventId = (event_id) => {
-    const command = `SELECT * FROM events WHERE id = $1;`;
+    const command = `
+    SELECT events.*, categories.id AS c_id, categories.name AS c_name
+    FROM events
+    JOIN categories ON events.category_id = categories.id WHERE events.id = $1;`;
     const queryParams = [event_id];
 
     return db
@@ -46,7 +67,7 @@ module.exports = (db) => {
     host_id,
     event_name,
     address,
-    street,
+    address2,
     city,
     province,
     country,
@@ -59,15 +80,14 @@ module.exports = (db) => {
     category_id,
     max_people_number,
     mask,
-    vaccine,
-    status
+    vaccine
   ) => {
     const command = `
     INSERT INTO events (
       host_id,
       event_name,
       address,
-      street,
+      address2,
       city,
       province,
       country,
@@ -80,15 +100,14 @@ module.exports = (db) => {
       category_id,
       max_people_number,
       mask,
-      vaccine,
-      status)
-    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18)
+      vaccine)
+    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)
     RETURNING *;`;
     const queryParams = [
       host_id,
       event_name,
       address,
-      street,
+      address2,
       city,
       province,
       country,
@@ -102,21 +121,20 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status,
     ];
 
     return db
       .query(command, queryParams)
-      .then((res) => res.rows[0])
+      .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
 
   router.post("/", (req, res) => {
-    const host_id = 1;
+    const host_id = req.session.userId;
     const {
       event_name,
       address,
-      street,
+      address2,
       city,
       province,
       country,
@@ -130,14 +148,13 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status,
     } = req.body;
 
     addNewEvent(
       host_id,
       event_name,
       address,
-      street,
+      address2,
       city,
       province,
       country,
@@ -150,8 +167,7 @@ module.exports = (db) => {
       category_id,
       max_people_number,
       mask,
-      vaccine,
-      status
+      vaccine
     )
       .then((data) => {
         console.log(res.json({ data }));
@@ -166,7 +182,7 @@ module.exports = (db) => {
   const updateEventByEventId = (
     event_name,
     address,
-    street,
+    address2,
     city,
     province,
     country,
@@ -180,7 +196,7 @@ module.exports = (db) => {
     max_people_number,
     mask,
     vaccine,
-    status,
+    status_id,
     event_id
   ) => {
     const command = `
@@ -188,7 +204,7 @@ module.exports = (db) => {
     SET
     event_name = $1,
     address = $2,
-    street = $3,
+    address2 = $3,
     city = $4,
     province = $5,
     country = $6,
@@ -202,13 +218,13 @@ module.exports = (db) => {
     max_people_number = $14,
     mask = $15,
     vaccine = $16,
-    status = $17
+    status_id = $17
     WHERE id = $18
     RETURNING *;`;
     const queryParams = [
       event_name,
       address,
-      street,
+      address2,
       city,
       province,
       country,
@@ -222,13 +238,13 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status,
+      status_id,
       event_id,
     ];
 
     return db
       .query(command, queryParams)
-      .then((res) => res.rows[0])
+      .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
   router.put("/:id", (req, res) => {
@@ -236,7 +252,7 @@ module.exports = (db) => {
     const {
       event_name,
       address,
-      street,
+      address2,
       city,
       province,
       country,
@@ -250,13 +266,13 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status,
+      status_id,
     } = req.body;
 
     updateEventByEventId(
       event_name,
       address,
-      street,
+      address2,
       city,
       province,
       country,
@@ -270,7 +286,7 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status,
+      status_id,
       event_id
     )
       .then((data) => res.json(data))
@@ -307,19 +323,20 @@ module.exports = (db) => {
   // Get Host owned coming events
   const getHostEvent = (host_id) => {
     const command = `
-    SELECT * FROM events
-    WHERE host_id = $1
-    AND status = $2;`;
-    const queryParams = [host_id, FALSE];
+    SELECT events.*, categories.id AS c_id, categories.name AS c_name
+    FROM events
+    JOIN categories ON events.category_id = categories.id
+    WHERE events.host_id = $1
+    AND events.status_id = $2;`;
+    const queryParams = [host_id, 1];
 
     return db
       .query(command, queryParams)
-      .then((res) => res.rows[0])
+      .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
   router.get("/host/future", (req, res) => {
     const host_id = req.session.userId;
-    console.log(event_id);
 
     getHostEvent(host_id)
       .then((data) => res.json(data))
@@ -332,19 +349,20 @@ module.exports = (db) => {
   // Get Host owned completed events
   const getHostFinishedEvent = (host_id) => {
     const command = `
-    SELECT * FROM events
-    WHERE host_id = $1
-    AND status = $2;`;
-    const queryParams = [host_id, TRUE];
+    SELECT events.*, categories.id AS c_id, categories.name AS c_name
+    FROM events
+    JOIN categories ON events.category_id = categories.id
+    WHERE events.host_id = $1
+    AND events.status_id = $2;`;
+    const queryParams = [host_id, 2];
 
     return db
       .query(command, queryParams)
-      .then((res) => res.rows[0])
+      .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
   router.get("/host/completed", (req, res) => {
     const host_id = req.session.userId;
-    console.log(event_id);
 
     getHostFinishedEvent(host_id)
       .then((data) => res.json(data))
@@ -357,21 +375,22 @@ module.exports = (db) => {
   // Get User(attender) coming events
   const getUserFutureEvent = (user_id) => {
     const command = `
-    SELECT * FROM events e
-    JOIN applications  a ON a.event_id = e.id
-    WHERE a.participate_id = $1
-    AND a.wait = $2
-    AND a.approved = $3
-    AND e.status = $4;
+    SELECT events.*, categories.id AS c_id, categories.name AS c_name
+    FROM events
+    JOIN categories ON events.category_id = categories.id
+    JOIN applications  ON applications.event_id = events.id
+    WHERE applications.participate_id = $1
+    AND applications.status_id = $2
+    AND events.status_id = $3;
     `;
-    const queryParams = [user_id, FALSE, TRUE, FALSE];
+    const queryParams = [user_id, 2, 1];
 
     return db
       .query(command, queryParams)
-      .then((res) => res.rows[0])
+      .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
-  router.get("/user/willattend", (req, res) => {
+  router.get("/user/future", (req, res) => {
     const user_id = req.session.userId;
     console.log(user_id);
 
@@ -386,25 +405,56 @@ module.exports = (db) => {
   // Get User(attender) finished events
   const getUserFinishedEvent = (user_id) => {
     const command = `
-    SELECT * FROM events e
-    JOIN applications  a ON a.event_id = e.id
-    WHERE a.participate_id = $1
-    AND a.wait = $2
-    AND a.approved = $3
-    AND e.status = $4;
+    SELECT events.*, categories.id AS c_id, categories.name AS c_name
+    FROM events
+    JOIN categories ON events.category_id = categories.id
+    JOIN applications  ON applications.event_id = events.id
+    WHERE applications.participate_id = $1
+    AND applications.status_id = $2
+    AND events.status_id = $3;
     `;
-    const queryParams = [user_id, FALSE, TRUE, TRUE];
+    const queryParams = [user_id, 2, 2];
 
     return db
       .query(command, queryParams)
-      .then((res) => res.rows[0])
+      .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
-  router.get("/user/attended", (req, res) => {
+  router.get("/user/completed", (req, res) => {
     const user_id = req.session.userId;
     console.log(user_id);
 
     getUserFinishedEvent(user_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Get User(attender) pending events
+  const getUserPendingEvent = (user_id) => {
+    const command = `
+    SELECT events.*, categories.id AS c_id, categories.name AS c_name
+    FROM events
+    JOIN categories ON events.category_id = categories.id
+    JOIN applications  ON applications.event_id = events.id
+    WHERE applications.participate_id = $1
+    AND applications.status_id = $2
+    AND events.status_id = $3;
+    `;
+    const queryParams = [user_id, 1, 1];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows)
+      .catch((err) => console.log(err.message));
+  };
+  router.get("/user/pending", (req, res) => {
+    const user_id = req.session.userId;
+    console.log(user_id);
+
+    getUserPendingEvent(user_id)
       .then((data) => res.json(data))
       .catch((err) => {
         res.status(500).json({ error: err.message });

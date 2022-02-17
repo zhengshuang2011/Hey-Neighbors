@@ -3,6 +3,7 @@ import "./NewEventForm.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+
 function NewEventForm() {
   const [event_name, setEventName] = useState("");
   const [date, setDate] = useState("");
@@ -350,4 +351,3 @@ function NewEventForm() {
   );
 }
 export default NewEventForm;
-

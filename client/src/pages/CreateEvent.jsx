@@ -4,9 +4,9 @@ import axios from "axios";
 import CreateEventStyle from "./CreateEvent.css";
 import Header from "../components/Header/Header";
 import Sidebar from "../components/Siderbar/Sidebar";
-import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined"
+import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 
-import Map from '../components/Map/Map';
+import Map from "../components/Map/Map";
 
 function CreateEvent() {
   const [event_name, setEvent_name] = useState("");
@@ -226,16 +226,32 @@ function CreateEvent() {
             <div className="dropdown">
               <button className="dropbtn">Category</button>
               <div className="dropdown-content">
-                <a value={category_id} onClick={(e) => setCategory_id(1)} href="#">
+                <a
+                  value={category_id}
+                  onClick={(e) => setCategory_id(1)}
+                  href="#"
+                >
                   Food
                 </a>
-                <a value={category_id} onClick={(e) => setCategory_id(2)} href="#">
+                <a
+                  value={category_id}
+                  onClick={(e) => setCategory_id(2)}
+                  href="#"
+                >
                   Game
                 </a>
-                <a value={category_id} onClick={(e) => setCategory_id(3)} href="#">
+                <a
+                  value={category_id}
+                  onClick={(e) => setCategory_id(3)}
+                  href="#"
+                >
                   Kids
                 </a>
-                <a value={category_id} onClick={(e) => setCategory_id(4)} href="#">
+                <a
+                  value={category_id}
+                  onClick={(e) => setCategory_id(4)}
+                  href="#"
+                >
                   Study
                 </a>
               </div>
@@ -266,9 +282,7 @@ function CreateEvent() {
             </div>
           </div>
           <div className="mapSection">
-            <Map>
-              
-            </Map>
+            <Map></Map>
           </div>
           <input type="submit" value="Submit"></input>
         </form>

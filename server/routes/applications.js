@@ -16,12 +16,15 @@ module.exports = (db) => {
   //  ------------------------------------------------------
   // Get event's all application by eventId
   const getApplicationsByEventId = (event_id) => {
-    const command = `SELECT * FROM applications WHERE event_id = $1;`;
-    const queryParams = [event_id];
+    const command = `
+    SELECT * FROM applications
+    WHERE event_id = $1;
+    AND status_id = $2`;
+    const queryParams = [event_id, 2];
 
     return db
       .query(command, queryParams)
-      .then((res) => res.rows[0])
+      .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
   router.get("/event/:event_id", (req, res) => {
@@ -38,19 +41,66 @@ module.exports = (db) => {
   //  ------------------------------------------------------
   // Get all application by userId
   const getApplicationsByUserId = (user_id) => {
-    const command = `SELECT * FROM applications WHERE participate_id = $1;`;
+    const command = `
+    SELECT
+    users.first_name,
+    users.last_name,
+    applications.email,
+    applications.people_number,
+    applications.description,
+    applications.vaccine,
+    applications.status_id,
+    events.event_name
+    FROM applications
+    JOIN users ON applications.participate_id = users.id
+    JOIN events ON events.id = applications.event_id
+    WHERE applications.participate_id = $1`;
     const queryParams = [user_id];
 
     return db
       .query(command, queryParams)
-      .then((res) => res.rows[0])
+      .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
-  router.get("/user/:event_id", (req, res) => {
+  router.get("/attender", (req, res) => {
     const user_id = req.session.userId;
     console.log(user_id);
 
     getApplicationsByUserId(user_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Get all application which host will receive
+  const getApplicationsByHost = (host_id) => {
+    const command = `
+    SELECT
+    users.first_name,
+    users.last_name,
+    applications.email,
+    applications.people_number,
+    applications.description,
+    applications.vaccine,
+    events.event_name
+    FROM applications
+    JOIN users ON applications.participate_id = users.id
+    JOIN events ON events.id = applications.event_id
+    WHERE events.host_id = $1
+    AND applications.status_id = $2;`;
+    const queryParams = [host_id, 1];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows)
+      .catch((err) => console.log(err.message));
+  };
+  router.get("/host", (req, res) => {
+    const host_id = req.session.userId;
+
+    getApplicationsByHost(host_id)
       .then((data) => res.json(data))
       .catch((err) => {
         res.status(500).json({ error: err.message });
@@ -132,6 +182,32 @@ module.exports = (db) => {
     const id = Number(req.params.id);
 
     deleteApplicationById(id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Update application by id
+  const updateApplicationById = (id) => {
+    command = `
+    UPDATE applications
+    SET
+    status_id = $1
+    WHERE id = $2 RETURNING *;
+    `;
+    queryParams = [id];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows[0])
+      .catch((err) => console.log(err.message));
+  };
+  router.delete("/:id", (req, res) => {
+    const id = Number(req.params.id);
+
+    updateApplicationById(id)
       .then((data) => res.json(data))
       .catch((err) => {
         res.status(500).json({ error: err.message });

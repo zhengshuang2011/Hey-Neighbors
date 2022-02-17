@@ -1,26 +1,61 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BookingList from "../components/BookingList/BookingList";
 import PendingRsvp from "../components/PendingRsvp/PendingRsvp";
 import Sidebar from "../components/Siderbar/Sidebar";
 import { Grid } from "@material-ui/core";
+import axios from "axios";
 
-function Bookings() {
+function Bookings({ user, setUser }) {
+  const [incoming_events, setIncomingEvents] = useState();
+  const [completed_events, setCompletedEvents] = useState();
+  const [applications, setApplications] = useState();
+
+  useEffect(() => {
+    Promise.all([
+      axios.get("/api/events/user/future"),
+      axios.get("api/events/user/completed"),
+      axios.get("api/applications/attender"),
+    ])
+      .then((all) => {
+        setIncomingEvents(all[0].data);
+        setCompletedEvents(all[1].data);
+        setApplications(all[2].data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(
+    "user",
+    user,
+    "incoming",
+    incoming_events,
+    "completed",
+    completed_events,
+    "applications",
+    applications
+  );
   return (
     <>
-      <Grid container direction='row' justifyContent="space-between"
-        alignItems="stretch">
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="stretch"
+      >
         <Grid item xs={1}>
-          <Sidebar />
+          <Sidebar user={user} setUser={setUser} />
         </Grid>
         <Grid item xs={3}>
-          <PendingRsvp />
-
+          {applications && (
+            <PendingRsvp user={user} applications={applications} />
+          )}
         </Grid>
         <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container">
             <div className="container__head">
-
-              <div className="container__title title title_xl">Your Bookings </div>
+              <div className="container__title title title_xl">
+                Your Bookings{" "}
+              </div>
 
               {/* search*/}
               <div className="container__search search">
@@ -36,13 +71,16 @@ function Bookings() {
               </div>
             </div>
             <div className="container__body">
-              <BookingList />
-
+              {incoming_events && completed_events && (
+                <BookingList
+                  incoming_events={incoming_events}
+                  completed_events={completed_events}
+                />
+              )}
             </div>
           </div>
         </Grid>
       </Grid>
-
     </>
   );
 }
