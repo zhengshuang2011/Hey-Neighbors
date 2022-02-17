@@ -1,13 +1,18 @@
 import React from "react";
 import EventCard from "../EventCard/EventCard";
 import Map from "../Map/Map";
+import { useNavigate } from "react-router-dom";
 
 function EventMap({ events }) {
   console.log("eventmap", events);
+  const navigate = useNavigate();
 
   const eventsList = events.map((event) => (
     <EventCard event={event} key={event.id} {...event} />
   ));
+  const handleNewEvent = () => {
+    navigate("/newevent");
+  };
 
   return (
     <>
@@ -18,7 +23,7 @@ function EventMap({ events }) {
           <div className="messages__layout">
             <div className="messages__sidebar">
               <div className="messages__head mobile-hide">
-                <button className="eventButton">
+                <button className="eventButton" onClick={handleNewEvent}>
                   <i className="la la-pencil-alt " />
                   <span> New Event</span>
                 </button>
@@ -110,9 +115,7 @@ function EventMap({ events }) {
               <div className="messages__body">
                 {/* content*/}
 
-                <Map 
-                events={events}
-                />
+                <Map events={events} />
               </div>
             </div>
           </div>
