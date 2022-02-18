@@ -81,6 +81,7 @@ function Host({ user, setUser }) {
               <EventList
                 incoming_events={incoming_events}
                 completed_events={completed_events}
+                setActions={setActions}
               />
             )}
           </div>

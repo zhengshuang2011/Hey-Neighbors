@@ -11,8 +11,9 @@ import ArchiveIcon from "@mui/icons-material/Archive";
 import Button from "@mui/material/Button";
 
 import "./EventList.css";
+import axios from "axios";
 
-function EventList({ incoming_events, completed_events }) {
+function EventList({ incoming_events, completed_events, setActions }) {
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
     if (timeNumber < 12) {
@@ -24,6 +25,26 @@ function EventList({ incoming_events, completed_events }) {
     } else {
       return `${timeNumber - 12} PM`;
     }
+  };
+
+  const handleDelete = (id, status_id) => {
+    // e.preventDefault();
+    console.log(id, status_id);
+    const data = JSON.stringify({
+      status_id,
+    });
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    Promise.all([
+      axios.put(`api/events/delete/${id}`, data, { headers: headers }),
+      axios.put(`api/applications/event/${id}`),
+    ])
+      .then((data) => {
+        console.log(data);
+        setActions(true);
+      })
+      .catch((err) => console.log(err));
   };
 
   const incoming_list = incoming_events.map((event) => (
@@ -44,7 +65,12 @@ function EventList({ incoming_events, completed_events }) {
           <IconButton aria-label="delete">
             <EditIcon />
           </IconButton>
-          <IconButton aria-label="delete">
+          <IconButton
+            aria-label="delete"
+            onClick={() => {
+              handleDelete(event.id, 3);
+            }}
+          >
             <DeleteIcon />
           </IconButton>
         </Stack>

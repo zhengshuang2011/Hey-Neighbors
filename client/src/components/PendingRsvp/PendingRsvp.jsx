@@ -65,7 +65,7 @@ function PendingRsvp({ user, applications }) {
           {a.status_id === 4 && (
             <div className="items__details">
               <button type="button" class="btn btn-warning">
-                Cancelled by the Host
+                Event Cancelled
               </button>
             </div>
           )}

@@ -190,6 +190,33 @@ module.exports = (db) => {
   });
 
   //  ------------------------------------------------------
+  // Update event's status
+  const updateEventStatus = (status_id, event_id) => {
+    const command = `
+    UPDATE events
+    SET
+    status_id = $1
+    WHERE id = $2
+    RETURNING *;`;
+    const queryParams = [status_id, event_id];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows)
+      .catch((err) => console.log(err.message));
+  };
+  router.put("/delete/:id", (req, res) => {
+    const event_id = Number(req.params.id);
+    const { status_id } = req.body;
+
+    updateEventStatus(status_id, event_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
   // Update event by eventId
   const updateEventByEventId = (
     event_name,
@@ -208,7 +235,6 @@ module.exports = (db) => {
     max_people_number,
     mask,
     vaccine,
-    status_id,
     event_id
   ) => {
     const command = `
@@ -230,7 +256,6 @@ module.exports = (db) => {
     max_people_number = $14,
     mask = $15,
     vaccine = $16,
-    status_id = $17
     WHERE id = $18
     RETURNING *;`;
     const queryParams = [
@@ -250,7 +275,6 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status_id,
       event_id,
     ];
 
@@ -278,7 +302,6 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status_id,
     } = req.body;
 
     updateEventByEventId(
@@ -298,7 +321,6 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status_id,
       event_id
     )
       .then((data) => res.json(data))
@@ -322,7 +344,6 @@ module.exports = (db) => {
   };
   router.delete("/:id", (req, res) => {
     const event_id = Number(req.params.id);
-    console.log("hi");
 
     deleteEventById(event_id)
       .then((data) => res.json(data))
