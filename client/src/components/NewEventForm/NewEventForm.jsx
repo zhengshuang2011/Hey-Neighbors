@@ -100,7 +100,7 @@ function NewEventForm({ setUpload }) {
 
   useEffect(() => {
     const addrArray = value.split(",");
-    if (addrArray.length > 1) {
+    if (addrArray.length === 4) {
       setAddress(addrArray[0].trim());
       setCity(addrArray[1].trim());
       setProvince(addrArray[2].trim());
