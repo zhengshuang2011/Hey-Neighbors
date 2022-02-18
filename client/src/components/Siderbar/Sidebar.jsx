@@ -48,7 +48,7 @@ function Sidebar({ user, setUser }) {
           <nav className="nav js-nav ">
             <a className="nav__link nav__link_head" href="/">
               <div className="nav__preview">
-                <img className="nav__pic" src="img/logo.svg" alt="Logo" />
+                <img className="nav__pic" src="/img/logo.svg" alt="Logo" />
               </div>
               <div className="nav__title">
                 <img className="nav__pic" src="img/betaCRM.svg" alt="betaCRM" />
@@ -116,6 +116,7 @@ function Sidebar({ user, setUser }) {
                       </a>
                     </Link>
                   )}
+
                   {!user && (
                     <Link to="/signIn">
                       <a className="nav__link" href="#" title="Login First">

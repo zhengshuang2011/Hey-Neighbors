@@ -104,8 +104,8 @@ function EventCard({ event }) {
   // Handle RSVP
 
   const navigate = useNavigate();
-  const handleNewRSVP = () => {
-    navigate("/rsvp");
+  const handleNewRSVP = (id) => {
+    navigate(`/event/${id}/rsvp`);
   };
   const rsvpEventDetail = (event) => {
     <SideEventDetail event={event} key={event.id} {...event} />
@@ -205,7 +205,7 @@ function EventCard({ event }) {
                   </div>
                 </div>
               </div>
-              <button className="JoinButton" onClick={handleNewRSVP}>
+              <button className="JoinButton" onClick={() => handleNewRSVP(event.id)}>
                 <ThreePIcon />
                 <span> Join the Event, Send the RSVP</span>
               </button>

@@ -3,7 +3,9 @@ import rsvpimg from "../../assets/RSVP.png"
 import SendIcon from '@mui/icons-material/Send';
 import "./NewRsvp.css"
 
-function NewRsvp() {
+
+function NewRsvp({ user, event }) {
+
   return (
     <div className="panel" autoComplete="false">
       <div className="panel__body">

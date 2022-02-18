@@ -3,9 +3,28 @@ import { Grid } from "@material-ui/core";
 import Sidebar from "../components/Siderbar/Sidebar";
 import SideEventDetail from "../components/SideEventDetail/SideEventDetail";
 import NewRsvp from "../components/NewRsvp/NewRsvp";
-// import axios from "axios";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function RSVP({ user, setUser }) {
+  const [eventDetail, setEventDetail] = useState();
+  const { id } = useParams();
+
+  useEffect(() => {
+    Promise.all([
+      axios.get(`/api/events/${id}`)
+    ])
+      .then((all) => {
+        console.log("RSVP event detail", all)
+        setEventDetail(all[0].data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  console.log(
+    'user', user,
+    'event_detail_rsvp', eventDetail
+  )
   return (
     <>
       <Grid
@@ -18,7 +37,10 @@ function RSVP({ user, setUser }) {
           <Sidebar user={user} setUser={setUser} />
         </Grid>
         <Grid item xs={0} sm={11} md={11} lg={3}>
-          <SideEventDetail />
+          {eventDetail && (
+            <SideEventDetail user={user} event={eventDetail} />
+          )}
+
         </Grid>
         <Grid item xs={12} sm={11} md={11} lg={8} style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container js-container">
