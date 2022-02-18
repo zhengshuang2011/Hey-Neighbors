@@ -5,6 +5,20 @@
   flex-direction: row;
    margin-top: 20px;
 }
+.description {
+  margin: 2rem 0;
+  padding: 1rem 2rem;
+  border: 2px solid #8484a337;
+  height: 20vh;
+  font-weight: 600;
+  border-radius: 10px;
+}
+.description:hover {
+  border-color:#6b86f176;
+}
+.create_button {
+  padding-bottom: 1rem;
+}
 .create {
   background-color: #92A5EF;
   color: white;
@@ -12,10 +26,18 @@
   font-weight: 600;
   border-radius: 10px;
   margin-right: 1rem;
+  float: right;
+  padding: 1rem 2rem;
+  margin-bottom: 4rem;
 }
 .create:hover {
   background-color:#6B86F1;
 }
 .cancel {
   border-radius: 10px;
+}
+::placeholder {
+  color: #8484a36d;
+  font-weight: 300;
+  font-size: small;
 }
