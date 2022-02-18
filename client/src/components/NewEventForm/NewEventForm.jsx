@@ -3,6 +3,8 @@ import "./NewEventForm.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
+import useOnclickOutside from "react-cool-onclickoutside"
 
 function NewEventForm({ user, setUpload }) {
   const [event_name, setEventName] = useState("");
@@ -15,6 +17,8 @@ function NewEventForm({ user, setUpload }) {
   const [province, setProvince] = useState("");
   const [country, setCountry] = useState("");
   const [post_code, setPostalCode] = useState("");
+  const [locationlatitude, setLocationLatitude] = useState(null);
+  const [locationlongitude, setLocationLongitude] = useState(null);
   const [category_id, setCategory] = useState();
   const [max_people_number, setMaxParticipant] = useState("");
   const [description, setDescription] = useState("");
@@ -35,6 +39,8 @@ function NewEventForm({ user, setUpload }) {
       province,
       country,
       post_code,
+      locationlatitude,
+      locationlongitude,
       category_id,
       max_people_number,
       description,
@@ -69,11 +75,68 @@ function NewEventForm({ user, setUpload }) {
       post_code.length > 0
     );
   };
+
   // const handleCancel = () => {
   //   setEvenet
   // }
+
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    clearSuggestions,
+    setValue
+  } = usePlacesAutocomplete();
+
+  console.log("ready is ", ready, " values is ", value, "status", status, "data is", data )
+
+  const ref = useOnclickOutside(() => {
+    clearSuggestions();
+  });
+
+  const handleInput = (e) => {
+    // Update the keyword of the input element
+    console.log(e.target.value)
+    setValue(e.target.value);
+  };
+
+  const handleSelect = ({ description }) => () => {
+    // When user selects a place, we can replace the keyword without request data from API
+    // by setting the second parameter to "false"
+    setValue(description, false);
+    clearSuggestions();
+
+    // Get latitude and longitude via utility functions
+    getGeocode({ address: description })
+      .then((results) => getLatLng(results[0]))
+      .then(({ lat, lng }) => {
+        console.log("📍 Coordinates: ", { lat, lng });
+        setLocationLatitude(lat);
+        setLocationLongitude(lng);
+      })
+      .catch((error) => {
+        console.log("😱 Error: ", error);
+      });
+  };
+
+  const renderSuggestions = () =>
+    data.map((suggestion) => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
+
+      return (
+        <li key={place_id} onClick={handleSelect(suggestion)}>
+          <strong>{main_text}</strong> <small>{secondary_text}</small>
+        </li>
+      );
+  });
+
+  console.log("google map is", window.google.maps)
+
   return (
-    <div className="panel">
+    <div className="panel" autoComplete="false">
       <div className="panel__body">
         {/* form*/}
         <form className="event_form" action="" onSubmit={handleSubmit}>
@@ -93,6 +156,7 @@ function NewEventForm({ user, setUpload }) {
                 <div className="field__wrap">
                   <input
                     className="field__input"
+                    type="text"
                     name="event_name"
                     required
                     minLength="4"
@@ -177,14 +241,21 @@ function NewEventForm({ user, setUpload }) {
             <div className="form__col col-md-8">
               <div className="field form__field">
                 <div className="field__label">Address line</div>
-                <div className="field__wrap">
+                <div ref={ref} className="field__wrap">
                   <input
                     className="field__input"
                     type="text"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
+                    value={value}
+                    onChange={(e) => {
+                      console.log("record address change ", e.target.value);
+                      setValue(e.target.value);
+                      setAddress(e.target.value);
+
+                    }}
+                    disabled={!ready}
                     placeholder="e.g '123 Yonge Street'"
                   />
+                  {status === "OK" && <ul>{renderSuggestions()}</ul>}
                   <div className="field__icon">
                     <i className="la la-city " />
                   </div>

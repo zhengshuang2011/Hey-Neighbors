@@ -6,7 +6,9 @@ import NewEventForm from "../components/NewEventForm/NewEventForm";
 import axios from "axios";
 
 function NewEvent({ user, setUser }) {
+
   const [incoming_events, setIncomingEvents] = useState();
+
   console.log(incoming_events);
   const [upload, setUpload] = useState(false);
   console.log(upload);
