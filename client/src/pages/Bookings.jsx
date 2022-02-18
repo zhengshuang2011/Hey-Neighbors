@@ -42,15 +42,15 @@ function Bookings({ user, setUser }) {
         justifyContent="space-between"
         alignItems="stretch"
       >
-        <Grid item xs={1}>
+        <Grid item xs={0} sm={1} md={1} lg={1}>
           <Sidebar user={user} setUser={setUser} />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={0} sm={11} md={11} lg={3}>
           {applications && (
             <PendingRsvp user={user} applications={applications} />
           )}
         </Grid>
-        <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
+        <Grid item xs={12} sm={11} md={11} lg={8} style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container">
             <div className="container__head">
               <div className="container__title title title_xl">
