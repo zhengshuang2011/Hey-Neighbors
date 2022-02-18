@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import GoogleMapReact from "google-map-react";
 import { Paper, Typography } from "@material-ui/core";
 import useMapStyles from "./MapStyles";
-import axios from "axios";
 
 export default function Map({ events, event }) {
-  console.log("events in map.jsx = ", events);
-
+  console.log("event ", event);
+  
   const classes = useMapStyles();
   const ottawaCoordinates = { lat: 45.41117, lng: -75.69812 };
+
+  
 
   return (
     <div className={classes.mapContainer}>
@@ -43,7 +44,7 @@ export default function Map({ events, event }) {
           : null
         }
         {events?.map((event) => {
-          console.log("event.map = ", event);
+          //console.log("event.map = ", event);
           return (
             <div
               className={classes.markerContainer}
