@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid } from "@material-ui/core";
 import Sidebar from "../components/Siderbar/Sidebar";
 import Preview from "../components/Preview/Preview";
 import NewEventForm from "../components/NewEventForm/NewEventForm";
+import axios from "axios";
 
 function NewEvent({ user, setUser }) {
+
+  const [incoming_events, setIncomingEvents] = useState();
+
+  console.log(incoming_events);
+  const [upload, setUpload] = useState(false);
+  console.log(upload);
+
+  useEffect(() => {
+    Promise.all([axios.get("/api/events/host/future")])
+      .then((all) => {
+        setIncomingEvents(all[0].data);
+        setUpload(false);
+      })
+      .catch((err) => console.log(err));
+  }, [upload]);
+
   return (
     <>
       <Grid
@@ -17,7 +34,7 @@ function NewEvent({ user, setUser }) {
           <Sidebar user={user} setUser={setUser} />
         </Grid>
         <Grid item xs={3}>
-          <Preview user={user} />
+          {incoming_events && <Preview user={user} events={incoming_events} />}
         </Grid>
         <Grid item xs={8} style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container js-container">
@@ -40,7 +57,7 @@ function NewEvent({ user, setUser }) {
               </div>
             </div>
             <div className="container__body">
-              <NewEventForm />
+              <NewEventForm user={user} setUpload={setUpload} />
             </div>
           </div>
         </Grid>

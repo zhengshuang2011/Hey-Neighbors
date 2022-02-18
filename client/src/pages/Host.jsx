@@ -11,6 +11,7 @@ function Host({ user, setUser }) {
   const [incoming_events, setIncomingEvents] = useState();
   const [completed_events, setCompletedEvents] = useState();
   const [applications, setApplications] = useState();
+  const [actions, setActions] = useState(false);
 
   useEffect(() => {
     Promise.all([
@@ -22,9 +23,10 @@ function Host({ user, setUser }) {
         setIncomingEvents(all[0].data);
         setCompletedEvents(all[1].data);
         setApplications(all[2].data);
+        setActions(false);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [actions]);
 
   console.log(
     "user",
@@ -47,8 +49,16 @@ function Host({ user, setUser }) {
       <Grid item xs={0} sm={1} md={1} lg={1}>
         <Sidebar user={user} setUser={setUser} />
       </Grid>
+
       <Grid item xs={0} sm={11} md={11} lg={3}>
-        {applications && <CheckRsvp user={user} applications={applications} />}
+        {applications && (
+          <CheckRsvp
+            user={user}
+            applications={applications}
+            setActions={setActions}
+          />
+        )}
+
       </Grid>
 
       <Grid item xs={12} sm={11} md={11} lg={8} style={{ backgroundColor: "#F6F6FA" }}>
@@ -76,6 +86,7 @@ function Host({ user, setUser }) {
               <EventList
                 incoming_events={incoming_events}
                 completed_events={completed_events}
+                setActions={setActions}
               />
             )}
           </div>

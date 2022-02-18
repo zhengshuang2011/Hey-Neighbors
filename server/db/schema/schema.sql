@@ -39,14 +39,14 @@ CREATE TABLE events (
   province VARCHAR(255) NOT NULL,
   country VARCHAR(255) NOT NULL,
   post_code VARCHAR(255) NOT NULL,
-  locationLatitude DOUBLE PRECISION,
-  locationLongitude DOUBLE PRECISION,
+  locationlatitude DOUBLE PRECISION,
+  locationlongitude DOUBLE PRECISION,
 
   date DATE NOT NULL,
   start_at TIME NOT NULL,
   duration NUMERIC NOT NULL,
 
-  photo_image VARCHAR(65535) NOT NULL,
+  photo_image VARCHAR(65535),
   description TEXT,
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
   max_people_number INTEGER NOT NULL,

@@ -9,7 +9,7 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 
 function SidebarSearch({ user, setEvents }) {
   const [searchInput, setSearchInput] = useState("");
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState();
   const [mask, setMask] = useState(false);
   const [vaccine, setVaccine] = useState(false);
 

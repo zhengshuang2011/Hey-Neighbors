@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./NewEventForm.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import useOnclickOutside from "react-cool-onclickoutside";
 
-function NewEventForm() {
+function NewEventForm({ setUpload }) {
   const [event_name, setEventName] = useState("");
   const [date, setDate] = useState("");
   const [start_at, setStartAt] = useState("");
@@ -15,14 +20,18 @@ function NewEventForm() {
   const [province, setProvince] = useState("");
   const [country, setCountry] = useState("");
   const [post_code, setPostalCode] = useState("");
-  const [category_id, setCategory] = useState("");
+  const [locationlatitude, setLocationLatitude] = useState(null);
+  const [locationlongitude, setLocationLongitude] = useState(null);
+  const [category_id, setCategory] = useState();
   const [max_people_number, setMaxParticipant] = useState("");
   const [description, setDescription] = useState("");
   const [photo_image, setPhoto] = useState(null);
   const [mask, setMask] = useState(false);
   const [vaccine, setVaccine] = useState(false);
-  const handleSubmit = () => {
-    const values = {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const values = JSON.stringify({
       event_name,
       date,
       start_at,
@@ -33,16 +42,26 @@ function NewEventForm() {
       province,
       country,
       post_code,
+      locationlatitude,
+      locationlongitude,
       category_id,
       max_people_number,
       description,
       photo_image,
       mask,
       vaccine,
+    });
+    const headers = {
+      "Content-Type": "application/json",
     };
     axios
-      .post("http://localhost:8000/api/events", values)
-      .then(console.log(values))
+      .post("/api/events", values, {
+        headers: headers,
+      })
+      .then((response) => {
+        console.log("response", response, "values", values);
+        setUpload(true);
+      })
       .catch((err) => console.log(err));
   };
   const validateForm = () => {
@@ -59,11 +78,79 @@ function NewEventForm() {
       post_code.length > 0
     );
   };
-  // const handleCancel = () => {
-  //   setEvenet
-  // }
+
+  const {
+    ready,
+    value,
+    suggestions: { status, data },
+    clearSuggestions,
+    setValue,
+  } = usePlacesAutocomplete();
+
+  console.log(
+    "ready is ",
+    ready,
+    " values is ",
+    value,
+    "status",
+    status,
+    "data is",
+    data
+  );
+
+  useEffect(() => {
+    const addrArray = value.split(",");
+    if (addrArray.length > 1) {
+      setAddress(addrArray[0].trim());
+      setCity(addrArray[1].trim());
+      setProvince(addrArray[2].trim());
+      setCountry(addrArray[3].trim());
+    }
+  }, [value]);
+
+  const ref = useOnclickOutside(() => {
+    clearSuggestions();
+  });
+
+  const handleSelect =
+    ({ description }) =>
+    () => {
+      // When user selects a place, we can replace the keyword without request data from API
+      // by setting the second parameter to "false"
+      setValue(description, false);
+      clearSuggestions();
+
+      // Get latitude and longitude via utility functions
+      getGeocode({ address: description })
+        .then((results) => getLatLng(results[0]))
+        .then(({ lat, lng }) => {
+          console.log("📍 Coordinates: ", { lat, lng });
+          setLocationLatitude(lat);
+          setLocationLongitude(lng);
+        })
+        .catch((error) => {
+          console.log("😱 Error: ", error);
+        });
+    };
+
+  const renderSuggestions = () =>
+    data.map((suggestion) => {
+      const {
+        place_id,
+        structured_formatting: { main_text, secondary_text },
+      } = suggestion;
+
+      return (
+        <li key={place_id} onClick={handleSelect(suggestion)}>
+          <strong>{main_text}</strong> <small>{secondary_text}</small>
+        </li>
+      );
+    });
+
+  //console.log("google map is", window.google.maps);
+
   return (
-    <div className="panel">
+    <div className="panel" autoComplete="false">
       <div className="panel__body">
         {/* form*/}
         <form className="event_form" action="" onSubmit={handleSubmit}>
@@ -83,6 +170,7 @@ function NewEventForm() {
                 <div className="field__wrap">
                   <input
                     className="field__input"
+                    type="text"
                     name="event_name"
                     required
                     minLength="4"
@@ -167,14 +255,20 @@ function NewEventForm() {
             <div className="form__col col-md-8">
               <div className="field form__field">
                 <div className="field__label">Address line</div>
-                <div className="field__wrap">
+                <div ref={ref} className="field__wrap">
                   <input
                     className="field__input"
                     type="text"
                     value={address}
-                    onChange={(e) => setAddress(e.target.value)}
+                    onChange={(e) => {
+                      console.log("record address change ", e.target.value);
+                      setValue(e.target.value);
+                      setAddress(e.target.value);
+                    }}
+                    disabled={!ready}
                     placeholder="e.g '123 Yonge Street'"
                   />
+                  {status === "OK" && <ul>{renderSuggestions()}</ul>}
                   <div className="field__icon">
                     <i className="la la-city " />
                   </div>
@@ -258,25 +352,18 @@ function NewEventForm() {
               <div className="field form__field">
                 <div className="field__label">Category</div>
                 <div className="field__wrap">
-                  <select className="field__select">
+                  <select
+                    className="field__select"
+                    onChange={(e) => setCategory(Number(e.target.value))}
+                  >
                     <option disabled selected>
                       Select event category
                     </option>
-                    <option value={category_id} onClick={() => setCategory(1)}>
-                      Food
-                    </option>
-                    <option value={category_id} onClick={() => setCategory(2)}>
-                      Game
-                    </option>
-                    <option value={category_id} onClick={() => setCategory(3)}>
-                      Kids
-                    </option>
-                    <option value={category_id} onClick={() => setCategory(4)}>
-                      Study
-                    </option>
-                    <option value={category_id} onClick={() => setCategory(5)}>
-                      Movies
-                    </option>
+                    <option value="1">Food</option>
+                    <option value="2">Game</option>
+                    <option value="3">Kids</option>
+                    <option value="4">Study</option>
+                    <option value="5">Movies</option>
                   </select>
                   <div className="field__icon">
                     <i className="la la-angle-down " />

@@ -7,7 +7,8 @@ module.exports = (db) => {
     db.query(
       `SELECT events.*, categories.id AS c_id, categories.name AS c_name
        FROM events
-       JOIN categories ON events.category_id = categories.id;`
+       JOIN categories ON events.category_id = categories.id
+       ORDER BY events.id DESC;`
     )
       .then((data) => {
         const events = data.rows;
@@ -24,7 +25,8 @@ module.exports = (db) => {
       `SELECT events.*, categories.id AS c_id, categories.name AS c_name
          FROM events
          JOIN categories ON events.category_id = categories.id
-         WHERE events.status_id = $1;`,
+         WHERE events.status_id = $1
+         ORDER BY events.id DESC;`,
       [1]
     )
       .then((data) => {
@@ -72,6 +74,8 @@ module.exports = (db) => {
     province,
     country,
     post_code,
+    locationlatitude,
+    locationlongitude,
     date,
     start_at,
     duration,
@@ -92,6 +96,8 @@ module.exports = (db) => {
       province,
       country,
       post_code,
+      locationlatitude,
+      locationlongitude,
       date,
       start_at,
       duration,
@@ -101,7 +107,7 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine)
-    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17)
+    VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19)
     RETURNING *;`;
     const queryParams = [
       host_id,
@@ -112,6 +118,8 @@ module.exports = (db) => {
       province,
       country,
       post_code,
+      locationlatitude,
+      locationlongitude,
       date,
       start_at,
       duration,
@@ -139,6 +147,8 @@ module.exports = (db) => {
       province,
       country,
       post_code,
+      locationlatitude,
+      locationlongitude,
       date,
       start_at,
       duration,
@@ -159,6 +169,8 @@ module.exports = (db) => {
       province,
       country,
       post_code,
+      locationlatitude,
+      locationlongitude,
       date,
       start_at,
       duration,
@@ -172,6 +184,33 @@ module.exports = (db) => {
       .then((data) => {
         console.log(res.json({ data }));
       })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Update event's status
+  const updateEventStatus = (status_id, event_id) => {
+    const command = `
+    UPDATE events
+    SET
+    status_id = $1
+    WHERE id = $2
+    RETURNING *;`;
+    const queryParams = [status_id, event_id];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows)
+      .catch((err) => console.log(err.message));
+  };
+  router.put("/delete/:id", (req, res) => {
+    const event_id = Number(req.params.id);
+    const { status_id } = req.body;
+
+    updateEventStatus(status_id, event_id)
+      .then((data) => res.json(data))
       .catch((err) => {
         res.status(500).json({ error: err.message });
       });
@@ -196,7 +235,6 @@ module.exports = (db) => {
     max_people_number,
     mask,
     vaccine,
-    status_id,
     event_id
   ) => {
     const command = `
@@ -218,7 +256,6 @@ module.exports = (db) => {
     max_people_number = $14,
     mask = $15,
     vaccine = $16,
-    status_id = $17
     WHERE id = $18
     RETURNING *;`;
     const queryParams = [
@@ -238,7 +275,6 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status_id,
       event_id,
     ];
 
@@ -266,7 +302,6 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status_id,
     } = req.body;
 
     updateEventByEventId(
@@ -286,7 +321,6 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
-      status_id,
       event_id
     )
       .then((data) => res.json(data))
@@ -310,7 +344,6 @@ module.exports = (db) => {
   };
   router.delete("/:id", (req, res) => {
     const event_id = Number(req.params.id);
-    console.log("hi");
 
     deleteEventById(event_id)
       .then((data) => res.json(data))
@@ -327,7 +360,9 @@ module.exports = (db) => {
     FROM events
     JOIN categories ON events.category_id = categories.id
     WHERE events.host_id = $1
-    AND events.status_id = $2;`;
+    AND events.status_id = $2
+    ORDER BY events.id DESC
+   `;
     const queryParams = [host_id, 1];
 
     return db
@@ -353,7 +388,9 @@ module.exports = (db) => {
     FROM events
     JOIN categories ON events.category_id = categories.id
     WHERE events.host_id = $1
-    AND events.status_id = $2;`;
+    AND events.status_id = $2
+    ORDER BY events.id DESC
+    ;`;
     const queryParams = [host_id, 2];
 
     return db
@@ -381,7 +418,8 @@ module.exports = (db) => {
     JOIN applications  ON applications.event_id = events.id
     WHERE applications.participate_id = $1
     AND applications.status_id = $2
-    AND events.status_id = $3;
+    AND events.status_id = $3
+    ORDER BY events.id DESC;
     `;
     const queryParams = [user_id, 2, 1];
 
@@ -411,7 +449,8 @@ module.exports = (db) => {
     JOIN applications  ON applications.event_id = events.id
     WHERE applications.participate_id = $1
     AND applications.status_id = $2
-    AND events.status_id = $3;
+    AND events.status_id = $3
+    ORDER BY events.id DESC;
     `;
     const queryParams = [user_id, 2, 2];
 
@@ -441,7 +480,8 @@ module.exports = (db) => {
     JOIN applications  ON applications.event_id = events.id
     WHERE applications.participate_id = $1
     AND applications.status_id = $2
-    AND events.status_id = $3;
+    AND events.status_id = $3
+    ORDER BY events.id DESC;
     `;
     const queryParams = [user_id, 1, 1];
 
