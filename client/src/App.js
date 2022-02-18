@@ -65,12 +65,13 @@ function App() {
           />
 
           <Route exact path="/createEvent" element={<CreateEvent />} />
-          <Route exact path="/rsvp" element={<RSVP />} />
+         
           <Route
             exact
             path="/newevent"
             element={<NewEvent user={user} setUser={setUser} />}
           />
+           <Route exact path="/rsvp" element={<RSVP />} />
         </Routes>
       </BrowserRouter>
     </div>

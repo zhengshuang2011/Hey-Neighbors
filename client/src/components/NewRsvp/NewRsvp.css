@@ -22,6 +22,9 @@
   font-weight: 300;
   border-radius: 20px;
 }
+.message_host:hover {
+  border-color:#6b86f176;
+}
 
 .rsvp_button {
   background-color: #92A5EF;
