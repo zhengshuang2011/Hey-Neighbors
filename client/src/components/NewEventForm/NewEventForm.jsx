@@ -114,24 +114,24 @@ function NewEventForm({ setUpload }) {
 
   const handleSelect =
     ({ description }) =>
-    () => {
-      // When user selects a place, we can replace the keyword without request data from API
-      // by setting the second parameter to "false"
-      setValue(description, false);
-      clearSuggestions();
+      () => {
+        // When user selects a place, we can replace the keyword without request data from API
+        // by setting the second parameter to "false"
+        setValue(description, false);
+        clearSuggestions();
 
-      // Get latitude and longitude via utility functions
-      getGeocode({ address: description })
-        .then((results) => getLatLng(results[0]))
-        .then(({ lat, lng }) => {
-          console.log("📍 Coordinates: ", { lat, lng });
-          setLocationLatitude(lat);
-          setLocationLongitude(lng);
-        })
-        .catch((error) => {
-          console.log("😱 Error: ", error);
-        });
-    };
+        // Get latitude and longitude via utility functions
+        getGeocode({ address: description })
+          .then((results) => getLatLng(results[0]))
+          .then(({ lat, lng }) => {
+            console.log("📍 Coordinates: ", { lat, lng });
+            setLocationLatitude(lat);
+            setLocationLongitude(lng);
+          })
+          .catch((error) => {
+            console.log("😱 Error: ", error);
+          });
+      };
 
   const renderSuggestions = () =>
     data.map((suggestion) => {
@@ -162,7 +162,7 @@ function NewEventForm({ setUpload }) {
               Upload Image
             </div>
           </div>
-          <h5>Event Details</h5>
+          <h5 className="form_h">Event Details</h5>
           <div className="form__row">
             <div className="form__col col-md-8">
               <div className="field form__field">

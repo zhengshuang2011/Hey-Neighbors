@@ -11,6 +11,7 @@ import Bookings from "./pages/Bookings";
 import Home from "./pages/Home";
 import Host from "./pages/Host";
 import NewEvent from "./pages/NewEvent";
+import RSVP from "./pages/RSVP";
 
 function App() {
   const [user, setUser] = useState();
@@ -64,6 +65,7 @@ function App() {
           />
 
           <Route exact path="/createEvent" element={<CreateEvent />} />
+          <Route exact path="/rsvp" element={<RSVP />} />
           <Route
             exact
             path="/newevent"
