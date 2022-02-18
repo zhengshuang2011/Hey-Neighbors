@@ -1,0 +1,43 @@
+.rsvp_head {
+  height: 30vh;
+  border: 0 solid white;
+ 
+}
+.rsvp_img {
+  border-radius: 200px;
+}
+
+.form_h {
+  font-size: large;
+  font-weight: 600;
+  color:#8484A3;
+  margin: 2rem 0;
+}
+
+.message_host {
+  margin: 0 1rem;
+  padding: 1rem 2rem;
+  border: 2px solid #8484a36d;
+  height: 20vh;
+  font-weight: 300;
+  border-radius: 20px;
+}
+.message_host:hover {
+  border-color:#6b86f176;
+}
+
+.rsvp_button {
+  background-color: #92A5EF;
+  color: white;
+  font-size: medium;
+  font-weight: 600;
+  border-radius: 10px;
+  height: 4rem;
+  margin: 5.5rem 0 0 4rem;
+  padding: 0 1rem;
+  flex-direction: row;
+  gap: 2;
+}
+.rsvp_button:hover {
+  background-color:#6B86F1;
+}
