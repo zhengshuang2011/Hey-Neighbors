@@ -220,5 +220,31 @@ module.exports = (db) => {
       });
   });
 
+  //  ------------------------------------------------------
+  // Update applications by event_id
+  const updateApplicationsByEvent = (event_id) => {
+    command = `
+    UPDATE applications
+    SET
+    status_id = $1
+    WHERE event_id = $2 RETURNING *;
+    `;
+    queryParams = [4, event_id];
+
+    return db
+      .query(command, queryParams)
+      .then((res) => res.rows)
+      .catch((err) => console.log(err.message));
+  };
+  router.put("/event/:id", (req, res) => {
+    const event_id = Number(req.params.id);
+
+    updateApplicationsByEvent(event_id)
+      .then((data) => res.json(data))
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
   return router;
 };
