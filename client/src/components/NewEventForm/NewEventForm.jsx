@@ -3,10 +3,13 @@ import "./NewEventForm.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
-import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
-import useOnclickOutside from "react-cool-onclickoutside"
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import useOnclickOutside from "react-cool-onclickoutside";
 
-function NewEventForm({ user, setUpload }) {
+function NewEventForm({ setUpload }) {
   const [event_name, setEventName] = useState("");
   const [date, setDate] = useState("");
   const [start_at, setStartAt] = useState("");
@@ -76,48 +79,49 @@ function NewEventForm({ user, setUpload }) {
     );
   };
 
-  // const handleCancel = () => {
-  //   setEvenet
-  // }
-
   const {
     ready,
     value,
     suggestions: { status, data },
     clearSuggestions,
-    setValue
+    setValue,
   } = usePlacesAutocomplete();
 
-  console.log("ready is ", ready, " values is ", value, "status", status, "data is", data )
+  console.log(
+    "ready is ",
+    ready,
+    " values is ",
+    value,
+    "status",
+    status,
+    "data is",
+    data
+  );
 
   const ref = useOnclickOutside(() => {
     clearSuggestions();
   });
 
-  const handleInput = (e) => {
-    // Update the keyword of the input element
-    console.log(e.target.value)
-    setValue(e.target.value);
-  };
+  const handleSelect =
+    ({ description }) =>
+    () => {
+      // When user selects a place, we can replace the keyword without request data from API
+      // by setting the second parameter to "false"
+      setValue(description, false);
+      clearSuggestions();
 
-  const handleSelect = ({ description }) => () => {
-    // When user selects a place, we can replace the keyword without request data from API
-    // by setting the second parameter to "false"
-    setValue(description, false);
-    clearSuggestions();
-
-    // Get latitude and longitude via utility functions
-    getGeocode({ address: description })
-      .then((results) => getLatLng(results[0]))
-      .then(({ lat, lng }) => {
-        console.log("📍 Coordinates: ", { lat, lng });
-        setLocationLatitude(lat);
-        setLocationLongitude(lng);
-      })
-      .catch((error) => {
-        console.log("😱 Error: ", error);
-      });
-  };
+      // Get latitude and longitude via utility functions
+      getGeocode({ address: description })
+        .then((results) => getLatLng(results[0]))
+        .then(({ lat, lng }) => {
+          console.log("📍 Coordinates: ", { lat, lng });
+          setLocationLatitude(lat);
+          setLocationLongitude(lng);
+        })
+        .catch((error) => {
+          console.log("😱 Error: ", error);
+        });
+    };
 
   const renderSuggestions = () =>
     data.map((suggestion) => {
@@ -131,9 +135,9 @@ function NewEventForm({ user, setUpload }) {
           <strong>{main_text}</strong> <small>{secondary_text}</small>
         </li>
       );
-  });
+    });
 
-  console.log("google map is", window.google.maps)
+  console.log("google map is", window.google.maps);
 
   return (
     <div className="panel" autoComplete="false">
@@ -250,7 +254,6 @@ function NewEventForm({ user, setUpload }) {
                       console.log("record address change ", e.target.value);
                       setValue(e.target.value);
                       setAddress(e.target.value);
-
                     }}
                     disabled={!ready}
                     placeholder="e.g '123 Yonge Street'"
