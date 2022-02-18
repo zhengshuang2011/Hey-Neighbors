@@ -1,0 +1,25 @@
+.container {
+  /* background-color: rgb(243, 147, 147); */
+  height: 100vh;
+  overflow-y: scroll;
+  
+}
+.container::-webkit-scrollbar {
+    display: none;
+}
+.sidebar__container {
+  /* background-color: rgb(146, 141, 141); */
+  height: 100vh;
+  overflow-y: scroll;
+}
+@media only screen and (max-width: 1300px) {
+  .sidebar__container {
+    height: auto;
+    /* background-color: aqua; */
+  }
+  .container {
+    
+  float: right;
+   /* background-color: blueviolet; */
+  }
+}

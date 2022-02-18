@@ -4,14 +4,4 @@
 .loop {
   margin-bottom: 0.9rem;
 }
-.sidebar__container {
-    display: flex;
-    width: 386px;
-    border-right: 1px solid #F0F0F3;
-    /* flex-direction: column; */
-    position: fixed;
-    /* overflow-y: scroll; */
-}
-.sidebar__inner {
-  
-}
+
