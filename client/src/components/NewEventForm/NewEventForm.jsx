@@ -131,24 +131,24 @@ function NewEventForm({ setUpload }) {
 
   const handleSelect =
     ({ description }) =>
-      () => {
-        // When user selects a place, we can replace the keyword without request data from API
-        // by setting the second parameter to "false"
-        setValue(description, false);
-        clearSuggestions();
+    () => {
+      // When user selects a place, we can replace the keyword without request data from API
+      // by setting the second parameter to "false"
+      setValue(description, false);
+      clearSuggestions();
 
-        // Get latitude and longitude via utility functions
-        getGeocode({ address: description })
-          .then((results) => getLatLng(results[0]))
-          .then(({ lat, lng }) => {
-            console.log("📍 Coordinates: ", { lat, lng });
-            setLocationLatitude(lat);
-            setLocationLongitude(lng);
-          })
-          .catch((error) => {
-            console.log("😱 Error: ", error);
-          });
-      };
+      // Get latitude and longitude via utility functions
+      getGeocode({ address: description })
+        .then((results) => getLatLng(results[0]))
+        .then(({ lat, lng }) => {
+          console.log("📍 Coordinates: ", { lat, lng });
+          setLocationLatitude(lat);
+          setLocationLongitude(lng);
+        })
+        .catch((error) => {
+          console.log("😱 Error: ", error);
+        });
+    };
 
   const renderSuggestions = () =>
     data.map((suggestion) => {
@@ -174,7 +174,6 @@ function NewEventForm({ setUpload }) {
       <div className="panel__body">
         {/* form*/}
         <form className="event_form" action="" onSubmit={handleSubmit}>
-
           <h5 className="form_h">Event Details</h5>
 
           <div className="form__row">
@@ -226,7 +225,11 @@ function NewEventForm({ setUpload }) {
                     className="field__input"
                     type="date"
                     value={date}
-                    style={{ color: "#8484A3", fontWeight: 300, fontSize: 'small' }}
+                    style={{
+                      color: "#8484A3",
+                      fontWeight: 300,
+                      fontSize: "small",
+                    }}
                     onChange={(e) => setDate(e.target.value)}
                     placeholder="Date"
                   />
@@ -240,7 +243,11 @@ function NewEventForm({ setUpload }) {
                   <input
                     className="field__input"
                     type="time"
-                    style={{ color: "#8484A3", fontWeight: 300, fontSize: 'small' }}
+                    style={{
+                      color: "#8484A3",
+                      fontWeight: 300,
+                      fontSize: "small",
+                    }}
                     value={start_at}
                     onChange={(e) => setStartAt(e.target.value)}
                     placeholder="Start Time"
@@ -369,7 +376,11 @@ function NewEventForm({ setUpload }) {
                 <div className="field__label">Category</div>
                 <div className="field__wrap">
                   <select
-                    style={{ color: "#8484A3", fontWeight: 300, fontSize: 'small' }}
+                    style={{
+                      color: "#8484A3",
+                      fontWeight: 300,
+                      fontSize: "small",
+                    }}
                     className="field__select"
                     onChange={(e) => setCategory(Number(e.target.value))}
                   >
@@ -442,29 +453,34 @@ function NewEventForm({ setUpload }) {
           <div className="form__row">
             <div className="form__col col-md-6">
               <div className="field form__field">
-
                 <div className="field__label">Event Description</div>
                 <div className="field__wrap">
                   <textarea
-                    className='description field__input'
+                    className="description field__input"
                     name="Event Description"
                     cols="60"
                     rows="8"
                     value={description}
-                    onChange={(e) => setDescription(e.target.value)}> </textarea>
+                    onChange={(e) => setDescription(e.target.value)}
+                  >
+                    {" "}
+                  </textarea>
                 </div>
               </div>
             </div>
             <div className="col-md-1"></div>
             <div className="form__field upload col-md-5 ">
-              <input className="upload__input" type="file" />
+              <input
+                className="upload__input"
+                type="file"
+                onChange={handleFileUpload}
+              />
               {/* caption*/}
               <div className="upload__caption caption">
                 <i className="la la-cloud-upload-alt " />
                 Upload Image
               </div>
             </div>
-
           </div>
           {/* upload*/}
           <div className="create_button">
