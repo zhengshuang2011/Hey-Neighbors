@@ -9,6 +9,7 @@ const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
+const multer = require("multer");
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -65,6 +66,29 @@ app.use("/api/categories", categoriesRoute(db));
 app.get("/", (req, res) => {
   res.render("index");
 });
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/images");
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage }).single("file");
+
+app.post("/upload", (req, res) => {
+  upload(req, res, (err) => {
+    if (err) {
+      return res.status(500).json(err);
+    }
+    return res.status(200).send(req.file);
+  });
+});
+
+app.use(express.static("public"));
+app.use("/images", express.static("images"));
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
