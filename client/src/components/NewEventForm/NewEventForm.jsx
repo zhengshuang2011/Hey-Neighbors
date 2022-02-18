@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./NewEventForm.css";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
@@ -98,6 +98,16 @@ function NewEventForm({ setUpload }) {
     data
   );
 
+  useEffect(() => {
+    const addrArray = value.split(",");
+    if (addrArray.length > 1) {
+      setAddress(addrArray[0].trim());
+      setCity(addrArray[1].trim());
+      setProvince(addrArray[2].trim());
+      setCountry(addrArray[3].trim());
+    }
+  }, [value]);
+
   const ref = useOnclickOutside(() => {
     clearSuggestions();
   });
@@ -137,7 +147,7 @@ function NewEventForm({ setUpload }) {
       );
     });
 
-  console.log("google map is", window.google.maps);
+  //console.log("google map is", window.google.maps);
 
   return (
     <div className="panel" autoComplete="false">
@@ -249,7 +259,7 @@ function NewEventForm({ setUpload }) {
                   <input
                     className="field__input"
                     type="text"
-                    value={value}
+                    value={address}
                     onChange={(e) => {
                       console.log("record address change ", e.target.value);
                       setValue(e.target.value);
