@@ -28,9 +28,20 @@ function NewEventForm({ setUpload }) {
   const [photo_image, setPhoto] = useState(null);
   const [mask, setMask] = useState(false);
   const [vaccine, setVaccine] = useState(false);
+  const [file, setFile] = useState(null);
+
+  const handleFileUpload = (e) => {
+    setFile(e.target.files[0]);
+    const fileName = `${e.target.files[0].name}`;
+    setPhoto(`/images/${fileName}`);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const fileData = new FormData();
+    fileData.append("file", file);
+
     const values = JSON.stringify({
       event_name,
       date,
@@ -54,10 +65,14 @@ function NewEventForm({ setUpload }) {
     const headers = {
       "Content-Type": "application/json",
     };
+
     axios
-      .post("/api/events", values, {
-        headers: headers,
-      })
+      .post("/upload", fileData)
+      .then(
+        axios.post("/api/events", values, {
+          headers: headers,
+        })
+      )
       .then((response) => {
         console.log("response", response, "values", values);
         setUpload(true);
@@ -79,6 +94,8 @@ function NewEventForm({ setUpload }) {
     );
   };
 
+  //console.log(file);
+
   const {
     ready,
     value,
@@ -87,20 +104,20 @@ function NewEventForm({ setUpload }) {
     setValue,
   } = usePlacesAutocomplete();
 
-  console.log(
-    "ready is ",
-    ready,
-    " values is ",
-    value,
-    "status",
-    status,
-    "data is",
-    data
-  );
+  // console.log(
+  //   "ready is ",
+  //   ready,
+  //   " values is ",
+  //   value,
+  //   "status",
+  //   status,
+  //   "data is",
+  //   data
+  // );
 
   useEffect(() => {
     const addrArray = value.split(",");
-    if (addrArray.length > 1) {
+    if (addrArray.length === 4) {
       setAddress(addrArray[0].trim());
       setCity(addrArray[1].trim());
       setProvince(addrArray[2].trim());
@@ -148,6 +165,9 @@ function NewEventForm({ setUpload }) {
     });
 
   //console.log("google map is", window.google.maps);
+  // const handleFileSelect = (e) => {
+  //   console.log(e.target.files[0]);
+  // };
 
   return (
     <div className="panel" autoComplete="false">
@@ -156,6 +176,7 @@ function NewEventForm({ setUpload }) {
         <form className="event_form" action="" onSubmit={handleSubmit}>
 
           <h5 className="form_h">Event Details</h5>
+
           <div className="form__row">
             <div className="form__col col-md-8">
               <div className="field form__field">
