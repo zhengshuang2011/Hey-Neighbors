@@ -42,7 +42,7 @@ function Sidebar({ user, setUser }) {
 
   return (
     <div>
-      <div className="sidebar js-sidebar extended">
+      <div className="sidebar extended">
         <div className="sidebar__nav">
           {/* <!-- nav--> */}
           <nav className="nav js-nav ">
@@ -228,10 +228,8 @@ function Sidebar({ user, setUser }) {
             </div>
           </nav>
         </div>
-
-        {/* <UserInfo /> */}
       </div>
-    </div>
+    </div >
   );
 }
 

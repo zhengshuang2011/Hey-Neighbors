@@ -88,6 +88,7 @@ function CheckRsvp({ applications, user, setActions }) {
   ));
 
   return (
+
     <div className="sidebar__container">
       <div className="sidebar__head">
         <div className="sidebar__preview">
@@ -119,6 +120,7 @@ function CheckRsvp({ applications, user, setActions }) {
         </div>
       </div>
     </div>
+
   );
 }
 

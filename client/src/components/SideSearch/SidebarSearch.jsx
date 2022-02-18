@@ -20,6 +20,7 @@ function SidebarSearch({ user, setEvents }) {
 
   return (
     <>
+
       <div className="sidebar__container ">
         <div className="sidebar__head">
           <div className="sidebar__preview">
