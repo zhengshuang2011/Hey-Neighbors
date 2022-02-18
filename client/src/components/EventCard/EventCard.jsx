@@ -7,10 +7,12 @@ import MasksIcon from "@mui/icons-material/Masks";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import ThreePIcon from "@mui/icons-material/ThreeP";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { useNavigate } from "react-router-dom";
 
 import Map from "../Map/Map";
 
 import "./EventCard.css";
+import SideEventDetail from "../SideEventDetail/SideEventDetail";
 
 const commonStyles = {
   bgcolor: "background.paper",
@@ -98,6 +100,17 @@ function EventCard({ event }) {
       );
     }
   };
+
+  // Handle RSVP
+
+  const navigate = useNavigate();
+  const handleNewRSVP = () => {
+    navigate("/rsvp");
+  };
+  const rsvpEventDetail = (event) => {
+    <SideEventDetail event={event} key={event.id} {...event} />
+  }
+
   return (
     <>
       <div className="items__item">
@@ -188,11 +201,11 @@ function EventCard({ event }) {
                     {vaccine(event.vaccine)}
                   </div>
                   <div className="card_map">
-                    <Map event={event}/>
+                    <Map event={event} />
                   </div>
                 </div>
               </div>
-              <button className="JoinButton">
+              <button className="JoinButton" onClick={handleNewRSVP}>
                 <ThreePIcon />
                 <span> Join the Event, Send the RSVP</span>
               </button>
