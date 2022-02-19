@@ -69,7 +69,11 @@ function Sidebar({ user, setUser }) {
 
                   {user && (
                     <Link to="/host">
-                      <a className="nav__link active" href="#" title="Host Page">
+                      <a
+                        className="nav__link active"
+                        href="#"
+                        title="Host Page"
+                      >
                         <div className="nav__preview">
                           <CoPresentIcon />
                         </div>
@@ -80,7 +84,11 @@ function Sidebar({ user, setUser }) {
 
                   {user && (
                     <Link to="/bookings">
-                      <a className="nav__link active" href="#" title="Attender Page">
+                      <a
+                        className="nav__link active"
+                        href="#"
+                        title="Attender Page"
+                      >
                         <div className="nav__preview">
                           <CollectionsBookmarkIcon />
                         </div>
@@ -88,7 +96,7 @@ function Sidebar({ user, setUser }) {
                       </a>
                     </Link>
                   )}
-                  {user && (
+                  {/* {user && (
                     <Link to="/createEvent">
                       <a
                         className="nav__link"
@@ -101,7 +109,7 @@ function Sidebar({ user, setUser }) {
                         <div className="nav__title">Create My New Event</div>
                       </a>
                     </Link>
-                  )}
+                  )} */}
                   {user && (
                     <Link to="/newevent">
                       <a
@@ -229,7 +237,7 @@ function Sidebar({ user, setUser }) {
           </nav>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 

@@ -25,9 +25,17 @@ module.exports = (db) => {
   // Get event by eventId
   const getEventByEventId = (event_id) => {
     const command = `
-    SELECT events.*, categories.id AS c_id, categories.name AS c_name
+    SELECT events.*,
+    users.first_name,
+    users.last_name,
+    users.avatar,
+    users.id AS u_id,
+    categories.id AS c_id,
+    categories.name AS c_name
     FROM events
-    JOIN categories ON events.category_id = categories.id WHERE events.id = $1;`;
+    JOIN categories ON events.category_id = categories.id
+    JOIN users ON events.host_id = users.id
+    WHERE events.id = $1;`;
     const queryParams = [event_id];
 
     return db
@@ -515,9 +523,9 @@ module.exports = (db) => {
     }
 
     if (options.selectedDate) {
-      queryParams.push(`${options.selectedDate}`);
+      queryParams.push(`%${options.selectedDate}%`);
       if (queryParams.length === 1) {
-        queryString += `WHERE events.date LIKE $${queryParams.length} `;
+        queryString += `WHERE events.date::text LIKE $${queryParams.length} `;
       } else {
         queryString += `AND events.date = $${queryParams.length} `;
       }

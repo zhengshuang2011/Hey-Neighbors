@@ -477,9 +477,7 @@ function NewEventForm({ setUpload }) {
                     rows="8"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
-                  >
-                    {" "}
-                  </textarea>
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -492,22 +490,21 @@ function NewEventForm({ setUpload }) {
                 required
               />
               {/* caption*/}
-              {/* <div className="upload__caption caption">
+              <div className="upload__caption caption">
                 <i className="la la-cloud-upload-alt " />
                 Upload Image
-              </div> */}
-              <div class="default-file-upload">
-                <h1>Default File Upload</h1>
-
-                <input id="file-upload1" type="file" />
+                {photo_image && (
+                  <span className="image">Image has been selected</span>
+                )}
               </div>
             </div>
           </div>
+
           {/* upload*/}
           <div className="create_button">
             <button className="btn_light create" disabled={!validateForm}>
               Create Events
-            </button>
+            </button>{" "}
             {/* <button className="
                btn_light mobile-hide cancel" onClick={handleCancel}>Cancel</button> */}
           </div>

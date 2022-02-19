@@ -3,7 +3,7 @@
 }
 .other_features {
   flex-direction: row;
-   margin-top: 20px;
+  margin-top: 20px;
 }
 .description {
   margin: 2rem 0;
@@ -14,13 +14,13 @@
   border-radius: 10px;
 }
 .description:hover {
-  border-color:#6b86f176;
+  border-color: #6b86f176;
 }
 .create_button {
   padding-bottom: 1rem;
 }
 .create {
-  background-color: #92A5EF;
+  background-color: #92a5ef;
   color: white;
   font-size: 24;
   font-weight: 600;
@@ -31,7 +31,7 @@
   margin-bottom: 4rem;
 }
 .create:hover {
-  background-color:#6B86F1;
+  background-color: #6b86f1;
 }
 .cancel {
   border-radius: 10px;
@@ -40,4 +40,8 @@
   color: #8484a36d;
   font-weight: 300;
   font-size: small;
+}
+.image {
+  color: red;
+  margin-left: 1rem;
 }

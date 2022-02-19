@@ -11,8 +11,8 @@ import axios from "axios";
 function SidebarSearch({ user, setEvents }) {
   const [searchCity, setSearchCity] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
-  const [mask, setMask] = useState(false);
-  const [vaccine, setVaccine] = useState(false);
+  const [mask, setMask] = useState("");
+  const [vaccine, setVaccine] = useState("");
   const [category, setCategory] = useState("");
 
   const format = () => {
