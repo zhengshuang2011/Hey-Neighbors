@@ -22,7 +22,7 @@ const commonStyles = {
   height: "0.5rem",
 };
 
-function EventCard({ event, onClick }) {
+function EventCard({ event, onClick, eventRef }) {
   //console.log("event in eventCard.jsx = ", event);
 
   const time = (start_at) => {
@@ -114,7 +114,7 @@ function EventCard({ event, onClick }) {
 
   return (
     <>
-      <div className="items__item" onClick={onClick}>
+      <div className="items__item" onClick={onClick} ref={eventRef}>
         <div class="content__preview">
           <img className="content__pic" src={event.photo_image} alt="event" />
         </div>
