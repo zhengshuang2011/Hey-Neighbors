@@ -2,24 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-  // Get all events
-  router.get("/", (req, res) => {
-    db.query(
-      `SELECT events.*, categories.id AS c_id, categories.name AS c_name
-       FROM events
-       JOIN categories ON events.category_id = categories.id
-       ORDER BY events.id DESC;`
-    )
-      .then((data) => {
-        const events = data.rows;
-        console.log(res.json({ events }));
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  });
-
-  // Get all events
+  // Get all incoming events
   router.get("/incoming", (req, res) => {
     db.query(
       `SELECT events.*, categories.id AS c_id, categories.name AS c_name
@@ -500,6 +483,79 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  router.get("/", (req, res) => {
+    console.log(req.query);
+    const { command, queryParams } = getSqlQueryWithFilter(req.query);
+    db.query(command, queryParams)
+      .then((data) => {
+        const events = data.rows;
+        console.log(res.json({ events }));
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Get events by filter (Home Page)
+  const getSqlQueryWithFilter = (options) => {
+    // 1
+    const queryParams = [];
+    // 2
+    let queryString = `
+      SELECT events.*, categories.id AS c_id, categories.name AS c_name
+      FROM events
+      JOIN categories ON events.category_id = categories.id
+      `;
+
+    if (options.searchCity) {
+      queryParams.push(`${options.searchCity}`);
+      queryString += `WHERE events.city = $${queryParams.length} `;
+    }
+
+    if (options.selectedDate) {
+      queryParams.push(`${options.selectedDate}`);
+      if (queryParams.length === 1) {
+        queryString += `WHERE events.date = $${queryParams.length} `;
+      } else {
+        queryString += `AND events.date = $${queryParams.length} `;
+      }
+    }
+
+    if (options.mask) {
+      queryParams.push(`${options.mask}`);
+      if (queryParams.length === 1) {
+        queryString += `WHERE events.mask = $${queryParams.length} `;
+      } else {
+        queryString += `AND events.mask = $${queryParams.length} `;
+      }
+    }
+
+    if (options.vaccine) {
+      queryParams.push(`${options.vaccine}`);
+      if (queryParams.length === 1) {
+        queryString += `WHERE events.vaccine = $${queryParams.length} `;
+      } else {
+        queryString += `AND events.vaccine = $${queryParams.length} `;
+      }
+    }
+
+    if (options.category) {
+      queryParams.push(Number(options.category));
+      if (queryParams.length === 1) {
+        queryString += `WHERE events.category_id = $${queryParams.length} `;
+      } else {
+        queryString += `AND events.category_id = $${queryParams.length} `;
+      }
+    }
+
+    queryString += `
+      ORDER BY events.id DESC;
+      `;
+
+    return { command: queryString, queryParams };
+  };
 
   return router;
 };
