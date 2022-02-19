@@ -1,14 +1,52 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import rsvpimg from "../../assets/RSVP.png"
 import SendIcon from '@mui/icons-material/Send';
 import "./NewRsvp.css"
+import axios from "axios";
 
-function NewRsvp() {
+function NewRsvp({ event_id }) {
+  const [email, setEmail] = useState("");
+  const [people_number, setPeopleNumber] = useState("");
+  const [vaccine, setVaccine] = useState(false);
+  const [description, setDescription] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const values = JSON.stringify({
+      email,
+      people_number,
+      vaccine,
+      description,
+    });
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    axios
+      .post(`/api/applications/new/${event_id}`, values, {
+        headers: headers,
+      })
+      .then((response) => {
+        console.log("RSVP response", response, "RSVP values", values);
+        navigate("/bookings");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const validateForm = () => {
+    return (
+      email.length > 0 &&
+      people_number.length > 0 &&
+      description.length > 0
+    );
+  };
+
   return (
     <div className="panel" autoComplete="false">
       <div className="panel__body">
         {/* form*/}
-        <form className="event_form" action="" >
+        <form className="event_form" action="" onSubmit={handleSubmit} >
           <div className="form__field upload rsvp_head">
             <img src={rsvpimg} alt="rsvp" className='rsvp_img' />
           </div>
@@ -21,11 +59,11 @@ function NewRsvp() {
                   <input
                     className="field__input"
                     type="text"
-                    name="event_name"
+                    name="guest_email"
                     required
                     minLength="4"
-                    // value={event_name}
-                    // onChange={(e) => setEventName(e.target.value)}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter contact email"
                   />
                   <div className="field__icon">
@@ -42,8 +80,8 @@ function NewRsvp() {
                     className="field__input"
                     type="number"
                     min="1"
-                    // value={max_people_number}
-                    // onChange={(e) => setMaxParticipant(e.target.value)}
+                    value={people_number}
+                    onChange={(e) => setPeopleNumber(e.target.value)}
                     placeholder="1"
                   />
                   <div className="field__icon">
@@ -60,7 +98,7 @@ function NewRsvp() {
                     <input
                       className="switch__input"
                       type="checkbox"
-                    //   onClick={() => setVaccine(!vaccine)}
+                      onClick={() => setVaccine(!vaccine)}
                     />
                     <span className="switch__content">Yes, I am.</span>
                   </label>
@@ -71,9 +109,14 @@ function NewRsvp() {
           <h5 className="form_h"> Message the host</h5>
           <div className="form__row">
             <div className="field form__field col-md-8 ">
-              <textarea className='message_host' name="Text1" cols="60" rows="5" placeholder='Hi....'> </textarea>
+              <textarea className='message_host' name="Text1"
+                cols="60"
+                rows="5"
+                placeholder='Hi....'
+                value={description}
+                onChange={(e) => setDescription(e.target.value)} />
             </div>
-            <button className="rsvp_button">
+            <button className="rsvp_button" disabled={!validateForm}>
               <span>Confirm and Submit </span>
               <SendIcon />
             </button>
@@ -84,4 +127,4 @@ function NewRsvp() {
   );
 }
 
-export default NewRsvp
+export default NewRsvp;

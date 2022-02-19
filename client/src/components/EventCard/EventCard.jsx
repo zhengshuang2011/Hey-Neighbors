@@ -22,7 +22,7 @@ const commonStyles = {
   height: "0.5rem",
 };
 
-function EventCard({ event, onClick }) {
+function EventCard({ event, onClick, eventRef }) {
   //console.log("event in eventCard.jsx = ", event);
 
   const time = (start_at) => {
@@ -105,8 +105,8 @@ function EventCard({ event, onClick }) {
   // Handle RSVP
 
   const navigate = useNavigate();
-  const handleNewRSVP = () => {
-    navigate("/rsvp");
+  const handleNewRSVP = (id) => {
+    navigate(`/event/${id}/rsvp`);
   };
   const rsvpEventDetail = (event) => {
     <SideEventDetail event={event} key={event.id} {...event} />
@@ -114,7 +114,7 @@ function EventCard({ event, onClick }) {
 
   return (
     <>
-      <div className="items__item" onClick={onClick}>
+      <div className="items__item" onClick={onClick} ref={eventRef}>
         <div class="content__preview">
           <img className="content__pic" src={event.photo_image} alt="event" />
         </div>
@@ -206,7 +206,7 @@ function EventCard({ event, onClick }) {
                   </div>
                 </div>
               </div>
-              <button className="JoinButton" onClick={handleNewRSVP}>
+              <button className="JoinButton" onClick={() => handleNewRSVP(event.id)}>
                 <ThreePIcon />
                 <span> Join the Event, Send the RSVP</span>
               </button>
