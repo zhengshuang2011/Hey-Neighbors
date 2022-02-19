@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 
 function RSVP({ user, setUser }) {
   const [eventDetail, setEventDetail] = useState();
+  // const [submit, setSubmit] = useState(false);
   const { id } = useParams();
 
   useEffect(() => {
@@ -17,6 +18,7 @@ function RSVP({ user, setUser }) {
       .then((all) => {
         console.log("RSVP event detail", all)
         setEventDetail(all[0].data);
+        // setSubmit(false);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -25,6 +27,7 @@ function RSVP({ user, setUser }) {
     'user', user,
     'event_detail_rsvp', eventDetail
   )
+
   return (
     <>
       <Grid
@@ -63,7 +66,7 @@ function RSVP({ user, setUser }) {
               </div>
             </div>
             <div className="container__body">
-              <NewRsvp />
+              <NewRsvp participate_id={user.id} event_id={id} />
             </div>
           </div>
         </Grid>
