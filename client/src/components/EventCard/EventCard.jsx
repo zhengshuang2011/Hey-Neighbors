@@ -22,8 +22,9 @@ const commonStyles = {
   height: "0.5rem",
 };
 
-function EventCard({ event }) {
-  console.log("event in eventCard.jsx = ", event);
+function EventCard({ event, onClick }) {
+  //console.log("event in eventCard.jsx = ", event);
+
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
     if (timeNumber < 12) {
@@ -37,7 +38,7 @@ function EventCard({ event }) {
     }
   };
 
-  // Contorl detail page
+  // Control detail page
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
     setIsOpen(!isOpen);
@@ -113,7 +114,7 @@ function EventCard({ event }) {
 
   return (
     <>
-      <div className="items__item">
+      <div className="items__item" onClick={onClick}>
         <div class="content__preview">
           <img className="content__pic" src={event.photo_image} alt="event" />
         </div>

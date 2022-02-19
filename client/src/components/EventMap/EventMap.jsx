@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import EventCard from "../EventCard/EventCard";
 import Map from "../Map/Map";
 import { useNavigate } from "react-router-dom";
 
 function EventMap({ events }) {
-  console.log("eventmap", events);
+  //console.log("eventmap", events);
   const navigate = useNavigate();
 
+  const [selectedEvent, setSelectedEvent] = useState(null);
+
+  console.log("selectedEvent is ", selectedEvent);
+
   const eventsList = events.map((event) => (
-    <EventCard event={event} key={event.id} {...event} />
+    <EventCard event={event} key={event.id} {...event} onClick={(e) => {
+      setSelectedEvent(event);
+    }}/>
   ));
   const handleNewEvent = () => {
     navigate("/newevent");
@@ -113,7 +119,7 @@ function EventMap({ events }) {
                 </button>
               </div>
               <div className="messages__body">
-                <Map events={events} />
+                <Map events={events} event={selectedEvent}/>
               </div>
             </div>
           </div>

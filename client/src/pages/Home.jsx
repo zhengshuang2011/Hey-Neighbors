@@ -13,13 +13,13 @@ function Home({ user, setUser }) {
     axios
       .get("/api/events/incoming")
       .then((data) => {
-        console.log("events", data);
+        //console.log("events", data);
         setEvents([...data.data.events]);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(events);
+  //console.log(events);
 
   return (
     <Grid container direction="row" justifyContent="space" alignItems="stretch">
