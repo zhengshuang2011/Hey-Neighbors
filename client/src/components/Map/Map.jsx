@@ -3,13 +3,11 @@ import GoogleMapReact from "google-map-react";
 import { Paper, Typography } from "@material-ui/core";
 import useMapStyles from "./MapStyles";
 
-export default function Map({ events, event }) {
-  console.log("event ", event);
+export default function Map({ events, event, handleClick }) {
+  //console.log("event ", event);
   
   const classes = useMapStyles();
   const ottawaCoordinates = { lat: 45.41117, lng: -75.69812 };
-
-  
 
   return (
     <div className={classes.mapContainer}>
@@ -24,7 +22,7 @@ export default function Map({ events, event }) {
           <div
             className={classes.markerContainer}
             lat={event.locationlatitude}
-            lng={event.locationlongitude}
+            lng={event.locationlongitude}   
           >
             <Paper elevation={3} className={classes.paper}>
               <Typography
@@ -43,13 +41,14 @@ export default function Map({ events, event }) {
           </div> 
           : null
         }
-        {events?.map((event) => {
+        {events?.map((event, index) => {
           //console.log("event.map = ", event);
           return (
             <div
               className={classes.markerContainer}
               lat={event.locationlatitude}
               lng={event.locationlongitude}
+              onClick={() => handleClick(index)}
             >
               <Paper elevation={3} className={classes.paper}>
                 <Typography
