@@ -71,7 +71,7 @@ function App() {
             path="/newevent"
             element={<NewEvent user={user} setUser={setUser} />}
           />
-           <Route exact path="/rsvp" element={<RSVP />} />
+           <Route exact path="/event/:id/rsvp" element={<RSVP user={user} setUser={setUser} />} />
         </Routes>
       </BrowserRouter>
     </div>
