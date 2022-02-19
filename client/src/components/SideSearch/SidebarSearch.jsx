@@ -15,15 +15,25 @@ function SidebarSearch({ user, setEvents }) {
   const [vaccine, setVaccine] = useState(false);
   const [category, setCategory] = useState("");
 
-  console.log(selectedDate);
-  const dayTransfer = (date) => {};
+  const format = () => {
+    if (selectedDate) {
+      const month = new Date(selectedDate).getMonth() + 1;
+      const date = new Date(selectedDate).getDate();
+      const year = new Date(selectedDate).getFullYear();
+      const finalDate = date > 10 ? `${date}` : `0${date}`;
+      const finalMonth = month > 10 ? `${month}` : `0${month}`;
+      const fullTime = `${year}-${finalMonth}-${finalDate}`;
+      return fullTime;
+    }
+    return "";
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     axios
       .get(
-        `api/events?searchCity=${searchCity}&selectedDate=${selectedDate}&mask=${mask}&vaccine=${vaccine}&category=${category}`
+        `api/events?searchCity=${searchCity}&selectedDate=${format()}&mask=${mask}&vaccine=${vaccine}&category=${category}`
       )
       .then((response) => {
         console.log(response.data);

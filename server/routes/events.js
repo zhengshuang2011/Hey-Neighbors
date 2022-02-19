@@ -510,14 +510,14 @@ module.exports = (db) => {
       `;
 
     if (options.searchCity) {
-      queryParams.push(`${options.searchCity}`);
-      queryString += `WHERE events.city = $${queryParams.length} `;
+      queryParams.push(`%${options.searchCity}%`);
+      queryString += `WHERE events.city LIKE $${queryParams.length} `;
     }
 
     if (options.selectedDate) {
       queryParams.push(`${options.selectedDate}`);
       if (queryParams.length === 1) {
-        queryString += `WHERE events.date = $${queryParams.length} `;
+        queryString += `WHERE events.date LIKE $${queryParams.length} `;
       } else {
         queryString += `AND events.date = $${queryParams.length} `;
       }

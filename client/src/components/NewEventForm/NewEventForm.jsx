@@ -29,6 +29,7 @@ function NewEventForm({ setUpload }) {
   const [mask, setMask] = useState(false);
   const [vaccine, setVaccine] = useState(false);
   const [file, setFile] = useState(null);
+  const [error, setError] = useState();
 
   const handleFileUpload = (e) => {
     setFile(e.target.files[0]);
@@ -75,9 +76,13 @@ function NewEventForm({ setUpload }) {
       )
       .then((response) => {
         console.log("response", response, "values", values);
+        setError();
         setUpload(true);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setError("Something is wrong, Please check your input");
+      });
   };
   const validateForm = () => {
     return (
@@ -90,7 +95,9 @@ function NewEventForm({ setUpload }) {
       city.length > 0 &&
       province.length > 0 &&
       country.length > 0 &&
-      post_code.length > 0
+      post_code.length > 0 &&
+      max_people_number != null &&
+      photo_image != null
     );
   };
 
@@ -208,6 +215,7 @@ function NewEventForm({ setUpload }) {
                     value={max_people_number}
                     onChange={(e) => setMaxParticipant(e.target.value)}
                     placeholder="2"
+                    required
                   />
                   <div className="field__icon">
                     <i className="la la-user " />
@@ -232,6 +240,7 @@ function NewEventForm({ setUpload }) {
                     }}
                     onChange={(e) => setDate(e.target.value)}
                     placeholder="Date"
+                    required
                   />
                 </div>
               </div>
@@ -266,6 +275,7 @@ function NewEventForm({ setUpload }) {
                     value={duration}
                     onChange={(e) => setDuration(e.target.value)}
                     placeholder="Duration"
+                    required
                   />
                   <div className="field__icon">
                     <div className="field__label">hours</div>
@@ -290,6 +300,7 @@ function NewEventForm({ setUpload }) {
                     }}
                     disabled={!ready}
                     placeholder="e.g '123 Yonge Street'"
+                    required
                   />
                   {status === "OK" && <ul>{renderSuggestions()}</ul>}
                   <div className="field__icon">
@@ -326,6 +337,7 @@ function NewEventForm({ setUpload }) {
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
                     placeholder="City Name"
+                    required
                   />
                 </div>
               </div>
@@ -339,6 +351,7 @@ function NewEventForm({ setUpload }) {
                     value={province}
                     onChange={(e) => setProvince(e.target.value)}
                     placeholder="e.g 'ON'"
+                    required
                   />
                 </div>
               </div>
@@ -352,6 +365,7 @@ function NewEventForm({ setUpload }) {
                     value={country}
                     onChange={(e) => setCountry(e.target.value)}
                     placeholder="e.g 'Canada'"
+                    required
                   />
                 </div>
               </div>
@@ -383,6 +397,7 @@ function NewEventForm({ setUpload }) {
                     }}
                     className="field__select"
                     onChange={(e) => setCategory(Number(e.target.value))}
+                    required
                   >
                     <option disabled selected>
                       Select event category
@@ -474,11 +489,17 @@ function NewEventForm({ setUpload }) {
                 className="upload__input"
                 type="file"
                 onChange={handleFileUpload}
+                required
               />
               {/* caption*/}
-              <div className="upload__caption caption">
+              {/* <div className="upload__caption caption">
                 <i className="la la-cloud-upload-alt " />
                 Upload Image
+              </div> */}
+              <div class="default-file-upload">
+                <h1>Default File Upload</h1>
+
+                <input id="file-upload1" type="file" />
               </div>
             </div>
           </div>
