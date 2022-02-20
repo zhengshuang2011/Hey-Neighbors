@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 // import UserInfo from './UserInfo'
@@ -78,9 +78,27 @@ function Sidebar({ user, setUser }) {
                           <CoPresentIcon />
                         </div>
                         <div className="nav__title">Host Page</div>
+                        {/* {applications && (
+                          <div className="nav__online online bg-red-raw"></div>
+                        )} */}
                       </a>
                     </Link>
                   )}
+                  {/* {user && applications && (
+                    <Link to="/host">
+                      <a
+                        className="nav__link active"
+                        href="#"
+                        title="Notifications"
+                      >
+                        <div className="nav__preview">
+                          <i className="la la-bullseye "></i>
+                          <div className="nav__online online bg-red-raw"></div>
+                        </div>
+                        <div className="nav__title">Notifications</div>
+                      </a>
+                    </Link>
+                  )} */}
 
                   {user && (
                     <Link to="/bookings">
@@ -145,6 +163,7 @@ function Sidebar({ user, setUser }) {
                       </a>
                     </Link>
                   )}
+
                   <Box sx={{ ...commonStyles, borderBottom: 1 }} />
                   {user && (
                     <div className="logout" onClick={handleLogout}>

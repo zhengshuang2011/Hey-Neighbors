@@ -49,7 +49,7 @@ function EventList({
 
   const handleDelete = (id, status_id) => {
     // e.preventDefault();
-    console.log(id, status_id);
+    // console.log(id, status_id);
     const data = JSON.stringify({
       status_id,
     });
@@ -63,16 +63,23 @@ function EventList({
       .then((data) => {
         console.log(data);
         setActions(true);
+        handleShow();
       })
       .catch((err) => console.log(err));
   };
 
   // Control Edit Event
   const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [event, setEvent] = useState();
 
   const togglePopup = (event) => {
     setIsOpen(!isOpen);
+    setEvent(event);
+  };
+
+  const handleShow = (event) => {
+    setIsDeleteOpen(!isDeleteOpen);
     setEvent(event);
   };
 
@@ -85,7 +92,6 @@ function EventList({
     }
     return output;
   };
-  console.log(attenders);
 
   const incoming_list = incoming_events.map((event) => {
     const avartList = FindAttendersByEventId(attenders, event.id).map(
@@ -116,9 +122,12 @@ function EventList({
             </IconButton>
             <IconButton
               aria-label="delete"
-              onClick={() => {
-                handleDelete(event.id, 3);
-              }}
+              data-toggle="modal"
+              data-target="#exampleModal"
+              // onClick={() => {
+              //   handleDelete(event.id, 3);
+              // }}
+              onClick={() => handleShow(event)}
             >
               <DeleteIcon />
             </IconButton>
@@ -289,7 +298,7 @@ function EventList({
           </div>
         </div>
         <div className="panel__body">
-          <div className="panel__tab ]" style={{ display: "block" }}>
+          <div className="panel__tab" style={{ display: "block" }}>
             {/* data*/}
             <div className="data data_list">
               <div className="data__container">
@@ -310,6 +319,45 @@ function EventList({
           }
           handleClose={togglePopup}
         />
+      )}
+
+      {isDeleteOpen && (
+        <div className="edit_popup-box">
+          <div className="edit_box delete">
+            {/* <span className="close-icon" onClick={handleShow}>
+              <CancelIcon color="action" />
+            </span> */}
+
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Do you want to delete this Evenet: <br />
+                {`${event.event_name}`}
+              </h5>
+            </div>
+            <div class="modal-body">
+              This event will be cancelled once you click the DELETE button
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+                onClick={handleShow}
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                onClick={() => {
+                  handleDelete(event.id, 3);
+                }}
+              >
+                DELETE
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </>
   );

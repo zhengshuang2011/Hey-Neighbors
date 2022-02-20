@@ -32,14 +32,14 @@ function Host({ user, setUser }) {
   }, [actions]);
 
   // console.log(
-  //   "user",
-  //   user,
-  //   "incoming",
-  //   incoming_events,
-  //   "completed",
-  //   completed_events,
-  //   "applications",
-  //   applications
+  //   // "user",
+  //   // user,
+  //   // "incoming",
+  //   // incoming_events,
+  //   // "completed",
+  //   // completed_events,
+  //   // "applications",
+  //   // applications.length
   // );
 
   return (
@@ -50,7 +50,7 @@ function Host({ user, setUser }) {
       alignItems="stretch"
     >
       <Grid item xs={0} sm={1} md={1} lg={1}>
-        <Sidebar user={user} setUser={setUser} />
+        <Sidebar user={user} setUser={setUser} applications={applications} />
       </Grid>
 
       <Grid item xs={0} sm={11} md={11} lg={3}>
