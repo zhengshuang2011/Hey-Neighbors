@@ -209,7 +209,6 @@ module.exports = (db) => {
 
   //  ------------------------------------------------------
   // Update event by eventId
-   // Update event by eventId
   const updateEventByEventId = (
     event_name,
     address,
@@ -227,6 +226,8 @@ module.exports = (db) => {
     max_people_number,
     mask,
     vaccine,
+    locationlatitude,
+    locationlongitude,
     event_id
   ) => {
     const command = `
@@ -247,8 +248,10 @@ module.exports = (db) => {
     category_id = $13,
     max_people_number = $14,
     mask = $15,
-    vaccine = $16
-    WHERE id = $17
+    vaccine = $16,
+    locationlatitude = $17,
+    locationlongitude = $18
+    WHERE id = $19
     RETURNING *;`;
     const queryParams = [
       event_name,
@@ -267,6 +270,8 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
+      locationlatitude,
+      locationlongitude,
       event_id,
     ];
     return db
@@ -293,6 +298,8 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
+      locationlatitude,
+      locationlongitude,
     } = req.body;
     updateEventByEventId(
       event_name,
@@ -311,6 +318,8 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
+      locationlatitude,
+      locationlongitude,
       event_id
     )
       .then((data) => res.json(data))
@@ -318,7 +327,6 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
-
 
   //  ------------------------------------------------------
   // Delete event by eventId
