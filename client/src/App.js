@@ -13,6 +13,7 @@ import Host from "./pages/Host";
 import NewEvent from "./pages/NewEvent";
 import RSVP from "./pages/RSVP";
 
+
 function App() {
   const [user, setUser] = useState();
   console.log("user", user);
@@ -33,7 +34,9 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-        <Routes>
+       
+        <Routes> 
+
           <Route exact path="/" element={<LandingPage />} />
           <Route
             exact
