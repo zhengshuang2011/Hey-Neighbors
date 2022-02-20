@@ -1,5 +1,5 @@
-import React from "react";
-import eventImg from "../../assets/HappyEyes.png";
+import React, { useState } from "react";
+import CancelIcon from "@mui/icons-material/Cancel";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PeopleIcon from "@mui/icons-material/People";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
@@ -9,9 +9,24 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import Button from "@mui/material/Button";
+import EventEdit from "./EventEdit/EventEdit";
 
 import "./EventList.css";
 import axios from "axios";
+
+const Popup = (props) => {
+  console.log(props);
+  return (
+    <div className="edit_popup-box">
+      <div className="edit_box">
+        <span className="close-icon" onClick={props.handleClose}>
+          <CancelIcon color="action" />
+        </span>
+        {props.content}
+      </div>
+    </div>
+  );
+};
 
 function EventList({ incoming_events, completed_events, setActions }) {
   const time = (start_at) => {
@@ -47,8 +62,18 @@ function EventList({ incoming_events, completed_events, setActions }) {
       .catch((err) => console.log(err));
   };
 
+  // Control Edit Event
+  const [isOpen, setIsOpen] = useState(false);
+  const [event, setEvent] = useState();
+  const [upload, setUpload] = useState(false);
+
+  const togglePopup = (event) => {
+    setIsOpen(!isOpen);
+    setEvent(event);
+  };
+
   const incoming_list = incoming_events.map((event) => (
-    <div className="data__item" key={event.id}>
+    <div className="data__item" key={event.id} data-id={event.id}>
       <div className="data__corner data__corner_left">
         {/* progress*/}
         <div className="progress">
@@ -62,7 +87,7 @@ function EventList({ incoming_events, completed_events, setActions }) {
         {/* action*/}
 
         <Stack direction="row" spacing={1}>
-          <IconButton aria-label="delete">
+          <IconButton aria-label="edit" onClick={() => togglePopup(event)}>
             <EditIcon />
           </IconButton>
           <IconButton
@@ -75,6 +100,7 @@ function EventList({ incoming_events, completed_events, setActions }) {
           </IconButton>
         </Stack>
       </div>
+
       <div className="data__row">
         <div className="data__cell">
           <div className="data__main">
@@ -113,6 +139,7 @@ function EventList({ incoming_events, completed_events, setActions }) {
             </div>
           </div>
         </div>
+
         <div className="data__cell">
           {/* members*/}
           <div className="members data__members">
@@ -253,6 +280,10 @@ function EventList({ incoming_events, completed_events, setActions }) {
           </div>
         </div>
       </div>
+      {isOpen && (
+
+        <Popup content={<EventEdit event={event} setUpload={setUpload} />} handleClose={togglePopup} />
+      )}
     </>
   );
 }
