@@ -10,13 +10,15 @@ import usePlacesAutocomplete, {
 import useOnclickOutside from "react-cool-onclickoutside";
 
 function EventEdit({ event, setActions, setIsOpen }) {
-  console.log("Event Edit:", event);
+  // console.log("Event Edit:", event);
   const [event_name, setEventName] = useState(`${event.event_name}`);
   const [date, setDate] = useState(`${event.date}`);
   const [start_at, setStartAt] = useState(`${event.start_at}`);
   const [duration, setDuration] = useState(`${event.duration}`);
   const [address, setAddress] = useState(`${event.address}`);
-  const [address2, setAddress2] = useState(`${event.address2}`);
+  const [address2, setAddress2] = useState(
+    event.address2 === null ? `(${event.address2}` : ""
+  );
   const [city, setCity] = useState(`${event.city}`);
   const [province, setProvince] = useState(`${event.province}`);
   const [country, setCountry] = useState(`${event.country}`);
@@ -36,11 +38,13 @@ function EventEdit({ event, setActions, setIsOpen }) {
   const [mask, setMask] = useState(event.mask);
   const [vaccine, setVaccine] = useState(event.vaccine);
   const [file, setFile] = useState("");
+  const [fileNmae, setFileName] = useState("");
 
   const handleFileUpload = (e) => {
     setFile(e.target.files[0]);
     const fileName = `${e.target.files[0].name}`;
-    setPhoto(`/ images / ${fileName}`);
+    setFileName(fileName);
+    setPhoto(`/images/${fileName}`);
   };
 
   const handleSubmit = (e) => {
@@ -451,15 +455,15 @@ function EventEdit({ event, setActions, setIsOpen }) {
               <div className="form__field upload col-md-5 ">
                 <input
                   className="upload__input"
-                  type="text"
+                  type="file"
                   onChange={handleFileUpload}
-                  value={photo_image}
                 />
                 {/* caption*/}
                 <div className="upload__caption caption">
                   <i className="la la-cloud-upload-alt " />
                   Change Image
-                  <span>{event.photo_image}</span>
+                  {!fileNmae && <span>{event.photo_image}</span>}
+                  {fileNmae && <span>{fileNmae}</span>}
                 </div>
               </div>
             </div>

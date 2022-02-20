@@ -31,7 +31,7 @@ function Sidebar({ user, setUser }) {
     axios
       .post("/api/users/logout")
       .then((response) => {
-        console.log("logout", response.data);
+        // console.log("logout", response.data);
         navigate("/");
         setUser(null);
       })
@@ -110,7 +110,7 @@ function Sidebar({ user, setUser }) {
                       </a>
                     </Link>
                   )} */}
-                  {user && (
+                  {/* {user && (
                     <Link to="/newevent">
                       <a
                         className="nav__link active"
@@ -123,7 +123,7 @@ function Sidebar({ user, setUser }) {
                         <div className="nav__title">Create My New Event</div>
                       </a>
                     </Link>
-                  )}
+                  )} */}
 
                   {!user && (
                     <Link to="/signIn">
