@@ -209,6 +209,7 @@ module.exports = (db) => {
 
   //  ------------------------------------------------------
   // Update event by eventId
+   // Update event by eventId
   const updateEventByEventId = (
     event_name,
     address,
@@ -268,7 +269,6 @@ module.exports = (db) => {
       vaccine,
       event_id,
     ];
-
     return db
       .query(command, queryParams)
       .then((res) => res.rows)
@@ -294,7 +294,6 @@ module.exports = (db) => {
       mask,
       vaccine,
     } = req.body;
-
     updateEventByEventId(
       event_name,
       address,
@@ -319,6 +318,7 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
 
   //  ------------------------------------------------------
   // Delete event by eventId
