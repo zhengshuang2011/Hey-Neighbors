@@ -65,7 +65,6 @@ function EventList({ incoming_events, completed_events, setActions }) {
   // Control Edit Event
   const [isOpen, setIsOpen] = useState(false);
   const [event, setEvent] = useState();
-  const [upload, setUpload] = useState(false);
 
   const togglePopup = (event) => {
     setIsOpen(!isOpen);
@@ -281,8 +280,16 @@ function EventList({ incoming_events, completed_events, setActions }) {
         </div>
       </div>
       {isOpen && (
-
-        <Popup content={<EventEdit event={event} setUpload={setUpload} />} handleClose={togglePopup} />
+        <Popup
+          content={
+            <EventEdit
+              event={event}
+              setActions={setActions}
+              setIsOpen={setIsOpen}
+            />
+          }
+          handleClose={togglePopup}
+        />
       )}
     </>
   );

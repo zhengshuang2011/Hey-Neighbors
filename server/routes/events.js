@@ -2,24 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 module.exports = (db) => {
-  // Get all events
-  router.get("/", (req, res) => {
-    db.query(
-      `SELECT events.*, categories.id AS c_id, categories.name AS c_name
-       FROM events
-       JOIN categories ON events.category_id = categories.id
-       ORDER BY events.id DESC;`
-    )
-      .then((data) => {
-        const events = data.rows;
-        console.log(res.json({ events }));
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  });
-
-  // Get all events
+  // Get all incoming events
   router.get("/incoming", (req, res) => {
     db.query(
       `SELECT events.*, categories.id AS c_id, categories.name AS c_name
@@ -42,9 +25,17 @@ module.exports = (db) => {
   // Get event by eventId
   const getEventByEventId = (event_id) => {
     const command = `
-    SELECT events.*, categories.id AS c_id, categories.name AS c_name
+    SELECT events.*,
+    users.first_name,
+    users.last_name,
+    users.avatar,
+    users.id AS u_id,
+    categories.id AS c_id,
+    categories.name AS c_name
     FROM events
-    JOIN categories ON events.category_id = categories.id WHERE events.id = $1;`;
+    JOIN categories ON events.category_id = categories.id
+    JOIN users ON events.host_id = users.id
+    WHERE events.id = $1;`;
     const queryParams = [event_id];
 
     return db
@@ -218,7 +209,6 @@ module.exports = (db) => {
 
   //  ------------------------------------------------------
   // Update event by eventId
-   // Update event by eventId
   const updateEventByEventId = (
     event_name,
     address,
@@ -236,6 +226,8 @@ module.exports = (db) => {
     max_people_number,
     mask,
     vaccine,
+    locationlatitude,
+    locationlongitude,
     event_id
   ) => {
     const command = `
@@ -256,8 +248,10 @@ module.exports = (db) => {
     category_id = $13,
     max_people_number = $14,
     mask = $15,
-    vaccine = $16
-    WHERE id = $17
+    vaccine = $16,
+    locationlatitude = $17,
+    locationlongitude = $18
+    WHERE id = $19
     RETURNING *;`;
     const queryParams = [
       event_name,
@@ -276,6 +270,8 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
+      locationlatitude,
+      locationlongitude,
       event_id,
     ];
     return db
@@ -302,6 +298,8 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
+      locationlatitude,
+      locationlongitude,
     } = req.body;
     updateEventByEventId(
       event_name,
@@ -320,6 +318,8 @@ module.exports = (db) => {
       max_people_number,
       mask,
       vaccine,
+      locationlatitude,
+      locationlongitude,
       event_id
     )
       .then((data) => res.json(data))
@@ -327,7 +327,6 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
-
 
   //  ------------------------------------------------------
   // Delete event by eventId
@@ -500,6 +499,79 @@ module.exports = (db) => {
         res.status(500).json({ error: err.message });
       });
   });
+
+  router.get("/", (req, res) => {
+    console.log(req.query);
+    const { command, queryParams } = getSqlQueryWithFilter(req.query);
+    db.query(command, queryParams)
+      .then((data) => {
+        const events = data.rows;
+        console.log(res.json({ events }));
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  });
+
+  //  ------------------------------------------------------
+  // Get events by filter (Home Page)
+  const getSqlQueryWithFilter = (options) => {
+    // 1
+    const queryParams = [];
+    // 2
+    let queryString = `
+      SELECT events.*, categories.id AS c_id, categories.name AS c_name
+      FROM events
+      JOIN categories ON events.category_id = categories.id
+      `;
+
+    if (options.searchCity) {
+      queryParams.push(`%${options.searchCity}%`);
+      queryString += `WHERE events.city LIKE $${queryParams.length} `;
+    }
+
+    if (options.selectedDate) {
+      queryParams.push(`%${options.selectedDate}%`);
+      if (queryParams.length === 1) {
+        queryString += `WHERE events.date::text LIKE $${queryParams.length} `;
+      } else {
+        queryString += `AND events.date = $${queryParams.length} `;
+      }
+    }
+
+    if (options.mask) {
+      queryParams.push(`${options.mask}`);
+      if (queryParams.length === 1) {
+        queryString += `WHERE events.mask = $${queryParams.length} `;
+      } else {
+        queryString += `AND events.mask = $${queryParams.length} `;
+      }
+    }
+
+    if (options.vaccine) {
+      queryParams.push(`${options.vaccine}`);
+      if (queryParams.length === 1) {
+        queryString += `WHERE events.vaccine = $${queryParams.length} `;
+      } else {
+        queryString += `AND events.vaccine = $${queryParams.length} `;
+      }
+    }
+
+    if (options.category) {
+      queryParams.push(Number(options.category));
+      if (queryParams.length === 1) {
+        queryString += `WHERE events.category_id = $${queryParams.length} `;
+      } else {
+        queryString += `AND events.category_id = $${queryParams.length} `;
+      }
+    }
+
+    queryString += `
+      ORDER BY events.id DESC;
+      `;
+
+    return { command: queryString, queryParams };
+  };
 
   return router;
 };

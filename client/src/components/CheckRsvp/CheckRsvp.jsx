@@ -39,7 +39,7 @@ function CheckRsvp({ applications, user, setActions }) {
     <div className="items loop" key={a.id}>
       <div className="items__item" href="">
         <div className="items__preview">
-          <img className="items__pic" src="img/user-3.jpg" alt="User" />
+          <img className="items__pic" src={a.avatar} alt="User" />
           <div className="items__online online" />
         </div>
         <div className="items__wrap">
@@ -88,11 +88,10 @@ function CheckRsvp({ applications, user, setActions }) {
   ));
 
   return (
-
     <div className="sidebar__container">
       <div className="sidebar__head">
         <div className="sidebar__preview">
-          <img className="sidebar__pic" src="img/user-2.jpg" alt="User" />
+          <img className="sidebar__pic" src={user.avatar} alt="User" />
         </div>
         <div className="sidebar__wrap">
           <div className="sidebar__title">
@@ -120,7 +119,6 @@ function CheckRsvp({ applications, user, setActions }) {
         </div>
       </div>
     </div>
-
   );
 }
 
