@@ -15,6 +15,18 @@ function SidebarSearch({ user, setEvents }) {
   const [vaccine, setVaccine] = useState("");
   const [category, setCategory] = useState("");
 
+  console.log(
+    "city",
+    searchCity,
+    "date",
+    selectedDate,
+    "mask",
+    mask,
+    "vaccine",
+    vaccine,
+    "category_id",
+    category
+  );
   const format = () => {
     if (selectedDate) {
       const month = new Date(selectedDate).getMonth() + 1;
@@ -36,7 +48,7 @@ function SidebarSearch({ user, setEvents }) {
         `api/events?searchCity=${searchCity}&selectedDate=${format()}&mask=${mask}&vaccine=${vaccine}&category=${category}`
       )
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setEvents(response.data.events);
       });
   };
@@ -48,7 +60,7 @@ function SidebarSearch({ user, setEvents }) {
     setVaccine("");
     setMask("");
     axios.get("api/events").then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       setEvents(response.data.events);
     });
   };
@@ -113,10 +125,10 @@ function SidebarSearch({ user, setEvents }) {
                       <input
                         className="switch__input"
                         type="checkbox"
-                        value={mask}
                         onChange={() => {
                           setMask(!mask);
                         }}
+                        checked={mask === true ? true : false}
                       />
                       <span className="switch__content">Require Mask</span>
                     </label>
@@ -126,7 +138,7 @@ function SidebarSearch({ user, setEvents }) {
                       <input
                         className="switch__input"
                         type="checkbox"
-                        value={vaccine}
+                        checked={vaccine === true ? true : false}
                         onChange={() => {
                           setVaccine(!vaccine);
                         }}

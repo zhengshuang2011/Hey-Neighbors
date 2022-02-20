@@ -31,7 +31,7 @@ function Sidebar({ user, setUser }) {
     axios
       .post("/api/users/logout")
       .then((response) => {
-        console.log("logout", response.data);
+        // console.log("logout", response.data);
         navigate("/");
         setUser(null);
       })

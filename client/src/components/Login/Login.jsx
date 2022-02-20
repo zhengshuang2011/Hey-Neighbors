@@ -33,7 +33,7 @@ function Login({ user, setUser }) {
         headers: headers,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setUser(response.data);
         setError("");
         navigate("/home");
