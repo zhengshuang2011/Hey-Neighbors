@@ -5,3 +5,6 @@
 .pro-icon-wrapper {
   color: #8181a5;
 }
+.testclass {
+  border: 2px solid red;
+}
