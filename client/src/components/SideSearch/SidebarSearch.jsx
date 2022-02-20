@@ -57,9 +57,11 @@ function SidebarSearch({ user, setEvents }) {
     <>
       <div className="sidebar__container ">
         <div className="sidebar__head">
-          <div className="sidebar__preview">
-            <img className="sidebar__pic" src={user.avatar} alt="User" />
-          </div>
+          {user && (
+            <div className="sidebar__preview">
+              <img className="sidebar__pic" src={user.avatar} alt="User" />
+            </div>
+          )}
           <div className="sidebar__wrap">
             <div className="sidebar__title">
               Hey<span style={{ color: "#00AF91" }}> Neigbors</span>

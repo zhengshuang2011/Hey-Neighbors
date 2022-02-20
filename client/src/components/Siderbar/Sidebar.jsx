@@ -110,7 +110,7 @@ function Sidebar({ user, setUser }) {
                       </a>
                     </Link>
                   )} */}
-                  {user && (
+                  {/* {user && (
                     <Link to="/newevent">
                       <a
                         className="nav__link active"
@@ -123,7 +123,7 @@ function Sidebar({ user, setUser }) {
                         <div className="nav__title">Create My New Event</div>
                       </a>
                     </Link>
-                  )}
+                  )} */}
 
                   {!user && (
                     <Link to="/signIn">

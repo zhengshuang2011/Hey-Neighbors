@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import Sidebar from "../components/Siderbar/Sidebar";
 import EventMap from "../components/EventMap/EventMap";
 import SidebarSearch from "../components/SideSearch/SidebarSearch";
@@ -51,11 +52,15 @@ function Home({ user, setUser }) {
               </button>
             </div>
             {/* new*/}
-            <div className="container__new new ">
-              <button className="new__action action">
-                <i className="la la-plus-circle " />
-              </button>
-            </div>
+            {user && (
+              <Link to="/newevent">
+                <div className="container__new new ">
+                  <button className="new__action action">
+                    <i className="la la-plus-circle " />
+                  </button>
+                </div>
+              </Link>
+            )}
           </div>
           <div className="container__body">
             {events && <EventMap events={events} />}
