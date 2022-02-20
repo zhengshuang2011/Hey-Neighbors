@@ -2,23 +2,23 @@
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-    'Devin', 'Sanders', 'tristanjacobs@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'https://i.imgur.com/nlhLi3I.png');
+    'Devin', 'Sanders', 'tristanjacobs@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/1.png');
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-    'Iva', 'Harrison', 'allisonjackson@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'https://i.imgur.com/nlhLi3I.png');
+    'Iva', 'Harrison', 'allisonjackson@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/2.png');
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-   'Dale', 'Coleman', 'michaelgray@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'https://i.imgur.com/nlhLi3I.png');
+   'Dale', 'Coleman', 'michaelgray@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/3.png');
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-   'Alice', 'C', '123@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'https://i.imgur.com/nlhLi3I.png');
+   'Alice', 'C', '123@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/4.png');
    INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-   'Miranda', 'L', '456@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'https://i.imgur.com/nlhLi3I.png');
+   'Miranda', 'L', '456@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/5.png');
 
 -- Categories table seeds here (Example)
 INSERT INTO categories(

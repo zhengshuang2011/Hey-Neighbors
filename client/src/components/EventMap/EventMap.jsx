@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import EventCard from "../EventCard/EventCard";
 import Map from "../Map/Map";
 import { useNavigate } from "react-router-dom";
@@ -7,15 +7,36 @@ function EventMap({ events }) {
   //console.log("eventmap", events);
   const navigate = useNavigate();
 
+  const eventsRef = useRef([]);
+
+  //const getArrayOfRefs = () => {
+//
+  //  const arrayOfRefs = [];
+  //  for(let i of events) {
+  //    let ref = useRef(null)
+  //    arrayOfRefs.push(ref);
+  //  }
+  //  return arrayOfRefs;
+  //};
+
+  useEffect(() => {
+    eventsRef.current = eventsRef.current.slice(0, events.length);
+ }, [events]);
+
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   console.log("selectedEvent is ", selectedEvent);
 
-  const eventsList = events.map((event) => (
-    <EventCard event={event} key={event.id} {...event} onClick={(e) => {
+  const handleClick = (index) => {
+    eventsRef.current[index].scrollIntoView({behavior:"smooth"})
+  } 
+
+  const eventsList = events.map((event, index) => (
+    <EventCard event={event} key={event.id} {...event} eventRef={el => eventsRef.current[index] = el} onClick={(e) => {
       setSelectedEvent(event);
     }}/>
   ));
+
   const handleNewEvent = () => {
     navigate("/newevent");
   };
@@ -119,7 +140,7 @@ function EventMap({ events }) {
                 </button>
               </div>
               <div className="messages__body">
-                <Map events={events} event={selectedEvent}/>
+                <Map events={events} event={selectedEvent} eventsRef={eventsRef} handleClick={handleClick}/>
               </div>
             </div>
           </div>

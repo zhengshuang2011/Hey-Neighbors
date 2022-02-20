@@ -69,7 +69,9 @@ function Sidebar({ user, setUser }) {
 
                   {user && (
                     <Link to="/host">
+
                       <a className={"nav__link" + (location.pathname === '/host' ? ' active' : '')} title="Host Page">
+
                         <div className="nav__preview">
                           <CoPresentIcon />
                         </div>
@@ -80,7 +82,9 @@ function Sidebar({ user, setUser }) {
 
                   {user && (
                     <Link to="/bookings">
+
                       <a className={"nav__link" + (location.pathname === '/bookings' ? ' active' : '')} title="Attender Page">
+
                         <div className="nav__preview">
                           <CollectionsBookmarkIcon />
                         </div>
@@ -231,7 +235,7 @@ function Sidebar({ user, setUser }) {
           </nav>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 

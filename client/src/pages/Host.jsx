@@ -5,7 +5,7 @@ import CheckRsvp from "../components/CheckRsvp/CheckRsvp";
 import EventList from "../components/EventList/EventList";
 import axios from "axios";
 
-import './Host.css'
+import "./Host.css";
 
 function Host({ user, setUser }) {
   const [incoming_events, setIncomingEvents] = useState();
@@ -28,16 +28,16 @@ function Host({ user, setUser }) {
       .catch((err) => console.log(err));
   }, [actions]);
 
-  console.log(
-    "user",
-    user,
-    "incoming",
-    incoming_events,
-    "completed",
-    completed_events,
-    "applications",
-    applications
-  );
+  // console.log(
+  //   "user",
+  //   user,
+  //   "incoming",
+  //   incoming_events,
+  //   "completed",
+  //   completed_events,
+  //   "applications",
+  //   applications
+  // );
 
   return (
     <Grid
@@ -58,13 +58,17 @@ function Host({ user, setUser }) {
             setActions={setActions}
           />
         )}
-
       </Grid>
 
-      <Grid item xs={12} sm={11} md={11} lg={8} style={{ backgroundColor: "#F6F6FA" }}>
-
+      <Grid
+        item
+        xs={12}
+        sm={11}
+        md={11}
+        lg={8}
+        style={{ backgroundColor: "#F6F6FA" }}
+      >
         <div className="container js-container">
-
           <div className="container__head">
             <div className="container__title title title_xl">Your Hostings</div>
 
