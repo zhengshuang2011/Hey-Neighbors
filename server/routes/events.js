@@ -246,8 +246,8 @@ module.exports = (db) => {
     category_id = $13,
     max_people_number = $14,
     mask = $15,
-    vaccine = $16,
-    WHERE id = $18
+    vaccine = $16
+    WHERE id = $17
     RETURNING *;`;
     const queryParams = [
       event_name,

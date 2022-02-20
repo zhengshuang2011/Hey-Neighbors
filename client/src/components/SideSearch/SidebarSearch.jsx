@@ -45,6 +45,8 @@ function SidebarSearch({ user, setEvents }) {
     setSearchCity("");
     setSelectedDate("");
     setCategory("");
+    setVaccine("");
+    setMask("");
     axios.get("api/events").then((response) => {
       console.log(response.data);
       setEvents(response.data.events);
@@ -56,7 +58,7 @@ function SidebarSearch({ user, setEvents }) {
       <div className="sidebar__container ">
         <div className="sidebar__head">
           <div className="sidebar__preview">
-            <img className="sidebar__pic" src="img/user-2.jpg" alt="User" />
+            <img className="sidebar__pic" src={user.avatar} alt="User" />
           </div>
           <div className="sidebar__wrap">
             <div className="sidebar__title">
@@ -176,14 +178,14 @@ function SidebarSearch({ user, setEvents }) {
               <div className="buttons">
                 <button
                   type="button"
-                  className="btn btn-warning btn-sm search"
+                  className="btn btn-secondary btn-sm search"
                   onClick={onSubmit}
                 >
                   Search
                 </button>
                 <button
                   type="button"
-                  className="btn btn-warning btn-sm cancel"
+                  className="btn btn-secondary btn-sm cancel"
                   onClick={onCancel}
                 >
                   Cancel
