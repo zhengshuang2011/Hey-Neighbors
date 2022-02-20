@@ -6,7 +6,7 @@
   cursor: pointer;
 }
 .items__item:hover {
-  box-shadow: 0 0 11px #6980F3;
+  box-shadow: 0 0 11px #6980f3;
   border-radius: 8px;
 }
 
@@ -49,15 +49,13 @@
   color: white;
   height: 2.5rem;
   width: 5rem;
-  float:right;
+  float: right;
   border-radius: 10px;
   margin: 5px 5px;
-
 
   box-shadow: 0 3px 5px 2px rgba(148, 143, 144, 0.3);
   cursor: pointer;
 }
-
 
 /* Popup style */
 .popup-box {
@@ -67,9 +65,9 @@
   height: 100%;
   top: 0;
   left: 0;
-  z-index:1000;
+  z-index: 1000;
 }
- 
+
 .box {
   position: relative;
   width: 70%;
@@ -83,11 +81,10 @@
   border: 1px solid #999;
   border-radius: 10px;
   overflow: hidden;
-
 }
- 
+
 .close-icon {
-  content: 'x';
+  content: "x";
   cursor: pointer;
   position: fixed;
   right: calc(15% - 30px);
@@ -98,7 +95,9 @@
   border-radius: 50%;
   line-height: 20px;
   text-align: center;
- color: white;
+  color: white;
   font-size: 20px;
 }
+
+
 

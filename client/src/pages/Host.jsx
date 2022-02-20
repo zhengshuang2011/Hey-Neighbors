@@ -5,39 +5,42 @@ import CheckRsvp from "../components/CheckRsvp/CheckRsvp";
 import EventList from "../components/EventList/EventList";
 import axios from "axios";
 
-import './Host.css'
+import "./Host.css";
 
 function Host({ user, setUser }) {
   const [incoming_events, setIncomingEvents] = useState();
   const [completed_events, setCompletedEvents] = useState();
   const [applications, setApplications] = useState();
   const [actions, setActions] = useState(false);
+  const [attenders, setAttenders] = useState();
 
   useEffect(() => {
     Promise.all([
       axios.get("/api/events/host/future"),
       axios.get("api/events/host/completed"),
       axios.get("api/applications/host"),
+      axios.get("/api/applications"),
     ])
       .then((all) => {
         setIncomingEvents(all[0].data);
         setCompletedEvents(all[1].data);
         setApplications(all[2].data);
+        setAttenders(all[3].data.applications);
         setActions(false);
       })
       .catch((err) => console.log(err));
   }, [actions]);
 
-  console.log(
-    "user",
-    user,
-    "incoming",
-    incoming_events,
-    "completed",
-    completed_events,
-    "applications",
-    applications
-  );
+  // console.log(
+  //   "user",
+  //   user,
+  //   "incoming",
+  //   incoming_events,
+  //   "completed",
+  //   completed_events,
+  //   "applications",
+  //   applications
+  // );
 
   return (
     <Grid
@@ -58,13 +61,17 @@ function Host({ user, setUser }) {
             setActions={setActions}
           />
         )}
-
       </Grid>
 
-      <Grid item xs={12} sm={11} md={11} lg={8} style={{ backgroundColor: "#F6F6FA" }}>
-
+      <Grid
+        item
+        xs={12}
+        sm={11}
+        md={11}
+        lg={8}
+        style={{ backgroundColor: "#F6F6FA" }}
+      >
         <div className="container js-container">
-
           <div className="container__head">
             <div className="container__title title title_xl">Your Hostings</div>
 
@@ -82,8 +89,9 @@ function Host({ user, setUser }) {
             </div>
           </div>
           <div className="container__body">
-            {incoming_events && completed_events && (
+            {incoming_events && completed_events && attenders && (
               <EventList
+                attenders={attenders}
                 incoming_events={incoming_events}
                 completed_events={completed_events}
                 setActions={setActions}

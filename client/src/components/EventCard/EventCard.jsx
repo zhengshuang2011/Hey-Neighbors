@@ -20,6 +20,7 @@ const commonStyles = {
   height: "0.5rem",
 };
 
+
 const Popup = (props) => {
   return (
     <div className="popup-box">
@@ -33,8 +34,10 @@ const Popup = (props) => {
   );
 };
 
-function EventCard({ event, onClick }) {
-  //console.log("event in eventCard.jsx = ", event);
+
+
+function EventCard({ event, onClick, eventRef }) {
+
 
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
@@ -63,9 +66,14 @@ function EventCard({ event, onClick }) {
 
   return (
     <>
-      <div className="items__item" onClick={onClick}>
-        <div class="content__preview">
-          <img className="content__pic" src={event.photo_image} alt="event" />
+      <div className="items__item" onClick={onClick} ref={eventRef}>
+        <div className="pic_border">
+          {/* className=content__preview  */}
+          <img
+            className="content__pic pic_size"
+            src={event.photo_image}
+            alt="event"
+          />
         </div>
         <div className="items__wrap">
           <div className="items__details">
@@ -103,8 +111,7 @@ function EventCard({ event, onClick }) {
       {isOpen && (
         <Popup
           content={
-            <EventDetail event={event} />
-          }
+            <EventDetail event={event} />}
           handleClose={togglePopup}
         />
       )}

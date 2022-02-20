@@ -98,14 +98,14 @@ function SearchBar() {
           <div>
             <button
               type="button"
-              className="btn btn-warning btn-sm search"
+              className="btn btn-secondary btn-sm search"
               onClick={onSubmit}
             >
               Search
             </button>
             <button
               type="button"
-              className="btn btn-warning btn-sm cancel"
+              className="btn btn-secondary btn-sm cancel"
               onClick={onCancel}
             >
               Cancel

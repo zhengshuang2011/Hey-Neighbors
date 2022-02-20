@@ -8,35 +8,43 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
-import { useNavigate } from "react-router-dom";
 
-function EventEdit({ event, setUpload }) {
-  console.log('Event Edit:', event)
+function EventEdit({ event, setActions, setIsOpen }) {
+  // console.log("Event Edit:", event);
   const [event_name, setEventName] = useState(`${event.event_name}`);
   const [date, setDate] = useState(`${event.date}`);
   const [start_at, setStartAt] = useState(`${event.start_at}`);
   const [duration, setDuration] = useState(`${event.duration}`);
   const [address, setAddress] = useState(`${event.address}`);
-  const [address2, setAddress2] = useState(`${event.address2}`);
+  const [address2, setAddress2] = useState(
+    event.address2 === null ? `(${event.address2}` : ""
+  );
   const [city, setCity] = useState(`${event.city}`);
   const [province, setProvince] = useState(`${event.province}`);
   const [country, setCountry] = useState(`${event.country}`);
   const [post_code, setPostalCode] = useState(`${event.post_code}`);
-  const [locationlatitude, setLocationLatitude] = useState(`${event.locationlatitude}`);
-  const [locationlongitude, setLocationLongitude] = useState(`${event.locationlongitude}`);
+  const [locationlatitude, setLocationLatitude] = useState(
+    `${event.locationlatitude}`
+  );
+  const [locationlongitude, setLocationLongitude] = useState(
+    `${event.locationlongitude}`
+  );
   const [category_id, setCategory] = useState(`${event.category_id}`);
-  const [max_people_number, setMaxParticipant] = useState(`${event.max_people_number}`);
+  const [max_people_number, setMaxParticipant] = useState(
+    `${event.max_people_number}`
+  );
   const [description, setDescription] = useState(`${event.description}`);
   const [photo_image, setPhoto] = useState(`${event.photo_image}`);
   const [mask, setMask] = useState(event.mask);
   const [vaccine, setVaccine] = useState(event.vaccine);
   const [file, setFile] = useState("");
-  const navigate = useNavigate();
+  const [fileNmae, setFileName] = useState("");
 
   const handleFileUpload = (e) => {
     setFile(e.target.files[0]);
     const fileName = `${e.target.files[0].name}`;
-    setPhoto(`/ images / ${fileName}`);
+    setFileName(fileName);
+    setPhoto(`/images/${fileName}`);
   };
 
   const handleSubmit = (e) => {
@@ -68,6 +76,7 @@ function EventEdit({ event, setUpload }) {
     const headers = {
       "Content-Type": "application/json",
     };
+    console.log("values", values);
 
     axios
       .post("/upload", fileData)
@@ -77,10 +86,10 @@ function EventEdit({ event, setUpload }) {
         })
       )
       .then((response) => {
-        console.log("response", response, "values", values);
-        console.log("respose", response.data)
-        setUpload(true);
-        navigate("/host");
+        //console.log("response", response, "values", values);
+        console.log("response", response.data);
+        setActions(true);
+        setIsOpen(false);
       })
 
       .catch((err) => console.log(err));
@@ -126,24 +135,24 @@ function EventEdit({ event, setUpload }) {
 
   const handleSelect =
     ({ description }) =>
-      () => {
-        // When user selects a place, we can replace the keyword without request data from API
-        // by setting the second parameter to "false"
-        setValue(description, false);
-        clearSuggestions();
+    () => {
+      // When user selects a place, we can replace the keyword without request data from API
+      // by setting the second parameter to "false"
+      setValue(description, false);
+      clearSuggestions();
 
-        // Get latitude and longitude via utility functions
-        getGeocode({ address: description })
-          .then((results) => getLatLng(results[0]))
-          .then(({ lat, lng }) => {
-            console.log("📍 Coordinates: ", { lat, lng });
-            setLocationLatitude(lat);
-            setLocationLongitude(lng);
-          })
-          .catch((error) => {
-            console.log("😱 Error: ", error);
-          });
-      };
+      // Get latitude and longitude via utility functions
+      getGeocode({ address: description })
+        .then((results) => getLatLng(results[0]))
+        .then(({ lat, lng }) => {
+          console.log("📍 Coordinates: ", { lat, lng });
+          setLocationLatitude(lat);
+          setLocationLongitude(lng);
+        })
+        .catch((error) => {
+          console.log("😱 Error: ", error);
+        });
+    };
 
   const renderSuggestions = () =>
     data.map((suggestion) => {
@@ -400,7 +409,6 @@ function EventEdit({ event, setUpload }) {
                         className="switch__input"
                         type="checkbox"
                         defaultChecked={mask ? true : false}
-
                         onClick={() => setMask(!mask)}
                       />
                       <span className="switch__content">Require Mask</span>
@@ -447,15 +455,15 @@ function EventEdit({ event, setUpload }) {
               <div className="form__field upload col-md-5 ">
                 <input
                   className="upload__input"
-                  type="text"
+                  type="file"
                   onChange={handleFileUpload}
-                  value={photo_image}
                 />
                 {/* caption*/}
                 <div className="upload__caption caption">
                   <i className="la la-cloud-upload-alt " />
                   Change Image
-                  <span>{event.photo_image}</span>
+                  {!fileNmae && <span>{event.photo_image}</span>}
+                  {fileNmae && <span>{fileNmae}</span>}
                 </div>
               </div>
             </div>
@@ -471,7 +479,7 @@ function EventEdit({ event, setUpload }) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default EventEdit
+export default EventEdit;

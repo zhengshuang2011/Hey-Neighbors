@@ -29,7 +29,7 @@ function Sidebar({ user, setUser }) {
     axios
       .post("/api/users/logout")
       .then((response) => {
-        console.log("logout", response.data);
+        // console.log("logout", response.data);
         navigate("/");
         setUser(null);
       })
@@ -69,7 +69,9 @@ function Sidebar({ user, setUser }) {
 
                   {user && (
                     <Link to="/host">
+
                       <a className={"nav__link" + (location.pathname === '/host' ? ' active' : '')} title="Host Page">
+
                         <div className="nav__preview">
                           <CoPresentIcon />
                         </div>
@@ -80,7 +82,9 @@ function Sidebar({ user, setUser }) {
 
                   {user && (
                     <Link to="/bookings">
+
                       <a className={"nav__link" + (location.pathname === '/bookings' ? ' active' : '')} title="Attender Page">
+
                         <div className="nav__preview">
                           <CollectionsBookmarkIcon />
                         </div>
@@ -102,7 +106,7 @@ function Sidebar({ user, setUser }) {
                     </Link>
                   )} */}
                   {user && (
-                    <Link to="/newevent">
+                      <Link to="/newevent">
                       <a
                         className={"nav__link" + (location.pathname === '/newevent' ? ' active' : '')}
                         title="Create My New Event"
@@ -113,7 +117,7 @@ function Sidebar({ user, setUser }) {
                         <div className="nav__title">Create My New Event</div>
                       </a>
                     </Link>
-                  )}
+                  )} 
 
                   {!user && (
                     <Link to="/signIn">
@@ -231,7 +235,7 @@ function Sidebar({ user, setUser }) {
           </nav>
         </div>
       </div>
-    </div >
+    </div>
   );
 }
 

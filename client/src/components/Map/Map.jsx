@@ -1,15 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import GoogleMapReact from "google-map-react";
 import { Paper, Typography } from "@material-ui/core";
 import useMapStyles from "./MapStyles";
 
-export default function Map({ events, event }) {
-  console.log("event ", event);
+export default function Map({ events, event, handleClick }) {
+  //console.log("event ", event);
+
+  const [mapObject, setMapObject] = useState(null);
   
   const classes = useMapStyles();
   const ottawaCoordinates = { lat: 45.41117, lng: -75.69812 };
 
-  
+  const handleApiLoad = ({map, maps})=>{
+    console.log('Api loaded', map, maps)
+    setMapObject({map, maps})
+  };
+
+  useEffect(() => {
+    //console.log('useffect in map', mapObject);
+    if(mapObject) {
+      if(event && !events) {
+        const marker = new mapObject.maps.Marker({
+          position:{
+            lat: Number(event.locationlatitude),
+            lng: Number(event.locationlongitude)
+          },
+          map: mapObject.map
+        })
+      }
+    }
+  })
 
   return (
     <div className={classes.mapContainer}>
@@ -19,37 +39,17 @@ export default function Map({ events, event }) {
         center={event ? { lat: event.locationlatitude - 0.012, lng: event.locationlongitude + 0.0020 }: null}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
+        onGoogleApiLoaded={handleApiLoad}
       >
-        {event ?
-          <div
-            className={classes.markerContainer}
-            lat={event.locationlatitude}
-            lng={event.locationlongitude}
-          >
-            <Paper elevation={3} className={classes.paper}>
-              <Typography
-                className={classes.typography}
-                variant="subtitle2"
-                gutterBottom
-              >
-                {event.event_name}
-              </Typography>
-              <img
-                className={classes.pointer}
-                src={event.photo_image}
-                alt={event.event_name}
-              />
-            </Paper>
-          </div> 
-          : null
-        }
-        {events?.map((event) => {
+        
+        {events?.map((event, index) => {
           //console.log("event.map = ", event);
           return (
             <div
               className={classes.markerContainer}
               lat={event.locationlatitude}
               lng={event.locationlongitude}
+              onClick={() => handleClick(index)}
             >
               <Paper elevation={3} className={classes.paper}>
                 <Typography

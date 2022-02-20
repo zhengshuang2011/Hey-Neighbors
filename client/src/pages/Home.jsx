@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import Sidebar from "../components/Siderbar/Sidebar";
 import EventMap from "../components/EventMap/EventMap";
 import SidebarSearch from "../components/SideSearch/SidebarSearch";
-import axios from "axios";
 import "./Home.css";
+import axios from "axios";
 
 function Home({ user, setUser }) {
   const [events, setEvents] = useState();
@@ -22,23 +23,24 @@ function Home({ user, setUser }) {
   //console.log(events);
 
   return (
-    <Grid
-      container
-      direction="row"
-      justifyContent="space"
-      alignItems="stretch"
-    >
+    <Grid container direction="row" justifyContent="space" alignItems="stretch">
       <Grid item xs={0} sm={1} md={1} lg={1}>
-
         <Sidebar user={user} setUser={setUser} />
-
       </Grid>
       <Grid item xs={0} sm={11} md={11} lg={3}>
-        <SidebarSearch user={user} setEvents={setEvents} />
+        <SidebarSearch user={user} events={events} setEvents={setEvents} />
         {/* <SearchBar /> */}
       </Grid>
 
-      <Grid item xs={12} sm={11} md={11} lg={8} className="event_map" style={{ backgroundColor: "#F6F6FA" }}>
+      <Grid
+        item
+        xs={12}
+        sm={11}
+        md={11}
+        lg={8}
+        className="event_map"
+        style={{ backgroundColor: "#F6F6FA" }}
+      >
         <div className="container js-container">
           <div className="container__head">
             <div className="container__title title title_xl">Events </div>
@@ -50,11 +52,15 @@ function Home({ user, setUser }) {
               </button>
             </div>
             {/* new*/}
-            <div className="container__new new ">
-              <button className="new__action action">
-                <i className="la la-plus-circle " />
-              </button>
-            </div>
+            {user && (
+              <Link to="/newevent">
+                <div className="container__new new ">
+                  <button className="new__action action">
+                    <i className="la la-plus-circle " />
+                  </button>
+                </div>
+              </Link>
+            )}
           </div>
           <div className="container__body">
             {events && <EventMap events={events} />}

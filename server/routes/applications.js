@@ -3,7 +3,11 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM applications;`)
+    db.query(
+      `SELECT applications.*, users.avatar
+    FROM applications
+    JOIN users ON users.id = applications.participate_id;`
+    )
       .then((data) => {
         const applications = data.rows;
         console.log(res.json({ applications }));
@@ -17,9 +21,11 @@ module.exports = (db) => {
   // Get event's all application by eventId
   const getApplicationsByEventId = (event_id) => {
     const command = `
-    SELECT * FROM applications
-    WHERE event_id = $1;
-    AND status_id = $2`;
+    SELECT applications.*, users.avatar
+    FROM applications
+    JOIN users ON applications.participate_id = users.id
+    WHERE applications.event_id = $1
+    AND applications.status_id = $2;`;
     const queryParams = [event_id, 2];
 
     return db
