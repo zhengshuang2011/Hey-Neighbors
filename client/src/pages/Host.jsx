@@ -12,17 +12,20 @@ function Host({ user, setUser }) {
   const [completed_events, setCompletedEvents] = useState();
   const [applications, setApplications] = useState();
   const [actions, setActions] = useState(false);
+  const [attenders, setAttenders] = useState();
 
   useEffect(() => {
     Promise.all([
       axios.get("/api/events/host/future"),
       axios.get("api/events/host/completed"),
       axios.get("api/applications/host"),
+      axios.get("/api/applications"),
     ])
       .then((all) => {
         setIncomingEvents(all[0].data);
         setCompletedEvents(all[1].data);
         setApplications(all[2].data);
+        setAttenders(all[3].data.applications);
         setActions(false);
       })
       .catch((err) => console.log(err));
@@ -86,8 +89,9 @@ function Host({ user, setUser }) {
             </div>
           </div>
           <div className="container__body">
-            {incoming_events && completed_events && (
+            {incoming_events && completed_events && attenders && (
               <EventList
+                attenders={attenders}
                 incoming_events={incoming_events}
                 completed_events={completed_events}
                 setActions={setActions}

@@ -15,18 +15,18 @@ function SidebarSearch({ user, setEvents }) {
   const [vaccine, setVaccine] = useState("");
   const [category, setCategory] = useState("");
 
-  console.log(
-    "city",
-    searchCity,
-    "date",
-    selectedDate,
-    "mask",
-    mask,
-    "vaccine",
-    vaccine,
-    "category_id",
-    category
-  );
+  // console.log(
+  //   "city",
+  //   searchCity,
+  //   "date",
+  //   selectedDate,
+  //   "mask",
+  //   mask,
+  //   "vaccine",
+  //   vaccine,
+  //   "category_id",
+  //   category
+  // );
   const format = () => {
     if (selectedDate) {
       const month = new Date(selectedDate).getMonth() + 1;

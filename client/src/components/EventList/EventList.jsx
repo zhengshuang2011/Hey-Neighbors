@@ -28,7 +28,12 @@ const Popup = (props) => {
   );
 };
 
-function EventList({ incoming_events, completed_events, setActions }) {
+function EventList({
+  incoming_events,
+  completed_events,
+  setActions,
+  attenders,
+}) {
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
     if (timeNumber < 12) {
@@ -71,166 +76,181 @@ function EventList({ incoming_events, completed_events, setActions }) {
     setEvent(event);
   };
 
-  const incoming_list = incoming_events.map((event) => (
-    <div className="data__item" key={event.id} data-id={event.id}>
-      <div className="data__corner data__corner_left">
-        {/* progress*/}
-        <div className="progress">
-          <div
-            className="progress__value bg-green-raw"
-            style={{ width: "70%" }}
-          />
+  const FindAttendersByEventId = (array, id) => {
+    const output = [];
+    for (let a of array) {
+      if (a.event_id === id && a.status_id === 2) {
+        output.push(a);
+      }
+    }
+    return output;
+  };
+  console.log(attenders);
+
+  const incoming_list = incoming_events.map((event) => {
+    const avartList = FindAttendersByEventId(attenders, event.id).map(
+      (attender) => (
+        <div className="members__item">
+          <img className="members__pic" src={attender.avatar} alt="User" />
         </div>
-      </div>
-      <div className="data__corner">
-        {/* action*/}
+      )
+    );
+    const number = FindAttendersByEventId(attenders, event.id).length;
+    return (
+      <div className="data__item" key={event.id} data-id={event.id}>
+        <div className="data__corner data__corner_left">
+          {/* progress*/}
+          <div className="progress">
+            <div
+              className="progress__value bg-green-raw"
+              style={{ width: "70%" }}
+            />
+          </div>
+        </div>
+        <div className="data__corner">
+          {/* action*/}
 
-        <Stack direction="row" spacing={1}>
-          <IconButton aria-label="edit" onClick={() => togglePopup(event)}>
-            <EditIcon />
-          </IconButton>
-          <IconButton
-            aria-label="delete"
-            onClick={() => {
-              handleDelete(event.id, 3);
-            }}
-          >
-            <DeleteIcon />
-          </IconButton>
-        </Stack>
-      </div>
+          <Stack direction="row" spacing={1}>
+            <IconButton aria-label="edit" onClick={() => togglePopup(event)}>
+              <EditIcon />
+            </IconButton>
+            <IconButton
+              aria-label="delete"
+              onClick={() => {
+                handleDelete(event.id, 3);
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Stack>
+        </div>
 
-      <div className="data__row">
-        <div className="data__cell">
-          <div className="data__main">
-            <div className="event_img">
-              <img
-                className="content__pic"
-                src={event.photo_image}
-                alt="Event"
-              />
-            </div>
-            <div className="data__wrap">
-              <div className="data__content">
-                <strong>{event.event_name}</strong>
+        <div className="data__row">
+          <div className="data__cell">
+            <div className="data__main">
+              <div className="event_img">
+                <img
+                  className="content__pic"
+                  src={event.photo_image}
+                  alt="Event"
+                />
               </div>
-              <div className="data__label">
-                <strong>{event.c_name}</strong>
+              <div className="data__wrap">
+                <div className="data__content">
+                  <strong>{event.event_name}</strong>
+                </div>
+                <div className="data__label">
+                  <strong>{event.c_name}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="data__cell">
+            <div className="data__label">
+              <div>
+                <AccessTimeIcon />
+                <strong>
+                  {event.date.substring(0, 10)} at {time(event.start_at)}
+                </strong>
+              </div>
+              <div>
+                <PeopleIcon />
+                <strong> Up to {event.max_people_number}</strong>
+              </div>
+              <div>
+                <FmdGoodIcon />
+                <strong>City: {event.city}</strong>
+              </div>
+            </div>
+          </div>
+
+          <div className="data__cell">
+            {/* members*/}
+            <div className="members data__members">
+              {avartList}
+              <div className="members__item">
+                <div className="members__counter">{`+ ${number}`}</div>
               </div>
             </div>
           </div>
         </div>
-        <div className="data__cell">
-          <div className="data__label">
-            <div>
+      </div>
+    );
+  });
+
+  const completed_list = completed_events.map((event) => {
+    const avartList = FindAttendersByEventId(attenders, event.id).map(
+      (attender) => (
+        <div className="members__item">
+          <img className="members__pic" src={attender.avatar} alt="User" />
+        </div>
+      )
+    );
+    const number = FindAttendersByEventId(attenders, event.id).length;
+    return (
+      <div className="data__item" key={event.id}>
+        <div className="data__row">
+          <div className="data__cell data__cell_lg">
+            <div className="data__main">
+              <div className="event_img_list">
+                <img
+                  className="content__pic"
+                  src={event.photo_image}
+                  alt="Event"
+                />
+              </div>
+              <div className="data__wrap">
+                <div className="data__content">
+                  <strong>{event.event_name}</strong>
+                </div>
+                <div className="data__label">{event.c_name}</div>
+              </div>
+            </div>
+          </div>
+          <div className="data__cell mobile-text-right">
+            <div className="data__label">
               <AccessTimeIcon />
+            </div>
+            <div className="data__label">
               <strong>
                 {event.date.substring(0, 10)} at {time(event.start_at)}
               </strong>
             </div>
-            <div>
+          </div>
+          <div className="data__cell mobile-hide">
+            <div className="data__label">
               <PeopleIcon />
+            </div>
+            <div className="data__label">
               <strong> Up to {event.max_people_number}</strong>
             </div>
-            <div>
+          </div>
+          <div className="data__cell mobile-hide">
+            <div className="data__label">
               <FmdGoodIcon />
-              <strong>City: {event.city}</strong>
+            </div>
+            <div className="data__label">
+              <strong> City: {event.city}</strong>
             </div>
           </div>
-        </div>
-
-        <div className="data__cell">
-          {/* members*/}
-          <div className="members data__members">
-            <div className="members__item">
-              <img className="members__pic" src="img/user-1.jpg" alt="User" />
-            </div>
-            <div className="members__item">
-              <img className="members__pic" src="img/user-5.jpg" alt="User" />
-            </div>
-            <div className="members__item">
-              <img className="members__pic" src="img/user-4.jpg" alt="User" />
-            </div>
-            <div className="members__item">
-              <div className="members__counter">+5</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  ));
-
-  const completed_list = completed_events.map((event) => (
-    <div className="data__item" key={event.id}>
-      <div className="data__row">
-        <div className="data__cell data__cell_lg">
-          <div className="data__main">
-            <div className="event_img_list">
-              <img
-                className="content__pic"
-                src={event.photo_image}
-                alt="Event"
-              />
-            </div>
-            <div className="data__wrap">
-              <div className="data__content">
-                <strong>{event.event_name}</strong>
+          <div className="data__cell data__cell_members mobile-hide">
+            {/* members*/}
+            <div className="members">
+              {avartList}
+              <div className="members__item">
+                <div className="members__counter">{`+ ${number}`}</div>
               </div>
-              <div className="data__label">{event.c_name}</div>
             </div>
           </div>
-        </div>
-        <div className="data__cell mobile-text-right">
-          <div className="data__label">
-            <AccessTimeIcon />
+          <div className="data__cell data__cell_action mobile-hide">
+            <Button variant="outlined" startIcon={<ArchiveIcon />}>
+              Archive
+            </Button>
           </div>
-          <div className="data__label">
-            <strong>
-              {event.date.substring(0, 10)} at {time(event.start_at)}
-            </strong>
-          </div>
-        </div>
-        <div className="data__cell mobile-hide">
-          <div className="data__label">
-            <PeopleIcon />
-          </div>
-          <div className="data__label">
-            <strong> Up to {event.max_people_number}</strong>
-          </div>
-        </div>
-        <div className="data__cell mobile-hide">
-          <div className="data__label">
-            <FmdGoodIcon />
-          </div>
-          <div className="data__label">
-            <strong> City: {event.city}</strong>
-          </div>
-        </div>
-        <div className="data__cell data__cell_members mobile-hide">
-          {/* members*/}
-          <div className="members">
-            <div className="members__item">
-              <img className="members__pic" src="img/user-1.jpg" alt="User" />
-            </div>
-            <div className="members__item">
-              <img className="members__pic" src="img/user-2.jpg" alt="User" />
-            </div>
-            <div className="members__item">
-              <img className="members__pic" src="img/user-3.jpg" alt="User" />
-            </div>
-            <div className="members__item">
-              <div className="members__counter">+5</div>
-            </div>
-          </div>
-        </div>
-        <div className="data__cell data__cell_action mobile-hide">
-          <Button variant="outlined" startIcon={<ArchiveIcon />}>
-            Archive
-          </Button>
         </div>
       </div>
-    </div>
-  ));
+    );
+  });
 
   return (
     <>
