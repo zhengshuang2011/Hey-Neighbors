@@ -20,6 +20,7 @@
   border-radius: calc(var(--curve) * 1px);
   overflow: hidden;
   text-decoration: none;
+  padding:0 1rem;
 }
 
 .card__image {      
@@ -135,6 +136,8 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap:1rem;
+    padding: 1rem;
+
 }
 .features_m {
   display: flex;
@@ -198,12 +201,21 @@ border: 0;
 .card_map {
   position: relative;
   display: block;
-  width:110%;
+  width:100%;
+  max-height: fit-content;
   margin-top: 2rem;
   padding-right: 2rem;
   border-radius: calc(var(--curve) * 1px);
   overflow: hidden;
   text-decoration: none;
+   margin:2rem 0;
+/* display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 1rem 0;
+border-radius:calc(var(--curve) * 1px); */
+
 }
 .JoinButton {
   background-color: #6980F3;
@@ -229,7 +241,7 @@ border: 0;
   border-radius: 10px;
   overflow: hidden;
   z-index: 0;
-  width: 100%;
+  width: 80%;
 }
 .event-detail-blog-card a {
   color: inherit;
@@ -238,7 +250,7 @@ border: 0;
   color: #6980f3;
 }
 .event-detail-blog-card:hover .event-detail-photo {
-  transform: scale(1.3) rotate(3deg);
+  transform: scale(1.1) rotate(3deg);
 }
 .event-detail-blog-card .event-detail-meta {
   position: relative;
@@ -258,7 +270,7 @@ border: 0;
 .event-detail-blog-card .event-detail-details,
 .event-detail-blog-card .event-detail-details ul {
   margin: auto;
-  padding: 0;
+  padding-left: 3rem;
   list-style: none;
 }
 .event-detail-blog-card .event-detail-details {
@@ -291,7 +303,7 @@ border: 0;
   border: 2px solid white;
   border-radius: 5px;
   height: 2rem;
-  width: auto;
+ 
   font-weight: 700;
   align-items: flex-start;
   text-align: center;
@@ -303,7 +315,7 @@ border: 0;
 }
 
 .event-detail-blog-card .event-detail-description {
-  padding: 1rem;
+  padding: 1rem 2rem;
   background: #fff;
   position: relative;
   z-index: 1;
@@ -317,6 +329,14 @@ border: 0;
   margin-bottom: 0.8rem;
   font-size: 1.5rem;
 }
+.pop {
+  flex-direction: row;
+  justify-content: space-between;
+   </div>
+
+            <div className="duration_number">
+}
+
 .event-detail-blog-card .event-detail-description h2 {
   font-size: 0.8rem;
   font-weight: 300;

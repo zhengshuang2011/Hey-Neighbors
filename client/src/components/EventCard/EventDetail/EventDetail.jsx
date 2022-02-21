@@ -85,26 +85,17 @@ function EventDetail({ event }) {
               <li className="event-detail-c">
                 {event.c_name}
               </li>
-              <li className="event-detail-date"><PeopleIcon />
-                <span> Up to {event.max_people_number}</span></li>
+
             </ul>
           </div>
           <div className="event-detail-description">
             <h1>{event.event_name}</h1>
-            <div className='event_detail_host'>
-              <div className='hostby'>Host by </div>
+            <div className='event_detail_host pop'>
+              <div className='hostby'>Host by</div>
               <img src={event.avatar} alt="host" className='hostimg' />
-              <div className='hostname'>{event.first_name}{event.last_name}</div>
+              <div className='hostname'>{event.first_name} {event.last_name}</div>
             </div>
-            {/* <h2><AccessTimeIcon />
-              <span>
-                {event.date.substring(0, 10)} at {time(event.start_at)}
-              </span></h2> */}
 
-            {/* <p className="event-detail-read-more">
-              <a value="Click to Open Popup"
-              >Read More</a>
-            </p> */}
             <div className="duration_number">
               <div className="items__content">
                 <AccessTimeIcon />
