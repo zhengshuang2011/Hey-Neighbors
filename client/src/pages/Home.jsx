@@ -10,6 +10,7 @@ import axios from "axios";
 function Home({ user, setUser }) {
   const [events, setEvents] = useState();
   const navigate = useNavigate();
+  const [filter, setFilter] = useState(null);
 
   useEffect(() => {
     axios
@@ -21,7 +22,7 @@ function Home({ user, setUser }) {
       .catch((err) => console.log(err));
   }, []);
 
-  //console.log(events);
+  console.log(filter);
 
   const handleCreatesNew = () => {
     navigate("/newevent");
@@ -33,7 +34,12 @@ function Home({ user, setUser }) {
         <Sidebar user={user} setUser={setUser} />
       </Grid>
       <Grid item xs={0} sm={11} md={11} lg={3}>
-        <SidebarSearch user={user} events={events} setEvents={setEvents} />
+        <SidebarSearch
+          user={user}
+          events={events}
+          setEvents={setEvents}
+          setFilter={setFilter}
+        />
         {/* <SearchBar /> */}
       </Grid>
 
@@ -48,8 +54,35 @@ function Home({ user, setUser }) {
       >
         <div className="container js-container">
           <div className="container__head">
-            <div className="container__title title title_xl">Events </div>
-
+            <div className="container__title title title_xl">Events</div>
+            {filter === null && (
+              <div className="container__title title filter_band">Nearby</div>
+            )}
+            {filter && filter.city && (
+              <div className="container__title title filter_band">
+                {filter.city}
+              </div>
+            )}
+            {filter && filter.date && (
+              <div className="container__title title filter_band">
+                {filter.date}
+              </div>
+            )}
+            {filter && filter.mask && (
+              <div className="container__title title filter_band">
+                Mask Required
+              </div>
+            )}
+            {filter && filter.vaccine && (
+              <div className="container__title title filter_band">
+                Mask Vaccined
+              </div>
+            )}
+            {filter && filter.category && (
+              <div className="container__title title filter_band">
+                {filter.category}
+              </div>
+            )}
             {/* search*/}
             <div className="container__search search">
               <button className="search__action action">

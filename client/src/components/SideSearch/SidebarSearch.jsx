@@ -8,7 +8,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import axios from "axios";
 
-function SidebarSearch({ user, setEvents }) {
+function SidebarSearch({ user, setEvents, setFilter }) {
   const [searchCity, setSearchCity] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [mask, setMask] = useState("");
@@ -40,8 +40,34 @@ function SidebarSearch({ user, setEvents }) {
     return "";
   };
 
+  const changeCategoryIdToName = (id) => {
+    if (id === 1) {
+      return "food";
+    }
+    if (id === 2) {
+      return "game";
+    }
+    if (id === 3) {
+      return "kids";
+    }
+    if (id === 4) {
+      return "study";
+    }
+    if (id === 5) {
+      return "movies";
+    }
+    return "";
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
+    const filter = {
+      city: searchCity,
+      date: format(),
+      mask: mask,
+      vaccine: vaccine,
+      category: changeCategoryIdToName(category),
+    };
 
     axios
       .get(
@@ -50,6 +76,7 @@ function SidebarSearch({ user, setEvents }) {
       .then((response) => {
         // console.log(response.data);
         setEvents(response.data.events);
+        setFilter(filter);
       });
   };
 
@@ -59,6 +86,7 @@ function SidebarSearch({ user, setEvents }) {
     setCategory("");
     setVaccine("");
     setMask("");
+    setFilter(null);
     axios.get("api/events").then((response) => {
       // console.log(response.data);
       setEvents(response.data.events);
