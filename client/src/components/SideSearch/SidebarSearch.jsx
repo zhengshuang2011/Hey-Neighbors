@@ -8,12 +8,13 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import axios from "axios";
 
-function SidebarSearch({ user, setEvents }) {
+function SidebarSearch({ user, setEvents, setFilter }) {
   const [searchCity, setSearchCity] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [mask, setMask] = useState("");
   const [vaccine, setVaccine] = useState("");
   const [category, setCategory] = useState("");
+  const [show, setShow] = useState(false);
 
   // console.log(
   //   "city",
@@ -40,8 +41,34 @@ function SidebarSearch({ user, setEvents }) {
     return "";
   };
 
+  const changeCategoryIdToName = (id) => {
+    if (id === 1) {
+      return "food";
+    }
+    if (id === 2) {
+      return "game";
+    }
+    if (id === 3) {
+      return "kids";
+    }
+    if (id === 4) {
+      return "study";
+    }
+    if (id === 5) {
+      return "movies";
+    }
+    return "";
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
+    const filter = {
+      city: searchCity,
+      date: format(),
+      mask: mask,
+      vaccine: vaccine,
+      category: changeCategoryIdToName(category),
+    };
 
     axios
       .get(
@@ -50,6 +77,7 @@ function SidebarSearch({ user, setEvents }) {
       .then((response) => {
         // console.log(response.data);
         setEvents(response.data.events);
+        setFilter(filter);
       });
   };
 
@@ -59,10 +87,16 @@ function SidebarSearch({ user, setEvents }) {
     setCategory("");
     setVaccine("");
     setMask("");
+    setFilter(null);
+    setShow(false);
     axios.get("api/events").then((response) => {
       // console.log(response.data);
       setEvents(response.data.events);
     });
+  };
+
+  const handleShow = () => {
+    setShow(!show);
   };
 
   return (
@@ -102,6 +136,7 @@ function SidebarSearch({ user, setEvents }) {
                       value={searchCity}
                       onChange={(e) => setSearchCity(e.target.value)}
                       placeholder="Search By City "
+                      onClick={handleShow}
                     />
                     <div className="field__icon">
                       <i className="la la-search " />
@@ -109,80 +144,101 @@ function SidebarSearch({ user, setEvents }) {
                   </div>
                 </div>
               </form>
-              {/* {searchCity && ( */}
-              <div className="filter">
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <Calendar
-                    date={selectedDate}
-                    onChange={setSelectedDate}
-                    className="date"
-                  />
-                </MuiPickersUtilsProvider>
+              {show && (
+                <div className="filter">
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <Calendar
+                      date={selectedDate}
+                      onChange={setSelectedDate}
+                      className="date"
+                    />
+                  </MuiPickersUtilsProvider>
 
-                <div className="option_require">
-                  <div className="auth__flex">
-                    <label className="switch auth__switch">
-                      <input
-                        className="switch__input"
-                        type="checkbox"
-                        onChange={() => {
-                          setMask(!mask);
-                        }}
-                        checked={mask === true ? true : false}
-                      />
-                      <span className="switch__content">Require Mask</span>
-                    </label>
-                  </div>
-                  <div className="auth__flex vaccined">
-                    <label className="switch auth__switch">
-                      <input
-                        className="switch__input"
-                        type="checkbox"
-                        checked={vaccine === true ? true : false}
-                        onChange={() => {
-                          setVaccine(!vaccine);
-                        }}
-                      />
-                      <span className="switch__content">Require Vaccined</span>
-                    </label>
+                  <div className="option_require">
+                    <div className="auth__flex">
+                      <label className="switch auth__switch">
+                        <input
+                          className="switch__input"
+                          type="checkbox"
+                          onChange={() => {
+                            setMask(!mask);
+                          }}
+                          checked={mask === true ? true : false}
+                        />
+                        <span className="switch__content">Require Mask</span>
+                      </label>
+                    </div>
+                    <div className="auth__flex vaccined">
+                      <label className="switch auth__switch">
+                        <input
+                          className="switch__input"
+                          type="checkbox"
+                          checked={vaccine === true ? true : false}
+                          onChange={() => {
+                            setVaccine(!vaccine);
+                          }}
+                        />
+                        <span className="switch__content">
+                          Require Vaccined
+                        </span>
+                      </label>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* )} */}
+              )}
+              {!show && (
+                <div class="empty__preview">
+                  <img
+                    class="search_image"
+                    src="images/search.png"
+                    alt="Empty"
+                  />
+                </div>
+              )}
 
               {/* action group*/}
               <div className="help__group action-group">
                 <button
                   value="2"
-                  className="action action_title active"
+                  className={
+                    "action action_title" + (category === 2 ? " active" : "")
+                  }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
                   Game
                 </button>
                 <button
                   value="1"
-                  className="action action_title"
+                  className={
+                    "action action_title" + (category === 1 ? " active" : "")
+                  }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
                   Food
                 </button>
                 <button
                   value="3"
-                  className="action action_title"
+                  className={
+                    "action action_title" + (category === 3 ? " active" : "")
+                  }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
                   Kids
                 </button>
                 <button
                   value="4"
-                  className="action action_title"
+                  className={
+                    "action action_title" + (category === 4 ? " active" : "")
+                  }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
                   Study
                 </button>
                 <button
                   value="5"
-                  className="action action_title"
+                  className={
+                    "action action_title" + (category === 5 ? " active" : "")
+                  }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
                   Movie

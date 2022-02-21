@@ -62,10 +62,17 @@ function PendingRsvp({ user, applications }) {
               </button>
             </div>
           )}
-          {a.status_id === 4 && (
+          {a.status_id === 5 && (
             <div className="items__details">
               <button type="button" class="btn btn-warning">
                 Event Cancelled
+              </button>
+            </div>
+          )}
+          {a.status_id === 6 && (
+            <div className="items__details">
+              <button type="button" class="btn btn-secondary">
+                Event Completed
               </button>
             </div>
           )}
@@ -106,6 +113,13 @@ function PendingRsvp({ user, applications }) {
             </div>
             <div className="widget__body">
               {/* Loop the item*/}
+              {applications.length === 0 && (
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-text">No applications</p>
+                  </div>
+                </div>
+              )}
               {application_list}
             </div>
           </div>

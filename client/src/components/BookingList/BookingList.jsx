@@ -1,5 +1,5 @@
 import React from "react";
-import eventImg from "../../assets/HappyEyes.png";
+import { Link } from "react-router-dom";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PeopleIcon from "@mui/icons-material/People";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
@@ -11,7 +11,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 
 import "./BookingList.css";
 
-function BookingList({ incoming_events, completed_events }) {
+function BookingList({ incoming_events, completed_events, attenders }) {
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
     if (timeNumber < 12) {
@@ -25,80 +25,92 @@ function BookingList({ incoming_events, completed_events }) {
     }
   };
 
-  const incoming_list = incoming_events.map((event) => (
-    <div className="data__item" key={event.id}>
-      <div className="data__corner data__corner_left">
-        {/* progress*/}
-        <div className="progress">
-          <div
-            className="progress__value bg-green-raw"
-            style={{ width: "70%" }}
-          />
-        </div>
-      </div>
-      <div className="data__corner">
-        {/* action*/}
+  const FindAttendersByEventId = (array, id) => {
+    const output = [];
+    for (let a of array) {
+      if (a.event_id === id && a.status_id === 2) {
+        output.push(a);
+      }
+    }
+    return output;
+  };
 
-        <Stack direction="row" spacing={1}>
-          <IconButton aria-label="cancel">
-            <CancelIcon />
-          </IconButton>
-        </Stack>
-      </div>
-      <div className="data__row">
-        <div className="data__cell">
-          <div className="data__main">
-            <div className="event_img">
-              <img class="content__pic" src={event.photo_image} alt="Event" />
-            </div>
-            <div className="data__wrap">
-              <div className="data__content">
-                <strong>{event.event_name}</strong>
+  const incoming_list = incoming_events.map((event) => {
+    const avartList = FindAttendersByEventId(attenders, event.id).map(
+      (attender) => (
+        <div className="members__item">
+          <img className="members__pic" src={attender.avatar} alt="User" />
+        </div>
+      )
+    );
+    const number = FindAttendersByEventId(attenders, event.id).length;
+    return (
+      <div className="data__item" key={event.id}>
+        <div className="data__corner data__corner_left">
+          {/* progress*/}
+          <div className="progress">
+            <div
+              className="progress__value bg-green-raw"
+              style={{ width: "70%" }}
+            />
+          </div>
+        </div>
+        <div className="data__corner">
+          {/* action*/}
+          {/* 
+          <Stack direction="row" spacing={1}>
+            <IconButton aria-label="cancel">
+              <CancelIcon />
+            </IconButton>
+          </Stack> */}
+        </div>
+        <div className="data__row">
+          <div className="data__cell">
+            <div className="data__main">
+              <div className="event_img">
+                <img class="content__pic" src={event.photo_image} alt="Event" />
               </div>
-              <div className="data__label">
-                <strong>{event.c_name}</strong>
+              <div className="data__wrap">
+                <div className="data__content">
+                  <strong>{event.event_name}</strong>
+                </div>
+                <div className="data__label">
+                  <strong>{event.c_name}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="data__cell">
+            <div className="data__label">
+              <div>
+                <AccessTimeIcon />
+                <strong>
+                  {event.date.substring(0, 10)} at {time(event.start_at)}
+                </strong>
+              </div>
+              <div>
+                <PeopleIcon />
+                <strong> Up to {event.max_people_number}</strong>
+              </div>
+              <div>
+                <FmdGoodIcon />
+                <strong> City: {event.city}</strong>
+              </div>
+            </div>
+          </div>
+          <div className="data__cell">
+            {/* members*/}
+            <div className="members data__members">
+              {avartList}
+              <div className="members__item">
+                <div className="members__counter">{`+ ${number}`}</div>
               </div>
             </div>
           </div>
         </div>
-        <div className="data__cell">
-          <div className="data__label">
-            <div>
-              <AccessTimeIcon />
-              <strong>
-                {event.date.substring(0, 10)} at {time(event.start_at)}
-              </strong>
-            </div>
-            <div>
-              <PeopleIcon />
-              <strong> Up to {event.max_people_number}</strong>
-            </div>
-            <div>
-              <FmdGoodIcon />
-              <strong> City: {event.city}</strong>
-            </div>
-          </div>
-        </div>
-        <div className="data__cell">
-          {/* members*/}
-          <div className="members data__members">
-            <div className="members__item">
-              <img className="members__pic" src="img/user-1.jpg" alt="User" />
-            </div>
-            <div className="members__item">
-              <img className="members__pic" src="img/user-5.jpg" alt="User" />
-            </div>
-            <div className="members__item">
-              <img className="members__pic" src="img/user-4.jpg" alt="User" />
-            </div>
-            {/* <div className="members__item">
-              <div className="members__counter">+5</div>
-            </div> */}
-          </div>
-        </div>
       </div>
-    </div>
-  ));
+    );
+  });
 
   const completed_list = completed_events.map((event) => (
     <div className="data__item" key={event.id}>
@@ -142,8 +154,8 @@ function BookingList({ incoming_events, completed_events }) {
             <strong> City: {event.city}</strong>
           </div>
         </div>
-        <div className="data__cell data__cell_members mobile-hide">
-          {/* members*/}
+        {/* <div className="data__cell data__cell_members mobile-hide">
+          
           <div className="members">
             <div className="members__item">
               <img className="members__pic" src="img/user-1.jpg" alt="User" />
@@ -154,16 +166,16 @@ function BookingList({ incoming_events, completed_events }) {
             <div className="members__item">
               <img className="members__pic" src="img/user-3.jpg" alt="User" />
             </div>
-            {/* <div className="members__item">
+            <div className="members__item">
               <div className="members__counter">+5</div>
-            </div> */}
+            </div>
           </div>
-        </div>
-        <div className="data__cell data__cell_action mobile-hide">
+        </div> */}
+        {/* <div className="data__cell data__cell_action mobile-hide">
           <Button variant="outlined" startIcon={<ArchiveIcon />}>
             Archive
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   ));
@@ -184,7 +196,22 @@ function BookingList({ incoming_events, completed_events }) {
             {/* data*/}
             <div className="data data_grid">
               <div className="data__container">
-                <div className="data__body">{incoming_list}</div>
+                <div className="data__body">
+                  {incoming_events.length === 0 && (
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">No Incoming Events</h5>
+                        <p class="card-text">
+                          Apply for your interested events
+                        </p>
+                        <Link to="/home">
+                          <button class="btn btn-light">Check events</button>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                  {incoming_list}
+                </div>
               </div>
             </div>
           </div>
@@ -208,7 +235,16 @@ function BookingList({ incoming_events, completed_events }) {
             {/* data*/}
             <div className="data data_list">
               <div className="data__container">
-                <div className="data__body">{completed_list}</div>
+                <div className="data__body">
+                  {completed_events.length === 0 && (
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">No Events</h5>
+                      </div>
+                    </div>
+                  )}
+                  {completed_list}
+                </div>
               </div>
             </div>
           </div>

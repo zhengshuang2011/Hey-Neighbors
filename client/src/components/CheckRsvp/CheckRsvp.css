@@ -4,4 +4,7 @@
 .loop {
   margin-bottom: 0.9rem;
 }
-
+.wait_applications {
+  width: 20rem;
+  margin-left: 3rem;
+}

@@ -2,23 +2,59 @@
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-    'Devin', 'Sanders', 'tristanjacobs@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/1.png');
+    'Devin', 'Sanders', 'tristanjacobs@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/8.png');
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-    'Iva', 'Harrison', 'allisonjackson@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/2.png');
+    'Iva', 'Harrison', 'allisonjackson@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/9.png');
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-   'Dale', 'Coleman', 'michaelgray@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/3.png');
+   'Louis', 'Washington', 'chloecarter@google.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/10.png');
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-   'Alice', 'C', '123@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/4.png');
+   'Nell', 'Medina', 'juliansantos@aol.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/11.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Isabelle', 'Robbins', 'miasutton@aol.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/12.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Jerome', 'Wright', 'bellaanthony@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/13.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Christine', 'Buchanan', 'nathannguyen@ymail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/14.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'May', 'Barrett', 'gabriellabarrera@aol.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/15.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Jennie', 'Powers', 'lilabell@live.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/16.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Maggie', 'Norris', 'miafletcher@inbox.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/17.png');
    INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-   'Miranda', 'L', '456@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/5.png');
+   'Delia', 'Caldwell', 'elliotbaker@yahoo.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/18.png');
+   INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Justin', 'Reyes', 'austindotson@aol.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/19.png');
+   INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'James', 'Banks', 'sydneylopez@live.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/20.png');
+   INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Elizabeth', 'Lane', 'henryhaynes@gmx.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/21.png');
 
 -- Categories table seeds here (Example)
 INSERT INTO categories(
@@ -70,7 +106,7 @@ INSERT INTO event_status(
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  1, 'Mirandas baby party', '11700 Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4E 0K4', 45.41117, -75.69812, '2022-04-30', '16:00:00', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGf6TcgCpBOAEqAX9XWPw4vWwaCQj_aAGJtg&usqp=CAU', 'Come to join our baby party', 3, 10, TRUE, TRUE
+  1, 'Mirandas baby party', '11700 Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4E 0K4', 45.41117, -75.69812, '2022-04-30', '16:00:00', 2, 'http://localhost:8001/images/event1.png', 'Come to join our baby party', 3, 10, TRUE, TRUE
 );
 
 INSERT INTO events (
@@ -165,6 +201,11 @@ INSERT INTO application_status(
   name
 ) VALUES(
   'event cancelled'
+);
+INSERT INTO application_status(
+  name
+) VALUES(
+  'event Complete'
 );
 
 -- Application table seeds here (Example)

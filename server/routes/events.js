@@ -5,9 +5,15 @@ module.exports = (db) => {
   // Get all incoming events
   router.get("/incoming", (req, res) => {
     db.query(
-      `SELECT events.*, categories.id AS c_id, categories.name AS c_name
+      `SELECT events.*,
+      users.first_name,
+      users.last_name,
+      users.avatar,
+      categories.id AS c_id,
+      categories.name AS c_name
          FROM events
          JOIN categories ON events.category_id = categories.id
+         JOIN users ON events.host_id = users.id
          WHERE events.status_id = $1
          ORDER BY events.id DESC;`,
       [1]
@@ -182,25 +188,25 @@ module.exports = (db) => {
 
   //  ------------------------------------------------------
   // Update event's status
-  const updateEventStatus = (status_id, event_id) => {
+  const updateEventStatus = (event_status, event_id) => {
     const command = `
     UPDATE events
     SET
     status_id = $1
     WHERE id = $2
     RETURNING *;`;
-    const queryParams = [status_id, event_id];
+    const queryParams = [event_status, event_id];
 
     return db
       .query(command, queryParams)
       .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
-  router.put("/delete/:id", (req, res) => {
+  router.put("/change/:id", (req, res) => {
     const event_id = Number(req.params.id);
-    const { status_id } = req.body;
+    const { event_status } = req.body;
 
-    updateEventStatus(status_id, event_id)
+    updateEventStatus(event_status, event_id)
       .then((data) => res.json(data))
       .catch((err) => {
         res.status(500).json({ error: err.message });
