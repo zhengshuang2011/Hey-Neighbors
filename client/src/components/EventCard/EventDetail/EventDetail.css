@@ -332,9 +332,6 @@ border-radius:calc(var(--curve) * 1px); */
 .pop {
   flex-direction: row;
   justify-content: space-between;
-   </div>
-
-            <div className="duration_number">
 }
 
 .event-detail-blog-card .event-detail-description h2 {
