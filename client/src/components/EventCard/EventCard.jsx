@@ -3,12 +3,13 @@ import Box from "@mui/material/Box";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PeopleIcon from "@mui/icons-material/People";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
-
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import CancelIcon from "@mui/icons-material/Cancel";
 
 
 
 import "./EventCard.css";
+
 //import SideEventDetail from "../SideEventDetail/SideEventDetail";
 import EventDetail from "./EventDetail/EventDetail";
 
@@ -35,7 +36,6 @@ const Popup = (props) => {
 };
 
 
-
 function EventCard({ event, onClick, eventRef }) {
 
 
@@ -59,16 +59,36 @@ function EventCard({ event, onClick, eventRef }) {
   };
 
 
-
-  // Handle RSVP
-
-
-
   return (
     <>
-      <div className="items__item" onClick={onClick} ref={eventRef}>
+      <div className="event-blog-card" onClick={onClick} ref={eventRef}>
+        <div className="event-meta">
+          <div className="event-photo" style={{ backgroundImage: `url(${event.photo_image})` }} />
+          <ul className="event-details">
+            <li className="event-c">
+              {event.c_name}
+            </li>
+            <li className="event-date"><PeopleIcon />
+              <span> Up to {event.max_people_number}</span></li>
+          </ul>
+        </div>
+        <div className="event-description">
+          <h1>{event.event_name}</h1>
+          <h2><AccessTimeIcon />
+            <span>
+              {event.date.substring(0, 10)} at {time(event.start_at)}
+            </span></h2>
+          <h2><FmdGoodIcon /><span>City: {event.city}</span></h2>
+          <p className="event-read-more">
+            <a value="Click to Open Popup"
+              onClick={togglePopup}>Read More</a>
+          </p>
+        </div>
+      </div>
+
+      {/* <div className="items__item" onClick={onClick} ref={eventRef}>
         <div className="pic_border">
-          {/* className=content__preview  */}
+          {/* className=content__preview  
           <img
             className="content__pic pic_size"
             src={event.photo_image}
@@ -106,7 +126,7 @@ function EventCard({ event, onClick, eventRef }) {
             More Info
           </button>
         </div>
-      </div>
+      </div> */}
 
       {isOpen && (
         <Popup
