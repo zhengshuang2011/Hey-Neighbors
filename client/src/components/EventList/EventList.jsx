@@ -9,6 +9,7 @@ import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ArchiveIcon from "@mui/icons-material/Archive";
+import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import Button from "@mui/material/Button";
 import EventEdit from "./EventEdit/EventEdit";
 
@@ -120,6 +121,9 @@ function EventList({
           <Stack direction="row" spacing={1}>
             <IconButton aria-label="edit" onClick={() => togglePopup(event)}>
               <EditIcon />
+            </IconButton>
+            <IconButton aria-label="completed">
+              <EventAvailableIcon />
             </IconButton>
             <IconButton
               aria-label="delete"
