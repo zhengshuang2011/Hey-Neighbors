@@ -44,7 +44,7 @@ export default function Map({ events, event, handleClick, center, pinnedInitialC
 
   return (
     <div className={classes.mapContainer}>
-      {center &&
+
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyA_itBW9kNLgs2Ef1vImn7JhCVcLsJ6smQ" }}
         defaultCenter={center}
@@ -116,7 +116,7 @@ export default function Map({ events, event, handleClick, center, pinnedInitialC
             />
           </Paper>
             </div>*/}
-      </GoogleMapReact> }
+      </GoogleMapReact>
     </div>
   );
 }
