@@ -228,14 +228,14 @@ module.exports = (db) => {
 
   //  ------------------------------------------------------
   // Update applications by event_id
-  const updateApplicationsByEvent = (event_id) => {
+  const updateApplicationsByEvent = (attender_status, event_id) => {
     command = `
     UPDATE applications
     SET
     status_id = $1
     WHERE event_id = $2 RETURNING *;
     `;
-    queryParams = [4, event_id];
+    queryParams = [attender_status, event_id];
 
     return db
       .query(command, queryParams)
@@ -244,8 +244,9 @@ module.exports = (db) => {
   };
   router.put("/event/:id", (req, res) => {
     const event_id = Number(req.params.id);
+    const { attender_status } = req.body;
 
-    updateApplicationsByEvent(event_id)
+    updateApplicationsByEvent(attender_status, event_id)
       .then((data) => res.json(data))
       .catch((err) => {
         res.status(500).json({ error: err.message });

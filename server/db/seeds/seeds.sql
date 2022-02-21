@@ -202,6 +202,11 @@ INSERT INTO application_status(
 ) VALUES(
   'event cancelled'
 );
+INSERT INTO application_status(
+  name
+) VALUES(
+  'event Complete'
+);
 
 -- Application table seeds here (Example)
 INSERT INTO applications (

@@ -88,3 +88,7 @@ body {
 .close {
   margin-right: 5rem;
 }
+.CreateNewEvent {
+  width: 30rem;
+  margin-left: 3rem;
+}

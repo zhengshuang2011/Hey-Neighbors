@@ -57,12 +57,12 @@ function BookingList({ incoming_events, completed_events, attenders }) {
         </div>
         <div className="data__corner">
           {/* action*/}
-
+          {/* 
           <Stack direction="row" spacing={1}>
             <IconButton aria-label="cancel">
               <CancelIcon />
             </IconButton>
-          </Stack>
+          </Stack> */}
         </div>
         <div className="data__row">
           <div className="data__cell">
@@ -171,11 +171,11 @@ function BookingList({ incoming_events, completed_events, attenders }) {
             </div>
           </div>
         </div> */}
-        <div className="data__cell data__cell_action mobile-hide">
+        {/* <div className="data__cell data__cell_action mobile-hide">
           <Button variant="outlined" startIcon={<ArchiveIcon />}>
             Archive
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   ));
