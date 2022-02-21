@@ -12,7 +12,7 @@ margin-bottom: 2rem;
 }
 .event_detail_img {
   position: flex;
-  width:25vh;
+  width:30vh;
   height: 15vh;
   border-radius: 16px;
   margin: 16px 0px;
@@ -30,8 +30,9 @@ margin: 12px 0px;
 }
 .event_detail_host {
   display: flex;
+   line-height: 1.2;
 flex-direction: row;
-align-items: flex-start;
+align-items: center;
 width:25vh;
  top: 76px;
 }
@@ -43,11 +44,12 @@ font-size: 18px;
 }
 .hostimg {
   position: static;
-  width: 2rem;
-  height: 2rem;
+ 
+  width: 2.5rem;
+  height: 2.5rem;
   background: #E6E8EC;
   border-radius: 64px;
-  margin: 0px 12px;
+  margin: 0 15px;
 }
 .hostname {
 color: #8281A5;

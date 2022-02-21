@@ -70,9 +70,11 @@ function SideEventDetail({ user, event }) {
   return (
     <div className="sidebar__container">
       <div className="sidebar__head">
-        <div className="sidebar__preview">
-          <img className="sidebar__pic" src="/img/user-2.jpg" alt="User" />
-        </div>
+        {user && (
+          <div className="sidebar__preview">
+            <img className="sidebar__pic" src={user.avatar} alt="User" />
+          </div>
+        )}
         <div className="sidebar__wrap">
           <div className="sidebar__title">
             Hey<span style={{ color: "#00AF91" }}> Neigbors</span>
@@ -98,9 +100,9 @@ function SideEventDetail({ user, event }) {
                   {event.event_name}
                 </div>
                 <div className='event_detail_host'>
-                  <div className='hostby'>Host by </div>
-                  <img src="/img/user-1.jpg" alt="host" className='hostimg' />
-                  <div className='hostname'>host name</div>
+                  <div className='hostby'>Host by</div>
+                  <img src={event.avatar} alt="host" className='hostimg' />
+                  <div className='hostname'>{event.first_name} {event.last_name}</div>
                 </div>
                 <div className='date_people'>
                   <div className="items__content">
