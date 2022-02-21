@@ -356,7 +356,7 @@ function EventList({
                 <img class="empty__pic" src="images/delete.png" alt="Empty" />
               </div>
               <div class="empty__title title title_lg">
-                <p> Do you want to delete this Evenet:</p>
+                <p> Do you want to delete this Event:</p>
               </div>
               <div class="empty__text">
                 This event: <b>{`${event.event_name}`}</b> <br />

@@ -72,14 +72,15 @@ body {
 }
 .delete {
   width: 35rem;
-  height: 30rem;
+  height: 25rem;
 }
 .card {
   width: 18rem;
   margin-top: 0rem;
 }
 .empty__pic {
-  margin-left: 10rem;
+  margin-left: 12.5rem;
+  width: 6rem;
 }
 .delete_footer {
   margin-top: 2rem;
