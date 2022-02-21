@@ -305,16 +305,6 @@ function EventList({
               <div className="data__container">
                 <div className="data__body">
                   {incoming_events.length === 0 && (
-                    // <div class="card">
-                    //   <div class="card-body">
-                    //     <h5 class="card-title">No Incoming Events</h5>
-                    //     <p class="card-text">Create your own event now</p>
-                    //     <Link to="/newevent">
-                    //       <button class="btn btn-light">Create</button>
-                    //     </Link>
-                    //   </div>
-                    // </div>
-
                     <div class="empty__container">
                       <div class="empty__preview">
                         <img

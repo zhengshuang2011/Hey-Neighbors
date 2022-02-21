@@ -14,6 +14,7 @@ function SidebarSearch({ user, setEvents, setFilter }) {
   const [mask, setMask] = useState("");
   const [vaccine, setVaccine] = useState("");
   const [category, setCategory] = useState("");
+  const [show, setShow] = useState(false);
 
   // console.log(
   //   "city",
@@ -87,10 +88,15 @@ function SidebarSearch({ user, setEvents, setFilter }) {
     setVaccine("");
     setMask("");
     setFilter(null);
+    setShow(false);
     axios.get("api/events").then((response) => {
       // console.log(response.data);
       setEvents(response.data.events);
     });
+  };
+
+  const handleShow = () => {
+    setShow(!show);
   };
 
   return (
@@ -130,6 +136,7 @@ function SidebarSearch({ user, setEvents, setFilter }) {
                       value={searchCity}
                       onChange={(e) => setSearchCity(e.target.value)}
                       placeholder="Search By City "
+                      onClick={handleShow}
                     />
                     <div className="field__icon">
                       <i className="la la-search " />
@@ -137,46 +144,57 @@ function SidebarSearch({ user, setEvents, setFilter }) {
                   </div>
                 </div>
               </form>
-              {/* {searchCity && ( */}
-              <div className="filter">
-                <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                  <Calendar
-                    date={selectedDate}
-                    onChange={setSelectedDate}
-                    className="date"
-                  />
-                </MuiPickersUtilsProvider>
+              {show && (
+                <div className="filter">
+                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                    <Calendar
+                      date={selectedDate}
+                      onChange={setSelectedDate}
+                      className="date"
+                    />
+                  </MuiPickersUtilsProvider>
 
-                <div className="option_require">
-                  <div className="auth__flex">
-                    <label className="switch auth__switch">
-                      <input
-                        className="switch__input"
-                        type="checkbox"
-                        onChange={() => {
-                          setMask(!mask);
-                        }}
-                        checked={mask === true ? true : false}
-                      />
-                      <span className="switch__content">Require Mask</span>
-                    </label>
-                  </div>
-                  <div className="auth__flex vaccined">
-                    <label className="switch auth__switch">
-                      <input
-                        className="switch__input"
-                        type="checkbox"
-                        checked={vaccine === true ? true : false}
-                        onChange={() => {
-                          setVaccine(!vaccine);
-                        }}
-                      />
-                      <span className="switch__content">Require Vaccined</span>
-                    </label>
+                  <div className="option_require">
+                    <div className="auth__flex">
+                      <label className="switch auth__switch">
+                        <input
+                          className="switch__input"
+                          type="checkbox"
+                          onChange={() => {
+                            setMask(!mask);
+                          }}
+                          checked={mask === true ? true : false}
+                        />
+                        <span className="switch__content">Require Mask</span>
+                      </label>
+                    </div>
+                    <div className="auth__flex vaccined">
+                      <label className="switch auth__switch">
+                        <input
+                          className="switch__input"
+                          type="checkbox"
+                          checked={vaccine === true ? true : false}
+                          onChange={() => {
+                            setVaccine(!vaccine);
+                          }}
+                        />
+                        <span className="switch__content">
+                          Require Vaccined
+                        </span>
+                      </label>
+                    </div>
                   </div>
                 </div>
-              </div>
-              {/* )} */}
+              )}
+              {!show && (
+                <div class="empty__preview">
+                  <img
+                    class="empty__pic CreateNewEvent search_image"
+                    src="images/search.png"
+                    alt="Empty"
+                  />
+                </div>
+              )}
 
               {/* action group*/}
               <div className="help__group action-group">
