@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PeopleIcon from "@mui/icons-material/People";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
@@ -195,7 +196,22 @@ function BookingList({ incoming_events, completed_events, attenders }) {
             {/* data*/}
             <div className="data data_grid">
               <div className="data__container">
-                <div className="data__body">{incoming_list}</div>
+                <div className="data__body">
+                  {incoming_events.length === 0 && (
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">No Incoming Events</h5>
+                        <p class="card-text">
+                          Apply for your interested events
+                        </p>
+                        <Link to="/home">
+                          <button class="btn btn-light">Check events</button>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                  {incoming_list}
+                </div>
               </div>
             </div>
           </div>
@@ -219,7 +235,16 @@ function BookingList({ incoming_events, completed_events, attenders }) {
             {/* data*/}
             <div className="data data_list">
               <div className="data__container">
-                <div className="data__body">{completed_list}</div>
+                <div className="data__body">
+                  {completed_events.length === 0 && (
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">No Events</h5>
+                      </div>
+                    </div>
+                  )}
+                  {completed_list}
+                </div>
               </div>
             </div>
           </div>

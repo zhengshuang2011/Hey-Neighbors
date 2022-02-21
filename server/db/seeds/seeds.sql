@@ -2,23 +2,59 @@
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-    'Devin', 'Sanders', 'tristanjacobs@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/1.png');
+    'Devin', 'Sanders', 'tristanjacobs@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/8.png');
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-    'Iva', 'Harrison', 'allisonjackson@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/2.png');
+    'Iva', 'Harrison', 'allisonjackson@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/9.png');
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-   'Dale', 'Coleman', 'michaelgray@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/3.png');
+   'Louis', 'Washington', 'chloecarter@google.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/10.png');
 INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-   'Alice', 'C', '123@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/4.png');
+   'Nell', 'Medina', 'juliansantos@aol.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/11.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Isabelle', 'Robbins', 'miasutton@aol.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/12.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Jerome', 'Wright', 'bellaanthony@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/13.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Christine', 'Buchanan', 'nathannguyen@ymail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/14.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'May', 'Barrett', 'gabriellabarrera@aol.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/15.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Jennie', 'Powers', 'lilabell@live.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/16.png');
+INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Maggie', 'Norris', 'miafletcher@inbox.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/17.png');
    INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
-   'Miranda', 'L', '456@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/5.png');
+   'Delia', 'Caldwell', 'elliotbaker@yahoo.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/18.png');
+   INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Justin', 'Reyes', 'austindotson@aol.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/19.png');
+   INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'James', 'Banks', 'sydneylopez@live.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/20.png');
+   INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Elizabeth', 'Lane', 'henryhaynes@gmx.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/21.png');
 
 -- Categories table seeds here (Example)
 INSERT INTO categories(

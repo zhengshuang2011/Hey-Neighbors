@@ -4,4 +4,7 @@
 .loop {
   margin-bottom: 0.9rem;
 }
-
+.card {
+  width: 250px;
+  margin-top: 3rem;
+}

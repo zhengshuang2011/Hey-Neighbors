@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import Sidebar from "../components/Siderbar/Sidebar";
 import CheckRsvp from "../components/CheckRsvp/CheckRsvp";
@@ -13,6 +14,7 @@ function Host({ user, setUser }) {
   const [applications, setApplications] = useState();
   const [actions, setActions] = useState(false);
   const [attenders, setAttenders] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     Promise.all([
@@ -41,6 +43,10 @@ function Host({ user, setUser }) {
   //   // "applications",
   //   // applications.length
   // );
+
+  const handleCreatesNew = () => {
+    navigate("/newevent");
+  };
 
   return (
     <Grid
@@ -83,7 +89,7 @@ function Host({ user, setUser }) {
             </div>
             {/* new*/}
             <div className="container__new new ">
-              <button className="new__action action">
+              <button className="new__action action" onClick={handleCreatesNew}>
                 <i className="la la-plus-circle " />
               </button>
             </div>

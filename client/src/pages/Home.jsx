@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Siderbar/Sidebar";
 import EventMap from "../components/EventMap/EventMap";
 import SidebarSearch from "../components/SideSearch/SidebarSearch";
@@ -9,6 +9,7 @@ import axios from "axios";
 
 function Home({ user, setUser }) {
   const [events, setEvents] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -21,6 +22,10 @@ function Home({ user, setUser }) {
   }, []);
 
   //console.log(events);
+
+  const handleCreatesNew = () => {
+    navigate("/newevent");
+  };
 
   return (
     <Grid container direction="row" justifyContent="space" alignItems="stretch">
@@ -53,13 +58,16 @@ function Home({ user, setUser }) {
             </div>
             {/* new*/}
             {user && (
-              <Link to="/newevent">
-                <div className="container__new new ">
-                  <button className="new__action action">
-                    <i className="la la-plus-circle " />
-                  </button>
-                </div>
-              </Link>
+              <div className="container__new new ">
+                {/* <Link to="/newevent"> */}
+                <button
+                  className="new__action action"
+                  onClick={handleCreatesNew}
+                >
+                  <i className="la la-plus-circle " />
+                </button>
+                {/* </Link> */}
+              </div>
             )}
           </div>
           <div className="container__body">

@@ -112,6 +112,13 @@ function CheckRsvp({ applications, user, setActions }) {
               <div className="widget__badge badge green">{number}</div>
             </div>
             <div className="widget__body">
+              {applications.length === 0 && (
+                <div class="card">
+                  <div class="card-body">
+                    <p class="card-text">No Incoming applications</p>
+                  </div>
+                </div>
+              )}
               {/* Loop the item*/}
               {application_list}
             </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BookingList from "../components/BookingList/BookingList";
 import PendingRsvp from "../components/PendingRsvp/PendingRsvp";
 import Sidebar from "../components/Siderbar/Sidebar";
@@ -10,6 +11,7 @@ function Bookings({ user, setUser }) {
   const [completed_events, setCompletedEvents] = useState();
   const [applications, setApplications] = useState();
   const [attenders, setAttenders] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     Promise.all([
@@ -26,6 +28,10 @@ function Bookings({ user, setUser }) {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const handleCreatesNew = () => {
+    navigate("/newevent");
+  };
 
   // console.log(
   //   "user",
@@ -75,7 +81,10 @@ function Bookings({ user, setUser }) {
               </div>
               {/* new*/}
               <div className="container__new new ">
-                <button className="new__action action">
+                <button
+                  className="new__action action"
+                  onClick={handleCreatesNew}
+                >
                   <i className="la la-plus-circle " />
                 </button>
               </div>

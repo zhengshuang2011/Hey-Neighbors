@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import CancelIcon from "@mui/icons-material/Cancel";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PeopleIcon from "@mui/icons-material/People";
@@ -278,7 +279,20 @@ function EventList({
             {/* data*/}
             <div className="data data_grid">
               <div className="data__container">
-                <div className="data__body">{incoming_list}</div>
+                <div className="data__body">
+                  {incoming_events.length === 0 && (
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">No Incoming Events</h5>
+                        <p class="card-text">Create your own event now</p>
+                        <Link to="/newevent">
+                          <button class="btn btn-light">Create</button>
+                        </Link>
+                      </div>
+                    </div>
+                  )}
+                  {incoming_list}
+                </div>
               </div>
             </div>
           </div>
@@ -302,7 +316,16 @@ function EventList({
             {/* data*/}
             <div className="data data_list">
               <div className="data__container">
-                <div className="data__body">{completed_list}</div>
+                <div className="data__body">
+                  {completed_events.length === 0 && (
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">No Events</h5>
+                      </div>
+                    </div>
+                  )}
+                  {completed_list}
+                </div>
               </div>
             </div>
           </div>
