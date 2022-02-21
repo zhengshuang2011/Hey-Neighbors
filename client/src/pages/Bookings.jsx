@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BookingList from "../components/BookingList/BookingList";
 import PendingRsvp from "../components/PendingRsvp/PendingRsvp";
 import Sidebar from "../components/Siderbar/Sidebar";
@@ -9,31 +10,39 @@ function Bookings({ user, setUser }) {
   const [incoming_events, setIncomingEvents] = useState();
   const [completed_events, setCompletedEvents] = useState();
   const [applications, setApplications] = useState();
+  const [attenders, setAttenders] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     Promise.all([
       axios.get("/api/events/user/future"),
       axios.get("api/events/user/completed"),
       axios.get("api/applications/attender"),
+      axios.get("/api/applications"),
     ])
       .then((all) => {
         setIncomingEvents(all[0].data);
         setCompletedEvents(all[1].data);
         setApplications(all[2].data);
+        setAttenders(all[3].data.applications);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(
-    "user",
-    user,
-    "incoming",
-    incoming_events,
-    "completed",
-    completed_events,
-    "applications",
-    applications
-  );
+  const handleCreatesNew = () => {
+    navigate("/newevent");
+  };
+
+  // console.log(
+  //   "user",
+  //   user,
+  //   "incoming",
+  //   incoming_events,
+  //   "completed",
+  //   completed_events,
+  //   "applications",
+  //   applications
+  // );
   return (
     <>
       <Grid
@@ -50,7 +59,14 @@ function Bookings({ user, setUser }) {
             <PendingRsvp user={user} applications={applications} />
           )}
         </Grid>
-        <Grid item xs={12} sm={11} md={11} lg={8} style={{ backgroundColor: "#F6F6FA" }}>
+        <Grid
+          item
+          xs={12}
+          sm={11}
+          md={11}
+          lg={8}
+          style={{ backgroundColor: "#F6F6FA" }}
+        >
           <div className="container">
             <div className="container__head">
               <div className="container__title title title_xl">
@@ -65,16 +81,20 @@ function Bookings({ user, setUser }) {
               </div>
               {/* new*/}
               <div className="container__new new ">
-                <button className="new__action action">
+                <button
+                  className="new__action action"
+                  onClick={handleCreatesNew}
+                >
                   <i className="la la-plus-circle " />
                 </button>
               </div>
             </div>
             <div className="container__body">
-              {incoming_events && completed_events && (
+              {incoming_events && completed_events && attenders && (
                 <BookingList
                   incoming_events={incoming_events}
                   completed_events={completed_events}
+                  attenders={attenders}
                 />
               )}
             </div>

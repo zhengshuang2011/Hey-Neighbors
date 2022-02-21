@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import axios from "axios";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, MenuItem, SidebarFooter } from "react-pro-sidebar";
-
 
 import { FiLogOut } from "react-icons/fi";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
@@ -38,7 +37,7 @@ function Sidebar({ user, setUser }) {
       });
   };
 
-  console.log("Location", location)
+  // console.log("Location", location)
 
   return (
     <div>
@@ -59,7 +58,13 @@ function Sidebar({ user, setUser }) {
               <div className="nav__primary js-nav-primary">
                 <div className="nav__group">
                   <Link to="/home">
-                    <a className={"nav__link " + (location.pathname === '/home' ? ' active' : '')} title="Home">
+                    <a
+                      className={
+                        "nav__link " +
+                        (location.pathname === "/home" ? " active" : "")
+                      }
+                      title="Home"
+                    >
                       <div className="nav__preview">
                         <SentimentSatisfiedAltIcon />
                       </div>
@@ -69,22 +74,48 @@ function Sidebar({ user, setUser }) {
 
                   {user && (
                     <Link to="/host">
-
-                      <a className={"nav__link" + (location.pathname === '/host' ? ' active' : '')} title="Host Page">
-
+                      <a
+                        className={
+                          "nav__link" +
+                          (location.pathname === "/host" ? " active" : "")
+                        }
+                        title="Host Page"
+                      >
                         <div className="nav__preview">
                           <CoPresentIcon />
                         </div>
                         <div className="nav__title">Host Page</div>
+                        {/* {applications && (
+                          <div className="nav__online online bg-red-raw"></div>
+                        )} */}
                       </a>
                     </Link>
                   )}
+                  {/* {user && applications && (
+                    <Link to="/host">
+                      <a
+                        className="nav__link active"
+                        href="#"
+                        title="Notifications"
+                      >
+                        <div className="nav__preview">
+                          <i className="la la-bullseye "></i>
+                          <div className="nav__online online bg-red-raw"></div>
+                        </div>
+                        <div className="nav__title">Notifications</div>
+                      </a>
+                    </Link>
+                  )} */}
 
                   {user && (
                     <Link to="/bookings">
-
-                      <a className={"nav__link" + (location.pathname === '/bookings' ? ' active' : '')} title="Attender Page">
-
+                      <a
+                        className={
+                          "nav__link" +
+                          (location.pathname === "/bookings" ? " active" : "")
+                        }
+                        title="Attender Page"
+                      >
                         <div className="nav__preview">
                           <CollectionsBookmarkIcon />
                         </div>
@@ -106,9 +137,12 @@ function Sidebar({ user, setUser }) {
                     </Link>
                   )} */}
                   {user && (
-                      <Link to="/newevent">
+                    <Link to="/newevent">
                       <a
-                        className={"nav__link" + (location.pathname === '/newevent' ? ' active' : '')}
+                        className={
+                          "nav__link" +
+                          (location.pathname === "/newevent" ? " active" : "")
+                        }
                         title="Create My New Event"
                       >
                         <div className="nav__preview">
@@ -117,12 +151,17 @@ function Sidebar({ user, setUser }) {
                         <div className="nav__title">Create My New Event</div>
                       </a>
                     </Link>
-                  )} 
+                  )}
 
                   {!user && (
                     <Link to="/signIn">
-                      <a className={"nav__link" + (location.pathname === '/signIn' ? ' active' : '')}
-                        title="Login First">
+                      <a
+                        className={
+                          "nav__link" +
+                          (location.pathname === "/signIn" ? " active" : "")
+                        }
+                        title="Login First"
+                      >
                         <div className="nav__preview">
                           <LockOpenIcon />
                         </div>
@@ -132,8 +171,13 @@ function Sidebar({ user, setUser }) {
                   )}
                   {!user && (
                     <Link to="/signUp">
-                      <a className={"nav__link" + (location.pathname === '/signUp' ? ' active' : '')}
-                        title="Sign Up">
+                      <a
+                        className={
+                          "nav__link" +
+                          (location.pathname === "/signUp" ? " active" : "")
+                        }
+                        title="Sign Up"
+                      >
                         <div className="nav__preview">
                           <AppRegistrationIcon />
                         </div>
@@ -141,10 +185,10 @@ function Sidebar({ user, setUser }) {
                       </a>
                     </Link>
                   )}
+
                   <Box sx={{ ...commonStyles, borderBottom: 1 }} />
                   {user && (
-                    <div className="logout"
-                      onClick={handleLogout}>
+                    <div className="logout" onClick={handleLogout}>
                       <SidebarFooter>
                         <Menu iconShape="square">
                           <MenuItem icon={<FiLogOut />}></MenuItem>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import Sidebar from "../components/Siderbar/Sidebar";
 import CheckRsvp from "../components/CheckRsvp/CheckRsvp";
@@ -13,6 +14,7 @@ function Host({ user, setUser }) {
   const [applications, setApplications] = useState();
   const [actions, setActions] = useState(false);
   const [attenders, setAttenders] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     Promise.all([
@@ -32,15 +34,19 @@ function Host({ user, setUser }) {
   }, [actions]);
 
   // console.log(
-  //   "user",
-  //   user,
-  //   "incoming",
-  //   incoming_events,
-  //   "completed",
-  //   completed_events,
-  //   "applications",
-  //   applications
+  //   // "user",
+  //   // user,
+  //   // "incoming",
+  //   // incoming_events,
+  //   // "completed",
+  //   // completed_events,
+  //   // "applications",
+  //   // applications.length
   // );
+
+  const handleCreatesNew = () => {
+    navigate("/newevent");
+  };
 
   return (
     <Grid
@@ -50,7 +56,7 @@ function Host({ user, setUser }) {
       alignItems="stretch"
     >
       <Grid item xs={0} sm={1} md={1} lg={1}>
-        <Sidebar user={user} setUser={setUser} />
+        <Sidebar user={user} setUser={setUser} applications={applications} />
       </Grid>
 
       <Grid item xs={0} sm={11} md={11} lg={3}>
@@ -83,7 +89,7 @@ function Host({ user, setUser }) {
             </div>
             {/* new*/}
             <div className="container__new new ">
-              <button className="new__action action">
+              <button className="new__action action" onClick={handleCreatesNew}>
                 <i className="la la-plus-circle " />
               </button>
             </div>
