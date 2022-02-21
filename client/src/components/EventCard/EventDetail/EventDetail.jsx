@@ -10,6 +10,7 @@ import Map from "../../Map/Map";
 import './EventDetail.css'
 
 function EventDetail({ event }) {
+  //console.log("center in eventDetail", center);
 
   const navigate = useNavigate();
   const handleNewRSVP = (id) => {
