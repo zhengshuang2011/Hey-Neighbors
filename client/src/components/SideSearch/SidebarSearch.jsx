@@ -154,35 +154,45 @@ function SidebarSearch({ user, setEvents }) {
               <div className="help__group action-group">
                 <button
                   value="2"
-                  className="action action_title active"
+                  className={
+                    "action action_title" + (category === 2 ? " active" : "")
+                  }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
                   Game
                 </button>
                 <button
                   value="1"
-                  className="action action_title"
+                  className={
+                    "action action_title" + (category === 1 ? " active" : "")
+                  }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
                   Food
                 </button>
                 <button
                   value="3"
-                  className="action action_title"
+                  className={
+                    "action action_title" + (category === 3 ? " active" : "")
+                  }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
                   Kids
                 </button>
                 <button
                   value="4"
-                  className="action action_title"
+                  className={
+                    "action action_title" + (category === 4 ? " active" : "")
+                  }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
                   Study
                 </button>
                 <button
                   value="5"
-                  className="action action_title"
+                  className={
+                    "action action_title" + (category === 5 ? " active" : "")
+                  }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
                   Movie
