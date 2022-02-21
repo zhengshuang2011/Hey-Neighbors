@@ -18,17 +18,14 @@
   margin-left: 1rem;
   margin-top: 0.5rem;
   color: white;
-  border: 1px solid #92a5ef;
+  border: 1px solid rgb(104, 102, 102);
   padding: 0.1rem 0.5rem;
-  border-radius: 10%;
-  background-color: #92a5ef;
+  border-radius: 8%;
+  background-color: rgb(104, 102, 102);
 }
-
-
 
 /* font-family: 'Bungee', cursive;
 font-family: 'DM Sans', sans-serif;
 font-family: 'Nunito Sans', sans-serif;
 font-family: 'Poppins', sans-serif;
 font-family: 'Source Sans Pro', sans-serif; */
-

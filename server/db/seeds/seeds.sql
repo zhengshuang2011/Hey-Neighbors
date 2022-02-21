@@ -106,7 +106,7 @@ INSERT INTO event_status(
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  1, 'Mirandas baby party', '11700 Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4E 0K4', 45.41117, -75.69812, '2022-04-30', '16:00:00', 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGf6TcgCpBOAEqAX9XWPw4vWwaCQj_aAGJtg&usqp=CAU', 'Come to join our baby party', 3, 10, TRUE, TRUE
+  1, 'Mirandas baby party', '11700 Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4E 0K4', 45.41117, -75.69812, '2022-04-30', '16:00:00', 2, 'http://localhost:8001/images/event1.png', 'Come to join our baby party', 3, 10, TRUE, TRUE
 );
 
 INSERT INTO events (
