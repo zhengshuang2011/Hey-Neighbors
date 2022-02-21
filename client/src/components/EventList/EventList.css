@@ -71,10 +71,19 @@ body {
   background-color: #fef8f8;
 }
 .delete {
-  width: 40rem;
-  height: 15rem;
+  width: 35rem;
+  height: 30rem;
 }
 .card {
   width: 18rem;
   margin-top: 0rem;
+}
+.empty__pic {
+  margin-left: 10rem;
+}
+.delete_footer {
+  margin-top: 2rem;
+}
+.close {
+  margin-right: 5rem;
 }

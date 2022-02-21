@@ -351,37 +351,37 @@ function EventList({
       {isDeleteOpen && (
         <div className="edit_popup-box">
           <div className="edit_box delete">
-            {/* <span className="close-icon" onClick={handleShow}>
-              <CancelIcon color="action" />
-            </span> */}
+            <div class="empty__container">
+              <div class="empty__preview">
+                <img class="empty__pic" src="images/delete.png" alt="Empty" />
+              </div>
+              <div class="empty__title title title_lg">
+                <p> Do you want to delete this Evenet:</p>
+              </div>
+              <div class="empty__text">
+                This event: <b>{`${event.event_name}`}</b> <br />
+                will be cancelled once you click the DELETE button
+              </div>
 
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Do you want to delete this Evenet: <br />
-                {`${event.event_name}`}
-              </h5>
-            </div>
-            <div class="modal-body">
-              This event will be cancelled once you click the DELETE button
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-                onClick={handleShow}
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                onClick={() => {
-                  handleDelete(event.id, 3);
-                }}
-              >
-                DELETE
-              </button>
+              <div className="delete_footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary close"
+                  data-dismiss="modal"
+                  onClick={handleShow}
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => {
+                    handleDelete(event.id, 3);
+                  }}
+                >
+                  DELETE
+                </button>
+              </div>
             </div>
           </div>
         </div>
