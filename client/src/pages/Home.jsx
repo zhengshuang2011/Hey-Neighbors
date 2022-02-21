@@ -104,7 +104,7 @@ function Home({ user, setUser }) {
             )}
           </div>
           <div className="container__body">
-            {events && <EventMap events={events} />}
+            {events && <EventMap events={events} user={user} />}
           </div>
         </div>
       </Grid>

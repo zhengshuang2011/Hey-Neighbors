@@ -4,6 +4,7 @@ import PeopleIcon from "@mui/icons-material/People";
 import MasksIcon from "@mui/icons-material/Masks";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import ThreePIcon from "@mui/icons-material/ThreeP";
+import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { useNavigate } from "react-router-dom";
 
 import Map from "../../Map/Map";
@@ -73,10 +74,61 @@ function EventDetail({ event }) {
       );
     }
   };
+  console.log("Event Detail:", event)
   return (
     <>
       <div className="cards">
-        <div href="" className="card">
+        <div className="event-detail-blog-card" >
+          <div className="event-detail-meta">
+            <div className="event-detail-photo" style={{ backgroundImage: `url(${event.photo_image})` }} />
+            <ul className="event-detail-details">
+              <li className="event-detail-c">
+                {event.c_name}
+              </li>
+              <li className="event-detail-date"><PeopleIcon />
+                <span> Up to {event.max_people_number}</span></li>
+            </ul>
+          </div>
+          <div className="event-detail-description">
+            <h1>{event.event_name}</h1>
+            <div className='event_detail_host'>
+              <div className='hostby'>Host by </div>
+              <img src={event.avatar} alt="host" className='hostimg' />
+              <div className='hostname'>{event.first_name}{event.last_name}</div>
+            </div>
+            {/* <h2><AccessTimeIcon />
+              <span>
+                {event.date.substring(0, 10)} at {time(event.start_at)}
+              </span></h2> */}
+
+            {/* <p className="event-detail-read-more">
+              <a value="Click to Open Popup"
+              >Read More</a>
+            </p> */}
+            <div className="duration_number">
+              <div className="items__content">
+                <AccessTimeIcon />
+                <span>
+                  {" "}
+                  {event.date.substring(0, 10)} at{" "}
+                  {time(event.start_at)}
+                </span>
+              </div>
+              <div className="items__content">
+                <PeopleIcon />
+                <span> Up to {event.max_people_number}</span>
+              </div>
+              <div className="items__content">
+                <FmdGoodIcon />
+                <span> {event.city}, {event.province}, {event.country}</span>
+              </div>
+            </div>
+            <div className='card__description_titel'>Description</div>
+            <div className="card__description">{event.description}</div>
+          </div>
+        </div>
+
+        {/* <div href="" className="card-detail">
           <img src={event.photo_image} className="card__image" alt="" />
           <div className="card__overlay">
             <div className="card__header">
@@ -114,7 +166,7 @@ function EventDetail({ event }) {
             </div>
             <div className="card__description">{event.description}</div>
           </div>
-        </div>
+        </div> */}
 
         <div className="event_details">
           <div className="event_features">
@@ -124,7 +176,9 @@ function EventDetail({ event }) {
           <div className="card_map">
             <Map event={event} />
           </div>
+
         </div>
+
       </div>
       <button className="JoinButton" onClick={() => handleNewRSVP(event.id)}>
         <ThreePIcon />
