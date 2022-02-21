@@ -5,9 +5,15 @@ module.exports = (db) => {
   // Get all incoming events
   router.get("/incoming", (req, res) => {
     db.query(
-      `SELECT events.*, categories.id AS c_id, categories.name AS c_name
+      `SELECT events.*,
+      users.first_name,
+      users.last_name,
+      users.avatar,
+      categories.id AS c_id,
+      categories.name AS c_name
          FROM events
          JOIN categories ON events.category_id = categories.id
+         JOIN users ON events.host_id = users.id
          WHERE events.status_id = $1
          ORDER BY events.id DESC;`,
       [1]

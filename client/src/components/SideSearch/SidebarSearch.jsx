@@ -189,7 +189,7 @@ function SidebarSearch({ user, setEvents, setFilter }) {
               {!show && (
                 <div class="empty__preview">
                   <img
-                    class="empty__pic CreateNewEvent search_image"
+                    class="search_image"
                     src="images/search.png"
                     alt="Empty"
                   />
