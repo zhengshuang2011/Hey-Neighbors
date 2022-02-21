@@ -182,25 +182,25 @@ module.exports = (db) => {
 
   //  ------------------------------------------------------
   // Update event's status
-  const updateEventStatus = (status_id, event_id) => {
+  const updateEventStatus = (event_status, event_id) => {
     const command = `
     UPDATE events
     SET
     status_id = $1
     WHERE id = $2
     RETURNING *;`;
-    const queryParams = [status_id, event_id];
+    const queryParams = [event_status, event_id];
 
     return db
       .query(command, queryParams)
       .then((res) => res.rows)
       .catch((err) => console.log(err.message));
   };
-  router.put("/delete/:id", (req, res) => {
+  router.put("/change/:id", (req, res) => {
     const event_id = Number(req.params.id);
-    const { status_id } = req.body;
+    const { event_status } = req.body;
 
-    updateEventStatus(status_id, event_id)
+    updateEventStatus(event_status, event_id)
       .then((data) => res.json(data))
       .catch((err) => {
         res.status(500).json({ error: err.message });

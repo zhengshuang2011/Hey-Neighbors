@@ -11,7 +11,7 @@ function Preview({ user, events }) {
     <div className="sidebar__container">
       <div className="sidebar__head">
         <div className="sidebar__preview">
-          <img className="sidebar__pic" src="img/user-2.jpg" alt="User" />
+          <img className="sidebar__pic" src={user.avatar} alt="User" />
         </div>
         <div className="sidebar__wrap">
           <div className="sidebar__title">

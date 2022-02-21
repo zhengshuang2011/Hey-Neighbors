@@ -8,7 +8,7 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import ArchiveIcon from "@mui/icons-material/Archive";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import Button from "@mui/material/Button";
 import EventEdit from "./EventEdit/EventEdit";
@@ -49,39 +49,51 @@ function EventList({
     }
   };
 
-  const handleDelete = (id, status_id) => {
+  // Control Edit Event
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isCompleteOpen, setIsCompleteOpen] = useState(false);
+  const [event, setEvent] = useState();
+
+  const handleStatusChange = (id, event_status, attender_status) => {
     // e.preventDefault();
     // console.log(id, status_id);
     const data = JSON.stringify({
-      status_id,
+      event_status,
+      attender_status,
     });
     const headers = {
       "Content-Type": "application/json",
     };
     Promise.all([
-      axios.put(`api/events/delete/${id}`, data, { headers: headers }),
-      axios.put(`api/applications/event/${id}`),
+      axios.put(`api/events/change/${id}`, data, { headers: headers }),
+      axios.put(`api/applications/event/${id}`, data, { headers: headers }),
     ])
       .then((data) => {
         console.log(data);
+        if (isDeleteOpen) {
+          setIsDeleteOpen();
+        }
+        if (isCompleteOpen) {
+          setIsCompleteOpen();
+        }
         setActions(true);
-        handleShow();
       })
       .catch((err) => console.log(err));
   };
-
-  // Control Edit Event
-  const [isOpen, setIsOpen] = useState(false);
-  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const [event, setEvent] = useState();
 
   const togglePopup = (event) => {
     setIsOpen(!isOpen);
     setEvent(event);
   };
 
-  const handleShow = (event) => {
+  const handleDeleteShow = (event) => {
     setIsDeleteOpen(!isDeleteOpen);
+    setEvent(event);
+  };
+
+  const handleCompleteShow = (event) => {
+    setIsCompleteOpen(!isCompleteOpen);
     setEvent(event);
   };
 
@@ -122,7 +134,10 @@ function EventList({
             <IconButton aria-label="edit" onClick={() => togglePopup(event)}>
               <EditIcon />
             </IconButton>
-            <IconButton aria-label="completed">
+            <IconButton
+              aria-label="completed"
+              onClick={() => handleCompleteShow(event)}
+            >
               <EventAvailableIcon />
             </IconButton>
             <IconButton
@@ -132,7 +147,7 @@ function EventList({
               // onClick={() => {
               //   handleDelete(event.id, 3);
               // }}
-              onClick={() => handleShow(event)}
+              onClick={() => handleDeleteShow(event)}
             >
               <DeleteIcon />
             </IconButton>
@@ -256,9 +271,14 @@ function EventList({
               </div>
             </div>
           </div>
-          <div className="data__cell data__cell_action mobile-hide">
-            <Button variant="outlined" startIcon={<ArchiveIcon />}>
-              Archive
+          <div
+            className="data__cell data__cell_action mobile-hide"
+            onClick={() => {
+              handleStatusChange(event.id, 3, 5);
+            }}
+          >
+            <Button variant="outlined" startIcon={<DeleteForeverIcon />}>
+              Delete
             </Button>
           </div>
         </div>
@@ -285,12 +305,33 @@ function EventList({
               <div className="data__container">
                 <div className="data__body">
                   {incoming_events.length === 0 && (
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">No Incoming Events</h5>
-                        <p class="card-text">Create your own event now</p>
+                    // <div class="card">
+                    //   <div class="card-body">
+                    //     <h5 class="card-title">No Incoming Events</h5>
+                    //     <p class="card-text">Create your own event now</p>
+                    //     <Link to="/newevent">
+                    //       <button class="btn btn-light">Create</button>
+                    //     </Link>
+                    //   </div>
+                    // </div>
+
+                    <div class="empty__container">
+                      <div class="empty__preview">
+                        <img
+                          class="empty__pic CreateNewEvent"
+                          src="images/CreateNewEvent.png"
+                          alt="Empty"
+                        />
+                      </div>
+                      <div class="empty__title title title_lg">
+                        <p> No coming events，Create one now</p>
+                      </div>
+
+                      <div className="delete_footer">
                         <Link to="/newevent">
-                          <button class="btn btn-light">Create</button>
+                          <button type="button" className="btn btn-primary">
+                            Create
+                          </button>
                         </Link>
                       </div>
                     </div>
@@ -351,37 +392,76 @@ function EventList({
       {isDeleteOpen && (
         <div className="edit_popup-box">
           <div className="edit_box delete">
-            {/* <span className="close-icon" onClick={handleShow}>
-              <CancelIcon color="action" />
-            </span> */}
+            <div class="empty__container">
+              <div class="empty__preview">
+                <img class="empty__pic" src="images/delete.png" alt="Empty" />
+              </div>
+              <div class="empty__title title title_lg">
+                <p> Do you want to delete this Event:</p>
+              </div>
+              <div class="empty__text">
+                This event: <b>{`${event.event_name}`}</b> <br />
+                will be cancelled once you click the DELETE button
+              </div>
 
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Do you want to delete this Evenet: <br />
-                {`${event.event_name}`}
-              </h5>
+              <div className="delete_footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary close"
+                  data-dismiss="modal"
+                  onClick={handleDeleteShow}
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => {
+                    handleStatusChange(event.id, 3, 5);
+                  }}
+                >
+                  DELETE
+                </button>
+              </div>
             </div>
-            <div class="modal-body">
-              This event will be cancelled once you click the DELETE button
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-                onClick={handleShow}
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                class="btn btn-primary"
-                onClick={() => {
-                  handleDelete(event.id, 3);
-                }}
-              >
-                DELETE
-              </button>
+          </div>
+        </div>
+      )}
+
+      {isCompleteOpen && (
+        <div className="edit_popup-box">
+          <div className="edit_box delete">
+            <div class="empty__container">
+              <div class="empty__preview">
+                <img class="empty__pic" src="images/complete.png" alt="Empty" />
+              </div>
+              <div class="empty__title title title_lg">
+                <p> Mark this event as complete:</p>
+              </div>
+              <div class="empty__text">
+                This event: <b>{`${event.event_name}`}</b> <br />
+                will move to the history once you click the COMPLETE button
+              </div>
+
+              <div className="delete_footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary close"
+                  data-dismiss="modal"
+                  onClick={handleCompleteShow}
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={() => {
+                    handleStatusChange(event.id, 2, 6);
+                  }}
+                >
+                  COMPLETE
+                </button>
+              </div>
             </div>
           </div>
         </div>
