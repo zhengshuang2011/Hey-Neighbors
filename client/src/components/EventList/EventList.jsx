@@ -308,13 +308,13 @@ function EventList({
                     <div class="empty__container">
                       <div class="empty__preview">
                         <img
-                          class="empty__pic CreateNewEvent"
+                          class="CreateNewEvent"
                           src="images/CreateNewEvent.png"
                           alt="Empty"
                         />
                       </div>
                       <div class="empty__title title title_lg">
-                        <p> No coming events，Create one now</p>
+                        <p> No incoming events，Create one now</p>
                       </div>
 
                       <div className="delete_footer">
