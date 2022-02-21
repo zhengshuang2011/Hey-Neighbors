@@ -1,20 +1,9 @@
-:root {
-  --surface-color: #fff;
-  --curve: 40;
-}
 
-/* * {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Noto Sans JP', sans-serif;
-  background-color: #fef8f8;
-} */
 
 .cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  flex-direction: row;
   gap: 1rem;
   margin: 1rem 1rem;
   padding: 0;
@@ -24,13 +13,14 @@ body {
   width: 100%;
 }
 
-.card {
+.card-detail {
   position: relative;
   display: block;
   height: 100%;  
   border-radius: calc(var(--curve) * 1px);
   overflow: hidden;
   text-decoration: none;
+  padding:0 1rem;
 }
 
 .card__image {      
@@ -111,16 +101,21 @@ body {
 }
 
 .card__description {
-  padding: 0 2em 2em;
+  padding: 1rem 2rem 2rem 0;
   margin: 0;
-  color: #92a5ef;
+  color:#9595a7;
   font-size: medium;
   font-weight: 400;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
-}   
+}
+.card__description_titel {
+  margin-top:1rem;
+  font-weight: 600;
+  color:#8484A3;
+}
 
 .event_details{
 
@@ -141,6 +136,8 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     gap:1rem;
+    padding: 1rem;
+
 }
 .features_m {
   display: flex;
@@ -204,12 +201,21 @@ border: 0;
 .card_map {
   position: relative;
   display: block;
-  width:110%;
+  width:100%;
+  max-height: fit-content;
   margin-top: 2rem;
   padding-right: 2rem;
   border-radius: calc(var(--curve) * 1px);
   overflow: hidden;
   text-decoration: none;
+   margin:2rem 0;
+/* display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 1rem 0;
+border-radius:calc(var(--curve) * 1px); */
+
 }
 .JoinButton {
   background-color: #6980F3;
@@ -218,4 +224,161 @@ border: 0;
   margin: 1rem 1rem 2rem 1rem;
   float: right;
   border-radius: 10px;
+}
+
+/* New */
+
+/*PEN STYLES*/
+.event-detail-blog-card {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem auto;
+  box-shadow: 0 3px 7px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.6%;
+  background: #fff;
+  line-height: 1.4;
+  font-family: sans-serif;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 0;
+  width: 80%;
+}
+.event-detail-blog-card a {
+  color: inherit;
+}
+.event-detail-blog-card a:hover {
+  color: #6980f3;
+}
+.event-detail-blog-card:hover .event-detail-photo {
+  transform: scale(1.1) rotate(3deg);
+}
+.event-detail-blog-card .event-detail-meta {
+  position: relative;
+  z-index: 0;
+  height: 200px;
+}
+.event-detail-blog-card .event-detail-photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.2s;
+}
+.event-detail-blog-card .event-detail-details,
+.event-detail-blog-card .event-detail-details ul {
+  margin: auto;
+  padding-left: 3rem;
+  list-style: none;
+}
+.event-detail-blog-card .event-detail-details {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -100%;
+  margin: auto;
+  transition: left 0.2s;
+  background: #3f48686f;
+  color: #fff;
+  padding: 10px;
+  width: 100%;
+  font-size: 0.9rem;
+}
+.event-detail-blog-card .event-detail-details a {
+  -webkit-text-decoration: dotted underline;
+          text-decoration: dotted underline;
+}
+.event-detail-blog-card .event-detail-details ul li {
+  display: inline-block;
+}
+.event-detail-c {
+  
+  text-transform: uppercase;
+  margin-top: 1rem;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  content: "";
+  border: 2px solid white;
+  border-radius: 5px;
+  height: 2rem;
+ 
+  font-weight: 700;
+  align-items: flex-start;
+  text-align: center;
+}
+.event-detail-blog-card .event-detail-details .event-detail-date:before {
+  
+  margin-right: 10px;
+  content: "";
+}
+
+.event-detail-blog-card .event-detail-description {
+  padding: 1rem 2rem;
+  background: #fff;
+  position: relative;
+  z-index: 1;
+}
+.event-detail-blog-card .event-detail-description h1,
+.event-detail-blog-card .event-detail-description h2 {
+  font-family: Poppins, sans-serif;
+}
+.event-detail-blog-card .event-detail-description h1 {
+  line-height: 1.2;
+  margin-bottom: 0.8rem;
+  font-size: 1.5rem;
+}
+.pop {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.event-detail-blog-card .event-detail-description h2 {
+  font-size: 0.8rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #8484A3;
+
+
+}
+.event-detail-blog-card .event-detail-description .event-detail-read-more {
+  text-align: right;
+}
+.event-detail-blog-card .event-detail-description .event-detail-read-more a {
+  color: #6980f3;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+}
+.event-detail-blog-card .event-detail-description .event-detail-read-more a:after {
+  content: "...";
+  font-family: FontAwesome;
+  margin-left: -10px;
+  opacity: 0;
+  vertical-align: middle;
+  transition: margin 0.3s, opacity 0.3s;
+}
+.event-detail-blog-card .event-detail-description .event-detail-read-more a:hover:after {
+  margin-left: 10px;
+  opacity: 1;
+}
+.event-detail-blog-card p {
+  position: relative;
+  margin: 1rem 0 0;
+}
+.event-detail-blog-card p:first-of-type {
+  margin-top: 1.25rem;
+}
+.event-detail-blog-card p:first-of-type:before {
+  content: "";
+  position: absolute;
+  height: 5px;
+  background: #6980f3;
+  width: 60px;
+  top: -0.75rem;
+  border-radius: 3px;
+}
+.event-detail-blog-card:hover .event-detail-details {
+  left: 0%;
 }

@@ -2,6 +2,10 @@ import React, { useState, useRef, useEffect } from "react";
 import EventCard from "../EventCard/EventCard";
 import Map from "../Map/Map";
 import { useNavigate } from "react-router-dom";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
 
 function EventMap({ events }) {
   //console.log("eventmap", events);
@@ -9,37 +13,46 @@ function EventMap({ events }) {
 
   const eventsRef = useRef([]);
 
-  //const getArrayOfRefs = () => {
-//
-  //  const arrayOfRefs = [];
-  //  for(let i of events) {
-  //    let ref = useRef(null)
-  //    arrayOfRefs.push(ref);
-  //  }
-  //  return arrayOfRefs;
-  //};
+  const [center, setCenter] = useState({lat:45.27727542620655, lng:-75.86682256861117});
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     eventsRef.current = eventsRef.current.slice(0, events.length);
- }, [events]);
-
-  const [selectedEvent, setSelectedEvent] = useState(null);
-
-  console.log("selectedEvent is ", selectedEvent);
-
-  const handleClick = (index) => {
-    eventsRef.current[index].scrollIntoView({behavior:"smooth"})
-  } 
-
-  const eventsList = events.map((event, index) => (
-    <EventCard event={event} key={event.id} {...event} eventRef={el => eventsRef.current[index] = el} onClick={(e) => {
-      setSelectedEvent(event);
-    }}/>
-  ));
+  }, [events]);
+  
+  //useEffect(() => {
+  //  
+  //  navigator.geolocation.getCurrentPosition((position) => {
+  //    
+  //    setCenter({
+  //      lat: position.coords.latitude,
+  //      lng: position.coords.longitude,
+  //    });
+  //  });
+  //  
+  //}, []);
 
   const handleNewEvent = () => {
     navigate("/newevent");
   };
+
+  const handleClick = (index) => {
+    eventsRef.current[index].scrollIntoView({ behavior: "smooth" });
+  };
+
+  const eventsList = events.map((event, index) => (
+    <EventCard
+      event={event}
+      key={event.id}
+      {...event}
+      eventRef={(el) => (eventsRef.current[index] = el)}
+      onClick={(e) => {
+        setSelectedEvent(event);
+      }}
+    />
+  ));
+
+  console.log("selectedEvent is ", selectedEvent);
 
   return (
     <>
@@ -140,7 +153,14 @@ function EventMap({ events }) {
                 </button>
               </div>
               <div className="messages__body">
-                <Map events={events} event={selectedEvent} eventsRef={eventsRef} handleClick={handleClick}/>
+                <Map
+                  events={events}
+                  event={selectedEvent}
+                  eventsRef={eventsRef}
+                  handleClick={handleClick}
+                  center={center}
+                  pinnedInitialCenter={true}
+                />
               </div>
             </div>
           </div>

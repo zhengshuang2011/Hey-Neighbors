@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 import { Paper, Typography } from "@material-ui/core";
 import useMapStyles from "./MapStyles";
 
-export default function Map({ events, event, handleClick }) {
+export default function Map({ events, event, handleClick, center, pinnedInitialCenter }) {
   //console.log("event ", event);
 
   const [mapObject, setMapObject] = useState(null);
@@ -12,13 +12,22 @@ export default function Map({ events, event, handleClick }) {
   const ottawaCoordinates = { lat: 45.41117, lng: -75.69812 };
 
   const handleApiLoad = ({map, maps})=>{
-    console.log('Api loaded', map, maps)
+    //console.log('Api loaded', map, maps)
     setMapObject({map, maps})
   };
 
   useEffect(() => {
     //console.log('useffect in map', mapObject);
     if(mapObject) {
+      if(pinnedInitialCenter) {
+        const marker = new mapObject.maps.Marker({
+          position:{
+            lat: Number(center.lat),
+            lng: Number(center.lng)
+          },
+          map: mapObject.map
+        })
+      }
       if(event && !events) {
         const marker = new mapObject.maps.Marker({
           position:{
@@ -29,13 +38,16 @@ export default function Map({ events, event, handleClick }) {
         })
       }
     }
-  })
+  });
+
+  console.log(center);
 
   return (
     <div className={classes.mapContainer}>
+
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyA_itBW9kNLgs2Ef1vImn7JhCVcLsJ6smQ" }}
-        defaultCenter={ottawaCoordinates}
+        defaultCenter={center}
         center={event ? { lat: event.locationlatitude - 0.012, lng: event.locationlongitude + 0.0020 }: null}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
