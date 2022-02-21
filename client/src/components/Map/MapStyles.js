@@ -6,7 +6,8 @@ export default makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    width: "100px",
+    width: "20vh",
+    borderRadius:"10px",
   },
   mapContainer: {
     height: "70vh",
@@ -20,5 +21,8 @@ export default makeStyles(() => ({
   },
   pointer: {
     cursor: "pointer",
+    width:"15vh",
+    height:"10vh",
+    borderRadius:"20px",
   },
 }));

@@ -1,11 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-// import UserInfo from './UserInfo'
-//import react pro sidebar components
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, MenuItem, SidebarFooter } from "react-pro-sidebar";
 
-//import icons from react icons
+
 import { FiLogOut } from "react-icons/fi";
 import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
 import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
@@ -25,7 +23,7 @@ const commonStyles = {
 
 function Sidebar({ user, setUser }) {
   const navigate = useNavigate();
-
+  const location = useLocation();
   const handleLogout = (e) => {
     e.preventDefault();
     axios
@@ -39,6 +37,8 @@ function Sidebar({ user, setUser }) {
         console.log("Error : ", err);
       });
   };
+
+  console.log("Location", location)
 
   return (
     <div>
@@ -59,7 +59,7 @@ function Sidebar({ user, setUser }) {
               <div className="nav__primary js-nav-primary">
                 <div className="nav__group">
                   <Link to="/home">
-                    <a className="nav__link active" href="#" title="Home">
+                    <a className={"nav__link " + (location.pathname === '/home' ? ' active' : '')} title="Home">
                       <div className="nav__preview">
                         <SentimentSatisfiedAltIcon />
                       </div>
@@ -69,11 +69,9 @@ function Sidebar({ user, setUser }) {
 
                   {user && (
                     <Link to="/host">
-                      <a
-                        className="nav__link active"
-                        href="#"
-                        title="Host Page"
-                      >
+
+                      <a className={"nav__link" + (location.pathname === '/host' ? ' active' : '')} title="Host Page">
+
                         <div className="nav__preview">
                           <CoPresentIcon />
                         </div>
@@ -102,11 +100,9 @@ function Sidebar({ user, setUser }) {
 
                   {user && (
                     <Link to="/bookings">
-                      <a
-                        className="nav__link active"
-                        href="#"
-                        title="Attender Page"
-                      >
+
+                      <a className={"nav__link" + (location.pathname === '/bookings' ? ' active' : '')} title="Attender Page">
+
                         <div className="nav__preview">
                           <CollectionsBookmarkIcon />
                         </div>
@@ -117,8 +113,7 @@ function Sidebar({ user, setUser }) {
                   {/* {user && (
                     <Link to="/createEvent">
                       <a
-                        className="nav__link"
-                        href="#"
+                        className={"nav__link" + (location.pathname === '/createEvent' ? ' active' : '')}
                         title="Create My New Event"
                       >
                         <div className="nav__preview">
@@ -128,11 +123,10 @@ function Sidebar({ user, setUser }) {
                       </a>
                     </Link>
                   )} */}
-                  {/* {user && (
-                    <Link to="/newevent">
+                  {user && (
+                      <Link to="/newevent">
                       <a
-                        className="nav__link active"
-                        href="#"
+                        className={"nav__link" + (location.pathname === '/newevent' ? ' active' : '')}
                         title="Create My New Event"
                       >
                         <div className="nav__preview">
@@ -141,11 +135,12 @@ function Sidebar({ user, setUser }) {
                         <div className="nav__title">Create My New Event</div>
                       </a>
                     </Link>
-                  )} */}
+                  )} 
 
                   {!user && (
                     <Link to="/signIn">
-                      <a className="nav__link" href="#" title="Login First">
+                      <a className={"nav__link" + (location.pathname === '/signIn' ? ' active' : '')}
+                        title="Login First">
                         <div className="nav__preview">
                           <LockOpenIcon />
                         </div>
@@ -155,7 +150,8 @@ function Sidebar({ user, setUser }) {
                   )}
                   {!user && (
                     <Link to="/signUp">
-                      <a className="nav__link" title="Sign Up">
+                      <a className={"nav__link" + (location.pathname === '/signUp' ? ' active' : '')}
+                        title="Sign Up">
                         <div className="nav__preview">
                           <AppRegistrationIcon />
                         </div>
@@ -166,7 +162,8 @@ function Sidebar({ user, setUser }) {
 
                   <Box sx={{ ...commonStyles, borderBottom: 1 }} />
                   {user && (
-                    <div className="logout" onClick={handleLogout}>
+                    <div className="logout"
+                      onClick={handleLogout}>
                       <SidebarFooter>
                         <Menu iconShape="square">
                           <MenuItem icon={<FiLogOut />}></MenuItem>
@@ -188,27 +185,27 @@ function Sidebar({ user, setUser }) {
               {/* <!-- mobile secondary menu--> */}
               {/* <div className="nav__secondary js-nav-secondary">
                 <div className="nav__group">
-                  <a className="nav__link" href="#" title="Messages">
+                  <a className="nav__link" title="Messages">
                     <div className="nav__preview">
                       <i className="la la-comments "></i>
                       <div className="nav__online online"></div>
                     </div>
                     <div className="nav__title">Messages</div>
                   </a>
-                  <a className="nav__link" href="#" title="Products">
+                  <a className="nav__link" title="Products">
                     <div className="nav__preview">
                       <i className="la la-cube "></i>
                     </div>
                     <div className="nav__title">Products</div>
                   </a>
 
-                  <a className="nav__link" href="#" title="File Browser">
+                  <a className="nav__link" title="File Browser">
                     <div className="nav__preview">
                       <i className="la la-folder-open" />
                     </div>
                     <div className="nav__title">File Browser</div>
                   </a>
-                  <a className="nav__link" href="#" title="Notifications">
+                  <a className="nav__link" title="Notifications">
                     <div className="nav__preview">
                       <i className="la la-bullseye "></i>
                       <div className="nav__online online bg-red-raw"></div>
@@ -216,20 +213,20 @@ function Sidebar({ user, setUser }) {
                     <div className="nav__title">Notifications</div>
                   </a>
 
-                  <a className="nav__link" href="#" title="Reports">
+                  <a className="nav__link" title="Reports">
                     <div className="nav__preview">
                       <i className="la la-chart-area "></i>
                     </div>
                     <div className="nav__title">Reports</div>
                   </a> */}
-              {/* <a className="nav__link" href="#" title="Projects">
+              {/* <a className="nav__link" title="Projects">
                     <div className="nav__preview">
                       <i className="la la-toolbox "></i>
                     </div>
                     <div className="nav__title">Projects</div>
                   </a> */}
 
-              {/* <a className="nav__link" href="#" title="Kanban">
+              {/* <a className="nav__link" title="Kanban">
                     <div className="nav__preview">
                       <i className="la la-images "></i>
                     </div>

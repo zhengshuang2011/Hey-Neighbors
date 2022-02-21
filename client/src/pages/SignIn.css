@@ -3,3 +3,18 @@
   flex-direction: column;
   align-items: center;
 }
+.nav {
+    flex-wrap: nowrap;
+}
+.nav__link .nav__preview:hover {
+color: #5E81F4;
+background-color:#EFF2FE ;
+    display: flex;
+    position: relative;
+    height: 48px;
+    border-radius: 4px;
+    align-items: center;
+    justify-content: center;
+    transition: color .2s;
+    flex: 0 0 48px;
+}
