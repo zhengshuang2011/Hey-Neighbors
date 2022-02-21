@@ -6,8 +6,12 @@ export default makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    width: "20vh",
+    alignItems:"center",
+    width:"15vh",
+    height:"15vh",
     borderRadius:"10px",
+    boxShadow:" 0 0 11px #6980f379",
+    "&:hover": {color:"white", backgroundColor: "#92a5ef", boxShadow:"0 3px 5px 2px rgba(237, 234, 234, 0.3)"}
   },
   mapContainer: {
     height: "70vh",
@@ -21,8 +25,12 @@ export default makeStyles(() => ({
   },
   pointer: {
     cursor: "pointer",
-    width:"15vh",
+    width:"10vh",
     height:"10vh",
     borderRadius:"20px",
   },
+  typography: {
+    fontSize: "0.5rem",
+    lineHeight: 1.2,
+  } 
 }));
