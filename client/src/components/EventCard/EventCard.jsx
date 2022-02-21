@@ -3,10 +3,8 @@ import Box from "@mui/material/Box";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PeopleIcon from "@mui/icons-material/People";
 import FmdGoodIcon from "@mui/icons-material/FmdGood";
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import CancelIcon from "@mui/icons-material/Cancel";
-
-
 
 import "./EventCard.css";
 
@@ -21,7 +19,6 @@ const commonStyles = {
   height: "0.5rem",
 };
 
-
 const Popup = (props) => {
   return (
     <div className="popup-box">
@@ -35,10 +32,7 @@ const Popup = (props) => {
   );
 };
 
-
-function EventCard({ event, onClick, eventRef }) {
-
-
+function EventCard({ event, onClick, eventRef, user }) {
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
     if (timeNumber < 12) {
@@ -58,30 +52,38 @@ function EventCard({ event, onClick, eventRef }) {
     setIsOpen(!isOpen);
   };
 
-
   return (
     <>
       <div className="event-blog-card" onClick={onClick} ref={eventRef}>
         <div className="event-meta">
-          <div className="event-photo" style={{ backgroundImage: `url(${event.photo_image})` }} />
+          <div
+            className="event-photo"
+            style={{ backgroundImage: `url(${event.photo_image})` }}
+          />
           <ul className="event-details">
-            <li className="event-c">
-              {event.c_name}
+            <li className="event-c">{event.c_name}</li>
+            <li className="event-date">
+              <PeopleIcon />
+              <span> Up to {event.max_people_number}</span>
             </li>
-            <li className="event-date"><PeopleIcon />
-              <span> Up to {event.max_people_number}</span></li>
           </ul>
         </div>
         <div className="event-description">
           <h1>{event.event_name}</h1>
-          <h2><AccessTimeIcon />
+          <h2>
+            <AccessTimeIcon />
             <span>
               {event.date.substring(0, 10)} at {time(event.start_at)}
-            </span></h2>
-          <h2><FmdGoodIcon /><span>City: {event.city}</span></h2>
+            </span>
+          </h2>
+          <h2>
+            <FmdGoodIcon />
+            <span>City: {event.city}</span>
+          </h2>
           <p className="event-read-more">
-            <a value="Click to Open Popup"
-              onClick={togglePopup}>Read More</a>
+            <a value="Click to Open Popup" onClick={togglePopup}>
+              Read More
+            </a>
           </p>
         </div>
       </div>
@@ -130,9 +132,9 @@ function EventCard({ event, onClick, eventRef }) {
 
       {isOpen && (
         <Popup
-          content={
-            <EventDetail event={event} />}
+          content={<EventDetail event={event} />}
           handleClose={togglePopup}
+          user={user}
         />
       )}
     </>

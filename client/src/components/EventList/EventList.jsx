@@ -351,16 +351,7 @@ function EventList({
             {/* data*/}
             <div className="data data_list">
               <div className="data__container">
-                <div className="data__body">
-                  {completed_events.length === 0 && (
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">No Events</h5>
-                      </div>
-                    </div>
-                  )}
-                  {completed_list}
-                </div>
+                <div className="data__body">{completed_list}</div>
               </div>
             </div>
           </div>

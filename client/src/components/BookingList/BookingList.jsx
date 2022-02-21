@@ -198,14 +198,23 @@ function BookingList({ incoming_events, completed_events, attenders }) {
               <div className="data__container">
                 <div className="data__body">
                   {incoming_events.length === 0 && (
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">No Incoming Events</h5>
-                        <p class="card-text">
-                          Apply for your interested events
-                        </p>
+                    <div class="empty__container">
+                      <div class="empty__preview">
+                        <img
+                          class="CreateNewEvent"
+                          src="images/NoBooking.png"
+                          alt="Empty"
+                        />
+                      </div>
+                      <div class="empty__title title title_lg">
+                        <p> No incoming events，Find one now</p>
+                      </div>
+
+                      <div className="delete_footer">
                         <Link to="/home">
-                          <button class="btn btn-light">Check events</button>
+                          <button type="button" className="btn btn-primary">
+                            Find
+                          </button>
                         </Link>
                       </div>
                     </div>
@@ -235,16 +244,7 @@ function BookingList({ incoming_events, completed_events, attenders }) {
             {/* data*/}
             <div className="data data_list">
               <div className="data__container">
-                <div className="data__body">
-                  {completed_events.length === 0 && (
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">No Events</h5>
-                      </div>
-                    </div>
-                  )}
-                  {completed_list}
-                </div>
+                <div className="data__body">{completed_list}</div>
               </div>
             </div>
           </div>

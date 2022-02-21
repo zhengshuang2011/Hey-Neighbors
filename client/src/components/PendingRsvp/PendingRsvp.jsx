@@ -114,9 +114,16 @@ function PendingRsvp({ user, applications }) {
             <div className="widget__body">
               {/* Loop the item*/}
               {applications.length === 0 && (
-                <div class="card">
-                  <div class="card-body">
-                    <p class="card-text">No applications</p>
+                <div class="empty__container">
+                  <div class="empty__preview">
+                    <img
+                      class="no_applications"
+                      src="images/PendingRsvp.png"
+                      alt="Empty"
+                    />
+                  </div>
+                  <div class="empty__title title title_lg">
+                    <sapan>No Booking right not</sapan>
                   </div>
                 </div>
               )}
