@@ -572,9 +572,14 @@ module.exports = (db) => {
       }
     }
 
-    queryString += `
-      ORDER BY events.id DESC;
-      `;
+    queryParams.push(1);
+    if (queryParams.length === 1) {
+      queryString += `WHERE events.status_id = $${queryParams.length} `;
+    } else {
+      queryString += `AND events.status_id = $${queryParams.length} `;
+    }
+
+    queryString += `ORDER BY events.id DESC;`;
 
     return { command: queryString, queryParams };
   };

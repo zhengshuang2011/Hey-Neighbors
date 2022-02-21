@@ -22,7 +22,7 @@ function Home({ user, setUser }) {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(filter);
+  console.log("filter", filter, "events", events);
 
   const handleCreatesNew = () => {
     navigate("/newevent");
