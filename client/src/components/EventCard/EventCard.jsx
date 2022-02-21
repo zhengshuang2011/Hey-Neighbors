@@ -207,7 +207,7 @@ function EventCard({ event, onClick, eventRef }) {
                     {vaccine(event.vaccine)}
                   </div>
                   <div className="card_map">
-                    <Map event={event} />
+                    <Map event={event} center={{ lat: event.locationlatitude - 0.012, lng: event.locationlongitude + 0.0020 }} />
                   </div>
                 </div>
               </div>
