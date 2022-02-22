@@ -59,6 +59,14 @@ INSERT INTO users (
     first_name,last_name, email, password, avatar)
     VALUES (
    'Miranda', 'Zheng', 'mirandaZheng@gmx.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/22.png');
+  INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Mustafa Said', 'Kaya', 'mustafakya8833@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/11.png');
+  INSERT INTO users (
+    first_name,last_name, email, password, avatar)
+    VALUES (
+   'Zeynep', 'Kaya', 'zeynepkaya@protonmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.', 'http://localhost:8001/images/10.png');
 
 
 -- Categories table seeds here (Example)
@@ -112,7 +120,7 @@ INSERT INTO event_status(
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  1, 'Mirandas Kids Party', '30 Yang Street', 'Richmond Hill', 'ON', 'Canada', 'L4E 0L5', 43.921395, -79.473341, '2022-02-24', '19:00:00', 2, 'http://localhost:8001/images/01-01.png', 'Bring your kids to my home, and let them play together. Only for neighbors', 3, 10, TRUE, TRUE
+  1, 'Miranda''s Kids Party', '30 Yang Street', 'Richmond Hill', 'ON', 'Canada', 'L4E 0L5', 43.921395, -79.473341, '2022-02-24', '19:00:00', 2, 'http://localhost:8001/images/01-01.png', 'Bring your kids to my home, and let them play together. Only for neighbors', 3, 10, TRUE, TRUE
 );
 
 ---2
@@ -249,6 +257,47 @@ INSERT INTO events (
   14, 'FAMILY SPRING EQUINOX', 'Prince Regent St', 'Markham', 'ON', 'Canada', 'L6C 0H3', 43.899040, -79.373690, '2022-04-07', '13:20:00', 3, 'http://localhost:8001/images/14-01.png', 'Gardening. Health and Wellness. Arts. Hiking. Family Activities. Nature Lovers. AND MORE! Let your mind grow at the Gardens!', 4, 14, FALSE, FALSE
 );
 
+-----userId 16 uncomplete21
+INSERT INTO events (
+  host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
+)VALUES(
+  16, 'Champions League Finale Watch Event', '714 Oakglade Ave', 'Kanata', 'ON', 'Canada', 'K2M 0B3', 45.281806666310175, -75.87025921923411, '2022-05-15', '19:30:00', 2, 'http://localhost:8001/images/16-01.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 2, 7, FALSE, FALSE
+);
+
+-----userId 16 uncomplete22
+INSERT INTO events (
+  host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
+)VALUES(
+  16, 'Henry''s birthday party', '73 Vanstone Dr', 'Kanata', 'ON', 'Canada', 'K2L 1W4', 45.30773876083688, -75.88612415840294, '2022-02-28', '16:30:00', 2, 'http://localhost:8001/images/16-02.jpg', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.', 3, 20, TRUE, TRUE
+);
+
+-----userId 16 uncomplete23
+INSERT INTO events (
+  host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
+)VALUES(
+  16, 'Picnic at Shirleys bay', '20 Shirley Blvd', 'Ottawa', 'ON', 'Canada', 'K2K 2Z2', 45.36492526398774, -75.8831181253929, '2022-04-28', '16:30:00', 3, 'http://localhost:8001/images/16-03.jpg', 'Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit.', 1, 30, TRUE, TRUE
+);
+
+-----userId 17 uncomplete24
+INSERT INTO events (
+  host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
+)VALUES(
+  17, 'Taking a hike in the woods', 'S March Highland Trails', 'Kanata', 'ON', 'Canada', 'K2K 0E5', 45.33908527763486, -75.94885220485747, '2022-03-15', '14:30:00', 4, 'http://localhost:8001/images/17-01.jpg', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.', 2, 5, FALSE, TRUE
+);
+
+-----userId 17 uncomplete25
+INSERT INTO events (
+  host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
+)VALUES(
+  17, 'Ice skating in Terry Fox Athletic Facility', '2960 Riverside Dr.', 'Ottawa', 'ON', 'Canada', 'K1V 8N4', 45.369676163055374, -75.69110263057601, '2022-02-25', '18:30:00', 3, 'http://localhost:8001/images/17-02.jpg', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.', 4, 32, TRUE, TRUE
+);
+
+-----userId 17 uncomplete26
+INSERT INTO events (
+  host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
+)VALUES(
+  17, 'A calm day at the beach', '102 Greenview Ave', 'Ottawa', 'ON', 'Canada', 'K2B 5Z6', 45.36382036154168, -75.80127847866872, '2022-05-25', '17:30:00', 3, 'http://localhost:8001/images/17-03.jpg', 'Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.', 1, 12, FALSE, FALSE
+);
 
 -- Application Status table seeds here (Example)
 INSERT INTO application_status(
