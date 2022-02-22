@@ -60,7 +60,7 @@ function Host({ user, setUser }) {
       </Grid>
 
       <Grid item xs={0} sm={11} md={11} lg={3}>
-        {applications && (
+        {applications && user && (
           <CheckRsvp
             user={user}
             applications={applications}
