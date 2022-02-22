@@ -361,9 +361,15 @@ module.exports = (db) => {
   // Get Host owned coming events
   const getHostEvent = (host_id) => {
     const command = `
-    SELECT events.*, categories.id AS c_id, categories.name AS c_name
+    SELECT events.*,
+    users.first_name,
+    users.last_name,
+    users.avatar,
+    categories.id AS c_id,
+    categories.name AS c_name
     FROM events
     JOIN categories ON events.category_id = categories.id
+    JOIN users ON events.host_id = users.id
     WHERE events.host_id = $1
     AND events.status_id = $2
     ORDER BY events.id DESC
@@ -454,10 +460,9 @@ module.exports = (db) => {
     JOIN applications  ON applications.event_id = events.id
     WHERE applications.participate_id = $1
     AND applications.status_id = $2
-    AND events.status_id = $3
     ORDER BY events.id DESC;
     `;
-    const queryParams = [user_id, 6, 2];
+    const queryParams = [user_id, 6];
 
     return db
       .query(command, queryParams)

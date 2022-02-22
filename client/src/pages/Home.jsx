@@ -27,6 +27,9 @@ function Home({ user, setUser }) {
   const handleCreatesNew = () => {
     navigate("/newevent");
   };
+  const handleSearch = () => {
+    navigate("/home");
+  };
   // console.log("lalallal", events);
 
   return (
@@ -87,7 +90,8 @@ function Home({ user, setUser }) {
             {/* search*/}
             <div className="container__search search">
               <button className="search__action action">
-                <i className="la la-search " />
+                <i className="la la-search "
+                  onClick={handleSearch} />
               </button>
             </div>
             {/* new*/}

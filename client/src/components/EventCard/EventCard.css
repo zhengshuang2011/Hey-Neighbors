@@ -102,8 +102,6 @@
   font-size: 20px;
 }
 
-
-
 /*PEN STYLES*/
 .event-blog-card {
   display: flex;
@@ -163,13 +161,12 @@
 }
 .event-blog-card .event-details a {
   -webkit-text-decoration: dotted underline;
-          text-decoration: dotted underline;
+  text-decoration: dotted underline;
 }
 .event-blog-card .event-details ul li {
   display: inline-block;
 }
 .event-c {
-  
   text-transform: uppercase;
   margin-top: 1rem;
   margin-right: 10px;
@@ -184,7 +181,6 @@
   text-align: center;
 }
 .event-blog-card .event-details .event-date:before {
-  
   margin-right: 10px;
   content: "";
 }
@@ -208,9 +204,7 @@
   font-size: 0.8rem;
   font-weight: 300;
   text-transform: uppercase;
-  color: #8484A3;
-
-
+  color: #8484a3;
 }
 .event-blog-card .event-description .event-read-more {
   text-align: right;
@@ -252,6 +246,7 @@
 .event-blog-card:hover .event-details {
   left: 0%;
 }
+
 @media (min-width: 640px) {
   .event-blog-card {
     flex-direction: row;

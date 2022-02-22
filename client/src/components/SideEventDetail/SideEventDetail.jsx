@@ -77,7 +77,7 @@ function SideEventDetail({ user, event }) {
         )}
         <div className="sidebar__wrap">
           <div className="sidebar__title">
-            Hey<span style={{ color: "#00AF91" }}> Neigbors</span>
+            Hey<span style={{ color: "#5E81F4" }}> Neigbors</span>
           </div>
           <div className="sidebar__text">{user.first_name}</div>
         </div>
