@@ -5,11 +5,13 @@ import SideEventDetail from "../components/SideEventDetail/SideEventDetail";
 import NewRsvp from "../components/NewRsvp/NewRsvp";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function RSVP({ user, setUser }) {
   const [eventDetail, setEventDetail] = useState();
   // const [submit, setSubmit] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     Promise.all([
@@ -22,6 +24,12 @@ function RSVP({ user, setUser }) {
       })
       .catch((err) => console.log(err));
   }, []);
+  const handleCreatesNew = () => {
+    navigate("/newevent");
+  };
+  const handleSearch = () => {
+    navigate("/home");
+  };
 
   console.log(
     'user', user,
@@ -55,15 +63,23 @@ function RSVP({ user, setUser }) {
               {/* search*/}
               <div className="container__search search">
                 <button className="search__action action">
-                  <i className="la la-search " />
+                  <i className="la la-search "
+                    onClick={handleSearch} />
                 </button>
               </div>
               {/* new*/}
-              <div className="container__new new ">
-                <button className="new__action action">
-                  <i className="la la-plus-circle " />
-                </button>
-              </div>
+              {user && (
+                <div className="container__new new ">
+                  {/* <Link to="/newevent"> */}
+                  <button
+                    className="new__action action"
+                    onClick={handleCreatesNew}
+                  >
+                    <i className="la la-plus-circle " />
+                  </button>
+                  {/* </Link> */}
+                </div>
+              )}
             </div>
             <div className="container__body">
               <NewRsvp participate_id={user.id} event_id={id} />
