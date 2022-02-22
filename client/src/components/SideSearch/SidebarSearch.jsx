@@ -2,6 +2,12 @@ import React from "react";
 import "./SidebarSearch.css";
 import { useState } from "react";
 import DateFnsUtils from "@date-io/date-fns";
+import ExtensionIcon from '@mui/icons-material/Extension';
+import SetMealIcon from '@mui/icons-material/SetMeal';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import SearchIcon from '@mui/icons-material/Search';
+import ToysIcon from '@mui/icons-material/Toys';
+import MovieIcon from '@mui/icons-material/Movie';
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { Calendar } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
@@ -197,50 +203,55 @@ function SidebarSearch({ user, setEvents, setFilter }) {
               )}
 
               {/* action group*/}
-              <div className="help__group action-group">
+              <div className="help__group action-group x-scroll">
                 <button
                   value="2"
                   className={
-                    "action action_title" + (category === 2 ? " active" : "")
+                    "action action_title cate cate" + (category === 2 ? " selected" : "")
                   }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
+                  <ExtensionIcon />
                   Game
                 </button>
                 <button
                   value="1"
                   className={
-                    "action action_title" + (category === 1 ? " active" : "")
+                    "action action_title cate" + (category === 1 ? " selected" : "")
                   }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
+                  <SetMealIcon />
                   Food
                 </button>
                 <button
                   value="3"
                   className={
-                    "action action_title" + (category === 3 ? " active" : "")
+                    "action action_title cate" + (category === 3 ? " selected" : "")
                   }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
+                  <ToysIcon />
                   Kids
                 </button>
                 <button
                   value="4"
                   className={
-                    "action action_title" + (category === 4 ? " active" : "")
+                    "action action_title cate" + (category === 4 ? " selected" : "")
                   }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
+                  <MenuBookIcon />
                   Study
                 </button>
                 <button
                   value="5"
                   className={
-                    "action action_title" + (category === 5 ? " active" : "")
+                    "action action_title cate" + (category === 5 ? " selected" : "")
                   }
                   onClick={(e) => setCategory(Number(e.target.value))}
                 >
+                  <MovieIcon />
                   Movie
                 </button>
               </div>
@@ -248,14 +259,15 @@ function SidebarSearch({ user, setEvents, setFilter }) {
               <div className="buttons">
                 <button
                   type="button"
-                  className="btn btn-secondary btn-sm search"
+                  className="searchbar"
                   onClick={onSubmit}
                 >
+                  <SearchIcon />
                   Search
                 </button>
                 <button
                   type="button"
-                  className="btn btn-secondary btn-sm cancel"
+                  className="cancelbar"
                   onClick={onCancel}
                 >
                   Cancel
