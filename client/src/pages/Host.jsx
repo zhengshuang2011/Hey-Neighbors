@@ -47,6 +47,9 @@ function Host({ user, setUser }) {
   const handleCreatesNew = () => {
     navigate("/newevent");
   };
+  const handleSearch = () => {
+    navigate("/home");
+  };
 
   return (
     <Grid
@@ -84,7 +87,8 @@ function Host({ user, setUser }) {
             {/* search*/}
             <div className="container__search search">
               <button className="search__action action">
-                <i className="la la-search " />
+                <i className="la la-search "
+                  onClick={handleSearch} />
               </button>
             </div>
             {/* new*/}
