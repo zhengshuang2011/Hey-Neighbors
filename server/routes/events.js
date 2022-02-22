@@ -457,7 +457,7 @@ module.exports = (db) => {
     AND events.status_id = $3
     ORDER BY events.id DESC;
     `;
-    const queryParams = [user_id, 2, 2];
+    const queryParams = [user_id, 6, 2];
 
     return db
       .query(command, queryParams)
