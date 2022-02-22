@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import rsvpimg from "../../assets/RSVP.png"
+import rsvpimg from "../../assets/funpeople.svg"
 import SendIcon from '@mui/icons-material/Send';
 import "./NewRsvp.css"
 import axios from "axios";

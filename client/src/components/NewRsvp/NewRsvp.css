@@ -4,7 +4,9 @@
  
 }
 .rsvp_img {
-  border-radius: 200px;
+  border-radius: px;
+  height: 30vh;
+  width: 60vh;
 }
 
 .form_h {
