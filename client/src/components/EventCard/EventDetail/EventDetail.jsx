@@ -80,7 +80,7 @@ function EventDetail({ event, user }) {
       );
     }
   };
-  console.log("Event Detail:", event);
+  //console.log("Event Detail:", event);
   return (
     <>
       <div className="cards">
