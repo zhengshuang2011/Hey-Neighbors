@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import PeopleIcon from "@mui/icons-material/People";
 import MasksIcon from "@mui/icons-material/Masks";
@@ -8,14 +8,18 @@ import FmdGoodIcon from "@mui/icons-material/FmdGood";
 import { useNavigate } from "react-router-dom";
 
 import Map from "../../Map/Map";
-import './EventDetail.css'
+import "./EventDetail.css";
 
-function EventDetail({ event }) {
+function EventDetail({ event, user }) {
   //console.log("center in eventDetail", center);
 
   const navigate = useNavigate();
   const handleNewRSVP = (id) => {
-    navigate(`/event/${id}/rsvp`);
+    if (user) {
+      navigate(`/event/${id}/rsvp`);
+    } else {
+      navigate("/SignIn");
+    }
   };
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
@@ -75,34 +79,35 @@ function EventDetail({ event }) {
       );
     }
   };
-  console.log("Event Detail:", event)
+  console.log("Event Detail:", event);
   return (
     <>
       <div className="cards">
-        <div className="event-detail-blog-card" >
+        <div className="event-detail-blog-card">
           <div className="event-detail-meta">
-            <div className="event-detail-photo" style={{ backgroundImage: `url(${event.photo_image})` }} />
+            <div
+              className="event-detail-photo"
+              style={{ backgroundImage: `url(${event.photo_image})` }}
+            />
             <ul className="event-detail-details">
-              <li className="event-detail-c">
-                {event.c_name}
-              </li>
-
+              <li className="event-detail-c">{event.c_name}</li>
             </ul>
           </div>
           <div className="event-detail-description">
             <h1>{event.event_name}</h1>
-            <div className='event_detail_host pop'>
-              <div className='hostby'>Host by</div>
-              <img src={event.avatar} alt="host" className='hostimg' />
-              <div className='hostname'>{event.first_name} {event.last_name}</div>
+            <div className="event_detail_host pop">
+              <div className="hostby">Host by</div>
+              <img src={event.avatar} alt="host" className="hostimg" />
+              <div className="hostname">
+                {event.first_name} {event.last_name}
+              </div>
             </div>
 
             <div className="duration_number">
               <div className="items__content">
                 <AccessTimeIcon />
                 <span>
-                  {" "}
-                  {event.date.substring(0, 10)} at{" "}
+                  {event.date.substring(0, 10)} at
                   {time(event.start_at)}
                 </span>
               </div>
@@ -112,10 +117,13 @@ function EventDetail({ event }) {
               </div>
               <div className="items__content">
                 <FmdGoodIcon />
-                <span> {event.city}, {event.province}, {event.country}</span>
+                <span>
+                  {" "}
+                  {event.city}, {event.province}, {event.country}
+                </span>
               </div>
             </div>
-            <div className='card__description_titel'>Description</div>
+            <div className="card__description_titel">Description</div>
             <div className="card__description">{event.description}</div>
           </div>
         </div>
@@ -168,16 +176,14 @@ function EventDetail({ event }) {
           <div className="card_map">
             <Map event={event} />
           </div>
-
         </div>
-
       </div>
       <button className="JoinButton" onClick={() => handleNewRSVP(event.id)}>
         <ThreePIcon />
         <span> Join the Event, Send the RSVP</span>
       </button>
     </>
-  )
+  );
 }
 
-export default EventDetail
+export default EventDetail;
