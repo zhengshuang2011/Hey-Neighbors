@@ -117,16 +117,8 @@ function EventList({
     );
     const number = FindAttendersByEventId(attenders, event.id).length;
     return (
-      <div className="data__item" key={event.id} data-id={event.id}>
-        <div className="data__corner data__corner_left">
-          {/* progress*/}
-          <div className="progress">
-            <div
-              className="progress__value bg-green-raw"
-              style={{ width: "70%" }}
-            />
-          </div>
-        </div>
+      <div className="data__item host_incoming" key={event.id} data-id={event.id}>
+
         <div className="data__corner">
           {/* action*/}
 
@@ -154,41 +146,42 @@ function EventList({
           </Stack>
         </div>
 
+        <div className="event_img">
+          <img
+            className="content__pic"
+            src={event.photo_image}
+            alt="Event"
+          />
+        </div>
         <div className="data__row">
-          <div className="data__cell">
-            <div className="data__main">
-              <div className="event_img">
-                <img
-                  className="content__pic"
-                  src={event.photo_image}
-                  alt="Event"
-                />
-              </div>
-              <div className="data__wrap">
-                <div className="data__content">
-                  <strong>{event.event_name}</strong>
-                </div>
-                <div className="data__label">
-                  <strong>{event.c_name}</strong>
-                </div>
-              </div>
+          {/* <div className="data__cell"> */}
+          {/* <div className="data__main"> */}
+
+          <div className="data__wrap">
+            <div className="data__content">
+              <strong>{event.event_name}</strong>
+            </div>
+            <div className="data__label">
+              <strong>{event.c_name}</strong>
             </div>
           </div>
+          {/* </div> */}
+          {/* </div> */}
           <div className="data__cell">
             <div className="data__label">
               <div>
                 <AccessTimeIcon />
-                <strong>
-                  {event.date.substring(0, 10)} at {time(event.start_at)}
-                </strong>
+
+                {event.date.substring(0, 10)} at {time(event.start_at)}
+
               </div>
               <div>
                 <PeopleIcon />
-                <strong> Up to {event.max_people_number}</strong>
+                Up to {event.max_people_number}
               </div>
               <div>
                 <FmdGoodIcon />
-                <strong>City: {event.city}</strong>
+                City: {event.city}
               </div>
             </div>
           </div>
@@ -221,18 +214,19 @@ function EventList({
         <div className="data__row">
           <div className="data__cell data__cell_lg">
             <div className="data__main">
-              <div className="event_img_list">
+              <div className="event_img_list .host_history_i">
                 <img
                   className="content__pic"
                   src={event.photo_image}
                   alt="Event"
                 />
               </div>
-              <div className="data__wrap">
+              <div className="data__wrap host_history_t">
                 <div className="data__content">
                   <strong>{event.event_name}</strong>
                 </div>
-                <div className="data__label">{event.c_name}</div>
+                <div className="data__label ">
+                  <strong>{event.c_name}</strong> </div>
               </div>
             </div>
           </div>
@@ -250,7 +244,7 @@ function EventList({
             <div className="data__label">
               <PeopleIcon />
             </div>
-            <div className="data__label">
+            <div className="data__label ">
               <strong> Up to {event.max_people_number}</strong>
             </div>
           </div>

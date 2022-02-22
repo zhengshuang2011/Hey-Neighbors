@@ -62,14 +62,7 @@
   --curve: 40;
 }
 
-* {
-  box-sizing: border-box;
-}
 
-body {
-  font-family: "Noto Sans JP", sans-serif;
-  background-color: #fef8f8;
-}
 .delete {
   width: 35rem;
   height: 25rem;
@@ -91,4 +84,39 @@ body {
 .CreateNewEvent {
   width: 30rem;
   margin-left: 3rem;
+}
+
+.host_incoming{
+  min-width: none;
+  max-width: 290px;
+  
+}
+.host_incoming:hover{
+box-shadow: 0 0 11px #6980f379;
+}
+.data_row{
+  margin-top: 1.5rem;
+}
+
+.data__corner{
+  position: initial;
+}
+.content__pic{
+    border-radius: 8px;
+    height: 100%;
+    width: 100%;
+}
+.event_img {
+    border-radius: 10px;
+    width: 12rem;
+    height: 10rem;
+    margin: 1rem 0 1rem 2rem;
+    align-content: center;
+}
+.host_history_i{
+   height: 10vh;
+   width: 10vh;
+}
+.host_history_t{
+  padding-left: 2rem;
 }

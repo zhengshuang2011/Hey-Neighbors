@@ -45,29 +45,19 @@ function BookingList({ incoming_events, completed_events, attenders }) {
     );
     const number = FindAttendersByEventId(attenders, event.id).length;
     return (
-      <div className="data__item" key={event.id}>
-        <div className="data__corner data__corner_left">
-          {/* progress*/}
-          <div className="progress">
-            <div
-              className="progress__value bg-green-raw"
-              style={{ width: "70%" }}
-            />
-          </div>
-        </div>
-        <div className="data__corner">
-          {/* action*/}
-          {/* 
+      <div className="data__item booking_incoming" key={event.id}>
+
+        {/* <div className="data__corner">      
           <Stack direction="row" spacing={1}>
             <IconButton aria-label="cancel">
               <CancelIcon />
             </IconButton>
-          </Stack> */}
-        </div>
+          </Stack>
+        </div> */}
         <div className="data__row">
           <div className="data__cell">
             <div className="data__main">
-              <div className="event_img">
+              <div className="booking_img">
                 <img class="content__pic" src={event.photo_image} alt="Event" />
               </div>
               <div className="data__wrap">
@@ -84,17 +74,17 @@ function BookingList({ incoming_events, completed_events, attenders }) {
             <div className="data__label">
               <div>
                 <AccessTimeIcon />
-                <strong>
-                  {event.date.substring(0, 10)} at {time(event.start_at)}
-                </strong>
+
+                {event.date.substring(0, 10)} at {time(event.start_at)}
+
               </div>
               <div>
                 <PeopleIcon />
-                <strong> Up to {event.max_people_number}</strong>
+                Up to {event.max_people_number}
               </div>
               <div>
                 <FmdGoodIcon />
-                <strong> City: {event.city}</strong>
+                City: {event.city}
               </div>
             </div>
           </div>
@@ -117,10 +107,10 @@ function BookingList({ incoming_events, completed_events, attenders }) {
       <div className="data__row">
         <div className="data__cell data__cell_lg">
           <div className="data__main">
-            <div className="event_img_list">
+            <div className="event_img_list ">
               <img class="content__pic" src={event.photo_image} alt="Event" />
             </div>
-            <div className="data__wrap">
+            <div className="data__wrap booking_history">
               <div className="data__content">
                 <strong>{event.event_name}</strong>
               </div>
