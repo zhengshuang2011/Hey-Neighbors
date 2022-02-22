@@ -499,6 +499,53 @@ INSERT INTO applications (
 ) VALUES (
   10, 8, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
+
+INSERT INTO applications (
+  participate_id, event_id, description, email, people_number, vaccine, status_id
+) VALUES (
+  11, 19, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+);
+INSERT INTO applications (
+  participate_id, event_id, description, email, people_number, vaccine, status_id
+) VALUES (
+  5, 19, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+);
+INSERT INTO applications (
+  participate_id, event_id, description, email, people_number, vaccine, status_id
+) VALUES (
+  15, 19, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+);
+
+INSERT INTO applications (
+  participate_id, event_id, description, email, people_number, vaccine, status_id
+) VALUES (
+  8, 20, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+);
+INSERT INTO applications (
+  participate_id, event_id, description, email, people_number, vaccine, status_id
+) VALUES (
+  12, 20, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+);
+INSERT INTO applications (
+  participate_id, event_id, description, email, people_number, vaccine, status_id
+) VALUES (
+  6, 20, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+);
+INSERT INTO applications (
+  participate_id, event_id, description, email, people_number, vaccine, status_id
+) VALUES (
+  5, 20, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+);
+INSERT INTO applications (
+  participate_id, event_id, description, email, people_number, vaccine, status_id
+) VALUES (
+  13, 20, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+);
+INSERT INTO applications (
+  participate_id, event_id, description, email, people_number, vaccine, status_id
+) VALUES (
+  15, 20, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+);
 -- INSERT INTO applications (
 --   participate_id, event_id, description, email, people_number, vaccine
 -- ) VALUES (

@@ -108,8 +108,7 @@ function EventDetail({ event, user }) {
               <div className="items__content">
                 <AccessTimeIcon />
                 <span>
-                  {event.date.substring(0, 10)} at
-                  {time(event.start_at)}
+                  {event.date.substring(0, 10)} at {time(event.start_at)}
                 </span>
               </div>
               <div className="items__content">

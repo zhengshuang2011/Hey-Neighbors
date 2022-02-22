@@ -17,7 +17,7 @@ function EventEdit({ event, setActions, setIsOpen }) {
   const [duration, setDuration] = useState(`${event.duration}`);
   const [address, setAddress] = useState(`${event.address}`);
   const [address2, setAddress2] = useState(
-    event.address2 === null ? `(${event.address2}` : ""
+    event.address2 ? `${event.address2}` : ""
   );
   const [city, setCity] = useState(`${event.city}`);
   const [province, setProvince] = useState(`${event.province}`);
