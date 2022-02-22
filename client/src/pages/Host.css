@@ -18,8 +18,8 @@
     /* background-color: aqua; */
   }
   .container {
-    
-  float: right;
+  /* align-items: right; */
+  /* float: right; */
    /* background-color: blueviolet; */
   }
 }

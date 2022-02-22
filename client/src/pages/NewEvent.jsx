@@ -4,8 +4,11 @@ import Sidebar from "../components/Siderbar/Sidebar";
 import Preview from "../components/Preview/Preview";
 import NewEventForm from "../components/NewEventForm/NewEventForm";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function NewEvent({ user, setUser }) {
+
+  const navigate = useNavigate();
   const [incoming_events, setIncomingEvents] = useState();
 
   console.log(incoming_events);
@@ -20,6 +23,12 @@ function NewEvent({ user, setUser }) {
       })
       .catch((err) => console.log(err));
   }, [upload]);
+  const handleCreatesNew = () => {
+    navigate("/newevent");
+  };
+  const handleSearch = () => {
+    navigate("/home");
+  };
 
   return (
     <>
@@ -54,15 +63,23 @@ function NewEvent({ user, setUser }) {
               {/* search*/}
               <div className="container__search search">
                 <button className="search__action action">
-                  <i className="la la-search " />
+                  <i className="la la-search "
+                    onClick={handleSearch} />
                 </button>
               </div>
               {/* new*/}
-              <div className="container__new new ">
-                <button className="new__action action">
-                  <i className="la la-plus-circle " />
-                </button>
-              </div>
+              {user && (
+                <div className="container__new new ">
+                  {/* <Link to="/newevent"> */}
+                  <button
+                    className="new__action action"
+                    onClick={handleCreatesNew}
+                  >
+                    <i className="la la-plus-circle " />
+                  </button>
+                  {/* </Link> */}
+                </div>
+              )}
             </div>
             <div className="container__body">
               <NewEventForm user={user} setUpload={setUpload} />
