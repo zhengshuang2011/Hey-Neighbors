@@ -526,9 +526,15 @@ module.exports = (db) => {
     const queryParams = [];
     // 2
     let queryString = `
-      SELECT events.*, categories.id AS c_id, categories.name AS c_name
+      SELECT events.*,
+      users.first_name,
+      users.last_name,
+      users.avatar,
+      categories.id AS c_id,
+      categories.name AS c_name
       FROM events
       JOIN categories ON events.category_id = categories.id
+      JOIN users ON events.host_id = users.id
       `;
 
     if (options.searchCity) {

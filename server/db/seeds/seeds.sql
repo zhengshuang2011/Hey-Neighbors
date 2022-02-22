@@ -314,11 +314,6 @@ INSERT INTO applications (
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine
 ) VALUES (
-  1, 6, 'I am living nearbay and want to join with my kid', 'tristanjacobs@gmail.com',2, TRUE
-);
-INSERT INTO applications (
-  participate_id, event_id, description, email, people_number, vaccine
-) VALUES (
   1, 11, 'I am living nearbay and want to join with my kid', 'tristanjacobs@gmail.com',2, TRUE
 );
 

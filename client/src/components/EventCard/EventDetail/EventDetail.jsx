@@ -15,11 +15,7 @@ function EventDetail({ event, user }) {
 
   const navigate = useNavigate();
   const handleNewRSVP = (id) => {
-    if (user) {
-      navigate(`/event/${id}/rsvp`);
-    } else {
-      navigate("/SignIn");
-    }
+    navigate(`/event/${id}/rsvp`);
   };
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
