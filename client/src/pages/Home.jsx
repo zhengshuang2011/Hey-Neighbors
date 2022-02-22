@@ -27,6 +27,7 @@ function Home({ user, setUser }) {
   const handleCreatesNew = () => {
     navigate("/newevent");
   };
+  console.log("lalallal", events);
 
   return (
     <Grid container direction="row" justifyContent="space" alignItems="stretch">

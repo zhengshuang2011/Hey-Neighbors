@@ -18,7 +18,7 @@ function EventDetail({ event, user }) {
     if (user) {
       navigate(`/event/${id}/rsvp`);
     } else {
-      navigate("/signIn");
+      navigate("/SignIn");
     }
   };
   const time = (start_at) => {
