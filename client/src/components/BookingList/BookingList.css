@@ -1,14 +1,25 @@
-.event_img{
+/* .event_img{
   border-radius: 10px;
   width: 10rem;
   height: 10rem;
-}
+} */
 .history {
  margin-top: 20px;
 }
 
-.event_img_list{
-   border-radius: 10px;
-  width: 5rem;
-  height: 5rem;
+.booking_img{
+ 
+  margin: 1rem;
+  border-radius: 10px;
+    width: 12rem;
+    height: 10rem;
+  
+    align-content: center;
+}
+.booking_incoming {
+    min-width: none;
+  max-width: 290px;
+}
+.booking_history {
+   padding-left: 2rem;
 }
