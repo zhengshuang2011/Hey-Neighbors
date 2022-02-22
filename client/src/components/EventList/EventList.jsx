@@ -100,7 +100,10 @@ function EventList({
   const FindAttendersByEventId = (array, id) => {
     const output = [];
     for (let a of array) {
-      if (a.event_id === id && a.status_id === 2) {
+      if (
+        (a.event_id === id && a.status_id === 2) ||
+        (a.event_id === id && a.status_id === 6)
+      ) {
         output.push(a);
       }
     }
@@ -117,8 +120,11 @@ function EventList({
     );
     const number = FindAttendersByEventId(attenders, event.id).length;
     return (
-      <div className="data__item host_incoming" key={event.id} data-id={event.id}>
-
+      <div
+        className="data__item host_incoming"
+        key={event.id}
+        data-id={event.id}
+      >
         <div className="data__corner">
           {/* action*/}
 
@@ -147,11 +153,7 @@ function EventList({
         </div>
 
         <div className="event_img">
-          <img
-            className="content__pic"
-            src={event.photo_image}
-            alt="Event"
-          />
+          <img className="content__pic" src={event.photo_image} alt="Event" />
         </div>
         <div className="data__row">
           {/* <div className="data__cell"> */}
@@ -171,9 +173,7 @@ function EventList({
             <div className="data__label">
               <div>
                 <AccessTimeIcon />
-
                 {event.date.substring(0, 10)} at {time(event.start_at)}
-
               </div>
               <div>
                 <PeopleIcon />
@@ -191,7 +191,7 @@ function EventList({
             <div className="members data__members">
               {avartList}
               <div className="members__item">
-                <div className="members__counter">{`+ ${number}`}</div>
+                <div className="members__counter">{number}</div>
               </div>
             </div>
           </div>
@@ -226,7 +226,8 @@ function EventList({
                   <strong>{event.event_name}</strong>
                 </div>
                 <div className="data__label ">
-                  <strong>{event.c_name}</strong> </div>
+                  <strong>{event.c_name}</strong>{" "}
+                </div>
               </div>
             </div>
           </div>
@@ -261,14 +262,15 @@ function EventList({
             <div className="members">
               {avartList}
               <div className="members__item">
-                <div className="members__counter">{`+ ${number}`}</div>
+                <div className="members__counter">{number}</div>
               </div>
             </div>
           </div>
+
           <div
             className="data__cell data__cell_action mobile-hide"
             onClick={() => {
-              handleStatusChange(event.id, 3, 5);
+              handleStatusChange(event.id, 3, 6);
             }}
           >
             <Button variant="outlined" startIcon={<DeleteForeverIcon />}>
