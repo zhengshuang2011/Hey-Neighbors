@@ -396,7 +396,7 @@ INSERT INTO applications (
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  7, 2, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+  11, 2, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
 
 INSERT INTO applications (

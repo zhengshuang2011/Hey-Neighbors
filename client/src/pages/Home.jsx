@@ -22,12 +22,12 @@ function Home({ user, setUser }) {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log("filter", filter, "events", events);
+  // console.log("filter", filter, "events", events);
 
   const handleCreatesNew = () => {
     navigate("/newevent");
   };
-  console.log("lalallal", events);
+  // console.log("lalallal", events);
 
   return (
     <Grid container direction="row" justifyContent="space" alignItems="stretch">

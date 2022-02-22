@@ -47,7 +47,7 @@ function CheckRsvp({ applications, user, setActions }) {
             <div className="items__name">
               {a.first_name} {a.last_name}
             </div>
-            <div className="items__time">{a.people_number} people</div>
+            <div className="items__time">{a.people_number} peoples</div>
           </div>
           <div className="items__details">
             <div className="items__name">Applied to </div>
