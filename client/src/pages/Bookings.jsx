@@ -55,7 +55,7 @@ function Bookings({ user, setUser }) {
           <Sidebar user={user} setUser={setUser} />
         </Grid>
         <Grid item xs={0} sm={11} md={11} lg={3}>
-          {applications && (
+          {applications && user && (
             <PendingRsvp user={user} applications={applications} />
           )}
         </Grid>

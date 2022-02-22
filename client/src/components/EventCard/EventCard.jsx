@@ -132,9 +132,8 @@ function EventCard({ event, onClick, eventRef, user }) {
 
       {isOpen && (
         <Popup
-          content={<EventDetail event={event} />}
+          content={<EventDetail event={event} user={user} />}
           handleClose={togglePopup}
-          user={user}
         />
       )}
     </>
