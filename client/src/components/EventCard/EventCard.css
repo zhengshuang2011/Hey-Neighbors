@@ -75,7 +75,7 @@
   height: 80%;
   max-height: 70vh;
   margin-top: calc(100vh - 85vh - 20px);
-  background: #fff;
+  background: #F6F6FA;
   border-radius: 4px;
   padding: 20px;
   border: 1px solid #999;
@@ -86,11 +86,11 @@
 .box::-webkit-scrollbar {
   display: none;
 }
-.close-icon {
+.close-icon-detail {
   content: "x";
   cursor: pointer;
   position: fixed;
-  right: calc(15% - 30px);
+  right: calc(20% - 30px);
   top: calc(100vh - 85vh - 33px);
   background: #ededed;
   width: 25px;
