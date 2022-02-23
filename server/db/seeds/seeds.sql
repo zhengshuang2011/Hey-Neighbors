@@ -115,20 +115,19 @@ INSERT INTO event_status(
 
 -- Event table seeds here (Example)
 
-----user Id 1 uncomplete
+----user Id 11 uncomplete
 ---1
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  1, 'Miranda''s Kids Party', '30 Yang Street', 'Richmond Hill', 'ON', 'Canada', 'L4E 0L5', 43.921395, -79.473341, '2022-02-24', '19:00:00', 2, 'http://localhost:8001/images/01-01.png', 'Bring your kids to my home, and let them play together. Only for neighbors', 3, 10, TRUE, TRUE
-
+  11, 'Care of Indoor Plants', '9-19 Alhart St', 'Richmond Hill', 'ON', 'Canada', 'L4E 1B9', 43.911042, -79.470916, '2022-02-27', '17:15:00', 5, 'http://localhost:8001/images/11-01.png', 'What is the best light? When to water or not water. And how to manage those nasty pests! Some common plants and unusual plants for the home. Bring your questions and be rea', 4, 10, FALSE, FALSE
 );
 
 ---2
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  1, 'Mommies Tea Party', '41-59 Philips View Cres', 'Richmond Hill', 'ON', 'Canada', 'L4E 0S9', 43.922989, -79.469063, '2022-05-20', '16:00:00', 3, 'http://localhost:8001/images/01-02.png', 'Let mommies take a rest and enjoy the afternoon.', 1, 10, TRUE, TRUE
+  16, 'Champions League Finale Watch Event', '714 Oakglade Ave', 'Kanata', 'ON', 'Canada', 'K2M 0B3', 45.281806666310175, -75.87025921923411, '2022-05-15', '19:30:00', 2, 'http://localhost:8001/images/16-01.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 2, 7, FALSE, FALSE
 );
 
 -----complete
@@ -152,12 +151,12 @@ INSERT INTO events (
 );
 
 
------userId 2 uncomplete
+-----userId 5 uncomplete
 ---6
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  2, 'Toddlers Play Together', '12461 Bathurst St', 'Richmond Hill', 'ON', 'Canada', 'L4E 2B4', 43.925410, -79.477040, '2022-02-24', '15:00:00', 2, 'http://localhost:8001/images/02-04.png', 'Whether you have an outgoing or shy little one, socialization is an important part of your childs overall development. a babys social development is tied to so many other area.', 3, 6, TRUE, TRUE
+  5, 'Nightmare Alley: EVENT HORIZON', '10620 Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4C 3C8', 43.886051, -79.441841, '2022-05-23', '22:15:00', 5, 'http://localhost:8001/images/05-01.png', 'Welcome to the extreme 90s, where your haunted house is a SPACESHIP! Best known for his run of RESIDENT EVIL films (shout out to Toronto as the true Raccoon City!)', 5, 8, FALSE, TRUE
 );
 
 -----complete
@@ -174,11 +173,11 @@ INSERT INTO events (
   2, 'MeatEx Canada', '12461 Bathurst St', 'Richmond Hill', 'ON', 'Canada', 'L4E 2B4', 43.925410, -79.477040, '2022-02-05', '15:00:00', 2, 'http://localhost:8001/images/02-03.png', 'To connect with Bring your own booty dance party, join Facebook today.', 1, 50, TRUE, TRUE,2
 );
 
-----userId 3 uncomplete9
+----userId 17 uncomplete9
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  3, 'Fondue Fridays', '50 Farmhouse Crescent', 'Richmond Hill', 'ON', 'Canada', 'L4E 0M1', 43.920770, -79.467380, '2022-02-25', '16:00:00', 2, 'http://localhost:8001/images/03-01.png', 'Fondue Fridays will featuring authentic swiss cheese fondue provided by The Cheese Boutique in Toronto. Try it the traditional way with wine and kirsch or A La Pristine made with beer and kirsch.', 1, 13, TRUE, FALSE
+  17, 'Taking a hike in the woods', 'S March Highland Trails', 'Kanata', 'ON', 'Canada', 'K2K 0E5', 45.33908527763486, -75.94885220485747, '2022-03-15', '14:30:00', 4, 'http://localhost:8001/images/17-01.jpg', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.', 2, 5, FALSE, TRUE
 );
 
 -----userId 4 uncomplete10
@@ -188,11 +187,11 @@ INSERT INTO events (
   4, 'Bootlegger Tales and Tasting', '152-126 Alpaca Dr', 'Richmond Hill', 'ON', 'Canada', 'L4E 0P6', 43.917608, -79.466281, '2022-03-05', '16:00:00', 2, 'http://localhost:8001/images/04-01.png', 'Come to hear true stories of Windsor’s colourful bootlegging past by local storyteller and actor Rob Tymec. We have a few surprises for you including some secrets shared in one of the', 1, 7, TRUE, TRUE
 );
 
------userId 5 uncomplete11
+-----userId 2 uncomplete11
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  5, 'Nightmare Alley: EVENT HORIZON', '10620 Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4C 3C8', 43.886051, -79.441841, '2022-05-23', '22:15:00', 5, 'http://localhost:8001/images/05-01.png', 'Welcome to the extreme 90s, where your haunted house is a SPACESHIP! Best known for his run of RESIDENT EVIL films (shout out to Toronto as the true Raccoon City!)', 5, 8, FALSE, TRUE
+  2, 'Toddlers Play Together', '12461 Bathurst St', 'Richmond Hill', 'ON', 'Canada', 'L4E 2B4', 43.925410, -79.477040, '2022-02-24', '15:00:00', 2, 'http://localhost:8001/images/02-04.png', 'Whether you have an outgoing or shy little one, socialization is an important part of your childs overall development. a babys social development is tied to so many other area.', 3, 6, TRUE, TRUE
 );
 
 -----userId 6 uncomplete12
@@ -230,11 +229,12 @@ INSERT INTO events (
   10, 'U2 Concert', '210 Huntmar Dr.', 'Stittsville', 'ON', 'Canada', 'K2S 1B9', 45.29441212656311, -75.92586616310209, '2022-05-30', '20:15:00', 5, 'http://localhost:8001/images/10-01.png', 'U2 invites you to enjoy the concert of your life just across the Canadian Tyre Stadium.', 2, 10, TRUE, FALSE
 );
 
------userId 11 uncomplete17
+-----userId 1 uncomplete17
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  11, 'Care of Indoor Plants', '9-19 Alhart St', 'Richmond Hill', 'ON', 'Canada', 'L4E 1B9', 43.911042, -79.470916, '2022-02-27', '17:15:00', 5, 'http://localhost:8001/images/11-01.png', 'What is the best light? When to water or not water. And how to manage those nasty pests! Some common plants and unusual plants for the home. Bring your questions and be rea', 4, 10, FALSE, FALSE
+  1, 'Miranda''s Kids Party', '30 Yang Street', 'Richmond Hill', 'ON', 'Canada', 'L4E 0L5', 43.921395, -79.473341, '2022-02-24', '19:00:00', 2, 'http://localhost:8001/images/01-01.png', 'Bring your kids to my home, and let them play together. Only for neighbors', 3, 10, TRUE, TRUE
+
 );
 
 -----userId 12 uncomplete18
@@ -248,22 +248,22 @@ INSERT INTO events (
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  13, 'Jr. Forest Explorers ', '10620 Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4C 3C8', 43.886093, -79.440826, '2022-04-05', '14:30:00', 2, 'http://localhost:8001/images/13-01.png', 'A nature program for toddlers and their guardians. Un programme de nature destiné aux bambins et leurs tuteurs.', 2, 15, TRUE, TRUE
+  13, 'Jr. Forest Explorers ', '10620 Yonge St', 'Richmond Hill', 'ON', 'Canada', 'L4C 3C8', 43.886093, -79.440826, '2022-04-05', '14:30:00', 2, 'http://localhost:8001/images/13-01.png', 'A nature program for toddlers and their guardians. Un programme de nature destiné aux bambins et leurs tuteurs.', 3, 15, TRUE, TRUE
 );
 
 -----userId 14 uncomplete20
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  14, 'FAMILY SPRING EQUINOX', 'Prince Regent St', 'Markham', 'ON', 'Canada', 'L6C 0H3', 43.899040, -79.373690, '2022-04-07', '13:20:00', 3, 'http://localhost:8001/images/14-01.png', 'Gardening. Health and Wellness. Arts. Hiking. Family Activities. Nature Lovers. AND MORE! Let your mind grow at the Gardens!', 4, 14, FALSE, FALSE
+  14, 'FAMILY SPRING EQUINOX', 'Prince Regent St', 'Markham', 'ON', 'Canada', 'L6C 0H3', 43.899040, -79.373690, '2022-04-07', '13:20:00', 3, 'http://localhost:8001/images/14-01.png', 'Gardening. Health and Wellness. Arts. Hiking. Family Activities. Nature Lovers. AND MORE! Let your mind grow at the Gardens!', 3, 14, FALSE, FALSE
 );
 
 
------userId 16 uncomplete21
+-----userId 1 uncomplete21
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  16, 'Champions League Finale Watch Event', '714 Oakglade Ave', 'Kanata', 'ON', 'Canada', 'K2M 0B3', 45.281806666310175, -75.87025921923411, '2022-05-15', '19:30:00', 2, 'http://localhost:8001/images/16-01.jpg', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.', 2, 7, FALSE, FALSE
+  1, 'Mommies Tea Party', '41-59 Philips View Cres', 'Richmond Hill', 'ON', 'Canada', 'L4E 0S9', 43.922989, -79.469063, '2022-05-20', '16:00:00', 3, 'http://localhost:8001/images/01-02.png', 'Let mommies take a rest and enjoy the afternoon.', 1, 10, TRUE, TRUE
 );
 
 -----userId 16 uncomplete22
@@ -280,11 +280,11 @@ INSERT INTO events (
   16, 'Picnic at Shirleys bay', '20 Shirley Blvd', 'Ottawa', 'ON', 'Canada', 'K2K 2Z2', 45.36492526398774, -75.8831181253929, '2022-04-28', '16:30:00', 3, 'http://localhost:8001/images/16-03.jpg', 'Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit.', 1, 30, TRUE, TRUE
 );
 
------userId 17 uncomplete24
+-----userId 3 uncomplete24
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  17, 'Taking a hike in the woods', 'S March Highland Trails', 'Kanata', 'ON', 'Canada', 'K2K 0E5', 45.33908527763486, -75.94885220485747, '2022-03-15', '14:30:00', 4, 'http://localhost:8001/images/17-01.jpg', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.', 2, 5, FALSE, TRUE
+  3, 'Fondue Fridays', '50 Farmhouse Crescent', 'Richmond Hill', 'ON', 'Canada', 'L4E 0M1', 43.920770, -79.467380, '2022-02-25', '16:00:00', 2, 'http://localhost:8001/images/03-01.png', 'Fondue Fridays will featuring authentic swiss cheese fondue provided by The Cheese Boutique in Toronto. Try it the traditional way with wine and kirsch or A La Pristine made with beer and kirsch.', 1, 13, TRUE, FALSE
 );
 
 -----userId 17 uncomplete25
@@ -343,20 +343,20 @@ INSERT INTO application_status(
 
 -- Application table seeds here (Example)
 ----userId 1 approved
+-- INSERT INTO applications (
+--   participate_id, event_id, description, email, people_number, vaccine, status_id
+-- ) VALUES (
+--   1, 20, 'I am living nearbay and want to join with my kid', 'tristanjacobs@gmail.com',2, TRUE, 2
+-- );
+-- INSERT INTO applications (
+--   participate_id, event_id, description, email, people_number, vaccine, status_id
+-- ) VALUES (
+--   1, 19, 'I am living nearbay and want to join', 'tristanjacobs@gmail.com',3, TRUE, 2
+-- );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  1, 20, 'I am living nearbay and want to join with my kid', 'tristanjacobs@gmail.com',2, TRUE, 2
-);
-INSERT INTO applications (
-  participate_id, event_id, description, email, people_number, vaccine, status_id
-) VALUES (
-  1, 19, 'I am living nearbay and want to join', 'tristanjacobs@gmail.com',3, TRUE, 2
-);
-INSERT INTO applications (
-  participate_id, event_id, description, email, people_number, vaccine, status_id
-) VALUES (
-  1, 17, 'I am living nearbay and want to join with my kid', 'tristanjacobs@gmail.com',2, TRUE, 5
+  1, 16, 'I am living nearbay and want to join with my kid', 'tristanjacobs@gmail.com',2, TRUE, 5
 );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
@@ -373,14 +373,14 @@ INSERT INTO applications (
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine
 ) VALUES (
-  1, 11, 'I am living nearbay and want to join with my kid', 'tristanjacobs@gmail.com',2, TRUE
+  1, 27, 'I am living nearbay and want to join with my kid', 'tristanjacobs@gmail.com',2, TRUE
 );
 
 ----userId2
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  2, 10, 'I am living nearbay and want to join, We will bring some food', 'allisonjackson@mail.com',3, TRUE, 2
+  2, 19, 'I am living nearbay and want to join, We will bring some food', 'allisonjackson@mail.com',3, TRUE, 2
 );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
@@ -396,62 +396,62 @@ INSERT INTO applications (
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine
 ) VALUES (
-  2, 2, 'I am living nearbay and want to join', 'allisonjackson@mail.com',2, TRUE
+  2, 17, 'I am living nearbay and want to join', 'allisonjackson@mail.com',2, TRUE
 );
 
 
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  3, 1, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+  3, 17, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  4, 1, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+  4, 17, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  5, 1, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+  5, 17, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  13, 1, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+  13, 17, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
 
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine
 ) VALUES (
-  10, 1, 'Hi, I really want to join the party', 'elliotbaker@yahoo.com',3, TRUE
+  10, 17, 'Hi, I really want to join the party', 'elliotbaker@yahoo.com',3, TRUE
 );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine
 ) VALUES (
-  9, 2, 'I am living nearbay and want to join, We will bring some food', 'gabriellabarrera@aol.com',2, TRUE
+  9, 21, 'I am living nearbay and want to join, We will bring some food', 'gabriellabarrera@aol.com',2, TRUE
 );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine
 ) VALUES (
-  7, 2, 'I am living nearbay and want to join, We will bring some food', 'nathannguyen@ymail.com',1, TRUE
+  7, 21, 'I am living nearbay and want to join, We will bring some food', 'nathannguyen@ymail.com',1, TRUE
 );
 
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  3, 2, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+  3, 21, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  15, 2, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+  15, 21, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
-INSERT INTO applications (
-  participate_id, event_id, description, email, people_number, vaccine, status_id
-) VALUES (
-  11, 2, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
-);
+-- INSERT INTO applications (
+--   participate_id, event_id, description, email, people_number, vaccine, status_id
+-- ) VALUES (
+--   11, 2, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+-- );
 
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
@@ -514,17 +514,17 @@ INSERT INTO applications (
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  7, 6, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+  7, 11, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  9, 6, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+  9, 11, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
 INSERT INTO applications (
   participate_id, event_id, description, email, people_number, vaccine, status_id
 ) VALUES (
-  10, 6, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
+  10, 11, 'I am living nearbay and want to join, We will bring some food', '123@mail.com',3, TRUE, 2
 );
 
 INSERT INTO applications (
