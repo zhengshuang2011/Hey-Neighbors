@@ -13,12 +13,14 @@
   border-radius: 10px;
     width: 12rem;
     height: 10rem;
-  
     align-content: center;
 }
 .booking_incoming {
     min-width: none;
   max-width: 290px;
+}
+.booking_incoming:hover {
+  box-shadow: 0 0 11px #6980f379;
 }
 .booking_history {
    padding-left: 2rem;

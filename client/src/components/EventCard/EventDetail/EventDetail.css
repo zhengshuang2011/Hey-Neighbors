@@ -382,3 +382,14 @@ border-radius:calc(var(--curve) * 1px); */
 .event-detail-blog-card:hover .event-detail-details {
   left: 0%;
 }
+.event_det_map_pop{
+
+    margin: 2rem 2rem 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 0;
+    border-radius: calc(var(--curve) * 1px);
+    height: 35vh;
+}

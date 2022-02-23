@@ -14,8 +14,8 @@ export default makeStyles(() => ({
     "&:hover": {color:"white", backgroundColor: "#92a5ef", boxShadow:"0 3px 5px 2px rgba(237, 234, 234, 0.3)"}
   },
   mapContainer: {
-    height: "70vh",
-    width: "90%",
+    height: "75vh",
+    width: "100%",
   },
   markerContainer: {
     position: "relative",
