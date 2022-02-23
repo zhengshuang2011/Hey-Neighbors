@@ -14,8 +14,13 @@ function EventDetail({ event, user }) {
   //console.log("center in eventDetail", center);
 
   const navigate = useNavigate();
+
   const handleNewRSVP = (id) => {
-    navigate(`/event/${id}/rsvp`);
+    if (user) {
+      navigate(`/event/${id}/rsvp`);
+      return;
+    }
+    navigate("/signIn");
   };
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
@@ -75,7 +80,7 @@ function EventDetail({ event, user }) {
       );
     }
   };
-  console.log("Event Detail:", event);
+  //console.log("Event Detail:", event);
   return (
     <>
       <div className="cards">
@@ -103,9 +108,11 @@ function EventDetail({ event, user }) {
               <div className="items__content">
                 <AccessTimeIcon />
                 <span>
+
                   {" "}
                   {event.date.substring(0, 10)} at
                   {" "} {time(event.start_at)}
+
                 </span>
               </div>
               <div className="items__content">

@@ -7,6 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function NewEvent({ user, setUser }) {
+
   const navigate = useNavigate();
   const [incoming_events, setIncomingEvents] = useState();
 
@@ -41,9 +42,18 @@ function NewEvent({ user, setUser }) {
           <Sidebar user={user} setUser={setUser} />
         </Grid>
         <Grid item xs={0} sm={11} md={11} lg={3}>
-          {incoming_events && <Preview user={user} events={incoming_events} />}
+          {incoming_events && user && (
+            <Preview user={user} events={incoming_events} />
+          )}
         </Grid>
-        <Grid item xs={12} sm={11} md={11} lg={8} style={{ backgroundColor: "#F6F6FA" }}>
+        <Grid
+          item
+          xs={12}
+          sm={11}
+          md={11}
+          lg={8}
+          style={{ backgroundColor: "#F6F6FA" }}
+        >
           <div className="container js-container">
             <div className="container__head">
               <div className="container__title title title_xl" style={{ color: "#6980f3" }}>

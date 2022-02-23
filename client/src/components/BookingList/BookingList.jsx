@@ -46,7 +46,6 @@ function BookingList({ incoming_events, completed_events, attenders }) {
     const number = FindAttendersByEventId(attenders, event.id).length;
     return (
       <div className="data__item booking_incoming" key={event.id}>
-
         {/* <div className="data__corner">      
           <Stack direction="row" spacing={1}>
             <IconButton aria-label="cancel">
@@ -74,9 +73,7 @@ function BookingList({ incoming_events, completed_events, attenders }) {
             <div className="data__label">
               <div>
                 <AccessTimeIcon />
-
                 {event.date.substring(0, 10)} at {time(event.start_at)}
-
               </div>
               <div>
                 <PeopleIcon />
@@ -93,7 +90,7 @@ function BookingList({ incoming_events, completed_events, attenders }) {
             <div className="members data__members">
               {avartList}
               <div className="members__item">
-                <div className="members__counter">{`+ ${number}`}</div>
+                <div className="members__counter">{number}</div>
               </div>
             </div>
           </div>
