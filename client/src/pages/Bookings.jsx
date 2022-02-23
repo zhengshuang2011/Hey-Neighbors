@@ -71,7 +71,7 @@ function Bookings({ user, setUser }) {
         >
           <div className="container">
             <div className="container__head">
-              <div className="container__title title title_xl">
+              <div className="container__title title title_xl" style={{ color: "#6980f3" }}>
                 Your Bookings{" "}
               </div>
 

@@ -50,15 +50,15 @@ function Home({ user, setUser }) {
       <Grid
         item
         xs={12}
-        sm={11}
-        md={11}
+        sm={12}
+        md={12}
         lg={8}
-        className="event_map"
-        style={{ backgroundColor: "#F6F6FA" }}
+        className="event_map "
+        style={{ backgroundColor: "white" }}
       >
         <div className="container js-container">
           <div className="container__head">
-            <div className="container__title title title_xl">Events</div>
+            <div className="container__title title title_xl" style={{ color: "#6980f3" }}>Events</div>
             {filter === null && (
               <div className="container__title title filter_band">Nearby</div>
             )}

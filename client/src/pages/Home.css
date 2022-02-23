@@ -17,15 +17,51 @@
 .filter_band {
   margin-left: 1rem;
   margin-top: 0.5rem;
-  color: white;
-  border: 1px solid rgb(104, 102, 102);
-  padding: 0.1rem 0.5rem;
-  border-radius: 8%;
-  background-color: rgb(104, 102, 102);
+  color: #8c9fed;
+  border: 2px solid #8c9fed;
+  padding: 0.2rem 1rem;
+  border-radius: 20px;
+ 
 }
+
+
 
 /* font-family: 'Bungee', cursive;
 font-family: 'DM Sans', sans-serif;
 font-family: 'Nunito Sans', sans-serif;
 font-family: 'Poppins', sans-serif;
 font-family: 'Source Sans Pro', sans-serif; */
+
+.background--custom {
+      background: linear-gradient(90deg, #a0afee, white);
+      background-size: 300% 300%;
+      animation: gradient 4s alternate infinite;
+      /* position: absolute; */
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+    }
+    @keyframes gradient {
+      0% {
+        background-position: 0%;
+      }
+      100% {
+        background-position: 100%;
+      }
+    }
+@media (max-width: 1300px) and (min-width: 600px){
+  .event_map{
+    padding-left: 5rem;
+    padding-right: 20px;
+    max-width: 100%;
+  }
+}
+@media (max-width: 1300px){
+  .search_image {
+    min-width:40px;
+    max-width:800px;
+    width:50vw;
+    text-align: center;
+  }
+}

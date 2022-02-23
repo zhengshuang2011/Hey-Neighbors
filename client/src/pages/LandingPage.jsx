@@ -22,11 +22,11 @@ export default function LandingPage() {
             <div className="blockquote-wrapper">
               <div className="blockquote">
                 <h1>
-                  <span style={{ color: "white" }}> Hey</span><span style={{ color: "#92a5ef" }}> Neigbors!</span></h1>
-                <h1>
+                  <span style={{ color: "white" }}> Hey</span><span style={{ color: "#92a5ef" }}> Neighbors!</span></h1>
+                <h1 style={{ color: "white" }}>
                   Let's hang out together.
                 </h1>
-                <h4>Find and create events near you</h4>
+                <h4 style={{ color: "white" }}>Find and create events near you</h4>
               </div>
               <div className="form-group">
                 <Link

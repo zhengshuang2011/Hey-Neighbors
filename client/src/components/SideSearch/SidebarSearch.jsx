@@ -116,7 +116,7 @@ function SidebarSearch({ user, setEvents, setFilter }) {
           )}
           <div className="sidebar__wrap">
             <div className="sidebar__title">
-              Hey<span style={{ color: "#5E81F4" }}> Neigbors</span>
+              Hey<span style={{ color: "#5E81F4" }}> Neighbors</span>
             </div>
             {user && <div className="sidebar__text">{user.first_name}</div>}
           </div>
