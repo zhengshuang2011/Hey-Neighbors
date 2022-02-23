@@ -46,7 +46,7 @@ function NewEvent({ user, setUser }) {
         <Grid item xs={12} sm={11} md={11} lg={8} style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container js-container">
             <div className="container__head">
-              <div className="container__title title title_xl">
+              <div className="container__title title title_xl" style={{ color: "#6980f3" }}>
                 Create New Event
               </div>
 

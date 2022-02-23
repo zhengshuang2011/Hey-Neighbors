@@ -6,6 +6,7 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
+import "./EventMap.css"
 
 function EventMap({ events, user }) {
   //console.log("eventmap", events);
@@ -63,13 +64,13 @@ function EventMap({ events, user }) {
   return (
     <>
       {/* panel*/}
-      <div className="panel">
+      <div className="panel" style={{ background: "#F6F6FA" }}>
         {/* messages*/}
         <div className="messages">
           <div className="messages__layout">
             <div className="messages__sidebar">
               <div className="messages__head mobile-hide">
-                <button className="eventButton" onClick={handleNewEvent}>
+                <button className="neweventButton" onClick={handleNewEvent}>
                   <i className="la la-pencil-alt " />
                   <span> New Event</span>
                 </button>
@@ -151,14 +152,13 @@ function EventMap({ events, user }) {
               </div>
             </div>
             <div className="messages__container">
-              <div className="messages__head">
-                {/* back*/}
+              <div className="messages__head map_head">
                 <button className="messages__back back">
                   <i className="la la-angle-left " />
-                  Back
+                  Map Details
                 </button>
               </div>
-              <div className="messages__body">
+              <div className="messages__body map_body">
                 <Map
                   events={events}
                   event={selectedEvent}

@@ -103,13 +103,14 @@ function EventDetail({ event, user }) {
               <div className="items__content">
                 <AccessTimeIcon />
                 <span>
+                  {" "}
                   {event.date.substring(0, 10)} at
-                  {time(event.start_at)}
+                  {" "} {time(event.start_at)}
                 </span>
               </div>
               <div className="items__content">
                 <PeopleIcon />
-                <span> Up to {event.max_people_number}</span>
+                <span>{" "}Up to {event.max_people_number}</span>
               </div>
               <div className="items__content">
                 <FmdGoodIcon />
@@ -169,7 +170,7 @@ function EventDetail({ event, user }) {
             {mask(event.mask)}
             {vaccine(event.vaccine)}
           </div>
-          <div className="card_map">
+          <div className="event_det_map_pop">
             <Map event={event} />
           </div>
         </div>
