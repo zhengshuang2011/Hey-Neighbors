@@ -157,7 +157,7 @@ INSERT INTO events (
 INSERT INTO events (
   host_id, event_name, address, city, province, country, post_code, locationLatitude, locationLongitude, date, start_at, duration, photo_image, description, category_id, max_people_number, mask, vaccine
 )VALUES(
-  2, 'Toddlers Play Together', '12461 Bathurst St', 'Richmond Hill', 'ON', 'Canada', 'L4E 2B4', 43.925410, -79.477040, '2022-02-26', '15:00:00', 2, 'http://localhost:8001/images/02-04.png', 'Whether you have an outgoing or shy little one, socialization is an important part of your childs overall development. a babys social development is tied to so many other areas," says in child development.', 3, 6, TRUE, TRUE
+  2, 'Toddlers Play Together', '12461 Bathurst St', 'Richmond Hill', 'ON', 'Canada', 'L4E 2B4', 43.925410, -79.477040, '2022-02-24', '15:00:00', 2, 'http://localhost:8001/images/02-04.png', 'Whether you have an outgoing or shy little one, socialization is an important part of your childs overall development. a babys social development is tied to so many other area.', 3, 6, TRUE, TRUE
 );
 
 -----complete
