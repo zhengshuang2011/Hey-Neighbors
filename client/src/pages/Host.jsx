@@ -75,9 +75,10 @@ function Host({ user, setUser }) {
       <Grid
         item
         xs={12}
-        sm={11}
-        md={11}
+        sm={12}
+        md={12}
         lg={8}
+        className="event_map "
         style={{ backgroundColor: "#F6F6FA" }}
       >
         <div className="container js-container">

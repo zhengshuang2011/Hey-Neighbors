@@ -53,7 +53,7 @@ function RSVP({ user, setUser }) {
           )}
 
         </Grid>
-        <Grid item xs={12} sm={11} md={11} lg={8} style={{ backgroundColor: "#F6F6FA" }}>
+        <Grid item xs={12} sm={12} md={12} lg={8} className="event_map " style={{ backgroundColor: "#F6F6FA" }}>
           <div className="container js-container">
             <div className="container__head">
               <div className="container__title title title_xl" style={{ color: "#6980f3" }}>
