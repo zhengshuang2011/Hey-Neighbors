@@ -369,14 +369,18 @@ function EventList({
       {isDeleteOpen && (
         <div className="edit_popup-box">
           <div className="edit_box delete">
-            <div class="empty__container">
-              <div class="empty__preview">
-                <img class="empty__pic" src="images/delete.png" alt="Empty" />
+            <div className="empty__container">
+              <div className="empty__preview icon">
+                <img
+                  className="empty__pic"
+                  src="images/delete.png"
+                  alt="Empty"
+                />
               </div>
-              <div class="empty__title title title_lg">
+              <div className="empty__title title title_lg">
                 <p> Do you want to delete this Event:</p>
               </div>
-              <div class="empty__text">
+              <div className="empty__text">
                 This event: <b>{`${event.event_name}`}</b> <br />
                 will be cancelled once you click the DELETE button
               </div>
