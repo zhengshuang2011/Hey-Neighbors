@@ -6,7 +6,7 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
-import "./EventMap.css"
+import "./EventMap.css";
 
 function EventMap({ events, user }) {
   //console.log("eventmap", events);
@@ -69,15 +69,16 @@ function EventMap({ events, user }) {
         <div className="messages">
           <div className="messages__layout">
             <div className="messages__sidebar">
-              <div className="messages__head mobile-hide">
-                <button className="neweventButton" onClick={handleNewEvent}>
-                  <i className="la la-pencil-alt " />
-                  <span> New Event</span>
-                </button>
+              {user && (
+                <div className="messages__head mobile-hide">
+                  <button className="neweventButton" onClick={handleNewEvent}>
+                    <i className="la la-pencil-alt " />
+                    <span> New Event</span>
+                  </button>
 
-                {/* Sort by */}
+                  {/* Sort by */}
 
-                {/* <div className="sort js-sort">
+                  {/* <div className="sort js-sort">
                   <div className="sort__head js-sort-head">
                     <div className="sort__icon">
                       <i className="la la-filter " />
@@ -142,7 +143,8 @@ function EventMap({ events, user }) {
                   </div>
                   <div className="sort__backdrop backdrop js-sort-backdrop" />
                 </div> */}
-              </div>
+                </div>
+              )}
               <div className="messages__body">
                 {/* items*/}
                 <div className="items items_stroke">
