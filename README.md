@@ -1,11 +1,18 @@
 # Hey Neighbors!
 
-The purpose of the app is to band the community and enhance the connection between neighbors.
+Hey Neighbors is a simple application for creating, finding, and arranging events. The App's purpose is to band the community and enhance the connection between neighbors.
 
-- (user can be an organizer and a participant)
-  - Organizers can easily post events, edit and delete events, mark events as completed, and confirm participants.
-  - Participants can search for events they want according to their interests, send requests to participate, etc.
-  - This App could grab user's IP address and provide nearby events.
+- Multiple Positions (user can be an organizer and a participant)
+  1. General user: 
+  - This App could grab the user's current IP address and automatically provide nearby events on the map.
+  - Users can search events by location, date, categories, and other features (require a mask or vaccinated).
+  - Users can check event details and send RSVPs to participate in the event.
+  2. Organizers (Hostings)
+  - Event organizers can review application details and arrange event applications (reject or approve).
+  - Organizers can preview events after creating, and managing an event by editing, deleting, and changing status to completed
+  3. Participants (Bookings)
+  - Participants can check RSVP status, including Pending, Approved, Rejected, Event Cancel, and Event completed.
+  - Participants can review incoming events and event history.
 
 ## App Demo
 
@@ -45,3 +52,12 @@ Booking Page
 - cookie-session
 - bcrypt
 - cors
+
+## Getting Started
+- Client
+  1. Install dependencies with npm install
+  2. Running Webpack Development Server(npm start)
+- Server
+  1. Install dependencies with npm install
+  2. Following backend server ReadMe document to set-up database 
+  3. Running backend server (npm run local)
