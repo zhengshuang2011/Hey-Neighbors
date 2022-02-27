@@ -6,8 +6,7 @@ import NewEventForm from "../components/NewEventForm/NewEventForm";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function NewEvent({ user, setUser }) {
-
+function NewEvent({ user, setUser, center }) {
   const navigate = useNavigate();
   const [incoming_events, setIncomingEvents] = useState();
 
@@ -43,7 +42,7 @@ function NewEvent({ user, setUser }) {
         </Grid>
         <Grid item xs={0} sm={11} md={11} lg={3}>
           {incoming_events && user && (
-            <Preview user={user} events={incoming_events} />
+            <Preview user={user} events={incoming_events} center={center} />
           )}
         </Grid>
         <Grid
@@ -57,15 +56,17 @@ function NewEvent({ user, setUser }) {
         >
           <div className="container js-container">
             <div className="container__head">
-              <div className="container__title title title_xl" style={{ color: "#6980f3" }}>
+              <div
+                className="container__title title title_xl"
+                style={{ color: "#6980f3" }}
+              >
                 Create New Event
               </div>
 
               {/* search*/}
               <div className="container__search search">
                 <button className="search__action action">
-                  <i className="la la-search "
-                    onClick={handleSearch} />
+                  <i className="la la-search " onClick={handleSearch} />
                 </button>
               </div>
               {/* new*/}

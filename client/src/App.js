@@ -86,7 +86,7 @@ function App() {
           <Route
             exact
             path="/newevent"
-            element={<NewEvent user={user} setUser={setUser} />}
+            element={<NewEvent user={user} setUser={setUser} center={center} />}
           />
           <Route
             exact
