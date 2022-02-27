@@ -17,25 +17,25 @@ Hey Neighbors is a simple application for creating, finding, and arranging event
 ## App Demo
 
 Laning Page
-!["Landing Page"](./client/public/LandingPage.jpeg)
+!["Landing Page"](./client/public/readme/LandingPage.jpeg)
 
 Home Page Without Login
-!["Home Page1"](./client/public/HomePageWithoutLogin.jpeg)
+!["Home Page1"](./client/public/readme/HomePageWithoutLogin.jpeg)
 
 Home Page After Login
-!["Home Page2"](./client/public/HomePageAfterLogin.jpeg)
+!["Home Page2"](./client/public/readme/HomePageAfterLogin.jpeg)
 
 Event Details
-!["Event Details"](./client/public/EventDetailPage.jpeg)
+!["Event Details"](./client/public/readme/EventDetailPage.jpeg)
 
 Event Application Page
-!["Event Booking"](./client/public/EventApplicationPage.jpeg)
+!["Event Booking"](./client/public/readme/EventApplicationPage.jpeg)
 
 Host Page
-!["Host"](./client/public/HostPage.jpeg)
+!["Host"](./client/public/readme/HostPage.jpeg)
 
 Booking Page
-!["Booking"](./client/public/BookingPage.jpeg)
+!["Booking"](./client/public/readme/BookingPage.jpeg)
 
 ## Dependencies
 
@@ -55,9 +55,9 @@ Booking Page
 
 ## Getting Started
 - Client
-  1. Install dependencies with npm install
-  2. Running Webpack Development Server(npm start)
+  1. Install dependencies with `npm install`
+  2. Running Webpack Development Server `npm start`
 - Server
-  1. Install dependencies with npm install
+  1. Install dependencies with `npm install`
   2. Following backend server ReadMe document to set-up database 
-  3. Running backend server (npm run local)
+  3. Running Backend Server `npm run local`

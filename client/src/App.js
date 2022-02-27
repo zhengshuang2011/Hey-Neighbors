@@ -5,7 +5,6 @@ import axios from "axios";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import LandingPage from "./pages/LandingPage";
-import Myevent from "./pages/Myevent";
 import CreateEvent from "./pages/CreateEvent";
 import Bookings from "./pages/Bookings";
 import Home from "./pages/Home";
@@ -68,7 +67,7 @@ function App() {
             element={<SignUp user={user} setUser={setUser} />}
           />
 
-          <Route exact path="/myevent" element={<Myevent />} />
+        
           <Route
             exact
             path="/host"
