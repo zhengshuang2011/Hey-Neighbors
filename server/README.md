@@ -1,4 +1,4 @@
-# LHL Final Project
+# Hey Neighbors! Server Set-up
 
 ## Getting Started
 
