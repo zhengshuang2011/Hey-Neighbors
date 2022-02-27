@@ -7,18 +7,16 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function RSVP({ user, setUser }) {
+function RSVP({ user, setUser, center }) {
   const [eventDetail, setEventDetail] = useState();
   // const [submit, setSubmit] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    Promise.all([
-      axios.get(`/api/events/${id}`)
-    ])
+    Promise.all([axios.get(`/api/events/${id}`)])
       .then((all) => {
-        console.log("RSVP event detail", all)
+        console.log("RSVP event detail", all);
         setEventDetail(all[0].data);
         // setSubmit(false);
       })
@@ -31,10 +29,7 @@ function RSVP({ user, setUser }) {
     navigate("/home");
   };
 
-  console.log(
-    'user', user,
-    'event_detail_rsvp', eventDetail
-  )
+  console.log("user", user, "event_detail_rsvp", eventDetail);
 
   return (
     <>
@@ -49,22 +44,31 @@ function RSVP({ user, setUser }) {
         </Grid>
         <Grid item xs={0} sm={11} md={11} lg={3}>
           {eventDetail && (
-            <SideEventDetail user={user} event={eventDetail} />
+            <SideEventDetail user={user} event={eventDetail} center={center} />
           )}
-
         </Grid>
-        <Grid item xs={12} sm={12} md={12} lg={8} className="event_map " style={{ backgroundColor: "#F6F6FA" }}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          lg={8}
+          className="event_map "
+          style={{ backgroundColor: "#F6F6FA" }}
+        >
           <div className="container js-container">
             <div className="container__head">
-              <div className="container__title title title_xl" style={{ color: "#6980f3" }}>
+              <div
+                className="container__title title title_xl"
+                style={{ color: "#6980f3" }}
+              >
                 Send Your RSVP
               </div>
 
               {/* search*/}
               <div className="container__search search">
                 <button className="search__action action">
-                  <i className="la la-search "
-                    onClick={handleSearch} />
+                  <i className="la la-search " onClick={handleSearch} />
                 </button>
               </div>
               {/* new*/}
@@ -88,7 +92,7 @@ function RSVP({ user, setUser }) {
         </Grid>
       </Grid>
     </>
-  )
+  );
 }
 
-export default RSVP
+export default RSVP;

@@ -3,7 +3,13 @@ import GoogleMapReact from "google-map-react";
 import { Paper, Typography } from "@material-ui/core";
 import useMapStyles from "./MapStyles";
 
-export default function Map({ events, event, handleClick, center, pinnedInitialCenter }) {
+export default function Map({
+  events,
+  event,
+  handleClick,
+  center,
+  pinnedInitialCenter,
+}) {
   //console.log("event ", event);
 
   const [mapObject, setMapObject] = useState(null);
@@ -13,7 +19,7 @@ export default function Map({ events, event, handleClick, center, pinnedInitialC
 
   const handleApiLoad = ({ map, maps }) => {
     //console.log('Api loaded', map, maps)
-    setMapObject({ map, maps })
+    setMapObject({ map, maps });
   };
 
   useEffect(() => {
@@ -23,19 +29,19 @@ export default function Map({ events, event, handleClick, center, pinnedInitialC
         const marker = new mapObject.maps.Marker({
           position: {
             lat: Number(center.lat),
-            lng: Number(center.lng)
+            lng: Number(center.lng),
           },
-          map: mapObject.map
-        })
+          map: mapObject.map,
+        });
       }
       if (event && !events) {
         const marker = new mapObject.maps.Marker({
           position: {
             lat: Number(event.locationlatitude),
-            lng: Number(event.locationlongitude)
+            lng: Number(event.locationlongitude),
           },
-          map: mapObject.map
-        })
+          map: mapObject.map,
+        });
       }
     }
   });
@@ -44,43 +50,49 @@ export default function Map({ events, event, handleClick, center, pinnedInitialC
 
   return (
     <div className={classes.mapContainer}>
-
-      <GoogleMapReact
-        bootstrapURLKeys={{ key: "AIzaSyA_itBW9kNLgs2Ef1vImn7JhCVcLsJ6smQ" }}
-        defaultCenter={center}
-        center={event ? { lat: event.locationlatitude - 0.001, lng: event.locationlongitude + 0.0020 } : null}
-        defaultZoom={14}
-        margin={[50, 50, 50, 50]}
-        onGoogleApiLoaded={handleApiLoad}
-      >
-
-        {events?.map((event, index) => {
-          //console.log("event.map = ", event);
-          return (
-            <div
-              className={classes.markerContainer}
-              lat={event.locationlatitude}
-              lng={event.locationlongitude}
-              onClick={() => handleClick(index)}
-            >
-              <Paper elevation={3} className={classes.paper}>
-                <Typography
-                  className={classes.typography}
-                  variant="subtitle2"
-                  gutterBottom
-                >
-                  {event.event_name}
-                </Typography>
-                <img
-                  className={classes.pointer}
-                  src={event.photo_image}
-                  alt={event.event_name}
-                />
-              </Paper>
-            </div>
-          );
-        })}
-        {/* <div className={classes.markerContainer} lat={45.41117} lng={-75.69812}>
+      {center && (
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: "AIzaSyA_itBW9kNLgs2Ef1vImn7JhCVcLsJ6smQ" }}
+          defaultCenter={center}
+          center={
+            event
+              ? {
+                  lat: event.locationlatitude - 0.001,
+                  lng: event.locationlongitude + 0.002,
+                }
+              : null
+          }
+          defaultZoom={14}
+          margin={[50, 50, 50, 50]}
+          onGoogleApiLoaded={handleApiLoad}
+        >
+          {events?.map((event, index) => {
+            //console.log("event.map = ", event);
+            return (
+              <div
+                className={classes.markerContainer}
+                lat={event.locationlatitude}
+                lng={event.locationlongitude}
+                onClick={() => handleClick(index)}
+              >
+                <Paper elevation={3} className={classes.paper}>
+                  <Typography
+                    className={classes.typography}
+                    variant="subtitle2"
+                    gutterBottom
+                  >
+                    {event.event_name}
+                  </Typography>
+                  <img
+                    className={classes.pointer}
+                    src={event.photo_image}
+                    alt={event.event_name}
+                  />
+                </Paper>
+              </div>
+            );
+          })}
+          {/* <div className={classes.markerContainer} lat={45.41117} lng={-75.69812}>
           <Paper elevation={3} className={classes.paper}>
             <Typography
               className={classes.typography}
@@ -116,7 +128,8 @@ export default function Map({ events, event, handleClick, center, pinnedInitialC
             />
           </Paper>
             </div>*/}
-      </GoogleMapReact>
+        </GoogleMapReact>
+      )}
     </div>
   );
 }

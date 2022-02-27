@@ -7,7 +7,7 @@ import SidebarSearch from "../components/SideSearch/SidebarSearch";
 import "./Home.css";
 import axios from "axios";
 
-function Home({ user, setUser }) {
+function Home({ user, setUser, center, setCenter }) {
   const [events, setEvents] = useState();
   const navigate = useNavigate();
   const [filter, setFilter] = useState(null);
@@ -58,7 +58,12 @@ function Home({ user, setUser }) {
       >
         <div className="container js-container">
           <div className="container__head">
-            <div className="container__title title title_xl" style={{ color: "#6980f3" }}>Events</div>
+            <div
+              className="container__title title title_xl"
+              style={{ color: "#6980f3" }}
+            >
+              Events
+            </div>
             {filter === null && (
               <div className="container__title title filter_band">Nearby</div>
             )}
@@ -90,8 +95,7 @@ function Home({ user, setUser }) {
             {/* search*/}
             <div className="container__search search">
               <button className="search__action action">
-                <i className="la la-search "
-                  onClick={handleSearch} />
+                <i className="la la-search " onClick={handleSearch} />
               </button>
             </div>
             {/* new*/}
@@ -109,7 +113,14 @@ function Home({ user, setUser }) {
             )}
           </div>
           <div className="container__body">
-            {events && <EventMap events={events} user={user} />}
+            {events && (
+              <EventMap
+                events={events}
+                user={user}
+                center={center}
+                setCenter={setCenter}
+              />
+            )}
           </div>
         </div>
       </Grid>

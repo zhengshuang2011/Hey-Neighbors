@@ -2,9 +2,9 @@ import React from "react";
 import "./Preview.css";
 import EventCard from "../EventCard/EventCard";
 
-function Preview({ user, events }) {
+function Preview({ user, events, center }) {
   const eventsList = events.map((event) => (
-    <EventCard event={event} key={event.id} {...event} />
+    <EventCard event={event} key={event.id} {...event} center={center} />
   ));
 
   return (
