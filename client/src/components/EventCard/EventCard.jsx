@@ -32,7 +32,7 @@ const Popup = (props) => {
   );
 };
 
-function EventCard({ event, onClick, eventRef, user }) {
+function EventCard({ event, onClick, eventRef, user, center }) {
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
     if (timeNumber < 12) {
@@ -132,7 +132,7 @@ function EventCard({ event, onClick, eventRef, user }) {
 
       {isOpen && (
         <Popup
-          content={<EventDetail event={event} user={user} />}
+          content={<EventDetail event={event} user={user} center={center} />}
           handleClose={togglePopup}
         />
       )}

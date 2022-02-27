@@ -13,10 +13,19 @@ import Host from "./pages/Host";
 import NewEvent from "./pages/NewEvent";
 import RSVP from "./pages/RSVP";
 
-
 function App() {
   const [user, setUser] = useState();
-  console.log("user", user);
+  // console.log("user", user);
+  const [center, setCenter] = useState(null);
+
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     setCenter({
+  //       lat: position.coords.latitude,
+  //       lng: position.coords.longitude,
+  //     });
+  //   });
+  // }, []);
 
   useEffect(() => {
     axios
@@ -34,14 +43,19 @@ function App() {
   return (
     <div>
       <BrowserRouter>
-       
-        <Routes> 
-
+        <Routes>
           <Route exact path="/" element={<LandingPage />} />
           <Route
             exact
             path="/home"
-            element={<Home user={user} setUser={setUser} />}
+            element={
+              <Home
+                user={user}
+                setUser={setUser}
+                center={center}
+                setCenter={setCenter}
+              />
+            }
           />
           <Route
             exact
@@ -68,13 +82,17 @@ function App() {
           />
 
           <Route exact path="/createEvent" element={<CreateEvent />} />
-         
+
           <Route
             exact
             path="/newevent"
             element={<NewEvent user={user} setUser={setUser} />}
           />
-           <Route exact path="/event/:id/rsvp" element={<RSVP user={user} setUser={setUser} />} />
+          <Route
+            exact
+            path="/event/:id/rsvp"
+            element={<RSVP user={user} setUser={setUser} center={center} />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

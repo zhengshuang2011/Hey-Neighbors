@@ -8,35 +8,27 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import "./EventMap.css";
 
-function EventMap({ events, user }) {
+function EventMap({ events, user, center, setCenter }) {
   //console.log("eventmap", events);
   const navigate = useNavigate();
 
   const eventsRef = useRef([]);
 
-  const [center, setCenter] = useState({
-    // lat: 45.27727542620655,
-    // lng: -75.86682256861117,
-    lat: 43.91968,
-    lng: -79.47248,
-  });
+  // const [center, setCenter] = useState(null);
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
     eventsRef.current = eventsRef.current.slice(0, events.length);
   }, [events]);
 
-  //useEffect(() => {
-  //
-  //  navigator.geolocation.getCurrentPosition((position) => {
-  //
-  //    setCenter({
-  //      lat: position.coords.latitude,
-  //      lng: position.coords.longitude,
-  //    });
-  //  });
-  //
-  //}, []);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      setCenter({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  }, []);
 
   const handleNewEvent = () => {
     navigate("/newevent");
@@ -48,6 +40,7 @@ function EventMap({ events, user }) {
 
   const eventsList = events.map((event, index) => (
     <EventCard
+      center={center}
       user={user}
       event={event}
       key={event.id}

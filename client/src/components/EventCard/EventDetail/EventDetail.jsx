@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Map from "../../Map/Map";
 import "./EventDetail.css";
 
-function EventDetail({ event, user }) {
+function EventDetail({ event, user, center }) {
   //console.log("center in eventDetail", center);
 
   const navigate = useNavigate();
@@ -175,7 +175,7 @@ function EventDetail({ event, user }) {
             {vaccine(event.vaccine)}
           </div>
           <div className="event_det_map_pop">
-            <Map event={event} />
+            <Map event={event} center={center} />
           </div>
         </div>
       </div>
