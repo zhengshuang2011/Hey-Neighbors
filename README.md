@@ -2,7 +2,7 @@
 
 Hey Neighbors is a simple application for creating, finding, and arranging events. The App's purpose is to band the community and enhance the connection between neighbors.
 
-- Multiple Positions (user can be an organizer and a participant)
+## Multiple Positions (user can be an organizer and a participant)
   1. General user: 
   - This App could grab the user's current IP address and automatically provide nearby events on the map.
   - Users can search events by location, date, categories, and other features (require a mask or vaccinated).
@@ -16,24 +16,24 @@ Hey Neighbors is a simple application for creating, finding, and arranging event
 
 ## App Demo
 
-Laning Page and Sign In page
+### Laning page & Sign in page
+- users also can explore home page without login, but they won't able to create or join events
 !["Landing Page"](./client/public/readme/landing.gif)
 
-Home Page Without Login
-!["Home Page1"](./client/public/readme/HomePageWithoutLogin.jpeg)
-
-Home Page and Check Event Details
+### Home page and check event details
 !["Home Page2"](./client/public/readme/event_map.gif)
 
-Search Events and Join the event
+### Search events and join the event
 !["Search"](./client/public/readme/search.gif)
 
-Event Application (RSVP) Page and Host Processing application
+### Event application (RSVP) page, host processing application and arranging events
 !["RSVP"](./client/public/readme/rsvp.gif)
 
-Create New Event
+### Create new event and preview event details
 !["create event"](./client/public/readme/create_event.gif)
 
+### Small Screen designs
+!["small sreens"](./client/public/readme/small_screen.png )
 
 ## Dependencies
 
