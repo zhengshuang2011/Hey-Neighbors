@@ -32,8 +32,8 @@ Hey Neighbors is a simple application for creating, finding, and arranging event
 ### Create new event and preview event details
 !["create event"](./client/public/readme/create_event.gif)
 
-### Small Screen designs
-!["small sreens"](./client/public/readme/small_screen.png )
+### Small screen designs
+!["small sreens"](./client/public/readme/small_screen.png)
 
 ## Dependencies
 
