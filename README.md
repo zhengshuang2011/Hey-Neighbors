@@ -16,26 +16,24 @@ Hey Neighbors is a simple application for creating, finding, and arranging event
 
 ## App Demo
 
-Laning Page
-!["Landing Page"](./client/public/readme/LandingPage.jpeg)
+Laning Page and Sign In page
+!["Landing Page"](./client/public/readme/landing.gif)
 
 Home Page Without Login
 !["Home Page1"](./client/public/readme/HomePageWithoutLogin.jpeg)
 
-Home Page After Login
-!["Home Page2"](./client/public/readme/HomePageAfterLogin.jpeg)
+Home Page and Check Event Details
+!["Home Page2"](./client/public/readme/event_map.gif)
 
-Event Details
-!["Event Details"](./client/public/readme/EventDetailPage.jpeg)
+Search Events and Join the event
+!["Search"](./client/public/readme/search.gif)
 
-Event Application Page
-!["Event Booking"](./client/public/readme/EventApplicationPage.jpeg)
+Event Application (RSVP) Page and Host Processing application
+!["RSVP"](./client/public/readme/rsvp.gif)
 
-Host Page
-!["Host"](./client/public/readme/HostPage.jpeg)
+Create New Event
+!["create event"](./client/public/readme/create_event.gif)
 
-Booking Page
-!["Booking"](./client/public/readme/BookingPage.jpeg)
 
 ## Dependencies
 
