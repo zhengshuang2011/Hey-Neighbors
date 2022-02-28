@@ -3,7 +3,7 @@
 Hey Neighbors is a simple application for creating, finding, and arranging events. The App's purpose is to band the community and enhance the connection between neighbors.
 
 ## Multiple Positions (user can be an organizer and a participant)
-  1. General user: 
+  1. General users: 
   - This App could grab the user's current IP address and automatically provide nearby events on the map.
   - Users can search events by location, date, categories, and other features (require a mask or vaccinated).
   - Users can check event details and send RSVPs to participate in the event.
