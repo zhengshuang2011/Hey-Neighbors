@@ -30,7 +30,7 @@ Hey Neighbors is a simple application for creating, finding, and arranging event
 !["RSVP"](./client/public/readme/rsvp.gif)
 
 ### Create new event and preview event details
-!["create event"](./client/public/readme/create_event.gif)
+!["create event"](./client/public/readme/create_event2.gif)
 
 ### Small screen designs
 !["small sreens"](./client/public/readme/small_screen.png)
