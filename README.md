@@ -4,15 +4,15 @@ Hey Neighbors is a simple application for creating, finding, and arranging event
 
 ## Multiple Positions (user can be an organizer and a participant)
   1. General user: 
-    - This App could grab the user's current IP address and automatically provide nearby events on the map.
-    - Users can search events by location, date, categories, and other features (require a mask or vaccinated).
-    - Users can check event details and send RSVPs to participate in the event.
+  - This App could grab the user's current IP address and automatically provide nearby events on the map.
+  - Users can search events by location, date, categories, and other features (require a mask or vaccinated).
+  - Users can check event details and send RSVPs to participate in the event.
   2. Organizers (Hostings)
-    - Event organizers can review application details and arrange event applications (reject or approve).
-    - Organizers can preview events after creating, and managing an event by editing, deleting, and changing status to completed
+  - Event organizers can review application details and arrange event applications (reject or approve).
+  - Organizers can preview events after creating, and managing an event by editing, deleting, and changing status to completed
   3. Participants (Bookings)
-    - Participants can check RSVP status, including Pending, Approved, Rejected, Event Cancel, and Event completed.
-    - Participants can review incoming events and event history.
+  - Participants can check RSVP status, including Pending, Approved, Rejected, Event Cancel, and Event completed.
+  - Participants can review incoming events and event history.
 
 ## App Demo
 
