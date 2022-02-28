@@ -16,7 +16,8 @@ import RSVP from "./pages/RSVP";
 
 function App() {
   const [user, setUser] = useState();
-  console.log("user", user);
+  const [center, setCenter] = useState(null);
+  //console.log("user", user);
 
   useEffect(() => {
     axios
@@ -31,6 +32,18 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
+  useEffect(() => {
+  
+    navigator.geolocation.getCurrentPosition((position) => {
+  
+      setCenter({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+    });
+  
+  }, []);
+
   return (
     <div>
       <BrowserRouter>
@@ -41,7 +54,7 @@ function App() {
           <Route
             exact
             path="/home"
-            element={<Home user={user} setUser={setUser} />}
+            element={<Home user={user} center={center} setUser={setUser} />}
           />
           <Route
             exact
@@ -74,7 +87,7 @@ function App() {
             path="/newevent"
             element={<NewEvent user={user} setUser={setUser} />}
           />
-           <Route exact path="/event/:id/rsvp" element={<RSVP user={user} setUser={setUser} />} />
+           <Route exact path="/event/:id/rsvp" element={<RSVP user={user} center={center} setUser={setUser} />} />
         </Routes>
       </BrowserRouter>
     </div>

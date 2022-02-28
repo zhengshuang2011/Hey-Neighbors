@@ -7,7 +7,7 @@ import SidebarSearch from "../components/SideSearch/SidebarSearch";
 import "./Home.css";
 import axios from "axios";
 
-function Home({ user, setUser }) {
+function Home({ user, setUser, center }) {
   const [events, setEvents] = useState();
   const navigate = useNavigate();
   const [filter, setFilter] = useState(null);
@@ -109,7 +109,7 @@ function Home({ user, setUser }) {
             )}
           </div>
           <div className="container__body">
-            {events && <EventMap events={events} user={user} />}
+            {events && <EventMap events={events} center={center} user={user} />}
           </div>
         </div>
       </Grid>

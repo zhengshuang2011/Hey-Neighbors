@@ -7,7 +7,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-function RSVP({ user, setUser }) {
+function RSVP({ user, setUser, center }) {
   const [eventDetail, setEventDetail] = useState();
   // const [submit, setSubmit] = useState(false);
   const { id } = useParams();
@@ -49,7 +49,7 @@ function RSVP({ user, setUser }) {
         </Grid>
         <Grid item xs={0} sm={11} md={11} lg={3}>
           {eventDetail && (
-            <SideEventDetail user={user} event={eventDetail} />
+            <SideEventDetail user={user} event={eventDetail} center={center} />
           )}
 
         </Grid>

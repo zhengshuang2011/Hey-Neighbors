@@ -44,7 +44,7 @@ export default function Map({ events, event, handleClick, center, pinnedInitialC
 
   return (
     <div className={classes.mapContainer}>
-
+      {center &&
       <GoogleMapReact
         bootstrapURLKeys={{ key: "AIzaSyA_itBW9kNLgs2Ef1vImn7JhCVcLsJ6smQ" }}
         defaultCenter={center}
@@ -53,7 +53,6 @@ export default function Map({ events, event, handleClick, center, pinnedInitialC
         margin={[50, 50, 50, 50]}
         onGoogleApiLoaded={handleApiLoad}
       >
-
         {events?.map((event, index) => {
           //console.log("event.map = ", event);
           return (
@@ -80,43 +79,7 @@ export default function Map({ events, event, handleClick, center, pinnedInitialC
             </div>
           );
         })}
-        {/* <div className={classes.markerContainer} lat={45.41117} lng={-75.69812}>
-          <Paper elevation={3} className={classes.paper}>
-            <Typography
-              className={classes.typography}
-              variant="subtitle2"
-              gutterBottom
-            >
-              Concert
-            </Typography>
-            <img
-              className={classes.pointer}
-              src={
-                "https://1409791524.rsc.cdn77.org/data/images/full/514212/kpopconcert-jpg.jpg"
-              }
-              alt={"Concert"}
-            />
-          </Paper>
-        </div>
-        <div className={classes.markerContainer} lat={45.29981303104935} lng={-75.89353069112829}>
-          <Paper elevation={3} className={classes.paper}>
-            <Typography
-              className={classes.typography}
-              variant="subtitle2"
-              gutterBottom
-            >
-              Concert
-            </Typography>
-            <img
-              className={classes.pointer}
-              src={
-                "https://1409791524.rsc.cdn77.org/data/images/full/514212/kpopconcert-jpg.jpg"
-              }
-              alt={"Concert"}
-            />
-          </Paper>
-            </div>*/}
-      </GoogleMapReact>
+      </GoogleMapReact> }
     </div>
   );
 }

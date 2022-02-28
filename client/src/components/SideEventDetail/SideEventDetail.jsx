@@ -6,8 +6,8 @@ import VaccinesIcon from "@mui/icons-material/Vaccines";
 import Map from "../Map/Map";
 import './SideEventDetail.css'
 
-function SideEventDetail({ user, event }) {
-  console.log(event)
+function SideEventDetail({ user, event, center }) {
+  //console.log("center in SideEventDetail", center)
 
   const time = (start_at) => {
     const timeNumber = Number(start_at.substring(0, 2));
@@ -132,7 +132,7 @@ function SideEventDetail({ user, event }) {
                   {vaccine(event.vaccine)}
                 </div>
                 <div className="event_det_map">
-                  <Map event={event} />
+                  <Map event={event} center={center} />
                 </div>
               </div>
 
