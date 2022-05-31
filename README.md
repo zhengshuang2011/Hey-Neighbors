@@ -1,7 +1,7 @@
 # Hey Neighbors!
 
 Hey Neighbors is a simple application for creating, finding, and arranging events. The App's purpose is to band the community and enhance the connection between neighbors.
-
+### Developer: [Miranda Zheng](https://github.com/zhengshuang2011), [Wenting Yong](https://github.com/wentingzoe), [Mustafa Skaya](https://github.com/MustafaSKaya)
 ## Multiple Positions (user can be an organizer and a participant)
 
   1. General users: 
